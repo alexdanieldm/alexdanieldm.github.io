@@ -1,11 +1,26 @@
 {
-  "name": "app",
+  "name": "portafolio",
   "version": "1.0.0",
-  "description": "",
+  "description": "Professional web portafolio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "author": "Alex Duran",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexdanieldm/alexdanieldm.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexdanieldm/alexdanieldm.com/issues"
+  },
+  "homepage": "https://github.com/alexdanieldm/alexdanieldm.com#readme"
 }
