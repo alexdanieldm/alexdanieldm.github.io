@@ -4,16 +4,8 @@
   "description": "Professional web portafolio",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
-  },
-  "author": "Alex Duran",
-  "license": "MIT",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
+    "start": "node app.js",
+    "test": "nodemon --watch . app.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +14,14 @@
   "bugs": {
     "url": "https://github.com/alexdanieldm/alexdanieldm.com/issues"
   },
-  "homepage": "https://github.com/alexdanieldm/alexdanieldm.com#readme"
+  "homepage": "https://github.com/alexdanieldm/alexdanieldm.com#readme",
+  "author": "Alex Duran",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
