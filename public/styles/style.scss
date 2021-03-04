@@ -1,0 +1,39 @@
+@import 'foundation';
+body {
+    background-color: black;
+}
+
+nav {
+    background-color: rgb(9, 9, 87);
+    @include flexCenter(row, space-between);
+    width: 100vw;
+
+    position: sticky;
+    top: 0px;
+
+    padding: 15px 20px;
+    
+    a {
+
+    }
+
+    ul {
+        @include flexCenter(row);
+        list-style: none;
+    }
+
+    li {
+        font-size: 15px;
+        margin-left: 15px;
+        padding-bottom: 10px;
+
+        transition: all 0.25s;
+
+        &:hover {
+            // background-color: $darkish;
+            border-bottom: solid 3px rgb(255, 255, 255);
+        }
+
+        
+    }
+}
