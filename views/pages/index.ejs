@@ -10,17 +10,24 @@
     <link rel="stylesheet" href="/styles/normalize.css">
     <link rel="stylesheet" href="/styles/dist/style.css">
     
-    <script src="https://kit.fontawesome.com/4bde6bf509.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/script/navbar.js" async></script>
+
 </head>
 
 <body>
     <%- include('../partials/navigation'); %>
+
+    <%- include('../partials/header'); %>
+
     <main>
-        <h1>main</h1>
+        <%- include('../partials/about'); %>
 
         <%- include('../partials/tech'); %>
 
+        <%- include('../partials/projects'); %>
     </main>
+
     <%- include('../partials/footer'); %>
 </body>
 </html>

@@ -36,7 +36,7 @@ nav {
   position: sticky;
   top: 0px;
   z-index: 100;
-  transition: background-color 1s ease 0s;
+  transition: all 1s ease 0s;
   padding: 15px 70px;
 }
 nav .symbol {
@@ -60,6 +60,10 @@ nav li {
 nav li:hover {
   padding-bottom: 10px;
   border-bottom: solid 3px white;
+}
+
+.solid {
+  background: #d8555c;
 }
 
 header {
