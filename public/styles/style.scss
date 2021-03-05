@@ -13,8 +13,12 @@ nav {
     top: 0px;
     z-index: 10;
 
-    padding: 15px 40px;
+    padding: 15px 70px;
     box-shadow: 0 8px 15px -6px black;
+
+    .symbol {
+        font-size: 25px;;
+    }
 
     ul {
         @include flexCenter(row);
@@ -38,7 +42,11 @@ nav {
 
     }
 
-    .symbol {
-        font-size: 25px;
+    .resume {
+        @include flexCenter(row);
+        img {
+            margin-left: 10px;
+            width: 28px;
+        }
     }
 }
