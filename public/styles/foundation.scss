@@ -6,6 +6,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'geometr415';
+    src: url('/assets/fonts/geometr415_md_bt_medium-webfont.woff2') format('woff2'),
+        url('/assets/fonts/geometr415_md_bt_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @mixin flexCenter($direction, $justify: center, $align: center) {
     display: flex;
     flex-direction: $direction;
@@ -20,14 +28,15 @@
         0 0 20px $color;
 }
 
-// $base: rgb(0, 18, 32);
-// $baseTransparent: rgba(0, 18, 32, 0.877);
-// $baseGradient: linear-gradient(to bottom right, rgba(0, 29, 51, 0.877), rgba(0, 22, 39, 0.877), rgba(0, 13, 22, 0.877));
+$base: rgb(2, 25, 38);
+$baseTransparent: rgba(2, 25, 38, 0.24);
 
-// $accent: rgb(70, 174, 206);
+$accent: rgb(237, 94, 101);
 
-// $ligth: rgb(16, 40, 59);
-// $darkish: rgb(13, 27, 39);
+$ligth: rgb(3, 50, 69);
+$dark: rgb(6, 31, 47);
+
+$gradient: linear-gradient(transparent 30%, $baseTransparent 50%, $base 98%);
 
 * {
     font-family: anonymous_pro;

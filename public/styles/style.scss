@@ -1,20 +1,23 @@
 @import 'foundation';
 body {
-    background-color: rgb(20, 17, 51);
+    background-color: $base;
 }
 
+
 nav {
-    background-color: rgb(9, 9, 87);
+    background-color:transparent;
     @include flexCenter(row, space-between);
     width: 100vw;
     font-size: 18px;
 
     position: sticky;
     top: 0px;
-    z-index: 10;
+    z-index: 100;
+    transition: background-color 1s ease 0s;
+
 
     padding: 15px 70px;
-    box-shadow: 0 8px 15px -6px black;
+    // box-shadow: 0 8px 15px -6px black;
 
     .symbol {
         font-size: 25px;;
@@ -36,17 +39,59 @@ nav {
         transition: all 0.25s;
         
         &:hover {
-                background-color: red;
-                border-bottom: solid 3px rgb(255, 255, 255);
+            padding-bottom: 10px;
+            border-bottom: solid 3px rgb(255, 255, 255);
         }
 
-    }
-
-    .resume {
-        @include flexCenter(row);
-        img {
-            margin-left: 10px;
-            width: 28px;
-        }
     }
 }
+
+header {
+    margin-top: -10vh;
+    height: 85vh;
+    background-image: $gradient,
+    url(/assets/images/highway.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include flexCenter(column);
+
+    h1 {
+        font-size: 48px;
+        margin: 0px 0px 15px 0px;
+        font-family: geometr415;
+    }
+
+    .header-buttons {
+        margin-top: 60px;
+        @include flexCenter(row)
+    }
+
+    .projects {
+        margin-right: 20px;
+    }
+}
+
+
+//* CLASSES
+button, .button {
+    cursor: pointer;
+    background-color: transparent;
+    border: solid 1px rgb(255, 255, 255);
+    padding: 5px 35px;
+    
+    transition: all 0.20s;
+
+    &:hover {
+        transform: translate(-3px, -3px);
+    }
+}
+
+.resume {
+    @include flexCenter(row);
+    img {
+        margin-right: 10px;
+        width: 24px;
+    }
+}
+
