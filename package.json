@@ -4,8 +4,7 @@
   "description": "Professional web portafolio",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "nodemon --watch . app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
