@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'anonymous_pro';
+    src: url('/assets/fonts/anonymouspro-regular-webfont.woff2') format('woff2'),
+        url('/assets/fonts/anonymouspro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @mixin flexCenter($direction, $justify: center, $align: center) {
     display: flex;
     flex-direction: $direction;
@@ -12,17 +20,18 @@
         0 0 20px $color;
 }
 
-$base: rgb(0, 18, 32);
-$baseTransparent: rgba(0, 18, 32, 0.877);
-$baseGradient: linear-gradient(to bottom right, rgba(0, 29, 51, 0.877), rgba(0, 22, 39, 0.877), rgba(0, 13, 22, 0.877));
+// $base: rgb(0, 18, 32);
+// $baseTransparent: rgba(0, 18, 32, 0.877);
+// $baseGradient: linear-gradient(to bottom right, rgba(0, 29, 51, 0.877), rgba(0, 22, 39, 0.877), rgba(0, 13, 22, 0.877));
 
-$accent: rgb(70, 174, 206);
+// $accent: rgb(70, 174, 206);
 
-$ligth: rgb(16, 40, 59);
-$darkish: rgb(13, 27, 39);
+// $ligth: rgb(16, 40, 59);
+// $darkish: rgb(13, 27, 39);
 
 * {
-    color: white;
+    font-family: anonymous_pro;
+    color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -30,6 +39,4 @@ $darkish: rgb(13, 27, 39);
     a {
         text-decoration: none;
     }
-
-    font-family: rubik;
 }

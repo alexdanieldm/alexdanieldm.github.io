@@ -1,39 +1,44 @@
 @import 'foundation';
 body {
-    background-color: black;
+    background-color: rgb(20, 17, 51);
 }
 
 nav {
     background-color: rgb(9, 9, 87);
     @include flexCenter(row, space-between);
     width: 100vw;
+    font-size: 18px;
 
     position: sticky;
     top: 0px;
+    z-index: 10;
 
-    padding: 15px 20px;
-    
-    a {
-
-    }
+    padding: 15px 40px;
+    box-shadow: 0 8px 15px -6px black;
 
     ul {
         @include flexCenter(row);
         list-style: none;
+
+        &:last-child {
+            margin-right: 0px;
+        }
     }
 
     li {
-        font-size: 15px;
-        margin-left: 15px;
-        padding-bottom: 10px;
+        list-style: none;
+        margin-right: 70px;
 
         transition: all 0.25s;
-
+        
         &:hover {
-            // background-color: $darkish;
-            border-bottom: solid 3px rgb(255, 255, 255);
+                background-color: red;
+                border-bottom: solid 3px rgb(255, 255, 255);
         }
 
-        
+    }
+
+    .symbol {
+        font-size: 25px;
     }
 }
