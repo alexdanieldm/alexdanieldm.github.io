@@ -113,7 +113,7 @@ header {
 .tech {
     @include flexCenter(column);
     padding: 10px 0px 30px;
-    margin-bottom: 5rem;
+    margin: 2rem 0rem;
 
     background-color: $accent;
     transform: skewY(-4deg);
@@ -151,7 +151,7 @@ header {
 
 .projects {
     @include flexCenter(column);
-    padding: 10px 0px 90px;
+    padding: 10px 0px 70px;
 
     .card {
         @include flexCenter(column);
@@ -222,6 +222,28 @@ footer {
     }
 }
 
+.quote {
+    @include flexCenter(column);
+    background-color: $accent;
+    transform: skewY(-4deg);
+    margin: 2rem 0rem;
+
+    .content {
+        width: 70vw;
+        padding: 1.1rem;
+    }
+    
+    blockquote {
+        font-family: geometr415;
+        font-size: 28px;
+
+        &:before, &:after {
+            content: '“';
+            font-size: 30px;
+            font-family: fzimokenpi,
+        }
+    }
+}
 
 //* CLASSES
 .resume {

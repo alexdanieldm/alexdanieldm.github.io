@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "anonymous_pro";
   src: url("/assets/fonts/anonymouspro-regular-webfont.woff2") format("woff2"), url("/assets/fonts/anonymouspro-regular-webfont.woff") format("woff");
@@ -181,7 +182,7 @@ header .projects_button {
   justify-content: center;
   align-items: center;
   padding: 10px 0px 30px;
-  margin-bottom: 5rem;
+  margin: 2rem 0rem;
   background-color: #f75155;
   transform: skewY(-4deg);
 }
@@ -220,7 +221,7 @@ header .projects_button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 90px;
+  padding: 10px 0px 70px;
 }
 .projects .card {
   display: flex;
@@ -288,6 +289,29 @@ footer li:hover {
 }
 footer img {
   width: 25px;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f75155;
+  transform: skewY(-4deg);
+  margin: 2rem 0rem;
+}
+.quote .content {
+  width: 70vw;
+  padding: 1.1rem;
+}
+.quote blockquote {
+  font-family: geometr415;
+  font-size: 28px;
+}
+.quote blockquote:before, .quote blockquote:after {
+  content: "“";
+  font-size: 30px;
+  font-family: fzimokenpi;
 }
 
 .resume {
