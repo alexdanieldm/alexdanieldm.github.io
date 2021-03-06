@@ -15,7 +15,7 @@ Here all the places you can find me on the world wide web _(side note can we all
 
 * **Twitter** _(for a casual meet)_ - [@alexdanieldm](https://twitter.com/alexdanieldm)
 * **LinkedIn** _(for professional inquiries)_ - [@alexdanieldm](https://www.linkedin.com/in/alexdanieldm/)
-* **Github** _(you are already kinda there)_ - [@alexdanieldm]()
+* **Github** _(you are already kinda there)_ - [@alexdanieldm](https://github.com/alexdanieldm)
 
 **Or write me an email at _alexdanieldm@gmail.com_**
 
