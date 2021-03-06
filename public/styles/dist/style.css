@@ -5,8 +5,20 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "anonymous_pro";
+  src: url("/assets/fonts/anonymouspro-bold-webfont.woff2") format("woff2"), url("/assets/fonts/anonymouspro-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
   font-family: "geometr415";
   src: url("/assets/fonts/geometr415_md_bt_medium-webfont.woff2") format("woff2"), url("/assets/fonts/geometr415_md_bt_medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "fzimokenpi";
+  src: url("/assets/fonts/FZImokenpi-webfont.woff2") format("woff2"), url("/assets/fonts/FZImokenpi-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,9 +28,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1.6;
 }
 * a {
   text-decoration: none;
+}
+* h1 {
+  font-family: geometr415;
+}
+* button, * .button {
+  cursor: pointer;
+  background-color: transparent;
+  border: solid 1px white;
+  padding: 5px 35px;
+  transition: all 0.2s;
+}
+* button:hover, * .button:hover {
+  transform: translate(-3px, -3px);
+  background-color: #d8555c;
+  text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
 }
 
 body {
@@ -36,11 +64,12 @@ nav {
   position: sticky;
   top: 0px;
   z-index: 100;
-  transition: all 1s ease 0s;
+  transition: all 0.5s ease 0s;
   padding: 15px 70px;
 }
 nav .symbol {
   font-size: 25px;
+  font-family: fzimokenpi;
 }
 nav ul {
   display: flex;
@@ -60,6 +89,7 @@ nav li {
 nav li:hover {
   padding-bottom: 10px;
   border-bottom: solid 3px white;
+  text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
 }
 
 .solid {
@@ -68,8 +98,8 @@ nav li:hover {
 
 header {
   margin-top: -10vh;
-  height: 85vh;
-  background-image: linear-gradient(transparent 30%, rgba(2, 25, 38, 0.24) 50%, #021926 98%), url(/assets/images/highway.jpg);
+  height: 100vh;
+  background-image: linear-gradient(transparent 30%, rgba(2, 25, 38, 0.24) 50%, #021926 100%), url(/assets/images/highway.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -81,10 +111,14 @@ header {
 header h1 {
   font-size: 48px;
   margin: 0px 0px 15px 0px;
-  font-family: geometr415;
+}
+header h3 {
+  text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
+  width: 40%;
+  text-align: center;
 }
 header .header-buttons {
-  margin-top: 60px;
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -94,15 +128,48 @@ header .projects {
   margin-right: 20px;
 }
 
-button, .button {
-  cursor: pointer;
-  background-color: transparent;
-  border: solid 1px white;
-  padding: 5px 35px;
-  transition: all 0.2s;
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 30px;
 }
-button:hover, .button:hover {
-  transform: translate(-3px, -3px);
+.about .content {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  align-items: center;
+}
+.about .picture {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.about img {
+  width: 20rem;
+  box-shadow: 2.5rem 2.5rem 0px 0px #d8555c;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.about .info {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  align-items: center;
+}
+.about .info b {
+  font-size: 18px;
+  background-image: linear-gradient(transparent 60%, #d8555c 40%);
+}
+
+.tech {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .resume {

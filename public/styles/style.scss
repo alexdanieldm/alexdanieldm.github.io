@@ -13,14 +13,14 @@ nav {
     position: sticky;
     top: 0px;
     z-index: 100;
-    transition: all 1s ease 0s;
+    transition: all 0.5s ease 0s;
 
 
     padding: 15px 70px;
-    // box-shadow: 0 8px 15px -6px black;
 
     .symbol {
-        font-size: 25px;;
+        font-size: 25px;
+        font-family: fzimokenpi;
     }
 
     ul {
@@ -41,6 +41,7 @@ nav {
         &:hover {
             padding-bottom: 10px;
             border-bottom: solid 3px rgb(255, 255, 255);
+            @include neonText()
         }
 
     }
@@ -53,7 +54,7 @@ nav {
 
 header {
     margin-top: -10vh;
-    height: 85vh;
+    height: 100vh;
     background-image: $gradient,
     url(/assets/images/highway.jpg);
     background-position: center;
@@ -64,11 +65,16 @@ header {
     h1 {
         font-size: 48px;
         margin: 0px 0px 15px 0px;
-        font-family: geometr415;
+    }
+
+    h3 {
+        @include neonText();
+        width: 40%;
+        text-align: center;
     }
 
     .header-buttons {
-        margin-top: 60px;
+        margin-top: 50px;
         @include flexCenter(row)
     }
 
@@ -77,21 +83,49 @@ header {
     }
 }
 
+.about {
+    @include flexCenter(column);
+    padding: 10px 0px 30px;
 
-//* CLASSES
-button, .button {
-    cursor: pointer;
-    background-color: transparent;
-    border: solid 1px rgb(255, 255, 255);
-    padding: 5px 35px;
-    
-    transition: all 0.20s;
+    .content {
+        width: 80vw;
 
-    &:hover {
-        transform: translate(-3px, -3px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px;
+        align-items: center;
+    }
+
+    .picture {
+        @include flexCenter(row);
+    }
+
+    img {
+        width: 20rem;
+        box-shadow: 2.5rem 2.5rem 0px 0px $accent;
+        margin-right: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .info {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 30px;
+        align-items: center;
+        
+        b {
+            font-size: 18px;
+            background-image: linear-gradient(transparent 60%, $accent 40%);
+        }
     }
 }
 
+.tech {
+    @include flexCenter(column);
+}
+
+
+//* CLASSES
 .resume {
     @include flexCenter(row);
     img {
@@ -99,4 +133,3 @@ button, .button {
         width: 24px;
     }
 }
-
