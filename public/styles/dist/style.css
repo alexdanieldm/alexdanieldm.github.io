@@ -124,13 +124,14 @@ header {
   align-items: center;
 }
 header h1 {
-  font-size: 48px;
+  font-size: 58px;
   margin: 0px 0px 15px 0px;
 }
 header h3 {
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
   width: 40%;
   text-align: center;
+  font-size: 20px;
 }
 header .header-buttons {
   margin-top: 50px;
