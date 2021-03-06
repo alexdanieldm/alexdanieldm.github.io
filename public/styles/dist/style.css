@@ -215,7 +215,7 @@ header .projects_button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 30px;
+  padding: 10px 0px 90px;
 }
 .projects .card {
   display: flex;
@@ -251,6 +251,38 @@ header .projects_button {
 }
 .projects li {
   margin: 15px 0px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #033245;
+  padding: 15px 10px;
+}
+footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+footer li {
+  margin-right: 40px;
+  transition: transform 0.3s;
+}
+footer li:last-child {
+  margin-right: 0px;
+}
+footer li:hover {
+  cursor: pointer;
+  padding-bottom: 1px;
+  border-bottom: solid 2px white;
+  transform: scale(1.2);
+}
+footer img {
+  width: 25px;
 }
 
 .resume {

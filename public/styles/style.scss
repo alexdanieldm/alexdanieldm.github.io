@@ -145,7 +145,7 @@ header {
 
 .projects {
     @include flexCenter(column);
-    padding: 10px 0px 30px;
+    padding: 10px 0px 90px;
 
     .card {
         @include flexCenter(column);
@@ -183,6 +183,37 @@ header {
         margin: 15px 0px
     }
 
+}
+
+footer {
+    @include flexCenter(column);
+    background-color: $ligth;
+    padding: 15px 10px;
+
+    ul {
+        @include flexCenter(row);
+        margin-top: 12px;
+    }
+
+    li {
+        margin-right: 40px;
+        transition: transform 0.3s;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            padding-bottom: 1px;
+            border-bottom: solid 2px rgb(255, 255, 255);
+            transform: scale(1.2);
+        }
+    }
+
+    img {
+        width: 25px;
+    }
 }
 
 
