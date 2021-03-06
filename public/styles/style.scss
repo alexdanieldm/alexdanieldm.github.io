@@ -117,9 +117,9 @@ header {
 
     background-color: $accent;
     transform: skewY(-4deg);
-    
+
     h1 {
-        transform: skewY(4deg);
+        margin-bottom: 20px;
     }
 
     .content {
@@ -130,8 +130,6 @@ header {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
         grid-gap: 45px;
-
-        transform: skewY(4deg);
     }
 
     .logo {
@@ -191,6 +189,81 @@ header {
 
 }
 
+.quote {
+    @include flexCenter(column);
+    background-color: $accent;
+    transform: skewY(-4deg);
+    margin: 2rem 0rem;
+    
+    .content {
+        width: 70vw;
+        padding: 1.1rem;
+    }
+    
+    blockquote {
+        font-family: geometr415;
+        font-size: 28px;
+        
+        &:before, &:after {
+            content: '“';
+            font-size: 30px;
+            font-family: fzimokenpi,
+        }
+    }
+}
+
+.contact {
+    @include flexCenter(column);
+    padding: 10px 50px 70px;
+    
+    .content {
+        @include grid(50px);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+        .draw {
+            justify-self: center;
+            width: 20rem;
+        }
+    }
+    
+    .preference {
+        a {
+            transition: all 0.5s ease 0s;
+            &:hover {
+                background-image: none;
+                background-color: $accent;
+            }
+        }
+    }
+
+
+    ul {
+        @include flexCenter(row);
+        margin-top: 12px;
+    }
+
+    li {
+        margin-right: 40px;
+        transition: transform 0.3s;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            padding-bottom: 1px;
+            border-bottom: solid 2px rgb(255, 255, 255);
+            transform: scale(1.2);
+        }
+    }
+
+    img {
+        width: 35px;
+    }
+    
+}
+
 footer {
     @include flexCenter(column);
     background-color: $ligth;
@@ -219,29 +292,6 @@ footer {
 
     img {
         width: 25px;
-    }
-}
-
-.quote {
-    @include flexCenter(column);
-    background-color: $accent;
-    transform: skewY(-4deg);
-    margin: 2rem 0rem;
-
-    .content {
-        width: 70vw;
-        padding: 1.1rem;
-    }
-    
-    blockquote {
-        font-family: geometr415;
-        font-size: 28px;
-
-        &:before, &:after {
-            content: '“';
-            font-size: 30px;
-            font-family: fzimokenpi,
-        }
     }
 }
 

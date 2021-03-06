@@ -187,7 +187,7 @@ header .projects_button {
   transform: skewY(-4deg);
 }
 .tech h1 {
-  transform: skewY(4deg);
+  margin-bottom: 20px;
 }
 .tech .content {
   display: flex;
@@ -199,7 +199,6 @@ header .projects_button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
   grid-gap: 45px;
-  transform: skewY(4deg);
 }
 .tech .logo {
   display: flex;
@@ -259,6 +258,77 @@ header .projects_button {
   margin: 15px 0px;
 }
 
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f75155;
+  transform: skewY(-4deg);
+  margin: 2rem 0rem;
+}
+.quote .content {
+  width: 70vw;
+  padding: 1.1rem;
+}
+.quote blockquote {
+  font-family: geometr415;
+  font-size: 28px;
+}
+.quote blockquote:before, .quote blockquote:after {
+  content: "“";
+  font-size: 30px;
+  font-family: fzimokenpi;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 50px 70px;
+}
+.contact .content {
+  display: grid;
+  grid-gap: 50px;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.contact .content .draw {
+  justify-self: center;
+  width: 20rem;
+}
+.contact .preference a {
+  transition: all 0.5s ease 0s;
+}
+.contact .preference a:hover {
+  background-image: none;
+  background-color: #f75155;
+}
+.contact ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+.contact li {
+  margin-right: 40px;
+  transition: transform 0.3s;
+}
+.contact li:last-child {
+  margin-right: 0px;
+}
+.contact li:hover {
+  cursor: pointer;
+  padding-bottom: 1px;
+  border-bottom: solid 2px white;
+  transform: scale(1.2);
+}
+.contact img {
+  width: 35px;
+}
+
 footer {
   display: flex;
   flex-direction: column;
@@ -289,29 +359,6 @@ footer li:hover {
 }
 footer img {
   width: 25px;
-}
-
-.quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f75155;
-  transform: skewY(-4deg);
-  margin: 2rem 0rem;
-}
-.quote .content {
-  width: 70vw;
-  padding: 1.1rem;
-}
-.quote blockquote {
-  font-family: geometr415;
-  font-size: 28px;
-}
-.quote blockquote:before, .quote blockquote:after {
-  content: "“";
-  font-size: 30px;
-  font-family: fzimokenpi;
 }
 
 .resume {
