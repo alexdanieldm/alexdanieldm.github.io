@@ -45,6 +45,6 @@
 }
 * button:hover, * .button:hover {
   transform: translate(-3px, -3px);
-  background-color: #d8555c;
+  background-color: #f75155;
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
 }

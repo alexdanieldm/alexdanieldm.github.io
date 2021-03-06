@@ -45,7 +45,7 @@
 }
 * button:hover, * .button:hover {
   transform: translate(-3px, -3px);
-  background-color: #d8555c;
+  background-color: #f75155;
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
 }
 
@@ -93,7 +93,7 @@ nav li:hover {
 }
 
 .solid {
-  background: #d8555c;
+  background: #021926;
 }
 
 header {
@@ -150,7 +150,7 @@ header .projects {
 }
 .about img {
   width: 20rem;
-  box-shadow: 2.5rem 2.5rem 0px 0px #d8555c;
+  box-shadow: 2.5rem 2.5rem 0px 0px #f75155;
   margin-right: 2.5rem;
   margin-bottom: 2.5rem;
 }
@@ -162,7 +162,7 @@ header .projects {
 }
 .about .info b {
   font-size: 18px;
-  background-image: linear-gradient(transparent 60%, #d8555c 40%);
+  background-image: linear-gradient(transparent 60%, #f75155 40%);
 }
 
 .tech {
@@ -170,6 +170,34 @@ header .projects {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px 0px 30px;
+  margin-bottom: 5rem;
+  background-color: #f75155;
+  transform: skewY(-4deg);
+}
+.tech h1 {
+  transform: skewY(4deg);
+}
+.tech .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  padding: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-gap: 45px;
+  transform: skewY(4deg);
+}
+.tech .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tech img {
+  width: 60px;
 }
 
 .resume {
