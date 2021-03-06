@@ -96,7 +96,7 @@ header {
     }
 
     img {
-        width: 20rem;
+        width: 25rem;
         box-shadow: 2.5rem 2.5rem 0px 0px $accent;
         margin-right: 2.5rem;
         margin-bottom: 2.5rem;
@@ -107,6 +107,19 @@ header {
         grid-template-columns: 1fr;
         grid-gap: 30px;
         align-items: center;
+
+        a {
+            transition: all 0.5s ease 0s;
+            &:hover {
+                background-image: none;
+                background-color: $accent;
+            }
+        }
+    }
+
+    ul {
+        @include flexCenter(row);
+        margin-top: 20px
     }
 }
 
@@ -214,16 +227,22 @@ header {
 
 .contact {
     @include flexCenter(column);
-    padding: 10px 50px 70px;
+    padding: 30px 50px 30px;
     
     .content {
         @include grid(50px);
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-        .draw {
-            justify-self: center;
-            width: 20rem;
-        }
+    }
+    h1 {
+        margin: 0rem 0rem 0.3rem;
+    }
+
+    .kanji {
+        justify-self: center;
+        font-size: 10rem;
+        font-family: fzimokenpi;
+        color: $accent;
     }
     
     .preference {
