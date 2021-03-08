@@ -31,27 +31,42 @@
   box-sizing: border-box;
   line-height: 1.6;
 }
-* a {
+
+a {
   text-decoration: none;
 }
-* h1 {
+
+h1 {
   font-family: geometr415;
 }
-* button, * .button {
+
+button, .button {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   background-color: transparent;
   border: solid 1px white;
   padding: 5px 35px;
   transition: all 0.2s;
 }
-* button:hover, * .button:hover {
+button img, .button img {
+  margin-right: 10px;
+  width: 24px;
+}
+button:hover, .button:hover {
   transform: translate(-3px, -3px);
   background-color: #f75155;
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
-}
-* section h1 {
   color: #ffffff;
-  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 2px 1px 4px rgba(255, 255, 255, 0.3), inset 2px 4px 3px rgba(255, 255, 255, 0.3), inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6);
+}
+
+section h1 {
+  color: #ffffff;
   box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 2px 1px 4px rgba(255, 255, 255, 0.3), inset 2px 4px 3px rgba(255, 255, 255, 0.3), inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
   padding: 5px 5vw;
   margin-bottom: 45px;
@@ -66,6 +81,14 @@ ul, li {
   list-style: none;
 }
 
+p a {
+  transition: all 0.3s ease 0s;
+}
+p a:hover {
+  background-image: none;
+  background-color: #f75155;
+}
+
 body {
   background-color: #021926;
 }
@@ -73,6 +96,7 @@ body {
 nav {
   background-color: transparent;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -90,19 +114,17 @@ nav .symbol {
 }
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-nav ul:last-child {
-  margin-right: 0px;
 }
 nav li {
   margin-right: 70px;
   transition: all 0.25s;
 }
 nav li:hover {
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: solid 3px white;
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
 }
@@ -114,11 +136,13 @@ nav li:hover {
 header {
   margin-top: -10vh;
   height: 100vh;
+  padding: 0px 20px;
   background-image: linear-gradient(transparent 30%, rgba(2, 25, 38, 0.24) 50%, #021926 100%), url(/assets/images/highway.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -129,46 +153,63 @@ header h1 {
 }
 header h3 {
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
-  width: 40%;
+  width: 50%;
   text-align: center;
   font-size: 20px;
+  margin-bottom: 50px;
 }
 header .header-buttons {
-  margin-top: 50px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 header .projects_button {
+  background-color: #f75155;
   margin-right: 20px;
 }
 
 .about {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 30px;
+  padding: 10px 20px 30px;
 }
 .about .content {
-  width: 80vw;
+  width: 100%;
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 40px;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 .about .picture {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about .social {
+  margin-top: 30px;
+}
+.about .profile {
+  width: 75%;
+  box-shadow: 2.5rem 2.5rem 0px 0px #f75155;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.about .social {
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.about img {
-  width: 25rem;
-  box-shadow: 2.5rem 2.5rem 0px 0px #f75155;
-  margin-right: 2.5rem;
-  margin-bottom: 2.5rem;
+.about .github-button {
+  margin-right: 20px;
 }
 .about .info {
   display: grid;
@@ -176,15 +217,9 @@ header .projects_button {
   grid-gap: 30px;
   align-items: center;
 }
-.about .info a {
-  transition: all 0.5s ease 0s;
-}
-.about .info a:hover {
-  background-image: none;
-  background-color: #f75155;
-}
 .about ul {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -193,6 +228,7 @@ header .projects_button {
 
 .tech {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -206,25 +242,27 @@ header .projects_button {
 }
 .tech .content {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 70vw;
-  padding: 1.1rem;
+  padding: 1rem;
   display: grid;
+  grid-gap: 40px;
+  align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  grid-gap: 45px;
 }
 .tech .logo {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: transform 0.3s;
 }
 .tech .logo:hover {
-  cursor: pointer;
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 .tech img {
   width: 60px;
@@ -232,36 +270,43 @@ header .projects_button {
 
 .projects {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 70px;
+  padding: 10px 70px 70px;
 }
 .projects .card {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  background: rgba(6, 31, 47, 0.13);
-  box-shadow: 0px 0px 51px 11px rgba(255, 255, 255, 0.171);
+  padding: 40px 50px;
+  box-shadow: 0px 0px 51px 11px rgba(255, 255, 255, 0.151);
   border: 1px solid white;
 }
 .projects .content {
-  width: 80vw;
+  width: 100%;
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 50px;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(482px, 1fr));
-}
-.projects img {
-  width: 32rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 .projects .picture {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.projects .picture a {
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 30px;
+}
+.projects .capture {
+  width: 100%;
 }
 .projects p {
   margin-bottom: 15px;
@@ -275,6 +320,7 @@ header .projects_button {
 
 .quote {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -284,7 +330,7 @@ header .projects_button {
 }
 .quote .content {
   width: 70vw;
-  padding: 1.1rem;
+  padding: 2.4rem 1.1rem;
 }
 .quote blockquote {
   font-family: geometr415;
@@ -295,42 +341,38 @@ header .projects_button {
   font-size: 30px;
   font-family: fzimokenpi;
 }
+.quote blockquote:after {
+  content: "”";
+}
 
 .contact {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 50px 30px;
+  padding: 0px 50px 50px;
 }
 .contact .content {
   display: grid;
   grid-gap: 50px;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-}
-.contact h1 {
-  margin: 0rem 0rem 0.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .contact .kanji {
   justify-self: center;
   font-size: 10rem;
+  line-height: 1;
   font-family: fzimokenpi;
   color: #f75155;
 }
-.contact .preference a {
-  transition: all 0.5s ease 0s;
-}
-.contact .preference a:hover {
-  background-image: none;
-  background-color: #f75155;
-}
 .contact ul {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 25px;
 }
 .contact li {
   margin-right: 40px;
@@ -351,6 +393,7 @@ header .projects_button {
 
 footer {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -359,6 +402,7 @@ footer {
 }
 footer ul {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -381,13 +425,105 @@ footer img {
   width: 25px;
 }
 
-.resume {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.tablet, .only-tablet, .mobile {
+  display: none;
 }
-.resume img {
-  margin-right: 10px;
-  width: 24px;
+
+@media only screen and (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+
+  .tablet, .only-tablet {
+    display: block;
+  }
+
+  nav li {
+    margin-right: 30px;
+  }
+
+  .contact .content {
+    grid-gap: 10px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .only-tablet, .hide-mobile, .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  nav {
+    padding: 15px 15px;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    background-color: #021926;
+  }
+  nav ul {
+    width: 100%;
+    justify-content: space-between;
+  }
+  nav li {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 12px;
+  }
+  nav li:last-child {
+    margin: 0px;
+  }
+  nav li img {
+    width: 24px;
+  }
+
+  header h1 {
+    font-size: 55px;
+    line-height: 1.3;
+  }
+  header h3 {
+    text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
+    width: 100%;
+    text-align: left;
+  }
+  header .projects_button {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+
+  .about .profile {
+    box-shadow: 1rem 1rem 0px 0px #f75155;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .about .github-button {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+
+  .projects {
+    padding: 10px 10px 70px;
+  }
+  .projects .card {
+    padding: 10px 30px;
+    box-shadow: none;
+    color: #ffffff;
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 2px 1px 4px rgba(255, 255, 255, 0.3), inset 2px 4px 3px rgba(255, 255, 255, 0.3), inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
+    border: 1px solid white;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px 50px;
+  }
 }

@@ -1,0 +1,12 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+ <title>ionicons-v5-e</title>
+
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#ffffff" id="svg_1" fill="none" stroke-miterlimit="10" stroke-width="32px" d="m248,64c-101.61,0 -184,82.39 -184,184s82.39,184 184,184s184,-82.39 184,-184s-82.39,-184 -184,-184z"/>
+  <rect stroke="#ffffff" id="svg_7" height="0.00001" width="35.01035" y="219.54758" x="217.50171" opacity="undefined" fill-opacity="null" stroke-dasharray="null" stroke-width="32px" fill="none"/>
+  <rect stroke="#ffffff" transform="rotate(0.2018514722585678 252.00688171382262,340.5475769042963) " id="svg_5" height="0.00001" width="121.01035" y="340.54758" x="191.50171" opacity="undefined" fill-opacity="null" stroke-dasharray="null" stroke-width="32px" fill="none"/>
+  <rect stroke="#ffffff" transform="rotate(-89.51329040527344 253.00688171386716,264.5475769042968) " id="svg_6" height="0.00001" width="121.01035" y="264.54758" x="192.50171" opacity="undefined" fill-opacity="null" stroke-dasharray="null" stroke-width="32px" fill="none"/>
+  <rect fill="#fff" stroke="#ffffff" opacity="undefined" x="227.5" y="135.5" width="41" height="41" id="svg_2"/>
+ </g>
+</svg>

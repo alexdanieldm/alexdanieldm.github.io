@@ -32,15 +32,17 @@
 
 @mixin flexCenter($direction, $justify: center, $align: center) {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: $direction;
     justify-content: $justify; // Main Axis
     align-items: $align; // Secondary Axis
 }
 
-@mixin grid($gap: 0px) {
+@mixin grid($gap: 0px, $width) {
     display: grid;
     grid-gap: $gap;
     align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
 }
 
 @mixin neonText($color:white) {
@@ -50,9 +52,8 @@
         0 0 20px $color;
 }
 
-@mixin neonBorder {
+@mixin neonBorder($condition:yes_inset) {
     color: #ffffff;
-    border: 2px solid rgb(255, 255, 255);
     box-shadow:
         0 1px 2px rgba(255, 255, 255, 0.6),
         2px 1px 4px rgba(255, 255, 255, 0.3),
@@ -62,6 +63,14 @@
         inset 2px 1px 4px rgba(255, 255, 255, 0.3),
         inset 2px 4px 3px rgba(255, 255, 255, 0.3),
         inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
+        
+        @if $condition == no_inset {
+            box-shadow:
+                0 1px 2px rgba(255, 255, 255, 0.6),
+                2px 1px 4px rgba(255, 255, 255, 0.3),
+                2px 4px 3px rgba(255, 255, 255, 0.3),
+                0 0 7px 2px rgba(255, 255, 255, 0.6);
+        }
 }
 
 
@@ -84,37 +93,44 @@ $gradient: linear-gradient(transparent 30%, $baseTransparent 50%, $base 100%);
     box-sizing: border-box;
     line-height: 1.6;
 
-    a {
-        text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: geometr415;
+}
+
+button, .button {
+    @include flexCenter(row);
+    cursor: pointer;
+    background-color: transparent;
+    border: solid 1px rgb(255, 255, 255);
+    padding: 5px 35px;
+    
+    transition: all 0.20s;
+    
+    img {
+        margin-right: 10px;
+        width: 24px;
     }
 
+    &:hover {
+        transform: translate(-3px, -3px);
+        background-color: $accent;
+        @include neonText();
+        @include neonBorder(no_inset);
+    }
+}
+
+section {
     h1 {
-        font-family: geometr415;
+        @include neonBorder();
+        padding: 5px 5vw;
+        margin-bottom: 45px;
     }
-
-    button, .button {
-        cursor: pointer;
-        background-color: transparent;
-        border: solid 1px rgb(255, 255, 255);
-        padding: 5px 35px;
-        
-        transition: all 0.20s;
-    
-        &:hover {
-            transform: translate(-3px, -3px);
-            background-color: $accent;
-            @include neonText()
-        }
-    }
-
-    section {
-        h1 {
-            @include neonBorder();
-            padding: 5px 5vw;
-            margin-bottom: 45px;
-        }
-    }
-    
 }
 
 b {
@@ -124,4 +140,14 @@ b {
 
 ul, li {
     list-style: none;
+}
+
+p {
+    a {
+        transition: all 0.3s ease 0s;
+        &:hover {
+            background-image: none;
+            background-color: $accent;
+        }
+    }
 }

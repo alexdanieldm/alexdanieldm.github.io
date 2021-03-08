@@ -30,27 +30,42 @@
   box-sizing: border-box;
   line-height: 1.6;
 }
-* a {
+
+a {
   text-decoration: none;
 }
-* h1 {
+
+h1 {
   font-family: geometr415;
 }
-* button, * .button {
+
+button, .button {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   background-color: transparent;
   border: solid 1px white;
   padding: 5px 35px;
   transition: all 0.2s;
 }
-* button:hover, * .button:hover {
+button img, .button img {
+  margin-right: 10px;
+  width: 24px;
+}
+button:hover, .button:hover {
   transform: translate(-3px, -3px);
   background-color: #f75155;
   text-shadow: -2px -2px 10px rgba(255, 255, 255, 0.623), 2px 2px 10px rgba(255, 255, 255, 0.623), 0 0 20px white;
-}
-* section h1 {
   color: #ffffff;
-  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 2px 1px 4px rgba(255, 255, 255, 0.3), inset 2px 4px 3px rgba(255, 255, 255, 0.3), inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6);
+}
+
+section h1 {
+  color: #ffffff;
   box-shadow: 0 1px 2px rgba(255, 255, 255, 0.6), 2px 1px 4px rgba(255, 255, 255, 0.3), 2px 4px 3px rgba(255, 255, 255, 0.3), 0 0 7px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 2px 1px 4px rgba(255, 255, 255, 0.3), inset 2px 4px 3px rgba(255, 255, 255, 0.3), inset 0 0 7px 2px rgba(255, 255, 255, 0.6);
   padding: 5px 5vw;
   margin-bottom: 45px;
@@ -63,4 +78,12 @@ b {
 
 ul, li {
   list-style: none;
+}
+
+p a {
+  transition: all 0.3s ease 0s;
+}
+p a:hover {
+  background-image: none;
+  background-color: #f75155;
 }
