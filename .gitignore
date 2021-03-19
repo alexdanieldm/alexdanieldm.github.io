@@ -4,6 +4,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.cache
+public
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -27,7 +29,7 @@ jspm_packages/
 .env*.local
 
 ### vscode ###
-.vscode/
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
