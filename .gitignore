@@ -28,7 +28,7 @@ jspm_packages/
 .env.test
 .env*.local
 
-### vscode ###
+### VScode ###
 .vscode
 !.vscode/settings.json
 !.vscode/tasks.json
