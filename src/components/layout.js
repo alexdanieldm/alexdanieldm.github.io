@@ -1,5 +1,7 @@
 import React from "react"
+
 import Navigation from "./navigation"
+import Footer from "./footer"
 
 const Layout = ({ children }) => (
   <div>
@@ -10,9 +12,7 @@ const Layout = ({ children }) => (
         {children}
     </main>
 
-    <footer>
-      <p>A fun footer</p>
-    </footer>
+    <Footer/>
 
   </div>
 )

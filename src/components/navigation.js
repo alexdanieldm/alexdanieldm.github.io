@@ -4,8 +4,11 @@ import resume from "../public/docs/Resume.pdf"
 
 const allLinks = [
     {id: 'a', href: '#about', value: 'About', img: 'information-circle-outline.svg'},
+
     {id: 'p', href: '#projects', value: 'Projects', img: 'code-slash-sharp.svg'},
+
     {id: 'c', href: '#contact', value: 'Contact', img: 'mail-outline.svg'},
+    
     {id: 'r', href: {resume}, value: 'Resume', img: 'cloud-download-outline.svg'},
 ]
 
