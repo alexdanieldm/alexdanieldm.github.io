@@ -3,11 +3,8 @@ import Navigation from "./navigation"
 
 const Layout = ({ children }) => (
   <div>
+    
     <Navigation/>
-
-    <header>
-      <h1>header</h1>
-    </header>
 
     <main>
         {children}
@@ -16,6 +13,7 @@ const Layout = ({ children }) => (
     <footer>
       <p>A fun footer</p>
     </footer>
+
   </div>
 )
 
