@@ -1,10 +1,9 @@
 import React from "react"
+import Navigation from "./navigation"
 
 const Layout = ({ children }) => (
   <div>
-    <nav>
-      <li>link</li>
-    </nav>
+    <Navigation/>
 
     <header>
       <h1>header</h1>
