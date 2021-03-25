@@ -20,10 +20,8 @@ const NavLink = ({children, id, img, href}) => {
 
     return (
         <a className={`${className}`} href={`${href}`}>
-            <li>
-                <img className='mobile' src={`${imgPath}`} alt=""/>
-                {children}
-            </li>
+            <img className='mobile' src={`${imgPath}`} alt=""/>
+            {children}
         </a>
     )
 }
@@ -38,9 +36,11 @@ const Navigation = () => {
             <ul>
                 {allLinks.map(link => (
 
-                <NavLink key={link.id} id={link.id} img={link.img} href={link.href}>
-                    {link.value}
-                </NavLink>
+                    <li>
+                        <NavLink key={link.id} id={link.id} img={link.img} href={link.href}>
+                            {link.value}
+                        </NavLink>
+                    </li>
                 ))}
             </ul>
 
