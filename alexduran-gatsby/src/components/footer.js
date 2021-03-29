@@ -1,4 +1,5 @@
 import React from "react"
+import Emoji from "./emoji"
 
 const allLinks = [
     {key: 'g', href: 'https://twitter.com/alexdanieldm', img: 'twitter-brands.svg'},
@@ -25,7 +26,11 @@ const Footer = () => {
     return (
         
         <footer>
-            <p>Made with ❤️ & ☕ by Alex Duran &copy; {new Date().getFullYear()}</p>
+            <p>Made with 
+                <Emoji symbol="❤️" label="heart"/> & 
+                <Emoji symbol="☕" label="coffee"/>
+                by Alex Duran &copy; {new Date().getFullYear()}
+            </p>
 
             <ul>
             {allLinks.map(link => (

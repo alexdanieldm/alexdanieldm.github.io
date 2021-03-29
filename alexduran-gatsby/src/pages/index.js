@@ -5,24 +5,24 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import Tech from "./tech"
+import Header from "./header"
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
+
+    <Header/>
+
+    <Tech/>
+
+    <section className="quote">
+        <div className="content">
+          <blockquote>
+            To give real service you must add something which cannot be bought or measured with money, and that is sincerity and integrity.
+          </blockquote>
+        </div>
+      </section>
   </Layout>
 )
 

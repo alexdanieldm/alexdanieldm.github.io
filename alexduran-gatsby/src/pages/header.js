@@ -1,20 +1,5 @@
 import React from "react"
 
-// const Button = ({children, img, href}) => {
-
-//     const imgPath = `/assets/icons/${img}`;
-
-//     return (
-//         <a className={`button ${className}`} href={`${href}`}>
-//             <img src={`${imgPath}`} alt=""/>
-            
-//             <p>
-//                 {children}
-//             </p>
-//         </a>
-//     )
-// }
-
 const Header = () => {
     return (
         <header>
