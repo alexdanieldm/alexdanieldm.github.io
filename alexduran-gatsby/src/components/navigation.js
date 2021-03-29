@@ -1,6 +1,7 @@
 // import { Link } from "gatsby"
 import React from "react"
-import resume from "../public/docs/Resume.pdf"
+import resume from "../docs/Resume.pdf"
+import Button from "./button"
 
 const allLinks = [
     {id: 'a', href: '#about', value: 'About', img: 'information-circle-outline.svg'},
@@ -12,7 +13,7 @@ const allLinks = [
     {id: 'r', href: {resume}, value: 'Resume', img: 'cloud-download-outline.svg'},
 ]
 
-const NavLink = ({children, id, img, href}) => {
+const NavLink = ({label, id, img, href}) => {
     const imgPath = `/assets/icons/${img}`;
     
     let className;
@@ -21,7 +22,7 @@ const NavLink = ({children, id, img, href}) => {
     return (
         <a className={`${className}`} href={`${href}`}>
             <img className='mobile' src={`${imgPath}`} alt=""/>
-            {children}
+            {label}
         </a>
     )
 }
@@ -37,17 +38,24 @@ const Navigation = () => {
                 {allLinks.map(link => (
 
                     <li>
-                        <NavLink key={link.id} id={link.id} img={link.img} href={link.href}>
-                            {link.value}
-                        </NavLink>
+                        <NavLink 
+                            key={link.id} 
+                            label={link.value} 
+                            id={link.id} 
+                            img={link.img} 
+                            href={link.href}
+                        />
                     </li>
                 ))}
             </ul>
 
-            <a className="resume button hide-mobile" href="/docs/Resume.pdf" download="Alex Duran CV">
-                <img src="/assets/icons/cloud-download-outline.svg" alt=""/>
-                <p>Resume</p>
-            </a>
+            <Button 
+                className="resume hide-mobile" 
+                href={resume} 
+                donwload="Alex Duran CV" 
+                img="cloud-download-outline.svg"
+                label="Resume"
+            />
         </nav>
     )
 }

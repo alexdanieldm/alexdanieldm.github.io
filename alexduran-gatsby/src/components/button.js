@@ -1,14 +1,14 @@
 import React from "react"
 
-const Button = ({children, className = '', img, href, donwload = ''}) => {
+const Button = ({className = '', href, donwload, img, label}) => {
     const imgPath = `/assets/icons/${img}`;
 
     if (donwload) {
 
         return (
-            <a className={`button ${className}`} href={`${href}`} download="Alex Duran CV">
+            <a className={`button ${className}`} href={`${href}`} download={`${donwload}`}>
                 <img src={`${imgPath}`} alt=""/>
-                <p>{children}</p>
+                <p>{label}</p>
             </a>
         )
 
@@ -17,7 +17,7 @@ const Button = ({children, className = '', img, href, donwload = ''}) => {
         return (
             <a className={`button ${className}`} href={`${href}`}>
                 <img src={`${imgPath}`} alt=""/>
-                <p>{children}</p>
+                <p>{label}</p>
             </a>
         )
     }
