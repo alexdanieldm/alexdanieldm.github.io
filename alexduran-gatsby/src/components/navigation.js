@@ -2,6 +2,7 @@
 import React from "react"
 import resume from "../docs/Resume.pdf"
 import Button from "./button"
+import image from "../assets/icons/cloud-download-outline.svg"
 
 const allLinks = [
     {id: 'a', href: '#about', value: 'About', img: 'information-circle-outline.svg'},
@@ -14,18 +15,18 @@ const allLinks = [
 ]
 
 const NavLink = ({label, id, img, href}) => {
-    const imgPath = `/assets/icons/${img}`;
+    // const imgPath = `/assets/icons/${img}`;
     
     let className;
-    id === 'r' ? className = 'mobile resume' : className = 'mobile';
+    id === 'r' ? className = 'mobile resume' : className = '';
 
     return (
-        <a className={`${className}`} href={`${href}`}>
-            <li>
-                <img className='mobile' src={`${imgPath}`} alt=""/>
+        <li>
+            <a className={`${className}`} href={`${href}`}>
+                <img className='mobile' src={`${image}`} alt=""/>
                 {label}
-            </li>
-        </a>
+            </a>
+        </li>
     )
 }
 

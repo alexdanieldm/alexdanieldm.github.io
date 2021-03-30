@@ -20,6 +20,7 @@ const allBadges = [
 ]
 
 const Badges = ({children, img}) => {
+    // import image from `../assets/logos/${img}`
     const imgPath = `/assets/icons/logos/${img}`;
 
     return (

@@ -1,12 +1,13 @@
 import * as React from "react"
-import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import Tech from "./tech"
 import Header from "./header"
+import About from "./about"
+import Tech from "./tech"
+import Contact from "./contact"
 
 import "./index.scss"
 
@@ -16,6 +17,8 @@ const IndexPage = () => (
 
     <Header/>
 
+    <About/>
+    
     <Tech/>
 
     <section className="quote">
@@ -25,6 +28,8 @@ const IndexPage = () => (
           </blockquote>
         </div>
       </section>
+
+      <Contact/>
   </Layout>
 )
 
