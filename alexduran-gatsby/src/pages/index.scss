@@ -51,7 +51,7 @@ header {
     padding: 0px 20px;
 
     background-image: $gradient,
-    url(/assets/images/highway.jpg);
+    url(../assets/images/highway.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -106,11 +106,7 @@ header {
     }
 
     .social {
-        @include flexCenter(row);
-    }
-
-    .github-button {
-        margin-right: 20px;
+        @include flexCenter(row, space-between);
     }
 
     .info {
@@ -121,7 +117,6 @@ header {
     }
 
     ul {
-        @include flexCenter(row);
         margin-top: 20px
     }
 }
