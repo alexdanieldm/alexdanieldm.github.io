@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'anonymous_pro';
-    src: url('/assets/fonts/anonymouspro-regular-webfont.woff2') format('woff2'),
-        url('/assets/fonts/anonymouspro-regular-webfont.woff') format('woff');
+    src: url('../fonts/anonymouspro-regular-webfont.woff2') format('woff2'),
+        url('../fonts/anonymouspro-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'anonymous_pro';
-    src: url('/assets/fonts/anonymouspro-bold-webfont.woff2') format('woff2'),
-        url('/assets/fonts/anonymouspro-bold-webfont.woff') format('woff');
+    src: url('../fonts/anonymouspro-bold-webfont.woff2') format('woff2'),
+        url('../fonts/anonymouspro-bold-webfont.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'geometr415';
-    src: url('/assets/fonts/geometr415_md_bt_medium-webfont.woff2') format('woff2'),
-        url('/assets/fonts/geometr415_md_bt_medium-webfont.woff') format('woff');
+    src: url('../fonts/geometr415_md_bt_medium-webfont.woff2') format('woff2'),
+        url('../fonts/geometr415_md_bt_medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'fzimokenpi';
-    src: url('/assets/fonts/FZImokenpi-webfont.woff2') format('woff2'),
-        url('/assets/fonts/FZImokenpi-webfont.woff') format('woff');
+    src: url('../fonts/FZImokenpi-webfont.woff2') format('woff2'),
+        url('../fonts/FZImokenpi-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -83,7 +83,6 @@ $ligth: rgb(3, 50, 69);
 $dark: rgb(6, 31, 47);
 
 $gradient: linear-gradient(transparent 30%, $baseTransparent 50%, $base 100%);
-// $solid_gradient: linear-gradient(to bottom, $base, $ligth, $dark);
 
 * {
     font-family: anonymous_pro;

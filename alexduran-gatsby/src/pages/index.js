@@ -8,6 +8,8 @@ import SEO from "../components/seo"
 import Tech from "./tech"
 import Header from "./header"
 
+import "./index.scss"
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />

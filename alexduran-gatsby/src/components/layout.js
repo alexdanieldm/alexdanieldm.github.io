@@ -11,7 +11,8 @@ import PropTypes from "prop-types"
 
 import Navigation from "./navigation"
 import Footer from "./footer"
-// import "./layout.css"
+import "./layout.scss"
+import "./normalize.css"
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
