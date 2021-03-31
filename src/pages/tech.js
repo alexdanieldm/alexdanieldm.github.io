@@ -26,7 +26,7 @@ const Badges = ({children, img}) => {
     return (
         <div className="logo">
             <StaticImage
-                src={`${img_path}`}
+                src={img_path}
                 alt="tecnologie logo"
                 placeholder="blurred"
             />
