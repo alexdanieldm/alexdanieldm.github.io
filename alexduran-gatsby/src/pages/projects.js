@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "../components/button"
 import crypto_capture from "../assets/images/crypto.jpeg"
@@ -11,7 +12,12 @@ const About = () => {
             <div className="card">
                 <div className="content">
                     <div className="picture">
-                        <img className="capture" src={crypto_capture} alt="project capture"/>
+                        <StaticImage
+                            className="capture"
+                            src="../assets/images/crypto.jpeg"
+                            alt="Project Capture"
+                            placeholder="blurred"
+                        />
 
                         <Button 
                             href="https://github.com/alexdanieldm/crypto" 

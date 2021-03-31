@@ -1,7 +1,7 @@
 import React from "react"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "../components/button"
-import profile_photo from "../assets/images/profile_photo.png"
 
 const About = () => {
     return (
@@ -10,7 +10,13 @@ const About = () => {
 
             <div className="content">
                 <div className="picture">
-                    <img className="profile" src={profile_photo} alt=""/>
+                    
+                    <StaticImage
+                        className="profile"
+                        src="../assets/images/profile_photo.png"
+                        alt="Profile Photo"
+                        placeholder="blurred"
+                    />
                     
                     <section className="desktop">
                         <div className="social">

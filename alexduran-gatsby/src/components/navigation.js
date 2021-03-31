@@ -1,8 +1,9 @@
 // import { Link } from "gatsby"
 import React from "react"
-import resume from "../docs/Resume.pdf"
+import { StaticImage } from "gatsby-plugin-image"
+
 import Button from "./button"
-import image from "../assets/icons/cloud-download-outline.svg"
+import resume from "../docs/Resume.pdf"
 
 const allLinks = [
     {id: 'a', href: '#about', value: 'About', img: 'information-circle-outline.svg'},
@@ -15,15 +16,14 @@ const allLinks = [
 ]
 
 const NavLink = ({label, id, img, href}) => {
-    // const imgPath = `/assets/icons/${img}`;
-    
+
     let className;
     id === 'r' ? className = 'mobile resume' : className = '';
 
     return (
         <li>
             <a className={`${className}`} href={`${href}`}>
-                <img className='mobile' src={`${image}`} alt=""/>
+                <img className='mobile' src={`${img}`} alt=""/>
                 {label}
             </a>
         </li>
