@@ -1,5 +1,6 @@
 // import { Link } from "gatsby"
 import React from "react"
+import { useState } from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "./button"
@@ -31,8 +32,20 @@ const NavLink = ({label, id, img, href}) => {
 }
 
 const Navigation = () => {
+    const [color, setcolor] = useState(false);
+
+    const changeColor = () => {
+        if (window.scrollY > 200) {
+            setcolor(true)
+        } else {
+            setcolor(false)
+        }
+    }
+
+    window.addEventListener('scroll', changeColor)
+
     return (
-        <nav>
+        <nav className={color ? 'solid' : ''}>
             <p className="symbol hide-mobile">
                 記号
             </p>
