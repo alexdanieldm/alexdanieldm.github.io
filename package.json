@@ -1,10 +1,41 @@
 {
-  "name": "portafolio",
-  "version": "1.0.0",
-  "description": "Professional web portafolio",
-  "main": "index.js",
+  "name": "alexdanieldm.com",
+  "private": true,
+  "description": "A humble web developer portfolio made with passion and coffee",
+  "version": "2.0.0",
+  "author": "Alex Duran <alexdanieldm@gmail.com>",
+  "dependencies": {
+    "gatsby": "^3.1.1",
+    "gatsby-plugin-gatsby-cloud": "^2.1.0",
+    "gatsby-plugin-image": "^1.1.1",
+    "gatsby-plugin-manifest": "^3.1.0",
+    "gatsby-plugin-offline": "^4.1.0",
+    "gatsby-plugin-react-helmet": "^4.1.0",
+    "gatsby-plugin-sass": "^4.1.0",
+    "gatsby-plugin-sharp": "^3.1.1",
+    "gatsby-source-filesystem": "^3.1.0",
+    "gatsby-transformer-sharp": "^3.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.32.8"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js"
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -13,14 +44,5 @@
   "bugs": {
     "url": "https://github.com/alexdanieldm/alexdanieldm.com/issues"
   },
-  "homepage": "https://github.com/alexdanieldm/alexdanieldm.com#readme",
-  "author": "Alex Duran",
-  "license": "MIT",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+  "homepage": "https://github.com/alexdanieldm/alexdanieldm.com#readme"
 }

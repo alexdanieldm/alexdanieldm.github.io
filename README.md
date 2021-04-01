@@ -7,7 +7,7 @@ This is my humble place on the internet, created with _blood, sweat, tears, and 
 
 Maybe you want a more _**in-depth and technical**_ revision of me as a developer, well fear not my friend here is all the information you need:
 
-* **PDF** _(Can see it online or downloaded)_ - [Click here](https://github.com/alexdanieldm/alexdanieldm.com/blob/master/docs/Resume.pdf)
+* **PDF** _(Can see it online or downloaded)_ - [Click here](https://github.com/alexdanieldm/alexdanieldm.com/blob/gatsby/alexduran-gatsby/src/docs/Resume.pdf)
 
 * **Notion Version** _(Like the PDF but some dare said cooler)_ - [Coming Soon]()
 ### Contact Me
