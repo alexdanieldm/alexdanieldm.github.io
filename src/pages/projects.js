@@ -2,7 +2,6 @@ import React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "../components/button"
-import crypto_capture from "../assets/images/crypto.jpeg"
 
 const About = () => {
     return (

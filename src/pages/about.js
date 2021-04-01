@@ -2,6 +2,7 @@ import React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "../components/button"
+import Emoji from "../components/emoji"
 
 const About = () => {
     return (
@@ -52,8 +53,8 @@ const About = () => {
                     <><p>
                         <b>- Languages:</b>
                         <ul>
-                            <li>Spanish 🇻🇪 (Native Speaker)</li>
-                            <li>English 🇺🇸 (Proficient Speaker)</li>
+                            <li>Spanish <Emoji symbol="🇻🇪" label="Venezuelan Flag"/> (Native Speaker)</li>
+                            <li>English <Emoji symbol="🇺🇸" label="US Flag"/> (Proficient Speaker)</li>
                         </ul>
                     </p></>
                     

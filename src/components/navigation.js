@@ -1,7 +1,7 @@
 // import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
-import { StaticImage } from "gatsby-plugin-image"
+//* import { StaticImage } from "gatsby-plugin-image"
 
 import Button from "./button"
 import resume from "../docs/Resume.pdf"

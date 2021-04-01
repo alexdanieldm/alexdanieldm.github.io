@@ -87,7 +87,7 @@ header {
     .content {
         width: 100%;
 
-        @include grid(40px, 250px);
+        @include grid(40px, 345px);
     }
 
     .picture {
@@ -173,7 +173,7 @@ header {
     .content {
         width: 100%;
 
-        @include grid(50px, 230px);
+        @include grid(50px, 240px);
     }
 
     .picture {
@@ -323,6 +323,10 @@ footer {
         li {
             margin-right: 30px;
         }
+    }
+
+    .about {
+        padding: 10px 50px 30px;
     }
     
     .contact {

@@ -15,7 +15,7 @@ const Link = ({href, img}) => {
     const imgPath = `/assets/icons/Social Media/${img}`
 
     return (
-        <a class="link" href={href}>
+        <a className="link" href={href}>
             <img src={imgPath} alt={img}/>
         </a>
     )
