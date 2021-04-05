@@ -1,4 +1,4 @@
-![Website](https://img.shields.io/website?down_color=red&down_message=Offline&up_color=green&up_message=Online&url=http%3A%2F%2Falexdanieldm.com%2F) ![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Falexdanieldm%2Falexdanieldm.com)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ebe25eea-3aef-4b1e-a828-b15405495ab8/deploy-status)](https://app.netlify.com/sites/alexdanieldm/deploys) ![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Falexdanieldm%2Falexdanieldm.com)
 # alexdanieldm.com
 
 <p align="center">
