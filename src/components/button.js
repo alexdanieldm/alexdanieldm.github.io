@@ -6,7 +6,7 @@ const Button = ({className = '', href, donwload, img, label}) => {
     if (donwload) {
 
         return (
-            <a className={`button ${className}`} href={`${href}`} download={`${donwload}`}>
+            <a target="_blank" rel="noopener noreferrer" className={`button ${className}`} href={`${href}`} download={`${donwload}`}>
                 <img src={`${imgPath}`} alt=""/>
                 <p>{label}</p>
             </a>

@@ -26,7 +26,8 @@ const Footer = () => {
     return (
         
         <footer>
-            <p>Made with <Emoji symbol="❤️" label="heart"/> & <Emoji symbol="☕" label="coffee"/> by Alex Duran &copy; {new Date().getFullYear()}
+            <p>
+                Made with <Emoji symbol="❤️" label="heart"/> & <Emoji symbol="☕" label="coffee"/> by Alex Duran &copy; {new Date().getFullYear()}
             </p>
 
             <ul>

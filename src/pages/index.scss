@@ -30,9 +30,10 @@ nav {
     li {
         margin-right: 70px;
         
-        transition: all 0.10s;
+        transition: all 0.30s;
         
         &:hover {
+            cursor: pointer;
             padding-bottom: 8px;
             border-bottom: solid 3px rgb(255, 255, 255);
             @include neonText()
@@ -82,7 +83,7 @@ header {
 
 .about {
     @include flexCenter(column);
-    padding: 10px 20px 30px;
+    padding: 10px 70px 30px;
 
     .content {
         width: 100%;
@@ -134,7 +135,6 @@ header {
     }
 
     .content {
-        @include flexCenter(row);
         width: 70vw;
         padding: 1rem;
         
@@ -395,6 +395,11 @@ footer {
     }
     
     .about {
+        padding: 10px 20px 30px;
+
+        .content {
+            @include grid(40px, 280px);
+        }
         .profile {
             box-shadow: 1rem 1rem 0px 0px $accent;
             margin-right: 1rem;
@@ -418,10 +423,24 @@ footer {
             border: 1px solid rgb(255, 255, 255);
         }
     }
+
+    .quote {
+        .content {
+            width: 90vw;
+        }
+    }
     
     .contact {
         @include flexCenter(column);
         padding: 0px 20px 50px;
+
+        .content {
+            grid-gap: 30px;
+        }
+    }
+
+    footer {
+        margin-bottom: 55px;
     }
 
 }

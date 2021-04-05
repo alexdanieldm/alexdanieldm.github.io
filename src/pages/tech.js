@@ -1,6 +1,5 @@
 // import { badge } from "gatsby"
 import React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
 
 const allBadges = [
     {key: 'j', value: 'Javascript', img: 'js-brands.svg'},
@@ -22,15 +21,11 @@ const allBadges = [
 
 const Badges = ({children, img}) => {
     // const img_path = `../assets/logos/css3-brands.svg`;
-    const img_path = `../assets/logos/${img}`;
+    // const img_path = `logos/${img}`;
 
     return (
         <div className="logo">
-            <GatsbyImage
-                src={`${img_path}`}
-                alt="technologie logo"
-                placeholder="blurred"
-            />
+            {/* <Image src={img_path} alt="technologie logo"/> */}
             <p>{children}</p>
         </div>
     )

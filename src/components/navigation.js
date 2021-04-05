@@ -44,7 +44,7 @@ const Navigation = () => {
 
     React.useEffect(() => {
         window.addEventListener('scroll', changeColor)
-      })
+    })
 
     return (
         <nav className={color ? 'solid' : ''}>
