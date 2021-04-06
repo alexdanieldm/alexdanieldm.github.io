@@ -1,31 +1,45 @@
-// import { badge } from "gatsby"
 import React from "react"
 
+//* Import assets directly
+import react_brands from "../assets/logos/react-brands.svg"
+import gatsby_brands from "../assets/logos/gatsby-brands.svg"
+import js_brands from "../assets/logos/js-brands.svg"
+import node_brands from "../assets/logos/node-js-brands.svg"
+import git_brands from "../assets/logos/git-alt-brands.svg"
+import html_brands from "../assets/logos/html5-brands.svg"
+import css_brands from "../assets/logos/css3-brands.svg"
+import sass_brands from "../assets/logos/sass-brands.svg"
+import python_brands from "../assets/logos/python-brands.svg"
+import mongodb_brands from "../assets/logos/mongodb-brands.svg"
+
+//* Add array with all the badges data
 const allBadges = [
-    {key: 'j', value: 'Javascript', img: 'js-brands.svg'},
+    {key: 'r', value: 'React', img: react_brands},
 
-    {key: 'n', value: 'NodeJS', img: 'node-js-brands.svg'},
+    {key: 'g', value: 'Gatsby', img: gatsby_brands},
 
-    {key: 'g', value: 'Git', img: 'git-alt-brands.svg'},
+    {key: 'j', value: 'Javascript', img: js_brands},
 
-    {key: 'h', value: 'HTML5', img: 'jhtml5-brands.svg'},
+    {key: 'n', value: 'NodeJS', img: node_brands},
+
+    {key: 'g', value: 'Git', img: git_brands},
+
+    {key: 'h', value: 'HTML5', img: html_brands},
     
-    {key: 'c', value: 'CSS3', img: 'css3-brands.svg'},
+    {key: 'c', value: 'CSS3', img: css_brands},
 
-    {key: 's', value: 'Sass', img: 'Sass-brands.svg'},
+    {key: 's', value: 'Sass', img: sass_brands},
 
-    {key: 'p', value: 'Python', img: 'Python-brands.svg'},
+    {key: 'p', value: 'Python', img: python_brands},
 
-    {key: 'm', value: 'MongoDB', img: 'mongodb-brands.svg'},
+    // {key: 'm', value: 'MongoDB', img: mongodb_brands},
 ]
 
+//* Create Badges component
 const Badges = ({children, img}) => {
-    // const img_path = `../assets/logos/css3-brands.svg`;
-    // const img_path = `logos/${img}`;
-
     return (
         <div className="logo">
-            {/* <Image src={img_path} alt="technologie logo"/> */}
+            <img src={img} alt={`${children} logo`}/>
             <p>{children}</p>
         </div>
     )

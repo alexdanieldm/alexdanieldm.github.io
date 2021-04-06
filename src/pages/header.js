@@ -1,7 +1,12 @@
 import React from "react"
 
+//* Import Components
 import Button from "../components/button"
 import resume from "../docs/Resume.pdf"
+
+//* Import Assets Directly
+import cloud_icon from "../assets/icons/cloud-download-outline.svg"
+import code_icon from "../assets/icons/code-slash-sharp.svg"
 
 const Header = () => {
     return (
@@ -14,7 +19,7 @@ const Header = () => {
                 <Button 
                     className="projects_button" 
                     href="#projects" 
-                    img="code-slash-sharp.svg"
+                    img={code_icon}
                     label="See PROJECTS"
                 />
 
@@ -22,7 +27,7 @@ const Header = () => {
                     className="resume" 
                     href={resume} 
                     donwload="Alex Duran CV" 
-                    img="cloud-download-outline.svg"
+                    img={cloud_icon}
                     label="Download RESUME"
                 />
 

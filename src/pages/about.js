@@ -1,8 +1,13 @@
 import React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
+//* Import components
 import Button from "../components/button"
 import Emoji from "../components/emoji"
+
+//* Import assets directly
+import github_icon from "../assets/logos/socials/github-brands.svg"
+import linkedin_icon from "../assets/logos/socials/linkedin-brands.svg"
 
 const About = () => {
     return (
@@ -21,15 +26,16 @@ const About = () => {
                     
                     <section className="desktop">
                         <div className="social">
-                            <Button 
+                            <Button
+                                className="github-button"
                                 href="https://github.com/alexdanieldm" 
-                                img="github-brands.svg"
+                                img={github_icon}
                                 label="Github"
                             />
 
                             <Button 
                                 href="https://www.linkedin.com/in/alexdanieldm/" 
-                                img="linkedin-brands.svg"
+                                img={linkedin_icon}
                                 label="LinkedIn"
                             />
                         </div>

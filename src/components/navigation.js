@@ -1,19 +1,25 @@
 // import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
-//* import { StaticImage } from "gatsby-plugin-image"
 
+//* Import Components
 import Button from "./button"
+
+//* Import assets directly
 import resume from "../docs/Resume.pdf"
+import info_icon from "../assets/icons/information-circle-outline.svg"
+import code_icon from "../assets/icons/code-slash-sharp.svg"
+import mail_icon from "../assets/icons/mail-outline.svg"
+import cloud_icon from "../assets/icons/cloud-download-outline.svg"
 
 const allLinks = [
-    {id: 'a', href: '#about', value: 'About', img: 'information-circle-outline.svg'},
+    {id: 'a', href: '#about', value: 'About', img: info_icon},
 
-    {id: 'p', href: '#projects', value: 'Projects', img: 'code-slash-sharp.svg'},
+    {id: 'p', href: '#projects', value: 'Projects', img: code_icon},
 
-    {id: 'c', href: '#contact', value: 'Contact', img: 'mail-outline.svg'},
+    {id: 'c', href: '#contact', value: 'Contact', img: mail_icon},
     
-    {id: 'r', href: {resume}, value: 'Resume', img: 'cloud-download-outline.svg'},
+    {id: 'r', href: {resume}, value: 'Resume', img: cloud_icon},
 ]
 
 const NavLink = ({label, id, img, href}) => {
@@ -24,7 +30,7 @@ const NavLink = ({label, id, img, href}) => {
     return (
         <li>
             <a className={`${className}`} href={`${href}`}>
-                <img className='mobile' src={`${img}`} alt=""/>
+                <img className='mobile' src={img} alt={`${label} button`}/>
                 {label}
             </a>
         </li>
@@ -68,7 +74,7 @@ const Navigation = () => {
                 className="resume hide-mobile" 
                 href={resume} 
                 donwload="Alex Duran CV" 
-                img="cloud-download-outline.svg"
+                img={cloud_icon}
                 label="Resume"
             />
         </nav>

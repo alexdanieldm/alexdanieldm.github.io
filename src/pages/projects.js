@@ -1,7 +1,13 @@
 import React from "react"
+
+//* Import Gatsby components
 import { StaticImage } from "gatsby-plugin-image"
 
+//* Import components
 import Button from "../components/button"
+
+//* Import assets directly
+import github_icon from "../assets/logos/socials/github-brands.svg"
 
 const About = () => {
     return (
@@ -20,7 +26,7 @@ const About = () => {
 
                         <Button 
                             href="https://github.com/alexdanieldm/crypto" 
-                            img="linkedin-brands.svg"
+                            img={github_icon}
                             label="Project Repository"
                         />
                     </div>

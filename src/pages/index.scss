@@ -95,21 +95,24 @@ header {
         @include flexCenter(column);
     }
 
-    .social {
-        margin-top: 30px;
-    }
-
+    
     .profile {
         width: 75%;
         box-shadow: 2.5rem 2.5rem 0px 0px $accent;
         margin-right: 2.5rem;
         margin-bottom: 2.5rem;
     }
-
+    
     .social {
-        @include flexCenter(row, space-between);
+        @include flexCenter(row, space-between, normal);
+        margin-top: 30px;
+
+        .github-button {
+            margin-right: 25px;
+        }
     }
 
+    
     .info {
         display: grid;
         grid-template-columns: 1fr;
@@ -135,7 +138,7 @@ header {
     }
 
     .content {
-        width: 70vw;
+        width: 85vw;
         padding: 1rem;
         
         @include grid(40px, 70px);
@@ -440,7 +443,7 @@ footer {
     }
 
     footer {
-        margin-bottom: 55px;
+        margin-bottom: 80px;
     }
 
 }
