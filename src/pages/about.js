@@ -55,13 +55,13 @@ const About = () => {
                         and identify myself with the team at which I work.
                     </p>
 
-                    <><p>
-                        <b>- Languages:</b>
+                    <div className="languages">
+                        <p><b>- Languages:</b></p>
                         <ul>
                             <li>Spanish <Emoji symbol="🇻🇪" label="Venezuelan Flag"/> (Native Speaker)</li>
                             <li>English <Emoji symbol="🇺🇸" label="US Flag"/> (Proficient Speaker)</li>
                         </ul>
-                    </p></>
+                    </div>
                     
                     <p>
                         <b>- Former Education:</b> Computer Engineer, Universidad José Antonio Páez (2017 - 2021)

@@ -10,13 +10,13 @@ import html_brands from "../assets/logos/html5-brands.svg"
 import css_brands from "../assets/logos/css3-brands.svg"
 import sass_brands from "../assets/logos/sass-brands.svg"
 import python_brands from "../assets/logos/python-brands.svg"
-import mongodb_brands from "../assets/logos/mongodb-brands.svg"
+// import mongodb_brands from "../assets/logos/mongodb-brands.svg"
 
 //* Add array with all the badges data
 const allBadges = [
     {key: 'r', value: 'React', img: react_brands},
 
-    {key: 'g', value: 'Gatsby', img: gatsby_brands},
+    {key: 'gt', value: 'Gatsby', img: gatsby_brands},
 
     {key: 'j', value: 'Javascript', img: js_brands},
 

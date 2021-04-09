@@ -375,6 +375,7 @@ footer {
 
             img {
                 width: 24px;
+                margin: auto;
             }
         }
     }
@@ -389,6 +390,10 @@ footer {
             @include neonText();
             width: 100%;
             text-align: left;
+        }
+
+        .header-buttons {
+            justify-content: flex-start;
         }
         
         .projects_button {

@@ -8,13 +8,13 @@ import mail_icon from "../assets/logos/socials/envelope-solid.svg"
 
 //* Add array with all the link data
 const allLinks = [
-    {key: 'g', href: 'https://twitter.com/alexdanieldm', img: twitter_icon},
+    {key: 't', href: 'https://twitter.com/alexdanieldm', img: twitter_icon},
 
-    {key: 't', href: 'https://www.linkedin.com/in/alexdanieldm/', img: linkedin_icon},
+    {key: 'l', href: 'https://www.linkedin.com/in/alexdanieldm/', img: linkedin_icon},
 
-    {key: 'l', href: 'https://github.com/alexdanieldm', img: github_icon},
+    {key: 'g', href: 'https://github.com/alexdanieldm', img: github_icon},
 
-    {key: 'e', href: 'mailto:alexdanieldm@gmail.com', img: mail_icon},
+    {key: 'm', href: 'mailto:alexdanieldm@gmail.com', img: mail_icon},
 ]
 
 //* Create Link component
