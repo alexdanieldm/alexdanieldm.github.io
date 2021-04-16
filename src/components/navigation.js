@@ -19,17 +19,25 @@ const allLinks = [
 
     {id: 'c', href: '#contact', value: 'Contact', img: mail_icon},
     
-    {id: 'r', href: {resume}, value: 'Resume', img: cloud_icon},
+    {id: 'r', href: resume, value: 'Resume', img: cloud_icon},
 ]
 
 const NavLink = ({label, id, img, href}) => {
 
-    let className;
-    id === 'r' ? className = 'mobile resume' : className = '';
+    if (id === 'r') {
+        return (
+            <li>
+                <a className='mobile resume' href={href} download="Alex Duran CV">
+                    <img className='mobile' src={img} alt={`${label} button`}/>
+                    {label}
+                </a>
+            </li>            
+        )
+    }
 
     return (
         <li>
-            <a className={`${className}`} href={`${href}`}>
+            <a href={`${href}`}>
                 <img className='mobile' src={img} alt={`${label} button`}/>
                 {label}
             </a>
@@ -73,7 +81,7 @@ const Navigation = () => {
             <Button 
                 className="resume hide-mobile" 
                 href={resume} 
-                donwload="Alex Duran CV" 
+                donwload="Alex Duran CV"
                 img={cloud_icon}
                 label="Resume"
             />

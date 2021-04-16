@@ -8,19 +8,19 @@ import mail_icon from "../assets/logos/socials/envelope-solid.svg"
 
 //* Add array with all the link data
 const allLinks = [
-    {key: 't', href: 'https://twitter.com/alexdanieldm', img: twitter_icon},
+    {id: 't', href: 'https://twitter.com/alexdanieldm', img: twitter_icon},
 
-    {key: 'l', href: 'https://www.linkedin.com/in/alexdanieldm/', img: linkedin_icon},
+    {id: 'l', href: 'https://www.linkedin.com/in/alexdanieldm/', img: linkedin_icon},
 
-    {key: 'g', href: 'https://github.com/alexdanieldm', img: github_icon},
+    {id: 'g', href: 'https://github.com/alexdanieldm', img: github_icon},
 
-    {key: 'm', href: 'mailto:alexdanieldm@gmail.com', img: mail_icon},
+    {id: 'm', href: 'mailto:alexdanieldm@gmail.com', img: mail_icon},
 ]
 
 //* Create Link component
 const Link = ({href, img}) => {
     return (
-        <a className="link" href={href}>
+        <a target="blank" className="link" href={href}>
             <img src={img} alt={"icon"}/>
         </a>
     )
@@ -41,7 +41,7 @@ const Contact = () => {
                     </p>
 
                     <p>
-                        My preferred way of contact is via <a className="link" href="https://twitter.com/alexdanieldm"><b>Twitter</b></a> or  <a className="link" href="mailto:alexdanieldm@gmail.com"><b>Email</b></a>
+                        My preferred way of contact is via <a target="blank" className="link" href="https://twitter.com/alexdanieldm"><b>Twitter</b></a> or  <a className="link" href="mailto:alexdanieldm@gmail.com"><b>Email</b></a>
                     </p>
                 </div>
 
@@ -55,7 +55,7 @@ const Contact = () => {
                     <ul>
                         {allLinks.map(link => (
                             <li>
-                                <Link key={link.key} img={link.img}/>
+                                <Link id={link.id} href={link.href} img={link.img}/>
                             </li>
                         ))}
                     </ul>
