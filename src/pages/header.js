@@ -10,7 +10,7 @@ import code_icon from "../assets/icons/code-slash-sharp.svg"
 
 const Header = () => {
     return (
-        <header>
+        <header id="header">
             <h1>Hi, I´m Alex Duran</h1>
             <h3>A passionate Software Developer, who loves using web-technologies to solve real world problems</h3>
 

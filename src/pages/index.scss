@@ -13,7 +13,7 @@ nav {
     position: sticky;
     top: 0px;
     z-index: 100;
-    transition: all 0.5s ease 0s;
+    transition: all 0.3s ease 0s;
 
 
     padding: 15px 70px;
@@ -41,8 +41,10 @@ nav {
     }
 }
 
-.solid {
-    background: $base;
+.glass {
+    // background-color: $base;
+    background-color: rgba(2, 25, 38, 0.60);
+    backdrop-filter: blur( 30px );
 }
 
 
@@ -312,7 +314,7 @@ footer {
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 823px) {
 
     .desktop {
         display: none;
@@ -340,7 +342,7 @@ footer {
     
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
     
     .only-tablet, .hide-mobile, .desktop {
         display: none;
@@ -351,7 +353,7 @@ footer {
     }
     
     nav {
-        padding: 15px 15px;
+        padding: 15px 25px;
         position: fixed;
         top: auto;
         bottom: 0;
@@ -374,7 +376,7 @@ footer {
             }
 
             img {
-                width: 24px;
+                width: 28px;
                 margin: auto;
             }
         }

@@ -44,8 +44,8 @@ const About = () => {
 
                 <div className="info">
                     <p>
-                        <b>- Personal Side:</b> I am a tech martial artist, AKA a tech guy who like twroing kick from time to time 
-                        (weird combo i know). I love music, coding, video-games and anime. One book that has define my outlook on life its <b><a href="https://austinkleon.com/steal/">"Steal Like an Artist"</a></b>
+                        <b>- Personal Side:</b> I am a tech martial artist, AKA a tech guy who like throwing kick from time to time 
+                        (weird combo i know). I love music, coding, video-games and anime. One book that has define my outlook on life its <a target="blank" href="https://austinkleon.com/steal/">"Steal Like an Artist"</a>
                         , it teach the importance of continues learning not only to develop yourself but so you can share everything you "steal". 
                     </p>
                     
@@ -56,7 +56,7 @@ const About = () => {
                     </p>
 
                     <div className="languages">
-                        <p><b>- Languages:</b></p>
+                        <b>- Languages:</b>
                         <ul>
                             <li>Spanish <Emoji symbol="🇻🇪" label="Venezuelan Flag"/> (Native Speaker)</li>
                             <li>English <Emoji symbol="🇺🇸" label="US Flag"/> (Proficient Speaker)</li>

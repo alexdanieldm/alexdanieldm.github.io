@@ -54,6 +54,11 @@ const Navigation = () => {
         } else {
             setcolor(false)
         }
+
+        if (window.screen.width <= 425) {
+            setcolor(false)
+        }
+        
     }
 
     React.useEffect(() => {
@@ -61,10 +66,10 @@ const Navigation = () => {
     })
 
     return (
-        <nav className={color ? 'solid' : ''}>
-            <p className="symbol hide-mobile">
+        <nav className={color ? 'glass' : ''}>
+            <a className="symbol hide-mobile" href="#header">
                 記号
-            </p>
+            </a>
 
             <ul>
                 {allLinks.map(link => (

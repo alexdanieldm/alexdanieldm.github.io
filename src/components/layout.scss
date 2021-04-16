@@ -94,7 +94,7 @@ $gradient: linear-gradient(transparent 30%, $baseTransparent 50%, $base 100%);
     scroll-behavior: smooth;
 
     ::selection {
-        background-color: $accent;
+        background-color: rgb(196, 63, 65);;
         color: #fff;
       }
 
@@ -150,9 +150,14 @@ ul, li {
 p {
     a {
         transition: all 0.3s ease 0s;
+        color: $accent;
+        background-image: none;
+        font-weight: bolder;
+        font-size: 18px;
+        
         &:hover {
-            background-image: none;
-            background-color: $accent;
+            cursor: pointer;
+            text-decoration: underline;
         }
     }
 }
