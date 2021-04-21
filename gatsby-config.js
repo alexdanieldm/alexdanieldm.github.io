@@ -41,7 +41,7 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-preact`
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
