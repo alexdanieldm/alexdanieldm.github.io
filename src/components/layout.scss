@@ -75,14 +75,15 @@
 
 
 $base: rgb(2, 25, 38);
-$baseTransparent: rgba(2, 25, 38, 0.24);
+$base_glass: rgba(2, 25, 38, 0.60);;
 
 $accent: rgba(247, 81, 85);
+$accent_glass: rgba(247, 81, 85, 0.60);
 
 $ligth: rgb(3, 50, 69);
 $dark: rgb(6, 31, 47);
 
-$gradient: linear-gradient(transparent 30%, $baseTransparent 50%, $base 100%);
+$gradient: linear-gradient(transparent 30%, $base_glass 50%, $base 100%);
 
 * {
     font-family: anonymous_pro;

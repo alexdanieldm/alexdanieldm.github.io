@@ -43,8 +43,13 @@ nav {
 
 .glass {
     // background-color: $base;
-    background-color: rgba(2, 25, 38, 0.60);
+    background-color: $base_glass;
     backdrop-filter: blur( 30px );
+
+    .button {
+        background-color: $accent_glass;
+        backdrop-filter: blur( 30px );
+    }
 }
 
 
