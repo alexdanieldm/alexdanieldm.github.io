@@ -6,7 +6,7 @@ import { useState } from "react"
 import Button from "./button"
 
 //* Import assets directly
-import resume from "../docs/Resume.pdf"
+import CV from "../docs/Curriculum.pdf"
 import info_icon from "../assets/icons/information-circle-outline.svg"
 import code_icon from "../assets/icons/code-slash-sharp.svg"
 import mail_icon from "../assets/icons/mail-outline.svg"
@@ -19,7 +19,7 @@ const allLinks = [
 
     {id: 'c', href: '#contact', value: 'Contact', img: mail_icon},
     
-    {id: 'r', href: resume, value: 'Resume', img: cloud_icon},
+    {id: 'r', href: CV, value: 'Resume', img: cloud_icon},
 ]
 
 const NavLink = ({label, id, img, href}) => {
@@ -85,7 +85,7 @@ const Navigation = () => {
 
             <Button 
                 className="resume hide-mobile" 
-                href={resume} 
+                href={CV} 
                 donwload="Alex Duran CV"
                 img={cloud_icon}
                 label="Resume"
