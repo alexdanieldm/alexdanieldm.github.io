@@ -1,13 +1,12 @@
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://www.alexdanieldm.com',
+  URL: NETLIFY_SITE_URL = "https://www.alexdanieldm.com",
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
-} = process.env;
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
 
-const isNetlifyProduction = NETLIFY_ENV === 'production';
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
-
+const isNetlifyProduction = NETLIFY_ENV === "production"
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
@@ -16,27 +15,27 @@ module.exports = {
                   problems, and this website its made with React, Gatsby and coffee`,
     author: `Alex Duran`,
     twitter: `@alexdanieldm`,
-    siteUrl: 'https://www.alexdanieldm.com',
-    image:'./assets/images/header.png'
+    siteUrl: siteUrl,
+    image: "./assets/images/header.png",
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
-            policy: [{ userAgent: '*' }]
+            policy: [{ userAgent: "*" }],
           },
-          'branch-deploy': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
+          "branch-deploy": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
+            host: null,
           },
-          'deploy-preview': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
+          "deploy-preview": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
+            host: null,
           },
         },
       },
@@ -64,17 +63,17 @@ module.exports = {
         theme_color: `#021926`,
         display: `minimal-ui`,
         icon: `src/assets/icons/terminal-solid.svg`, // This path is relative to the root of the site.
-        cache_busting_mode: 'none'
+        cache_busting_mode: "none",
       },
     },
     {
-      resolve: 'gatsby-plugin-offline',
+      resolve: "gatsby-plugin-offline",
       options: {
-         workboxConfig: {
-            globPatterns: [`src/assets/icons/terminal-solid.svg`]
-         }
-      }
-   },
+        workboxConfig: {
+          globPatterns: [`src/assets/icons/terminal-solid.svg`],
+        },
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
   ],
 }
