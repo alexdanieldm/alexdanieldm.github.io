@@ -1,3 +1,3 @@
 User-agent: *
-Sitemap: https://www.alexdanieldm.com/sitemap/sitemap-index.xml
+Sitemap: https://www.alexdanieldm.com/alexdanieldm.github.io/sitemap/sitemap-index.xml
 Host: https://www.alexdanieldm.com
