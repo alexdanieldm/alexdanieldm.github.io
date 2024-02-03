@@ -9,6 +9,7 @@ const isNetlifyProduction = NETLIFY_ENV === "production"
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
+  pathPrefix: "/",
   siteMetadata: {
     title: `Alex Duran`,
     description: `I'm a passionate Software Developer, who loves using web-technologies to solve real world 

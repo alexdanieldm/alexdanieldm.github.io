@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-.cache/
-.public/
-
-### macOS ###
-=======
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
->>>>>>> gatsby
 
 # Runtime data
 pids
