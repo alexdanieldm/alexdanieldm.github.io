@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
-
 import { COMPACT_WASHES, Ground } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Button } from '@/components/ui';
+import { pageMetadata } from '@/content/seo';
 
 import styles from './not-found.module.scss';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Page not found',
-  robots: { index: false, follow: true },
-};
+  description: 'That page does not exist. The work is all on the home page.',
+  path: '/404/',
+  noIndex: true,
+});
 
 /**
  * Exported as 404.html by the static build, which is the filename GitHub Pages

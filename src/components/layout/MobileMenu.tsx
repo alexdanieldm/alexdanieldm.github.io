@@ -35,6 +35,11 @@ export function MobileMenu() {
     const panel = panelRef.current;
     if (!open || !panel) return;
 
+    /* Captured now rather than read in the cleanup. The toggle is always
+       rendered so the node would in practice be the same one either way, but
+       reading a ref during teardown is the pattern that eventually bites. */
+    const toggle = toggleRef.current;
+
     panel.querySelector<HTMLElement>(FOCUSABLE)?.focus();
 
     /* Lock the page, and give back the width the scrollbar was using so the
@@ -82,7 +87,7 @@ export function MobileMenu() {
       document.removeEventListener('keydown', onKeyDown);
       body.style.overflow = previousOverflow;
       body.style.paddingRight = previousPadding;
-      toggleRef.current?.focus();
+      toggle?.focus();
     };
   }, [open, close]);
 

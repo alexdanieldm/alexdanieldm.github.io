@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import {
@@ -15,15 +14,16 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Banner } from '@/components/sections';
 import { Mark } from '@/components/ui';
 import { CV, SOCIALS } from '@/content/navigation';
+import { pageMetadata } from '@/content/seo';
 
 import styles from './page.module.scss';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Contact',
   description:
     'Email, LinkedIn, GitHub and my CV. Barcelona, hybrid or remote, in English or Spanish.',
-  alternates: { canonical: '/contact' },
-};
+  path: '/contact/',
+});
 
 type ChannelProps = {
   href: string;

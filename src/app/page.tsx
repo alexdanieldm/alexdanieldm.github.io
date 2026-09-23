@@ -5,6 +5,15 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/components/sections';
 import { Button } from '@/components/ui';
 import { CV } from '@/content/navigation';
+import { pageMetadata } from '@/content/seo';
+
+export const metadata = pageMetadata({
+  isHome: true,
+  title: 'Home',
+  description:
+    'Full stack engineer in Barcelona. I build web applications end to end: the interface, the code, the integrations, and the release.',
+  path: '/',
+});
 
 export default function HomePage() {
   return (

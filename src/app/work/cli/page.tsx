@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 import { Ground, ARTICLE_WASHES } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -13,16 +11,17 @@ import {
   TerminalLine,
   Value,
 } from '@/components/ui';
+import { pageMetadata } from '@/content/seo';
 
 import styles from './page.module.scss';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'A CLI the whole team ships through',
   description:
     'One command that makes a deploy safe and puts the same standards in every repository ' +
     'while it is at it. Node.js and TypeScript.',
-  alternates: { canonical: '/work/cli' },
-};
+  path: '/work/cli/',
+});
 
 const FACTS = [
   { label: 'Role', value: 'Author and maintainer', note: 'my own initiative' },

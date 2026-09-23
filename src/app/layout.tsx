@@ -1,22 +1,18 @@
 import type { Metadata, Viewport } from 'next';
 
+import { DEFAULT_TITLE, SITE_NAME, SITE_URL } from '@/content/seo';
 import { body, display, kanji } from '@/styles/fonts';
 
 import './globals.scss';
 
-const SITE_URL = 'https://alexdanieldm.github.io';
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Alex Durán, Full Stack Engineer',
-    template: '%s · Alex Durán',
+    default: DEFAULT_TITLE,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    'Full stack engineer in Barcelona. I build web applications end to end: the interface, ' +
-    'the code, the integrations, and the release.',
-  authors: [{ name: 'Alex Durán', url: SITE_URL }],
-  creator: 'Alex Durán',
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
   keywords: [
     'Alex Durán',
     'full stack engineer',
@@ -26,20 +22,6 @@ export const metadata: Metadata = {
     'GraphQL',
     'Barcelona',
   ],
-  openGraph: {
-    type: 'website',
-    locale: 'en_GB',
-    url: SITE_URL,
-    siteName: 'Alex Durán',
-    title: 'Alex Durán, Full Stack Engineer',
-    description:
-      'I build web applications, from the first conversation to the last release. Barcelona.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@alexdanieldm',
-  },
-  alternates: { canonical: '/' },
 };
 
 export const viewport: Viewport = {

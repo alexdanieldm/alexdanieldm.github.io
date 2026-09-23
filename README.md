@@ -105,6 +105,25 @@ Everything that moves does so for a reason, and nothing moves fast.
 - Vapour trails cross 32px over 16 seconds.
 - The terminal cursor is still waiting for the theme ID.
 
+## The link preview card
+
+`public/og.png` is what WhatsApp, Slack and LinkedIn show when the link gets
+pasted. It is the banner scene with my name and 作 over it, drawn by
+rasterising the live `<svg>` from the page in a browser canvas rather than
+authored separately, so it cannot drift away from the site it advertises.
+
+It has to be a browser doing the drawing: the three faces are woff2 only, and
+nothing here can rasterise woff2 outside one. To regenerate, open the site,
+draw the scene plus type into a 1200x630 canvas, and re-encode the result with
+`sharp().png({ effort: 10 })` — that took the canvas's 220KB default output
+down to 33KB with no loss.
+
+Every page builds its own card metadata through `pageMetadata()` in
+`src/content/seo.ts`. That exists because Next shallow-merges metadata: a page
+declaring its own `openGraph` replaces the parent's wholesale instead of
+filling gaps, so without it every inner page advertised the home page's title
+and URL.
+
 ## Deploying
 
 Push to `master`. The workflow typechecks, lints, builds and hands `out/` to
