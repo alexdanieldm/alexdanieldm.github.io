@@ -1,0 +1,191 @@
+.banner {
+  position: relative;
+  min-height: var(--banner-height);
+  /* The scene is sized to cover and will overhang; this is what stops it
+     widening the page. */
+  overflow: hidden;
+
+  &[data-variant='strip'] {
+    min-height: var(--banner-height-compact);
+  }
+}
+
+.sceneWide,
+.sceneTall,
+.fade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sceneTall {
+  display: none;
+}
+
+/* The two compositions swap rather than one of them being cropped. */
+@include desktop-down {
+  .banner[data-variant='full'] {
+    .sceneWide {
+      display: none;
+    }
+
+    .sceneTall {
+      display: block;
+    }
+  }
+}
+
+.fade {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(2 25 38 / 10%) 0%,
+    rgb(2 25 38 / 24%) 42%,
+    rgb(2 25 38 / 70%) 76%,
+    var(--color-base) 100%
+  );
+
+  [data-variant='strip'] & {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(2 25 38 / 12%) 0%,
+      rgb(2 25 38 / 30%) 48%,
+      rgb(2 25 38 / 74%) 80%,
+      var(--color-base) 100%
+    );
+  }
+
+  @include desktop-down {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(2 25 38 / 10%) 0%,
+      rgb(2 25 38 / 26%) 44%,
+      rgb(2 25 38 / 72%) 78%,
+      var(--color-base) 100%
+    );
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: inherit;
+}
+
+.copy {
+  /* Pushes the copy to the bottom of the banner, under the header. */
+  margin-top: auto;
+  padding-bottom: 76px;
+
+  @include page-gutter;
+
+  @include desktop-down {
+    padding-bottom: 40px;
+  }
+}
+
+/**
+ * Everything in the copy block rises in on load. Staggered by 80ms so the eye
+ * is led down it: label, headline, sentence, buttons.
+ *
+ * A CSS load animation rather than a scroll observer. This content is above the
+ * fold on every viewport, so there is nothing to observe, and a load animation
+ * cannot leave the page blank if a bundle fails to arrive.
+ */
+.eyebrow,
+.title,
+.lede,
+.actions {
+  animation: rise-in var(--duration-slow) var(--ease-out) backwards;
+}
+
+.title {
+  animation-delay: 0.08s;
+}
+
+.lede {
+  animation-delay: 0.16s;
+}
+
+.actions {
+  animation-delay: 0.24s;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: var(--spacer-2);
+  font-size: var(--typography-size-body-x-small);
+  font-weight: var(--typography-weight-bold);
+  letter-spacing: var(--typography-tracking-eyebrow);
+  text-transform: uppercase;
+
+  [data-variant='strip'] & {
+    margin-bottom: 18px;
+    font-size: var(--typography-size-meta);
+    color: var(--color-accent);
+  }
+}
+
+.dash {
+  width: 34px;
+  height: 4px;
+  background-color: var(--color-accent);
+
+  @include mobile-down {
+    width: 28px;
+  }
+}
+
+.title {
+  max-width: 920px;
+  font-family: var(--font-display);
+  font-size: var(--typography-size-1);
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+
+  [data-variant='strip'] & {
+    max-width: 900px;
+    font-size: var(--typography-size-2);
+    line-height: 1.06;
+  }
+}
+
+.lede {
+  max-width: 720px;
+  margin-top: var(--spacer-2);
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 36px;
+
+  @include mobile-down {
+    /* Two full-width buttons stacked, rather than two cramped ones side by
+       side. A 50px target is the point of them. */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+}
+
+@include reduced-motion {
+  .eyebrow,
+  .title,
+  .lede,
+  .actions {
+    animation: none;
+  }
+}

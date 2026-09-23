@@ -1,0 +1,21 @@
+/**
+ * Vapour trails, drifting sideways. The only movement in the artwork, and slow
+ * enough (16s to cross 32px) that you notice it only if you stop and look.
+ */
+.trails {
+  animation: trail-drift 16s ease-in-out infinite alternate;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes trail-drift {
+  from {
+    transform: translateX(-16px);
+  }
+
+  to {
+    transform: translateX(16px);
+  }
+}
