@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { DownloadIcon } from '@/components/icons';
-import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
+import { contentFor, localePath, type Locale } from '@/content/locales';
 import { CV, navItems, ROUTES } from '@/content/navigation';
 
 import { MobileMenu } from './MobileMenu';
