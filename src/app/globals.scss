@@ -37,9 +37,15 @@
   /* The two washes are matched by the lift they put on the ground's relative
      luminance, not by their alpha: coral is a far lighter colour than the depth
      blue, so equal alphas are nowhere near equally visible. At 11% the coral
-     was carrying 44% of the blue's lift and read as almost nothing. 20% puts it
-     at 103%, so the two now register the same. */
-  --color-accent-wash: rgb(247 81 85 / 20%);
+     was carrying 44% of the blue's lift and read as almost nothing.
+
+     16% is the ceiling, not a preference. Coral text sits over this wash in a
+     dozen places, and a coral wash lightens the ground toward the very colour
+     it has to stay legible against: the two converge as alpha rises. At 16%
+     accent-on-wash measures 4.60:1, at 18% it is 4.48 and under AA. So the
+     wash goes as far as the palette allows, 74% of the blue's lift rather than
+     the 103% that matching it exactly would need. */
+  --color-accent-wash: rgb(247 81 85 / 16%);
   --color-depth-wash: rgb(14 58 82 / 55%);
 
   /* ── Layout ───────────────────────────────────────────────────────────── */
