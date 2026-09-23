@@ -102,6 +102,17 @@ Everything that moves does so for a reason, and nothing moves fast.
 - Banner copy rises in on load, staggered by 80ms. On load rather than on
   scroll: it is above the fold at every viewport, and a load animation cannot
   leave the page blank if a bundle never arrives.
+- Sections do the same rise as they come into view: About, each Selected work
+  article, How I work. Not the case study or contact, which are dense enough.
+  It is an 870-byte inline script, not a component, because it has to run
+  before first paint, and because hiding and revealing then live in the same
+  place: if it never runs, nothing is ever hidden.
+- It sweeps on scroll rather than using an IntersectionObserver. An observer
+  only fires when intersection changes, so anything scrolled past between two
+  frames never intersects and stays hidden for good.
+- The header is fixed, hides on the way down past the banner and returns on any
+  upward scroll. `:focus-within` cancels the hidden state so keyboard focus
+  never lands off-screen.
 - Vapour trails cross 32px over 16 seconds.
 - The terminal cursor is still waiting for the theme ID.
 
