@@ -106,34 +106,40 @@
 
 .surfaces {
   display: flex;
+  /* Wraps at every width, not just below the tablet breakpoint. The three
+     panels need about 710px and the column they sit in is only that wide above
+     roughly 1250px, so a wrap that only switched on at 769 left a dead band
+     across every small laptop where the third panel simply overflowed. Let the
+     row break whenever it runs out of room and the breakpoint stops mattering. */
+  flex-wrap: wrap;
   gap: 16px;
-
-  @include tablet-down {
-    flex-wrap: wrap;
-  }
 }
 
 .surface {
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   gap: 9px;
-  width: 208px;
+  /* Shrink and wrap, but do not grow: the two narrow panels keep the 208px the
+     comp gave them whenever the row can afford it. */
+  flex: 0 1 208px;
+  min-width: 0;
   height: 156px;
   padding: 13px;
   background-color: var(--color-raised);
   border: 1px solid rgb(234 242 246 / 14%);
-
-  @include tablet-down {
-    flex-grow: 1;
-    width: auto;
-    min-width: 45%;
-  }
 }
 
+/* The map is the one that takes up the slack, on its own row or sharing one. */
 .surfaceWide {
-  flex-grow: 1;
-  width: auto;
+  flex: 1 1 260px;
+}
+
+@include tablet-down {
+  /* Once they are stacking anyway, holding 208px just leaves dead space to the
+     right of each one. */
+  .surface {
+    flex-grow: 1;
+  }
 }
 
 .surfaceName {
