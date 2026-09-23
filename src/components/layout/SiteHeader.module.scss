@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6,6 +8,13 @@
   padding-block: 30px;
 
   @include page-gutter;
+
+  /* Over a banner the header floats on the artwork and takes up no height, so
+     the banner's own min-height is the height you set, not that plus a header. */
+  &[data-variant='overlay'] {
+    position: absolute;
+    inset: 0 0 auto;
+  }
 
   &[data-variant='solid'] {
     border-bottom: 1px solid var(--color-border-faint);

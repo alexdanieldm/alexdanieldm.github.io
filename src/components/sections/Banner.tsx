@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react';
 
-import { SiteHeader } from '@/components/layout/SiteHeader';
-
 import { StripScene, TallScene, WideScene } from './BannerScene';
 
 import styles from './Banner.module.scss';
@@ -13,20 +11,10 @@ type BannerProps = {
   actions?: ReactNode;
   /** `full` fills the viewport on a phone; `strip` is the shorter inner-page band. */
   variant?: 'full' | 'strip';
-  /** Passed through so the header can mark the current page. */
-  current?: string;
   id?: string;
 };
 
-export function Banner({
-  eyebrow,
-  title,
-  lede,
-  actions,
-  variant = 'full',
-  current,
-  id,
-}: BannerProps) {
+export function Banner({ eyebrow, title, lede, actions, variant = 'full', id }: BannerProps) {
   return (
     <section className={styles.banner} data-variant={variant} id={id}>
       {variant === 'full' ? (
@@ -43,8 +31,6 @@ export function Banner({
       <div className={styles.fade} aria-hidden="true" />
 
       <div className={styles.content}>
-        <SiteHeader current={current} />
-
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
             {variant === 'full' && <span className={styles.dash} aria-hidden="true" />}

@@ -74,7 +74,8 @@
 }
 
 .copy {
-  /* Pushes the copy to the bottom of the banner, under the header. */
+  /* Pushes the copy to the bottom of the banner. The header floats over the top
+     of it as a sibling of <main>, so the copy never has to make room for it. */
   margin-top: auto;
   padding-bottom: 76px;
 
