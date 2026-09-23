@@ -12,32 +12,41 @@
  * the page is simply a page. It cannot fail in the direction that costs someone
  * the content.
  *
- * A scroll sweep rather than an IntersectionObserver, which is the obvious
- * choice and the wrong one. An observer only fires when an element's
- * intersection actually changes, so anything scrolled past between two frames
- * never intersects and stays hidden for good: press End, restore a scroll
- * position on reload, or follow a link into the middle of the page, and the
- * sections above it are gone. Measured exactly that on the first attempt, two
- * articles invisible at the bottom of the page. Re-checking what is left on
- * each scroll cannot strand anything, and the list only shrinks: once
- * everything has appeared the listeners remove themselves and the cost is nil.
+ * Two things it has to get right, both found by breaking them:
+ *
+ * A scroll sweep, not an IntersectionObserver. An observer only fires when an
+ * element's intersection actually changes, so anything scrolled past between
+ * two frames never intersects and stays hidden for good: press End, restore a
+ * scroll position on reload, or follow a link into the middle of the page, and
+ * the sections above it are gone. Re-checking what is left on each scroll
+ * cannot strand anything, and the list only shrinks.
+ *
+ * And a MutationObserver, because the router swaps page content without a
+ * reload. The first page's targets are all revealed, the listeners have
+ * unbound themselves, and then a second page's hidden content arrives with
+ * nothing watching it: navigate home from the case study and the page is
+ * blank, scrolling included. Watching for new nodes is what makes the reveal
+ * survive a route change.
  */
 export const REVEAL_SCRIPT = `(function(){
 try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return}catch(e){}
 document.documentElement.setAttribute('data-reveal-ready','');
-var pending=[],ticking=false;
+var pending=[],queued=false,bound=false;
 function sweep(){
-var edge=innerHeight*0.88,i,keep=[];
-for(i=0;i<pending.length;i++){
-if(pending[i].getBoundingClientRect().top<edge){pending[i].setAttribute('data-revealed','')}
-else{keep.push(pending[i])}}
+var edge=innerHeight*0.78,keep=[],i,el;
+for(i=0;i<pending.length;i++){el=pending[i];
+if(!el.isConnected)continue;
+if(el.getBoundingClientRect().top<edge){el.setAttribute('data-revealed','')}else{keep.push(el)}}
 pending=keep;
-if(!pending.length){removeEventListener('scroll',onMove);removeEventListener('resize',onMove)}}
-function onMove(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;sweep()})}
-function go(){
-pending=[].slice.call(document.querySelectorAll('[data-reveal]'));
-addEventListener('scroll',onMove,{passive:true});
-addEventListener('resize',onMove);
+if(!pending.length&&bound){bound=false;removeEventListener('scroll',onMove);removeEventListener('resize',onMove)}}
+function onMove(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;sweep()})}
+function scan(){
+pending=[].slice.call(document.querySelectorAll('[data-reveal]:not([data-revealed])'));
+if(pending.length&&!bound){bound=true;addEventListener('scroll',onMove,{passive:true});addEventListener('resize',onMove)}
 sweep()}
+function go(){
+scan();
+new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;scan()})})
+.observe(document.body,{childList:true,subtree:true})}
 document.readyState==='loading'?addEventListener('DOMContentLoaded',go):go();
 })();`;
