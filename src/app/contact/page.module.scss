@@ -1,0 +1,149 @@
+.body {
+  display: flex;
+  gap: 80px;
+  padding-top: 72px;
+
+  @include page-gutter;
+
+  @include desktop-down {
+    flex-direction: column;
+    gap: var(--spacer-2);
+    padding-top: var(--section-padding-block);
+  }
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 22px;
+  max-width: 620px;
+}
+
+.lede {
+  font-size: var(--typography-size-body-large);
+  line-height: var(--typography-height-body-loose);
+}
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--spacer-sm);
+  width: 452px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-down {
+    width: 100%;
+  }
+}
+
+/* ── One way to reach me ──────────────────────────────────────────────────── */
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 76px;
+  padding-inline: 26px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-foreground);
+
+  /* Email is the one I actually want used, so it is the only filled row. */
+  &[data-primary] {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-base);
+  }
+
+  @include mobile-down {
+    padding-inline: 18px;
+  }
+}
+
+.channelText {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.channelLabel {
+  font-size: var(--typography-size-label);
+  letter-spacing: var(--typography-tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+
+  [data-primary] & {
+    color: var(--color-base);
+  }
+}
+
+.channelValue {
+  font-size: var(--typography-size-body-small);
+  font-weight: var(--typography-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.channelArrow {
+  flex-shrink: 0;
+  color: var(--color-muted);
+
+  [data-primary] & {
+    color: var(--color-base);
+  }
+}
+
+/* ── 嘱 ───────────────────────────────────────────────────────────────────── */
+
+.entrust {
+  padding-bottom: 72px;
+
+  @include page-gutter;
+}
+
+.entrustInner {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-top: var(--section-padding-block);
+  padding: 44px 52px;
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+
+  @include desktop-down {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacer-2);
+    padding: var(--spacer-2);
+  }
+}
+
+.kanji {
+  flex-shrink: 0;
+  font-family: var(--font-kanji);
+  font-size: 150px;
+  line-height: 1;
+  color: var(--color-accent);
+
+  @include mobile-down {
+    font-size: 96px;
+  }
+}
+
+.entrustTitle {
+  margin-bottom: 14px;
+  /* The heading mixes 嘱 with roman text. The kanji face is scoped by
+     unicode-range to exactly the two glyphs it draws, so listing it first here
+     picks it up for the kanji and falls straight through to the serif for
+     everything else. */
+  font-family: var(--font-kanji), var(--font-display);
+  font-size: var(--typography-size-6);
+  line-height: 1.2;
+}
+
+.entrustBody {
+  max-width: 640px;
+  font-size: var(--typography-size-body-small);
+}
