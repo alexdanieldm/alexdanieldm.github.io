@@ -9,7 +9,7 @@
  * <Button href="#work" icon={<CodeSlashIcon size={17} />}>See the work</Button>
  *
  * @example
- * <Button variant="ghost" href="/resume.pdf" download>Download résumé</Button>
+ * <Button variant="ghost" href={CV.href} download={CV.filename}>Download CV</Button>
  */
 
 import Link from 'next/link';
@@ -28,7 +28,8 @@ type ButtonProps = {
   /** Stretches to the container, which is what the mobile banner wants. */
   block?: boolean;
   href?: string;
-  download?: boolean;
+  /** `true` downloads under the path's own name; a string renames it on disk. */
+  download?: boolean | string;
   onClick?: () => void;
   type?: 'button' | 'submit';
   className?: string;

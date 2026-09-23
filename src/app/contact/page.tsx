@@ -14,14 +14,14 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Banner } from '@/components/sections';
 import { Mark } from '@/components/ui';
-import { SOCIALS } from '@/content/navigation';
+import { CV, SOCIALS } from '@/content/navigation';
 
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Email, LinkedIn, GitHub and my résumé. Barcelona, hybrid or remote, in English or Spanish.',
+    'Email, LinkedIn, GitHub and my CV. Barcelona, hybrid or remote, in English or Spanish.',
   alternates: { canonical: '/contact' },
 };
 
@@ -33,7 +33,8 @@ type ChannelProps = {
   /** Trailing mark: an arrow out, or an arrow down for a file. */
   action: ReactNode;
   primary?: boolean;
-  download?: boolean;
+  /** A string renames the file on disk; see CV.filename. */
+  download?: boolean | string;
 };
 
 /**
@@ -120,9 +121,9 @@ export default function ContactPage() {
               action={<ArrowUpRightIcon size={16} />}
             />
             <Channel
-              download
-              href="/resume.pdf"
-              label="Résumé"
+              download={CV.filename}
+              href={CV.href}
+              label="CV"
               value="Download PDF"
               icon={<CloudDownloadIcon size={24} />}
               action={<DownloadIcon size={16} />}

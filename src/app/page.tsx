@@ -4,6 +4,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/components/sections';
 import { Button } from '@/components/ui';
+import { CV } from '@/content/navigation';
 
 export default function HomePage() {
   return (
@@ -23,11 +24,11 @@ export default function HomePage() {
               </Button>
               <Button
                 variant="ghost"
-                href="/resume.pdf"
-                download
+                href={CV.href}
+                download={CV.filename}
                 icon={<CloudDownloadIcon size={18} />}
               >
-                Download résumé
+                Download CV
               </Button>
             </>
           }

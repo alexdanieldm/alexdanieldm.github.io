@@ -115,10 +115,14 @@ switched over the deploy job fails and whatever is published stays up.
 
 ## The CV
 
-`public/resume.pdf` is the ATS version, linked from the banner and the contact
+`public/cv.pdf` is the ATS version, linked from the banner and the contact
 page. It carries my email and LinkedIn and nothing else personal, which is the
 bar for anything in `public/`. Replacing it is a file swap; no code references
 its contents.
+
+It downloads as `Alex Duran - Full Stack Engineer - CV.pdf` rather than
+`cv.pdf`, because that is what someone has to find again in a folder of twenty.
+The name lives on `CV.filename` in `src/content/navigation.ts`.
 
 It does name employers, which the site copy deliberately does not. That is the
 intended split: the CV is a document I hand to a specific person, the site is

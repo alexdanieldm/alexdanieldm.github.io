@@ -21,6 +21,20 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { href: '/contact', label: 'Contact' },
 ];
 
+/**
+ * The CV download.
+ *
+ * `filename` is what the browser writes to disk, via the anchor's `download`
+ * attribute, rather than the path's own basename. A recruiter ends up with
+ * twenty of these in one folder, and "cv.pdf" is the one they will never find
+ * again. Deliberately unaccented: a plain-ASCII name survives every download
+ * manager, mail client and filesystem it is about to pass through.
+ */
+export const CV = {
+  href: '/cv.pdf',
+  filename: 'Alex Duran - Full Stack Engineer - CV.pdf',
+} as const;
+
 export const SOCIALS = {
   github: 'https://github.com/alexdanieldm',
   linkedin: 'https://www.linkedin.com/in/alexdanieldm/',
