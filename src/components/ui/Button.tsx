@@ -9,6 +9,12 @@
  * <Button href="#work" icon={<CodeSlashIcon size={17} />}>See the work</Button>
  *
  * @example
+ * // A trailing mark goes through iconAfter, never as a child. Globals set
+ * // `svg { display: block }`, so an svg passed as a child lands inside the
+ * // label span and breaks the line under the text.
+ * <Button href="/contact" iconAfter={<ArrowUpRightIcon size={17} />}>Get in touch</Button>
+ *
+ * @example
  * <Button variant="ghost" href={CV.href} download={CV.filename}>Download CV</Button>
  */
 
@@ -21,6 +27,8 @@ type ButtonProps = {
   children: ReactNode;
   /** Sits before the label. Decorative: the label already says the same thing. */
   icon?: ReactNode;
+  /** Sits after the label, as a flex sibling rather than inside it. */
+  iconAfter?: ReactNode;
   /** Coral and filled, or outlined and filled on hover. */
   variant?: 'primary' | 'ghost';
   /** `large` is the closing call to action; everything else is `medium`. */
@@ -41,6 +49,7 @@ const isInternalRoute = (href: string) => href.startsWith('/') && !href.startsWi
 export function Button({
   children,
   icon,
+  iconAfter,
   variant = 'primary',
   size = 'medium',
   block = false,
@@ -62,6 +71,7 @@ export function Button({
     <>
       {icon}
       <span>{children}</span>
+      {iconAfter}
     </>
   );
 

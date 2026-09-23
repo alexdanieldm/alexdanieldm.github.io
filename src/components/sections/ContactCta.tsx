@@ -16,9 +16,13 @@ export function ContactCta() {
         </p>
       </div>
 
-      <Button href="/contact" size="large" className={styles.button}>
+      <Button
+        href="/contact"
+        size="large"
+        className={styles.button}
+        iconAfter={<ArrowUpRightIcon size={17} />}
+      >
         Get in touch
-        <ArrowUpRightIcon size={17} />
       </Button>
     </section>
   );
