@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from 'next';
 import { DEFAULT_TITLE, SITE_NAME, SITE_URL } from '@/content/seo';
 import { body, display, kanji } from '@/styles/fonts';
 
+import { REVEAL_SCRIPT } from './revealScript';
+
 import './globals.scss';
 
 export const metadata: Metadata = {
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${body.variable} ${display.variable} ${kanji.variable}`}>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
         <a className="skip-link" href="#main">
           Skip to content
         </a>

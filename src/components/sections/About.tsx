@@ -4,7 +4,7 @@ import styles from './About.module.scss';
 
 export function About() {
   return (
-    <section className={styles.about} id="about" aria-labelledby="about-title">
+    <section className={styles.about} id="about" aria-labelledby="about-title" data-reveal>
       <RailHeading
         id="about-title"
         note={

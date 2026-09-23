@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 import { Card, Mark } from '@/components/ui';
 
 import styles from './Approach.module.scss';
@@ -5,7 +7,7 @@ import styles from './Approach.module.scss';
 export function Approach() {
   return (
     <section className={styles.approach} id="approach" aria-labelledby="approach-title">
-      <div className={styles.header}>
+      <div className={styles.header} data-reveal>
         <div>
           <h2 className={styles.title} id="approach-title">
             How I work
@@ -21,7 +23,11 @@ export function Approach() {
         </span>
       </div>
 
-      <ul className={styles.cards}>
+      <ul
+        className={styles.cards}
+        data-reveal
+        style={{ '--reveal-delay': '0.1s' } as CSSProperties}
+      >
         <Card index="01" title="Write it for whoever comes next">
           We over engineer things, and we forget that the person opening the file will not be us. I
           aim for code that is clean and modular enough that a piece can be lifted into another

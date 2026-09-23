@@ -39,7 +39,7 @@ function WorkArticle({
   lead = false,
 }: WorkArticleProps) {
   return (
-    <article className={styles.article} data-lead={lead || undefined}>
+    <article className={styles.article} data-lead={lead || undefined} data-reveal>
       <div className={styles.rail}>
         {icon}
         <p className={styles.index}>{index}</p>
@@ -66,9 +66,11 @@ function WorkArticle({
 export function SelectedWork() {
   return (
     <section className={styles.work} id="work" aria-labelledby="work-title">
-      <SectionHeading id="work-title" kicker="Tooling, data, interface">
-        Selected work
-      </SectionHeading>
+      <div data-reveal>
+        <SectionHeading id="work-title" kicker="Tooling, data, interface">
+          Selected work
+        </SectionHeading>
+      </div>
 
       <WorkArticle
         lead
@@ -161,7 +163,7 @@ export function SelectedWork() {
         <SurfacesDiagram />
       </WorkArticle>
 
-      <div className={styles.article}>
+      <div className={styles.article} data-reveal>
         <div className={styles.rail}>
           <p className={styles.discipline}>Also</p>
         </div>
