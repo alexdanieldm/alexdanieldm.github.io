@@ -113,7 +113,13 @@ Pages. No build output is committed.
 It needs **Settings → Pages → Source** set to **GitHub Actions**. Until that is
 switched over the deploy job fails and whatever is published stays up.
 
-## Still to do
+## The CV
 
-- `public/resume.pdf` is linked from the banner and the contact page and is not
-  in the repo yet.
+`public/resume.pdf` is the ATS version, linked from the banner and the contact
+page. It carries my email and LinkedIn and nothing else personal, which is the
+bar for anything in `public/`. Replacing it is a file swap; no code references
+its contents.
+
+It does name employers, which the site copy deliberately does not. That is the
+intended split: the CV is a document I hand to a specific person, the site is
+open to anyone.
