@@ -81,6 +81,14 @@ export default function CliCaseStudy() {
               <p>Two problems, both worth solving once rather than every week.</p>
 
               <p>
+                Neither looked like a problem from outside. Nothing was broken, nothing was on fire,
+                and both had a workaround a careful person could hold in their head. That is what
+                made them expensive:{' '}
+                <Mark>the cost was spread thin across every week and every person</Mark>, so it
+                never arrived as something to fix, only as something to be careful about.
+              </p>
+
+              <p>
                 The first is that a project can have{' '}
                 <Mark>two owners writing into one file tree</Mark>. Developers own the code, while
                 someone else, a client or a QA reviewer, owns the configuration they edit through a
@@ -105,6 +113,20 @@ export default function CliCaseStudy() {
                   things the team is supposed to remember should be things the tool already does
                 </Mark>
                 .
+              </p>
+
+              <p>
+                Most of the work was not the code. It was watching where the time actually went,
+                separating the part that was genuinely different per client from the part we were
+                rebuilding every time, and deciding <Mark>what the tool should refuse to do</Mark>{' '}
+                rather than only what it should make easy. Writing the commands afterwards was the
+                short part.
+              </p>
+
+              <p>
+                None of it is specific to one platform. The shape of it, two owners writing into one
+                tree and conventions drifting apart across projects, turns up anywhere a team runs
+                more than a handful of repositories.
               </p>
             </div>
           </section>
@@ -230,9 +252,12 @@ export default function CliCaseStudy() {
               </p>
 
               <p>
-                It also means I am comfortable <Mark>owning something end to end</Mark>: designing
-                it, building it, versioning it, documenting it, and maintaining it while other
-                people depend on it every day.
+                It also means I am comfortable{' '}
+                <Mark>owning something end to end and then continuing to own it</Mark>: designing
+                it, building it, versioning it, documenting it, and keeping it working while other
+                people depend on it every day. Building it took weeks. Maintaining it is ongoing,
+                and that is the part that decides whether a tool like this survives contact with a
+                real team.
               </p>
             </div>
           </div>
