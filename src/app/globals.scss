@@ -68,7 +68,10 @@
 
   /* Fixed rather than derived from the content, because the spacer under a
      solid header has to be exactly this and two numbers that agree by accident
-     will eventually stop agreeing. Both values are measured, not chosen. */
+     will eventually stop agreeing. Both values are measured, not chosen.
+
+     The rule under a settled header is an inset shadow rather than a border
+     precisely so this number stays true at every scroll position. */
   --header-height: 97px;
 
   /* ── Spacing ──────────────────────────────────────────────────────────────
