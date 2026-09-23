@@ -11,7 +11,7 @@ import styles from './TechBadge.module.scss';
 export function TechBadge({ icon, label }: { icon: ReactNode; label: string }) {
   return (
     <li className={styles.badge}>
-      {icon}
+      <span className={styles.mark}>{icon}</span>
       <p className={styles.label}>{label}</p>
     </li>
   );

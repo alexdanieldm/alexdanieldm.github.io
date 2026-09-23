@@ -110,24 +110,24 @@ export const ShopifyIcon = (props: IconProps) => (
 /** Drawn here: a droplet, since there is no official mark. */
 export const LiquidIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 48 48">
-    <path d="M24 5c7.5 9.5 12 15 12 21.5a12 12 0 0 1-24 0C12 20 16.5 14.5 24 5Z" />
+    <path d="M24 1c10 13.5 16 21 16 30a16 16 0 0 1-32 0C8 22 14 14.5 24 1Z" />
   </Icon>
 );
 
 /** Drawn here: a cloud, since the official mark is a wordmark. */
 export const AwsIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 48 48">
-    <path d="M14 38a9 9 0 0 1-.8-18 12 12 0 0 1 23 2.8A7.6 7.6 0 0 1 34.6 38H14Z" />
+    <path d="M13 42a12 12 0 0 1-1-24 15 15 0 0 1 29 3.5A11 11 0 0 1 37 42H13Z" />
   </Icon>
 );
 
 /** Drawn here, matching the layout of the official mark. */
 export const FigmaIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 48 48">
-    <rect x="12" y="3" width="12" height="12" rx="6" />
-    <rect x="24" y="3" width="12" height="12" rx="6" />
-    <rect x="24" y="17" width="12" height="12" rx="6" />
-    <rect x="12" y="17" width="12" height="12" rx="6" />
-    <rect x="12" y="31" width="12" height="12" rx="6" />
+    <rect x="9" y="0" width="15" height="15" rx="7.5" />
+    <rect x="24" y="0" width="15" height="15" rx="7.5" />
+    <rect x="9" y="16.5" width="15" height="15" rx="7.5" />
+    <rect x="24" y="16.5" width="15" height="15" rx="7.5" />
+    <rect x="9" y="33" width="15" height="15" rx="7.5" />
   </Icon>
 );

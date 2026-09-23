@@ -33,6 +33,20 @@
   }
 }
 
+/**
+ * A fixed slot for the mark.
+ *
+ * The marks are not all the same box: each is sized so its longest side draws
+ * the same length, which means the boxes differ. Without a slot of its own
+ * that difference would push the labels out of line across the row.
+ */
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+}
+
 .label {
   font-size: var(--typography-size-meta);
   font-weight: var(--typography-weight-bold);
