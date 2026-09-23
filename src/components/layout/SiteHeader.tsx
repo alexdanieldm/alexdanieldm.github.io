@@ -1,8 +1,10 @@
 import Link from 'next/link';
 
 import { DownloadIcon } from '@/components/icons';
-import { CV, NAV_ITEMS } from '@/content/navigation';
+import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
+import { CV, navItems, ROUTES } from '@/content/navigation';
 
+import { LanguageSwitch } from './LanguageSwitch';
 import { MobileMenu } from './MobileMenu';
 import { SocialLinks } from './SocialLinks';
 import { StickyHeader } from './StickyHeader';
@@ -11,24 +13,43 @@ import { Wordmark } from './Wordmark';
 import styles from './SiteHeader.module.scss';
 
 type SiteHeaderProps = {
+  locale: Locale;
+  /**
+   * The route this header sits on, without a language prefix. It decides which
+   * nav item is marked and where the language switch points.
+   */
+  path: string;
   /**
    * `overlay` sits inside a banner and lets the artwork show through;
    * `solid` is its own strip with a rule under it, for a page with no banner.
    */
   variant?: 'overlay' | 'solid';
-  /** The href of the current page, so its nav item can mark itself. */
-  current?: string;
 };
 
-export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
+export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProps) {
+  const { common } = contentFor(locale);
+  const items = navItems(locale, common);
+  const here = localePath(locale, path);
+  const other = otherLocale(locale);
+
+  const languageSwitch = (
+    <LanguageSwitch
+      current={locale}
+      target={other}
+      href={localePath(other, path)}
+      label={common.language.label}
+      targetName={common.language[other]}
+    />
+  );
+
   return (
     <StickyHeader variant={variant}>
-      <Wordmark />
+      <Wordmark href={localePath(locale, ROUTES.home)} />
 
-      <nav className={styles.nav} aria-label="Main">
+      <nav className={styles.nav} aria-label={common.mainNavLabel}>
         <ul className={styles.list}>
-          {NAV_ITEMS.map(({ href, label }) => {
-            const isCurrent = href === current;
+          {items.map(({ href, label }) => {
+            const isCurrent = href === here;
             return (
               <li key={href}>
                 <Link
@@ -45,7 +66,8 @@ export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
         </ul>
       </nav>
 
-      <div className={styles.socials}>
+      <div className={styles.aside}>
+        {languageSwitch}
         <SocialLinks />
       </div>
 
@@ -53,14 +75,23 @@ export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
           rather than imported inside the menu, so their icons stay out of the
           client bundle. */}
       <MobileMenu
-        brand={<Wordmark />}
+        items={items}
+        labels={{
+          open: common.openMenu,
+          close: common.closeMenu,
+          dialog: common.siteNavLabel,
+        }}
+        brand={<Wordmark href={localePath(locale, ROUTES.home)} />}
         footer={
           <>
             <SocialLinks />
-            <a className={styles.menuCv} href={CV.href} download={CV.filename}>
-              CV
-              <DownloadIcon size={14} />
-            </a>
+            <div className={styles.menuAside}>
+              {languageSwitch}
+              <a className={styles.menuCv} href={CV.href} download={CV.filename}>
+                CV
+                <DownloadIcon size={14} />
+              </a>
+            </div>
           </>
         }
       />

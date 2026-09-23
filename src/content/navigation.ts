@@ -1,25 +1,44 @@
 /**
- * @fileoverview Site navigation, in one place because three components render
- * it: the desktop header, the mobile menu, and the footer.
+ * @fileoverview Site navigation and the links that are the same in every
+ * language.
  *
- * Every in-page target is written as `/#id` rather than `#id`. A bare hash only
- * works from the page that owns the section; the rooted form resolves from the
- * case study and the contact page too, and the router still treats it as a
- * scroll rather than a reload when you are already home.
+ * Every in-page target is written through `localePath`, so a Spanish page
+ * links to `/es/#about` and an English one to `/#about`. A bare hash would
+ * only resolve from the page that owns the section; the rooted form works from
+ * the case study and the contact page too, and the router still treats it as a
+ * scroll when you are already there.
  */
+
+import { localePath, type CommonContent, type Locale } from './locales';
 
 export type NavItem = {
   href: string;
   label: string;
 };
 
-export const NAV_ITEMS: readonly NavItem[] = [
-  { href: '/#about', label: 'About' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#tech', label: 'Tech' },
-  { href: '/#approach', label: 'Approach' },
-  { href: '/contact', label: 'Contact' },
-];
+export function navItems(locale: Locale, common: CommonContent): NavItem[] {
+  const at = (path: string) => localePath(locale, path);
+  return [
+    { href: at('/#about'), label: common.nav.about },
+    { href: at('/#work'), label: common.nav.work },
+    { href: at('/#tech'), label: common.nav.tech },
+    { href: at('/#approach'), label: common.nav.approach },
+    { href: at('/contact/'), label: common.nav.contact },
+  ];
+}
+
+/** Routes, in one place, so a page never spells a path out. */
+export const ROUTES = {
+  home: '/',
+  contact: '/contact/',
+  caseStudy: '/work/cli/',
+} as const;
+
+export const SOCIALS = {
+  github: 'https://github.com/alexdanieldm',
+  linkedin: 'https://www.linkedin.com/in/alexdanieldm/',
+  email: 'mailto:alexdanieldm@gmail.com',
+} as const;
 
 /**
  * The CV download.
@@ -33,10 +52,4 @@ export const NAV_ITEMS: readonly NavItem[] = [
 export const CV = {
   href: '/cv.pdf',
   filename: 'Alex Duran - Full Stack Engineer - CV.pdf',
-} as const;
-
-export const SOCIALS = {
-  github: 'https://github.com/alexdanieldm',
-  linkedin: 'https://www.linkedin.com/in/alexdanieldm/',
-  email: 'mailto:alexdanieldm@gmail.com',
 } as const;

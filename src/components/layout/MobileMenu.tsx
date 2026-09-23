@@ -23,20 +23,22 @@ import Link from 'next/link';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 
 import { CloseIcon, MenuIcon } from '@/components/icons';
-import { NAV_ITEMS } from '@/content/navigation';
+import type { NavItem } from '@/content/navigation';
 
 import styles from './MobileMenu.module.scss';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
 type MobileMenuProps = {
+  items: readonly NavItem[];
+  labels: { open: string; close: string; dialog: string };
   /** The wordmark, so the open panel still says whose site it is. */
   brand: ReactNode;
-  /** Social links and the CV, along the bottom. */
+  /** Social links, the language switch and the CV, along the bottom. */
   footer: ReactNode;
 };
 
-export function MobileMenu({ brand, footer }: MobileMenuProps) {
+export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -110,7 +112,7 @@ export function MobileMenu({ brand, footer }: MobileMenuProps) {
         className={styles.toggle}
         ref={toggleRef}
         type="button"
-        aria-label="Open menu"
+        aria-label={labels.open}
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen(true)}
@@ -125,7 +127,7 @@ export function MobileMenu({ brand, footer }: MobileMenuProps) {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Site navigation"
+          aria-label={labels.dialog}
         >
           {/* 嘱, to entrust. The same character as the contact page, oversized
               and sitting behind the navigation rather than beside it. */}
@@ -135,14 +137,19 @@ export function MobileMenu({ brand, footer }: MobileMenuProps) {
 
           <div className={styles.panelHeader}>
             {brand}
-            <button className={styles.toggle} type="button" aria-label="Close menu" onClick={close}>
+            <button
+              className={styles.toggle}
+              type="button"
+              aria-label={labels.close}
+              onClick={close}
+            >
               <CloseIcon size={16} />
             </button>
           </div>
 
           <nav className={styles.nav}>
             <ul className={styles.list}>
-              {NAV_ITEMS.map(({ href, label }, index) => (
+              {items.map(({ href, label }, index) => (
                 <li key={href}>
                   <Link className={styles.link} href={href} onClick={close}>
                     <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>

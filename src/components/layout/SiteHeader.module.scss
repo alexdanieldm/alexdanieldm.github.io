@@ -53,13 +53,27 @@
   height: var(--header-height);
 }
 
-/* The full nav and the icon row are both replaced by the menu button below the
+/* The full nav and the aside are both replaced by the menu button below the
    desktop breakpoint. Neither fits, and neither is worth shrinking to fit. */
 .nav,
-.socials {
+.aside {
   @include desktop-down {
     display: none;
   }
+}
+
+.aside {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-1);
+}
+
+/* In the menu footer the language switch and the CV sit together, opposite
+   the social icons. */
+.menuAside {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-sm);
 }
 
 .list {

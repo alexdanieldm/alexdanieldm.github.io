@@ -12,18 +12,11 @@ import { Ground, COMPACT_WASHES } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Banner } from '@/components/sections';
-import { Mark } from '@/components/ui';
-import { CV, SOCIALS } from '@/content/navigation';
-import { pageMetadata } from '@/content/seo';
+import { contentFor, type Locale } from '@/content/locales';
+import { CV, ROUTES, SOCIALS } from '@/content/navigation';
+import { Copy } from '@/content/rich';
 
-import styles from './page.module.scss';
-
-export const metadata = pageMetadata({
-  title: 'Contact',
-  description:
-    'Email, LinkedIn, GitHub and my CV. Barcelona, hybrid or remote, in English or Spanish.',
-  path: '/contact/',
-});
+import styles from './ContactPage.module.scss';
 
 type ChannelProps = {
   href: string;
@@ -65,57 +58,42 @@ function Channel({ href, label, value, icon, action, primary, download }: Channe
   );
 }
 
-export default function ContactPage() {
+export function ContactPage({ locale }: { locale: Locale }) {
+  const { contact } = contentFor(locale);
+
   return (
     <Ground washes={COMPACT_WASHES} washOffset="var(--banner-height-compact)">
-      <SiteHeader current="/contact" />
+      <SiteHeader locale={locale} path={ROUTES.contact} />
 
       <main id="main">
-        <Banner
-          variant="strip"
-          eyebrow="Contact"
-          title={<>Let&rsquo;s talk about what you&rsquo;re building.</>}
-        />
+        <Banner variant="strip" eyebrow={contact.eyebrow} title={contact.title} />
 
-        <section className={styles.body} aria-label="How to reach me">
+        <section className={styles.body} aria-label={contact.bodyLabel}>
           <div className={styles.prose}>
-            <p className={styles.lede}>
-              A role, a project, or a question about something on this site. I would rather have the
-              conversation than not.
-            </p>
-
-            <p>
-              Email is the fastest way to reach me, and{' '}
-              <Mark>I answer everything that is not a template</Mark>. If you found me through a
-              specific piece of work, mention which one. I am happy to go deeper than a portfolio
-              page allows, including the parts that did not go well.
-            </p>
-
-            <p>
-              I am based in Barcelona and work hybrid or remote, in <Mark>English</Mark> or{' '}
-              <Mark>Spanish</Mark>.
-            </p>
+            {contact.paragraphs.map((text, i) => (
+              <Copy key={i} text={text} className={i === 0 ? styles.lede : undefined} />
+            ))}
           </div>
 
           <ul className={styles.channels}>
             <Channel
               primary
               href={SOCIALS.email}
-              label="Email"
+              label={contact.channels.email}
               value="alexdanieldm@gmail.com"
               icon={<EnvelopeIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
             />
             <Channel
               href={SOCIALS.linkedin}
-              label="LinkedIn"
+              label={contact.channels.linkedin}
               value="in/alexdanieldm"
               icon={<LinkedinIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
             />
             <Channel
               href={SOCIALS.github}
-              label="GitHub"
+              label={contact.channels.github}
               value="@alexdanieldm"
               icon={<GithubIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
@@ -123,8 +101,8 @@ export default function ContactPage() {
             <Channel
               download={CV.filename}
               href={CV.href}
-              label="CV"
-              value="Download PDF"
+              label={contact.channels.cv}
+              value={contact.channels.cvValue}
               icon={<CloudDownloadIcon size={24} />}
               action={<DownloadIcon size={16} />}
             />
@@ -139,19 +117,15 @@ export default function ContactPage() {
 
             <div>
               <h2 className={styles.entrustTitle} id="entrust-title">
-                嘱, to entrust
+                {contact.entrust.title}
               </h2>
-              <p className={styles.entrustBody}>
-                This character has been on my site since the first version, and it stays. It means
-                to entrust something to someone, which is more or less what hiring an engineer is. I
-                read a lot of manga, so it was going to end up in here somewhere.
-              </p>
+              <p className={styles.entrustBody}>{contact.entrust.body}</p>
             </div>
           </div>
         </section>
       </main>
 
-      <SiteFooter variant="inner" location="Barcelona, Spain" />
+      <SiteFooter locale={locale} variant="inner" longLocation />
     </Ground>
   );
 }

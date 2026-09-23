@@ -1,0 +1,30 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  /* 32px so it clears the pointer-target minimum without the text growing. */
+  min-height: 32px;
+  padding-inline: 8px;
+  font-size: var(--typography-size-meta);
+  font-weight: var(--typography-weight-bold);
+  letter-spacing: var(--typography-tracking-label);
+  color: var(--color-muted);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-foreground);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+/* The language you would switch to is the one in colour. */
+.target {
+  color: var(--color-accent);
+}
+
+.slash {
+  color: var(--color-faint);
+}

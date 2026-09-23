@@ -3,6 +3,8 @@ import { SOCIALS } from '@/content/navigation';
 
 import styles from './SocialLinks.module.scss';
 
+/* The three names are the same word in both languages, so they stay here
+   rather than becoming three more strings to translate identically. */
 const LINKS = [
   { href: SOCIALS.github, label: 'GitHub', Icon: GithubIcon },
   { href: SOCIALS.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },

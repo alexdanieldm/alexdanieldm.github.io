@@ -1,43 +1,26 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 
 import { FigmaIcon, GraphQLIcon, TerminalIcon } from '@/components/icons';
-import {
-  ArrowLink,
-  Caret,
-  Mark,
-  SectionHeading,
-  Terminal,
-  TerminalLine,
-  Value,
-} from '@/components/ui';
+import { ArrowLink, Caret, SectionHeading, Terminal, TerminalLine, Value } from '@/components/ui';
+import { localePath, type HomeContent, type Locale } from '@/content/locales';
+import { ROUTES } from '@/content/navigation';
+import { Copy, renderRich } from '@/content/rich';
 
 import { IntegrationDiagram, SurfacesDiagram } from './WorkSchematics';
 
 import styles from './SelectedWork.module.scss';
 
+type Article = HomeContent['work']['cli'];
+
 type WorkArticleProps = {
-  index: string;
-  discipline: string;
-  /** One line per row, so the rail reads as a list without being marked up as one. */
-  stack: string[];
+  content: Pick<Article, 'index' | 'discipline' | 'stack' | 'title' | 'lede' | 'paragraphs'>;
   icon: ReactNode;
-  title: string;
-  lede: string;
-  children: ReactNode;
+  children?: ReactNode;
   /** The first article gets the coral rule; the rest get a hairline. */
   lead?: boolean;
 };
 
-function WorkArticle({
-  index,
-  discipline,
-  stack,
-  icon,
-  title,
-  lede,
-  children,
-  lead = false,
-}: WorkArticleProps) {
+function WorkArticle({ content, icon, children, lead = false }: WorkArticleProps) {
   return (
     <article
       className={styles.article}
@@ -47,61 +30,46 @@ function WorkArticle({
     >
       <div className={styles.rail}>
         {icon}
-        <p className={styles.index}>{index}</p>
-        <p className={styles.discipline}>{discipline}</p>
+        <p className={styles.index}>{content.index}</p>
+        <p className={styles.discipline}>{content.discipline}</p>
         <p className={styles.stack}>
-          {stack.map((line, i) => (
-            <span key={line}>
+          {content.stack.map((line, i) => (
+            <Fragment key={line}>
               {i > 0 && <br />}
-              {line}
-            </span>
+              <span>{line}</span>
+            </Fragment>
           ))}
         </p>
       </div>
 
       <div className={styles.body}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.lede}>{lede}</p>
+        <h3 className={styles.title}>{content.title}</h3>
+        <p className={styles.lede}>{content.lede}</p>
+        {content.paragraphs.map((text, i) => (
+          <Copy key={i} text={text} className={styles.prose} />
+        ))}
         {children}
       </div>
     </article>
   );
 }
 
-export function SelectedWork() {
+export function SelectedWork({
+  content,
+  locale,
+}: {
+  content: HomeContent['work'];
+  locale: Locale;
+}) {
   return (
     <section className={styles.work} id="work" aria-labelledby="work-title">
       <div data-reveal suppressHydrationWarning>
-        <SectionHeading id="work-title" kicker="Tooling, data, interface">
-          Selected work
+        <SectionHeading id="work-title" kicker={content.kicker}>
+          {content.heading}
         </SectionHeading>
       </div>
 
-      <WorkArticle
-        lead
-        index="01"
-        discipline="Developer tooling"
-        stack={['Node.js, TypeScript', 'Git internals', 'Release workflows']}
-        icon={<TerminalIcon size={34} />}
-        title="A CLI the whole team ships through"
-        lede="One command, so nobody has to wait on the tech lead to deploy safely."
-      >
-        <p className={styles.prose}>
-          Syncing a theme used to need someone senior watching, because a careless push destroys
-          work someone else owns, a client or QA editing live, that git never had a copy of. I
-          started this on my own initiative to take that bottleneck out. It keeps the two sides of a
-          project separate, tags a backup before it writes anything, and{' '}
-          <Mark>stops dead at a live target</Mark>.
-        </p>
-
-        <p className={styles.prose}>
-          The other half is consistency. The same tool installs our coding conventions, project
-          scaffolding and AI rules into every repository from one source of truth, so{' '}
-          <Mark>the output looks the same whoever built it</Mark>. Standards that ship with the tool
-          do not drift the way a wiki page does, and they arrive with every update instead of being
-          remembered.
-        </p>
-
+      <WorkArticle lead content={content.cli} icon={<TerminalIcon size={34} />}>
         <Terminal title="client-project">
           <TerminalLine>
             Pulling customizer content… <Value>18 files</Value>
@@ -120,91 +88,33 @@ export function SelectedWork() {
           </TerminalLine>
         </Terminal>
 
-        <ArrowLink href="/work/cli" className={styles.readMore}>
-          Read the case study
+        <ArrowLink href={localePath(locale, ROUTES.caseStudy)} className={styles.readMore}>
+          {content.readCaseStudy}
         </ArrowLink>
       </WorkArticle>
 
-      <WorkArticle
-        index="02"
-        discipline="APIs & data"
-        stack={['GraphQL, REST APIs', 'Next.js, TypeScript']}
-        icon={<GraphQLIcon size={34} />}
-        title="Real data, from whatever platform holds it"
-        lede="The frontend decides how things look. The API decides what is true."
-      >
-        <p className={styles.prose}>
-          A lot of my work is joining a custom interface to a system that already owns the data. I
-          build the layer in between, so the platform keeps doing what it is genuinely good at and{' '}
-          <Mark>the interface owes it nothing else</Mark>. Swap the backend and the interface barely
-          notices.
-        </p>
-
-        <IntegrationDiagram />
+      <WorkArticle content={content.data} icon={<GraphQLIcon size={34} />}>
+        <IntegrationDiagram content={content.data.diagram} />
       </WorkArticle>
 
-      <WorkArticle
-        index="03"
-        discipline="Product frontend"
-        stack={['React, TypeScript', 'React Native', 'Figma']}
-        icon={<FigmaIcon size={34} />}
-        title="From a design file to a full MVP"
-        lede="Every screen, every state, web and mobile."
-      >
-        <p className={styles.prose}>
-          I built the frontend of a product platform from Figma designs in React and TypeScript:
-          responsive desktop and mobile interfaces, authentication, multi step forms, map
-          integrations and real time chat, plus a React Native companion app alongside it.
-        </p>
-
-        <p className={styles.prose}>
-          I was building the interface well before the backend work started, so{' '}
-          <Mark>most of the time I defined the data contract</Mark>. For the chat I specified
-          exactly what I needed, which properties, and how it had to be shaped, then worked with the
-          backend developer until the API matched. Deciding what the frontend actually needs, and
-          saying so early, is most of what makes the rest of the build calm.
-        </p>
-
-        <SurfacesDiagram />
+      <WorkArticle content={content.mvp} icon={<FigmaIcon size={34} />}>
+        <SurfacesDiagram content={content.mvp.diagram} />
       </WorkArticle>
 
       <div className={styles.article} data-reveal suppressHydrationWarning>
         <div className={styles.rail}>
-          <p className={styles.discipline}>Also</p>
+          <p className={styles.discipline}>{content.alsoLabel}</p>
         </div>
 
         <ul className={styles.also}>
-          <li className={styles.alsoItem}>
-            <span className={styles.alsoRule} aria-hidden="true" />
-            <h3 className={styles.alsoTitle}>Storefronts, zero to live</h3>
-            <p className={styles.alsoBody}>
-              Complete e-commerce builds taken from nothing to a live store, and the template they
-              start from: modular, reusable, and isolated enough that a section can move to another
-              project without dragging the rest along.
-            </p>
-            <p className={styles.alsoStack}>Liquid, TypeScript, SCSS</p>
-          </li>
-
-          <li className={styles.alsoItem}>
-            <span className={styles.alsoRule} aria-hidden="true" />
-            <h3 className={styles.alsoTitle}>Crypto</h3>
-            <p className={styles.alsoBody}>
-              A cross platform desktop app that encrypts and decrypts files of any size, using{' '}
-              <Mark>a hybrid public and private key system I designed</Mark>. Built end to end,
-              including the interface.
-            </p>
-            <p className={styles.alsoStack}>Electron, Python, Node.js</p>
-          </li>
-
-          <li className={styles.alsoItem}>
-            <span className={styles.alsoRule} aria-hidden="true" />
-            <h3 className={styles.alsoTitle}>Serverless monetization</h3>
-            <p className={styles.alsoBody}>
-              An AWS Lambda function that unlocked yearly membership purchases, adding a new revenue
-              path without disturbing the architecture around it.
-            </p>
-            <p className={styles.alsoStack}>AWS Lambda, Node.js</p>
-          </li>
+          {content.also.map((item) => (
+            <li className={styles.alsoItem} key={item.title}>
+              <span className={styles.alsoRule} aria-hidden="true" />
+              <h3 className={styles.alsoTitle}>{item.title}</h3>
+              <p className={styles.alsoBody}>{renderRich(item.body)}</p>
+              <p className={styles.alsoStack}>{item.stack}</p>
+            </li>
+          ))}
         </ul>
       </div>
     </section>

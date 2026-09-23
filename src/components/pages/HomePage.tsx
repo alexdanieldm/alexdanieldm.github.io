@@ -4,32 +4,26 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/components/sections';
 import { Button } from '@/components/ui';
-import { CV } from '@/content/navigation';
-import { pageMetadata } from '@/content/seo';
+import { contentFor, type Locale } from '@/content/locales';
+import { CV, ROUTES } from '@/content/navigation';
 
-export const metadata = pageMetadata({
-  isHome: true,
-  title: 'Home',
-  description:
-    'Full stack engineer in Barcelona. I build web applications end to end: the interface, the code, the integrations, and the release.',
-  path: '/',
-});
+export function HomePage({ locale }: { locale: Locale }) {
+  const { home } = contentFor(locale);
 
-export default function HomePage() {
   return (
     <Ground washes={HOME_WASHES} washOffset="var(--banner-height)">
-      <SiteHeader />
+      <SiteHeader locale={locale} path={ROUTES.home} />
 
       <main id="main">
         <Banner
           id="top"
-          eyebrow="Full Stack Engineer"
-          title="I build web applications, from the first conversation to the last release."
-          lede="Based in Barcelona, working across the whole process: scoping and planning, the interface, the code, the integrations, and seeing it through to release."
+          eyebrow={home.banner.eyebrow}
+          title={home.banner.title}
+          lede={home.banner.lede}
           actions={
             <>
               <Button href="#work" icon={<CodeSlashIcon size={17} />}>
-                See the work
+                {home.banner.seeWork}
               </Button>
               <Button
                 variant="ghost"
@@ -37,20 +31,20 @@ export default function HomePage() {
                 download={CV.filename}
                 icon={<CloudDownloadIcon size={18} />}
               >
-                Download CV
+                {home.banner.downloadCv}
               </Button>
             </>
           }
         />
 
-        <About />
-        <SelectedWork />
-        <TechBand />
-        <Approach />
-        <ContactCta />
+        <About content={home.about} />
+        <SelectedWork content={home.work} locale={locale} />
+        <TechBand content={home.tech} />
+        <Approach content={home.approach} />
+        <ContactCta content={home.cta} locale={locale} />
       </main>
 
-      <SiteFooter />
+      <SiteFooter locale={locale} />
     </Ground>
   );
 }

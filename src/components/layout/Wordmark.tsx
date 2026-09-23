@@ -9,7 +9,7 @@ import styles from './Wordmark.module.scss';
  * part of my name, and a screen reader announcing "tsukuru alexdanieldm" is
  * worse than it announcing the name on its own.
  */
-export function Wordmark({ href = '/' }: { href?: string }) {
+export function Wordmark({ href }: { href: string }) {
   return (
     <Link className={styles.wordmark} href={href}>
       <span className={styles.kanji} aria-hidden="true">
