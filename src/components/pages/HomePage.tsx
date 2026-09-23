@@ -44,7 +44,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <ContactCta content={home.cta} locale={locale} />
       </main>
 
-      <SiteFooter locale={locale} />
+      <SiteFooter locale={locale} path={ROUTES.home} />
     </Ground>
   );
 }

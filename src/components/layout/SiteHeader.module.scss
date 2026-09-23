@@ -53,27 +53,18 @@
   height: var(--header-height);
 }
 
-/* The full nav and the aside are both replaced by the menu button below the
-   desktop breakpoint. Neither fits, and neither is worth shrinking to fit. */
+/* The full nav and the icon row are both replaced by the menu button below the
+   desktop breakpoint. Neither fits, and neither is worth shrinking to fit.
+
+   The `display: none` has to come last. An earlier version put a base
+   `display: flex` after this block at the same specificity, which quietly won
+   at mobile: the row stayed visible, took 220px of a 390px header, and pushed
+   the menu button clean off the screen. */
 .nav,
-.aside {
+.socials {
   @include desktop-down {
     display: none;
   }
-}
-
-.aside {
-  display: flex;
-  align-items: center;
-  gap: var(--spacer-1);
-}
-
-/* In the menu footer the language switch and the CV sit together, opposite
-   the social icons. */
-.menuAside {
-  display: flex;
-  align-items: center;
-  gap: var(--spacer-sm);
 }
 
 .list {

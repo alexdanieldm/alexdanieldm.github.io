@@ -125,7 +125,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <SiteFooter locale={locale} variant="inner" longLocation />
+      <SiteFooter locale={locale} path={ROUTES.contact} variant="inner" longLocation />
     </Ground>
   );
 }

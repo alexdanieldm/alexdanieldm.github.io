@@ -4,7 +4,6 @@ import { DownloadIcon } from '@/components/icons';
 import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
 import { CV, navItems, ROUTES } from '@/content/navigation';
 
-import { LanguageSwitch } from './LanguageSwitch';
 import { MobileMenu } from './MobileMenu';
 import { SocialLinks } from './SocialLinks';
 import { StickyHeader } from './StickyHeader';
@@ -30,17 +29,6 @@ export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProp
   const { common } = contentFor(locale);
   const items = navItems(locale, common);
   const here = localePath(locale, path);
-  const other = otherLocale(locale);
-
-  const languageSwitch = (
-    <LanguageSwitch
-      current={locale}
-      target={other}
-      href={localePath(other, path)}
-      label={common.language.label}
-      targetName={common.language[other]}
-    />
-  );
 
   return (
     <StickyHeader variant={variant}>
@@ -66,8 +54,7 @@ export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProp
         </ul>
       </nav>
 
-      <div className={styles.aside}>
-        {languageSwitch}
+      <div className={styles.socials}>
         <SocialLinks />
       </div>
 
@@ -85,13 +72,10 @@ export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProp
         footer={
           <>
             <SocialLinks />
-            <div className={styles.menuAside}>
-              {languageSwitch}
-              <a className={styles.menuCv} href={CV.href} download={CV.filename}>
-                CV
-                <DownloadIcon size={14} />
-              </a>
-            </div>
+            <a className={styles.menuCv} href={CV.href} download={CV.filename}>
+              CV
+              <DownloadIcon size={14} />
+            </a>
           </>
         }
       />

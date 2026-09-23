@@ -170,7 +170,7 @@ export function CaseStudyPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <SiteFooter locale={locale} variant="inner" />
+      <SiteFooter locale={locale} path={ROUTES.caseStudy} variant="inner" />
     </Ground>
   );
 }

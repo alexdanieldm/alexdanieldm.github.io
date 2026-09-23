@@ -32,7 +32,7 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
         </div>
       </main>
 
-      <SiteFooter locale={locale} variant="inner" />
+      <SiteFooter locale={locale} path="/404/" variant="inner" />
     </Ground>
   );
 }

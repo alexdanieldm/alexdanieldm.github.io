@@ -19,3 +19,15 @@
   font-size: var(--typography-size-meta);
   color: var(--color-faint);
 }
+
+/* The switch and the build note travel together on the right. */
+.end {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-sm);
+
+  @include desktop-down {
+    flex-direction: column;
+    gap: var(--spacer-xs);
+  }
+}
