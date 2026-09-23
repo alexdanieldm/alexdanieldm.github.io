@@ -17,10 +17,16 @@
  * components the header and footer already use, and passing them in keeps
  * their icons out of the client bundle: a client component's children stay
  * server-rendered, an import does not.
+ *
+ * The panel goes into a portal on <body>. It cannot stay where it is written,
+ * inside the header: `position: fixed` resolves against the nearest ancestor
+ * that has a transform, a filter or a backdrop-filter, and the header has two
+ * of those. See the comment on the portal below.
  */
 
 import Link from 'next/link';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import { CloseIcon, MenuIcon } from '@/components/icons';
 import type { NavItem } from '@/content/navigation';
@@ -120,49 +126,65 @@ export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
         <MenuIcon size={16} />
       </button>
 
-      {open && (
-        <div
-          className={styles.panel}
-          id={panelId}
-          ref={panelRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={labels.dialog}
-        >
-          {/* 嘱, to entrust. The same character as the contact page, oversized
-              and sitting behind the navigation rather than beside it. */}
-          <span className={styles.kanji} aria-hidden="true">
-            嘱
-          </span>
+      {/* Out of the header and onto <body>.
 
-          <div className={styles.panelHeader}>
-            {brand}
-            <button
-              className={styles.toggle}
-              type="button"
-              aria-label={labels.close}
-              onClick={close}
-            >
-              <CloseIcon size={16} />
-            </button>
-          </div>
+          The panel is `position: fixed; inset: 0`, which everyone reads as
+          "cover the viewport", and it is, right up until an ancestor has a
+          transform, a filter or a backdrop-filter. Any of those makes that
+          ancestor the containing block for fixed descendants instead. The
+          header has a `backdrop-filter` blur from 140px of scroll, and a
+          `translateY(-100%)` while it is hidden, so the panel was being laid
+          out inside a 97px bar that was itself off the top of the screen: it
+          opened, trapped focus and locked the page, with nothing to see.
 
-          <nav className={styles.nav}>
-            <ul className={styles.list}>
-              {items.map(({ href, label }, index) => (
-                <li key={href}>
-                  <Link className={styles.link} href={href} onClick={close}>
-                    <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          There is no mount guard because none is needed. `open` starts false,
+          so this branch can only ever run after a click, which is only ever on
+          the client. */}
+      {open &&
+        createPortal(
+          <div
+            className={styles.panel}
+            id={panelId}
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={labels.dialog}
+          >
+            {/* 嘱, to entrust. The same character as the contact page, oversized
+                and sitting behind the navigation rather than beside it. */}
+            <span className={styles.kanji} aria-hidden="true">
+              嘱
+            </span>
 
-          <div className={styles.panelFooter}>{footer}</div>
-        </div>
-      )}
+            <div className={styles.panelHeader}>
+              {brand}
+              <button
+                className={styles.toggle}
+                type="button"
+                aria-label={labels.close}
+                onClick={close}
+              >
+                <CloseIcon size={16} />
+              </button>
+            </div>
+
+            <nav className={styles.nav}>
+              <ul className={styles.list}>
+                {items.map(({ href, label }, index) => (
+                  <li key={href}>
+                    <Link className={styles.link} href={href} onClick={close}>
+                      <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className={styles.panelFooter}>{footer}</div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
