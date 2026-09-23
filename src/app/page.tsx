@@ -1,3 +1,46 @@
+import { CloudDownloadIcon, CodeSlashIcon } from '@/components/icons';
+import { Ground, HOME_WASHES } from '@/components/layout/Ground';
+import { SiteFooter } from '@/components/layout/SiteFooter';
+import { SiteHeader } from '@/components/layout/SiteHeader';
+import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/components/sections';
+import { Button } from '@/components/ui';
+
 export default function HomePage() {
-  return <main>Placeholder</main>;
+  return (
+    <Ground washes={HOME_WASHES} washOffset="var(--banner-height)">
+      <SiteHeader />
+
+      <main id="main">
+        <Banner
+          id="top"
+          eyebrow="Full Stack Engineer"
+          title="I build web applications, from the first conversation to the last release."
+          lede="Based in Barcelona, working across the whole process: scoping and planning, the interface, the code, the integrations, and seeing it through to release."
+          actions={
+            <>
+              <Button href="#work" icon={<CodeSlashIcon size={17} />}>
+                See the work
+              </Button>
+              <Button
+                variant="ghost"
+                href="/resume.pdf"
+                download
+                icon={<CloudDownloadIcon size={18} />}
+              >
+                Download résumé
+              </Button>
+            </>
+          }
+        />
+
+        <About />
+        <SelectedWork />
+        <TechBand />
+        <Approach />
+        <ContactCta />
+      </main>
+
+      <SiteFooter />
+    </Ground>
+  );
 }

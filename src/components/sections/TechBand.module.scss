@@ -1,0 +1,36 @@
+/**
+ * The one full-bleed colour block on the site, and the one place the palette
+ * stops being quiet.
+ *
+ * White on coral measures 2.96:1, under the 4.5:1 that normal text wants. It is
+ * here on purpose and with my eyes on it: the band is twelve product names and
+ * two headings, every one of them also carried by a recognisable mark, at large
+ * or bold weights. Do not "fix" this by dropping the text to the ground colour;
+ * the all-white treatment is the decision.
+ */
+.band {
+  margin-top: var(--spacer-4);
+  background-color: var(--color-accent);
+  color: var(--color-foreground);
+
+  @include page-gutter;
+  @include section-padding(62px, 66px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 34px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-down {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @include mobile-down {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px 14px;
+  }
+}

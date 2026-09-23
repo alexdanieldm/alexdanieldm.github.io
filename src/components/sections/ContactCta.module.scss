@@ -1,0 +1,34 @@
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 72px;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border-faint);
+
+  @include page-gutter;
+  @include section-padding(72px, 76px);
+
+  @include desktop-down {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacer-2);
+  }
+}
+
+.title {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-family: var(--font-display);
+  font-size: var(--typography-size-3);
+  line-height: 1.08;
+}
+
+.lede {
+  max-width: 560px;
+  font-size: var(--typography-size-body-small);
+}
+
+.button {
+  flex-shrink: 0;
+}

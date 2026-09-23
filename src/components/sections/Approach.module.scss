@@ -1,0 +1,58 @@
+.approach {
+  @include page-gutter;
+  @include section-padding;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  margin-bottom: 46px;
+
+  @include desktop-down {
+    margin-bottom: var(--spacer-2);
+  }
+}
+
+.title {
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: var(--typography-size-4);
+  line-height: var(--typography-height-display);
+}
+
+.lede {
+  max-width: 580px;
+  font-size: var(--typography-size-body-small);
+}
+
+.kanji {
+  flex-shrink: 0;
+  font-family: var(--font-kanji);
+  font-size: 124px;
+  line-height: 1;
+  color: var(--color-accent);
+
+  @include desktop-down {
+    font-size: 72px;
+  }
+
+  @include mobile-down {
+    display: none;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-down {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
