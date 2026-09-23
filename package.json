@@ -9,11 +9,14 @@
     "type": "git",
     "url": "git+https://github.com/alexdanieldm/alexdanieldm.github.io.git"
   },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "preview": "npx --yes serve@latest out",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,scss,json,md}\""
   },

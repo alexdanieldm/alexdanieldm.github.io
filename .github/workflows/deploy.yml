@@ -1,0 +1,73 @@
+# Builds the static export and hands it to GitHub Pages.
+#
+# This replaces the old gh-pages branch push. Nothing commits build output any
+# more: the artifact goes straight from the build job to Pages, so master holds
+# source and only source.
+#
+# It needs Settings > Pages > Source set to "GitHub Actions". Until that is
+# switched over, the deploy job fails and whatever is already published stays
+# up, which is the failure mode I want.
+
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never two deploys at once. Queue rather than cancel: a half-finished deploy
+# that gets cancelled leaves the site in whatever state it reached.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # The checks run before the build, so a type error or a lint failure
+      # stops the deploy instead of shipping alongside it.
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,12 +1,13 @@
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { FlatCompat } from '@eslint/eslintrc';
+import next from 'eslint-config-next/core-web-vitals';
 
-const compat = new FlatCompat({ baseDirectory: dirname(fileURLToPath(import.meta.url)) });
-
+/**
+ * eslint-config-next ships a real flat config from v15.3, and its
+ * core-web-vitals entry already pulls in the TypeScript rules. No FlatCompat
+ * shim, which in v16 throws on a circular structure while validating anyway.
+ */
 const config = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  { ignores: ['.next/**', 'out/**', 'node_modules/**'] },
+  { ignores: ['.next/**', 'out/**', 'node_modules/**', 'next-env.d.ts'] },
+  ...next,
 ];
 
 export default config;
