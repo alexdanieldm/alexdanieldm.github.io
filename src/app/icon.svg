@@ -1,0 +1,15 @@
+<!--
+  The banner in miniature: the sun over the ridge line.
+
+  Pure geometry, no type. A kanji or a wordmark turns to mush at 16px, and an
+  SVG favicon cannot use a webfont anyway, so the mark had to be something the
+  artwork already says. Two ridges rather than the banner's four, and the sun
+  sits high enough that the silhouette still reads when the whole thing is the
+  size of a full stop.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#021926"/>
+  <circle cx="16" cy="14" r="8.5" fill="#F75155"/>
+  <path d="M0 21.5 L7.5 17.5 L15 22 L23.5 16.5 L32 21 V32 H0 Z" fill="#0E3A52"/>
+  <path d="M0 25.5 L10 21.5 L20.5 26.5 L32 22.5 V32 H0 Z" fill="#04121C"/>
+</svg>
