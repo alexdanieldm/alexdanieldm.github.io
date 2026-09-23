@@ -1,28 +1,56 @@
 .header {
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacer-2);
+  min-height: var(--header-height);
   padding-block: 30px;
+  transition:
+    transform var(--duration-medium) var(--ease-out),
+    background-color var(--duration-medium) ease,
+    border-color var(--duration-medium) ease;
 
   @include page-gutter;
 
-  /* Over a banner the header floats on the artwork and takes up no height, so
-     the banner's own min-height is the height you set, not that plus a header. */
-  &[data-variant='overlay'] {
-    position: absolute;
-    inset: 0 0 auto;
+  /* Over a banner it starts as nothing but the artwork showing through. A page
+     with no banner has content underneath it from the first pixel, so it is
+     opaque from the start. */
+  &[data-variant='solid'],
+  &[data-settled] {
+    background-color: rgb(2 25 38 / 88%);
+    border-bottom: 1px solid var(--color-border-faint);
+
+    /* Progressive: without it the 88% ground colour already carries the text. */
+    @supports (backdrop-filter: blur(10px)) {
+      background-color: rgb(2 25 38 / 72%);
+      backdrop-filter: blur(10px);
+    }
   }
 
-  &[data-variant='solid'] {
-    border-bottom: 1px solid var(--color-border-faint);
+  &[data-hidden] {
+    transform: translateY(-100%);
+  }
+
+  /* Tabbing into a hidden header has to bring it back, or keyboard focus lands
+     on something off-screen. */
+  &[data-hidden]:focus-within {
+    transform: none;
   }
 
   @include desktop-down {
     padding-block: 18px;
   }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+.spacer {
+  height: var(--header-height);
 }
 
 /* The full nav and the icon row are both replaced by the menu button below the

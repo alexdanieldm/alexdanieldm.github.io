@@ -4,6 +4,7 @@ import { NAV_ITEMS } from '@/content/navigation';
 
 import { MobileMenu } from './MobileMenu';
 import { SocialLinks } from './SocialLinks';
+import { StickyHeader } from './StickyHeader';
 import { Wordmark } from './Wordmark';
 
 import styles from './SiteHeader.module.scss';
@@ -20,7 +21,7 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
   return (
-    <header className={styles.header} data-variant={variant}>
+    <StickyHeader variant={variant}>
       <Wordmark />
 
       <nav className={styles.nav} aria-label="Main">
@@ -48,6 +49,6 @@ export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
       </div>
 
       <MobileMenu />
-    </header>
+    </StickyHeader>
   );
 }

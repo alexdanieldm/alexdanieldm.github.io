@@ -43,6 +43,11 @@
   --banner-height: 660px;
   --banner-height-compact: 420px;
 
+  /* Fixed rather than derived from the content, because the spacer under a
+     solid header has to be exactly this and two numbers that agree by accident
+     will eventually stop agreeing. Both values are measured, not chosen. */
+  --header-height: 97px;
+
   /* ── Spacing ──────────────────────────────────────────────────────────────
      1 to 5 are the scale I use everywhere else, unchanged. Muscle memory is
      worth more than a marginally better set of numbers. xs and sm sit below it
@@ -109,6 +114,7 @@
        resize the banner underneath you. */
     --banner-height: 100svh;
     --banner-height-compact: 60svh;
+    --header-height: 80px;
 
     --typography-size-1: 48px;
     --typography-size-2: 44px;
@@ -145,7 +151,7 @@
 
 html {
   /* Anchor navigation lands below the sticky header rather than under it. */
-  scroll-padding-top: 96px;
+  scroll-padding-top: calc(var(--header-height) + var(--spacer-1));
   scroll-behavior: smooth;
 
   @include reduced-motion {
