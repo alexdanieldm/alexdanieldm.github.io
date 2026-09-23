@@ -1,0 +1,75 @@
+/**
+ * Both treatments lift on hover. The primary also throws a coral glow, and the
+ * ghost fills with coral and inverts its text rather than only moving, so the
+ * two read as different weights of the same gesture instead of the same
+ * gesture at two sizes.
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  width: fit-content;
+  min-height: 50px;
+  padding-inline: 28px;
+  font-size: var(--typography-size-body-x-small);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform var(--duration-medium) var(--ease-out),
+    background-color var(--duration-medium) ease,
+    border-color var(--duration-medium) ease,
+    color var(--duration-medium) ease,
+    box-shadow var(--duration-medium) ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &[data-variant='primary'] {
+    background-color: var(--color-accent);
+    /* The mark and the label are both the ground colour, so an icon needs no
+       filter to sit on coral: it inherits. */
+    color: var(--color-base);
+
+    &:hover {
+      box-shadow:
+        0 0 0 1px rgb(247 81 85 / 50%),
+        0 12px 30px -6px rgb(247 81 85 / 55%);
+    }
+  }
+
+  &[data-variant='ghost'] {
+    background-color: rgb(2 25 38 / 35%);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-foreground);
+    font-weight: var(--typography-weight-regular);
+
+    &:hover {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-base);
+    }
+  }
+
+  &[data-size='large'] {
+    min-height: 64px;
+    padding-inline: 40px;
+    gap: 14px;
+    font-size: var(--typography-size-body-medium);
+  }
+
+  &[data-block] {
+    width: 100%;
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

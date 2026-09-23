@@ -1,0 +1,104 @@
+.terminal {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--color-border-faint);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: rgb(234 242 246 / 22%);
+
+  &[data-live] {
+    background-color: var(--color-accent);
+  }
+}
+
+.title {
+  margin-left: 12px;
+  font-size: var(--typography-size-label);
+  color: var(--color-faint);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 18px 22px;
+
+  @include mobile-down {
+    padding: 14px;
+  }
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  font-size: var(--typography-size-caption);
+  line-height: var(--typography-height-body-loose);
+  color: var(--color-muted);
+
+  &[data-tone='accent'] {
+    color: var(--color-accent);
+  }
+
+  &[data-tone='faint'] {
+    color: var(--color-faint);
+  }
+
+  &[data-spaced] {
+    padding-top: 10px;
+  }
+
+  @include mobile-down {
+    /* Output wraps rather than scrolls sideways. A terminal that scrolls is
+       honest; a page that scrolls sideways on a phone is not. */
+    font-size: var(--typography-size-meta);
+    word-break: break-word;
+  }
+}
+
+.prompt {
+  color: var(--color-accent);
+}
+
+.value {
+  color: var(--color-foreground);
+}
+
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  vertical-align: -2px;
+  background-color: var(--color-muted);
+  animation: caret-blink 1.1s step-end infinite;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

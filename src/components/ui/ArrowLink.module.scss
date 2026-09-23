@@ -1,0 +1,54 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--typography-size-body-x-small);
+
+  &[data-direction='forward'] {
+    color: var(--color-accent);
+    font-weight: var(--typography-weight-bold);
+
+    /* The underline comes from the global .text-link. Only the arrow is ours:
+       it travels the way it points, so the whole link reads as one movement
+       rather than the arrow twitching on its own. */
+    &:hover .arrow {
+      transform: translate(4px, -4px);
+    }
+
+    &:hover {
+      color: var(--color-foreground);
+    }
+  }
+
+  &[data-direction='back'] {
+    color: var(--color-muted);
+    font-size: var(--typography-size-caption);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    &:hover .arrow {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.link {
+  transition: color var(--duration-fast) ease;
+}
+
+.arrow {
+  transition: transform var(--duration-medium) var(--ease-out);
+}
+
+@include reduced-motion {
+  .link,
+  .arrow {
+    transition: none;
+  }
+
+  .link:hover .arrow {
+    transform: none;
+  }
+}

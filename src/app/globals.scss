@@ -37,6 +37,12 @@
   --page-margin: 130px; /* minimum gutter; equals the comp's at 1440px */
   --section-padding-block: 80px;
 
+  /* Read by the banner and, separately, by the ground: the wash field starts
+     below this so no wash can reach up into the banner's fade. Change it here
+     and both follow. */
+  --banner-height: 660px;
+  --banner-height-compact: 420px;
+
   /* ── Spacing ──────────────────────────────────────────────────────────────
      1 to 5 are the scale I use everywhere else, unchanged. Muscle memory is
      worth more than a marginally better set of numbers. xs and sm sit below it
@@ -97,6 +103,12 @@
   :root {
     --page-margin: 40px;
     --section-padding-block: 56px;
+
+    /* Full device height on a phone, which is how the mobile comp was drawn.
+       svh rather than vh so the browser chrome collapsing mid-scroll does not
+       resize the banner underneath you. */
+    --banner-height: 100svh;
+    --banner-height-compact: 60svh;
 
     --typography-size-1: 48px;
     --typography-size-2: 44px;
@@ -227,6 +239,37 @@ a {
 
   @include reduced-motion {
     transition: none;
+  }
+}
+
+/**
+ * The neon lift. Anything raised off the page that responds to a pointer uses
+ * this and nothing else: cards, terminals, schematics, contact rows.
+ *
+ * Global rather than a mixin because it is one behaviour applied in eight
+ * places, and because the comps already treat it as one thing. A mixin would
+ * mean eight copies of the same rule that can drift apart.
+ */
+.glow {
+  transition:
+    transform var(--duration-medium) var(--ease-out),
+    border-color var(--duration-medium) ease,
+    box-shadow var(--duration-medium) ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent-soft);
+    box-shadow:
+      0 0 0 1px rgb(247 81 85 / 45%),
+      0 0 38px -6px rgb(247 81 85 / 42%);
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
   }
 }
 

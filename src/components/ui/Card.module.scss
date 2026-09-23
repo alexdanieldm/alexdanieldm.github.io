@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 24px 26px 26px;
+  background-color: var(--color-surface);
+  border-top: 3px solid var(--color-accent);
+}
+
+.index {
+  font-family: var(--font-display);
+  font-size: var(--typography-size-6);
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: 17px; /* between the body scale and a display size; neither fits */
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-height-heading);
+}
+
+.body {
+  font-size: var(--typography-size-body-x-small);
+  line-height: var(--typography-height-body);
+}

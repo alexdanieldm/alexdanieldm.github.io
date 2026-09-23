@@ -1,0 +1,32 @@
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  margin-bottom: var(--spacer-3);
+
+  @include tablet-down {
+    /* The kicker is a caption, not a second column. Below the title it reads as
+       one; beside it at this width it reads as a collision. */
+    flex-direction: column;
+    gap: var(--spacer-xs);
+  }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--typography-size-4);
+  line-height: var(--typography-height-display);
+}
+
+.kicker {
+  flex-shrink: 0;
+  font-size: var(--typography-size-meta);
+  letter-spacing: var(--typography-tracking-label);
+  text-transform: uppercase;
+  color: var(--color-faint);
+
+  [data-tone='on-accent'] & {
+    color: var(--color-foreground);
+  }
+}

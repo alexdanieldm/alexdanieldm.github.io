@@ -1,0 +1,39 @@
+.rail {
+  width: 248px;
+  flex-shrink: 0;
+}
+
+.title {
+  margin-bottom: var(--spacer-sm);
+  font-family: var(--font-display);
+  font-size: var(--typography-size-4);
+  line-height: var(--typography-height-display);
+
+  [data-size='medium'] & {
+    font-size: var(--typography-size-5);
+  }
+}
+
+.rule {
+  display: block;
+  width: 46px;
+  height: 3px;
+  background-color: var(--color-accent);
+}
+
+.note {
+  margin-top: var(--spacer-2);
+  font-size: var(--typography-size-caption);
+  line-height: 1.8;
+  color: var(--color-faint);
+}
+
+@include desktop-down {
+  .rail {
+    width: 100%;
+  }
+
+  .note {
+    max-width: 60ch;
+  }
+}
