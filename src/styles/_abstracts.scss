@@ -1,0 +1,6 @@
+/// The single entry point every stylesheet gets, via `sassOptions.additionalData`
+/// in next.config.ts. Sass-only: it must never emit CSS, or every module would
+/// ship a copy of it.
+
+@forward 'breakpoints';
+@forward 'mixins';

@@ -1,0 +1,32 @@
+/// Desktop-first, and the same three stops I use on every theme I build.
+/// Designing at 1440 and narrowing is how I drew these comps, so the media
+/// queries read in the same direction as the design did.
+
+$breakpoint-desktop: 990px;
+$breakpoint-tablet: 769px;
+$breakpoint-mobile: 450px;
+
+@mixin desktop-down {
+  @media screen and (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media screen and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile-down {
+  @media screen and (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+/// Every animation and transition in the codebase is wrapped in one of these.
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

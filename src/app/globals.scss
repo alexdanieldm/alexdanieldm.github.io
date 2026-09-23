@@ -1,0 +1,279 @@
+/**
+ * Global ground rules. Tokens, resets, and the handful of mechanisms that every
+ * component shares. Anything that belongs to one component belongs in that
+ * component's module instead.
+ */
+
+:root {
+  /* ── Colour ──────────────────────────────────────────────────────────────
+     Every ratio below is measured against --color-base. The palette carries
+     over from the previous site: the ground and the accent are the two things
+     worth keeping from it. */
+  --color-base: #021926;
+  --color-foreground: #eaf2f6; /* 15.9:1 */
+  --color-muted: #94acba; /*  7.6:1 — meta, captions, schematic labels */
+  --color-faint: #6e8798; /* 4.78:1 — the quietest labels, still AA at 16px */
+  --color-accent: #f75155; /* 5.33:1 */
+
+  /* Raised bands are translucent on purpose. The background washes have to pass
+     through them, otherwise every band edge reads as a hard seam while you
+     scroll, which is the one thing the page must not do. */
+  --color-surface: rgb(5 31 45 / 66%);
+  --color-raised: #0a2839; /* a card sitting on top of a band, opaque */
+
+  --color-border: rgb(234 242 246 / 14%);
+  --color-border-strong: rgb(234 242 246 / 28%);
+  --color-border-faint: rgb(234 242 246 / 10%);
+
+  /* Warm ring so focus never lands on the accent and disappears into it. */
+  --color-focus: #ffd5a8;
+
+  --color-accent-soft: rgb(247 81 85 / 45%);
+  --color-accent-wash: rgb(247 81 85 / 11%);
+  --color-depth-wash: rgb(14 58 82 / 55%);
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  --page-width: 1180px; /* the content column the comps were drawn on */
+  --page-margin: 130px; /* minimum gutter; equals the comp's at 1440px */
+  --section-padding-block: 80px;
+
+  /* ── Spacing ──────────────────────────────────────────────────────────────
+     1 to 5 are the scale I use everywhere else, unchanged. Muscle memory is
+     worth more than a marginally better set of numbers. xs and sm sit below it
+     for gaps inside a component. */
+  --spacer-xs: 8px;
+  --spacer-sm: 12px;
+  --spacer-1: 20px;
+  --spacer-2: 24px;
+  --spacer-3: 40px;
+  --spacer-4: 60px;
+  --spacer-5: 80px;
+
+  /* ── Typography ───────────────────────────────────────────────────────────
+     1 to 6 are display sizes, set in the serif. The body steps are set in the
+     mono. Line heights are ratios rather than the theme's pixel values: this is
+     a reading page, and a ratio keeps the leading right when a size changes at
+     a breakpoint. */
+  --typography-size-1: 76px; /* home h1 */
+  --typography-size-2: 68px; /* inner page h1 */
+  --typography-size-3: 56px; /* closing call to action */
+  --typography-size-4: 46px; /* section heading */
+  --typography-size-5: 40px; /* article heading */
+  --typography-size-6: 34px; /* minor heading */
+
+  --typography-size-body-large: 19px;
+  --typography-size-body-medium: 16px;
+  --typography-size-body-small: 15px;
+  --typography-size-body-x-small: 14px;
+  --typography-size-caption: 13px;
+  --typography-size-meta: 12px;
+  --typography-size-label: 11px;
+  --typography-size-label-small: 10px;
+
+  --typography-height-display: 1.1;
+  --typography-height-display-tight: 1.04;
+  --typography-height-heading: 1.4;
+  --typography-height-body: 1.85;
+  --typography-height-body-loose: 1.7;
+
+  --typography-weight-regular: 400;
+  --typography-weight-bold: 700;
+
+  --typography-tracking-display: -0.015em;
+  --typography-tracking-eyebrow: 0.22em;
+  --typography-tracking-label: 0.16em;
+  --typography-tracking-label-wide: 0.2em;
+
+  /* ── Motion ───────────────────────────────────────────────────────────────
+     One easing curve for everything that moves. Three durations, so a page does
+     not end up with eleven slightly different opinions about "quick". */
+  --duration-fast: 0.2s;
+  --duration-medium: 0.28s;
+  --duration-slow: 0.65s;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@include desktop-down {
+  :root {
+    --page-margin: 40px;
+    --section-padding-block: 56px;
+
+    --typography-size-1: 48px;
+    --typography-size-2: 44px;
+    --typography-size-3: 38px;
+    --typography-size-4: 36px;
+    --typography-size-5: 30px;
+    --typography-size-6: 28px;
+  }
+}
+
+@include mobile-down {
+  :root {
+    --page-margin: 24px;
+    --section-padding-block: 44px;
+
+    --typography-size-1: 41px;
+    --typography-size-2: 38px;
+    --typography-size-3: 32px;
+    --typography-size-4: 34px;
+    --typography-size-5: 28px;
+    --typography-size-6: 26px;
+
+    --typography-size-body-large: 16px;
+    --typography-size-body-medium: 15px;
+    --typography-size-body-small: 14px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Anchor navigation lands below the sticky header rather than under it. */
+  scroll-padding-top: 96px;
+  scroll-behavior: smooth;
+
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-base);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-body-medium);
+  line-height: var(--typography-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: var(--typography-weight-regular);
+}
+
+p {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* A bare button is a neutral reset; the opinionated treatment is opt-in through
+   the Button component. Globalising a look onto the element is how every icon
+   button downstream ends up carrying counter-rules. */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Keyboard focus is always visible. :focus-visible fires for keyboard and
+   assistive-tech focus only, so pointer clicks stay clean without any
+   `outline: none` anywhere. Never suppress this in a module. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/**
+ * The marker highlight. A solid gradient sized to a quarter of the line box and
+ * anchored to the bottom, grown to the full box on hover.
+ *
+ * It has to be a solid `linear-gradient(accent, accent)` rather than the more
+ * obvious `linear-gradient(transparent 76%, accent 24%)`: gradient colour stops
+ * are not animatable, so that version can only ever cut, never grow.
+ */
+.mark {
+  padding-inline: 3px;
+  margin-inline: -3px;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 24%;
+  transition:
+    background-size var(--duration-medium) var(--ease-out),
+    color var(--duration-medium) ease;
+
+  &:hover {
+    background-size: 100% 100%;
+    color: var(--color-base);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+/**
+ * The one hover underline in the codebase, opt-in rather than global.
+ *
+ * I normally put this bar on every `<a>` and have components opt out, which is
+ * right on a storefront where most links are text. Here most links are buttons,
+ * cards, icons and a wordmark, so opting in is the smaller number of decisions
+ * and the smaller number of ways to get it wrong. The rule I am actually
+ * protecting still holds: one mechanism, defined once, and nothing re-adds its
+ * own underline on top of it.
+ *
+ * `width: fit-content` is not decorative. An inline-flex link inside a flex
+ * column is stretched by the default `align-items: stretch`, and the bar then
+ * spans the whole column instead of the text.
+ */
+.text-link {
+  position: relative;
+  width: fit-content;
+  transition: color var(--duration-fast) ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -5px;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-medium) var(--ease-out);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &::after {
+      transition: none;
+    }
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
