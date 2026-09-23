@@ -49,8 +49,15 @@
 
   /* Read by the banner and, separately, by the ground: the wash field starts
      below this so no wash can reach up into the banner's fade. Change it here
-     and both follow. */
-  --banner-height: 660px;
+     and both follow.
+
+     max() rather than a flat 660px so the section below always starts below
+     the reveal threshold, whatever the screen. The reveal fires at 0.78 of the
+     viewport, and 0.88svh clears that at every height, so About animates when
+     you scroll to it instead of on load. The 660px floor keeps short windows
+     from collapsing the artwork, and it is still under 0.78 of any viewport
+     short enough to hit it. */
+  --banner-height: max(660px, 88svh);
   --banner-height-compact: 420px;
 
   /* Fixed rather than derived from the content, because the spacer under a
