@@ -1,0 +1,101 @@
+.ground {
+  position: relative;
+  /* Own stacking context, so the negative z-index layers below are trapped in
+     here and cannot slip behind the page background. */
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.field,
+.dots {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.field {
+  inset: var(--ground-wash-offset, 0) 0 0;
+  /* A wash is wider than the viewport by design. Without this it would extend
+     the scrollable area sideways. */
+  overflow: hidden;
+}
+
+/**
+ * The washes are placed against this rather than the viewport, so on a very
+ * wide screen they stay with the content column instead of drifting out to the
+ * edges and leaving the middle of the page flat.
+ */
+.fieldInner {
+  position: relative;
+  max-width: 1700px;
+  height: 100%;
+  margin-inline: auto;
+}
+
+/**
+ * One element per wash, moved with `transform`.
+ *
+ * The comps did this by animating `background-position` on a single element
+ * carrying all five layers at once. That works, but it repaints the whole
+ * element every frame. A transform on its own layer is handed to the compositor
+ * instead, which is the difference between the browser redrawing a
+ * viewport-sized gradient 60 times a second and it moving a texture it already
+ * has.
+ *
+ * It also buys the thing the single-element version could not do cleanly: each
+ * wash gets its own distance and duration, so the field breathes rather than
+ * sliding as one sheet.
+ */
+.wash {
+  position: absolute;
+  left: var(--wash-x);
+  top: var(--wash-y);
+  width: var(--wash-width);
+  height: var(--wash-height);
+  margin-left: calc(var(--wash-width) / -2);
+  margin-top: calc(var(--wash-height) / -2);
+  will-change: transform;
+  animation: wash-drift var(--wash-duration) ease-in-out infinite alternate;
+
+  &[data-tone='accent'] {
+    background-image: radial-gradient(
+      ellipse closest-side,
+      var(--color-accent-wash),
+      transparent 62%
+    );
+  }
+
+  &[data-tone='depth'] {
+    background-image: radial-gradient(
+      ellipse closest-side,
+      var(--color-depth-wash),
+      transparent 62%
+    );
+  }
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes wash-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, var(--wash-drift), 0);
+  }
+}
+
+/**
+ * The grid never moves. If it drifted with the light the whole page would read
+ * as sliding; pinned, it reads as light moving behind a fixed surface, which is
+ * the point.
+ */
+.dots {
+  inset: 0;
+  background-image: radial-gradient(rgb(234 242 246 / 7%) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: -13px -13px;
+}
