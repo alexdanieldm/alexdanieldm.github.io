@@ -6,7 +6,12 @@ import next from 'eslint-config-next/core-web-vitals';
  * shim, which in v16 throws on a circular structure while validating anyway.
  */
 const config = [
-  { ignores: ['.next/**', 'out/**', 'node_modules/**', 'next-env.d.ts'] },
+  {
+    /* Globbed at any depth, not just the root. A sibling session working in a
+       .claude/worktrees/<name> checkout has its own .next, and the root-only
+       pattern happily linted forty files of someone else's build output. */
+    ignores: ['**/.next/**', '**/out/**', '**/node_modules/**', '.claude/**', 'next-env.d.ts'],
+  },
   ...next,
 ];
 
