@@ -109,3 +109,29 @@
     }
   }
 }
+
+/* Sits in the mobile menu's footer row, opposite the social icons. */
+.menuCv {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacer-xs);
+  min-height: 32px;
+  padding-inline: 14px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: var(--typography-size-caption);
+  font-weight: var(--typography-weight-bold);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-accent);
+    color: var(--color-base);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}

@@ -11,10 +11,16 @@
  * Escape closes it, and the page behind it does not scroll. The panel is not
  * rendered at all while closed, which is the cheapest way to guarantee no stale
  * `role="dialog"` or `aria-modal` is left behind on the page.
+ *
+ * The wordmark and the footer row arrive as props from the server component
+ * that renders this, rather than being imported here. They are the same
+ * components the header and footer already use, and passing them in keeps
+ * their icons out of the client bundle: a client component's children stay
+ * server-rendered, an import does not.
  */
 
 import Link from 'next/link';
-import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 
 import { CloseIcon, MenuIcon } from '@/components/icons';
 import { NAV_ITEMS } from '@/content/navigation';
@@ -23,7 +29,14 @@ import styles from './MobileMenu.module.scss';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
-export function MobileMenu() {
+type MobileMenuProps = {
+  /** The wordmark, so the open panel still says whose site it is. */
+  brand: ReactNode;
+  /** Social links and the CV, along the bottom. */
+  footer: ReactNode;
+};
+
+export function MobileMenu({ brand, footer }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -114,7 +127,14 @@ export function MobileMenu() {
           aria-modal="true"
           aria-label="Site navigation"
         >
+          {/* 嘱, to entrust. The same character as the contact page, oversized
+              and sitting behind the navigation rather than beside it. */}
+          <span className={styles.kanji} aria-hidden="true">
+            嘱
+          </span>
+
           <div className={styles.panelHeader}>
+            {brand}
             <button className={styles.toggle} type="button" aria-label="Close menu" onClick={close}>
               <CloseIcon size={16} />
             </button>
@@ -122,15 +142,18 @@ export function MobileMenu() {
 
           <nav className={styles.nav}>
             <ul className={styles.list}>
-              {NAV_ITEMS.map(({ href, label }) => (
+              {NAV_ITEMS.map(({ href, label }, index) => (
                 <li key={href}>
                   <Link className={styles.link} href={href} onClick={close}>
+                    <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
                     {label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
+
+          <div className={styles.panelFooter}>{footer}</div>
         </div>
       )}
     </>

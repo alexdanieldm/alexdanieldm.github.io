@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-import { NAV_ITEMS } from '@/content/navigation';
+import { DownloadIcon } from '@/components/icons';
+import { CV, NAV_ITEMS } from '@/content/navigation';
 
 import { MobileMenu } from './MobileMenu';
 import { SocialLinks } from './SocialLinks';
@@ -48,7 +49,21 @@ export function SiteHeader({ variant = 'overlay', current }: SiteHeaderProps) {
         <SocialLinks />
       </div>
 
-      <MobileMenu />
+      {/* The wordmark and footer are handed over as already-rendered elements
+          rather than imported inside the menu, so their icons stay out of the
+          client bundle. */}
+      <MobileMenu
+        brand={<Wordmark />}
+        footer={
+          <>
+            <SocialLinks />
+            <a className={styles.menuCv} href={CV.href} download={CV.filename}>
+              CV
+              <DownloadIcon size={14} />
+            </a>
+          </>
+        }
+      />
     </StickyHeader>
   );
 }

@@ -33,9 +33,26 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
-  /* Opaque, unlike every other raised surface here. A translucent panel over a
-     drifting background is unreadable. */
+  overflow: hidden;
+
+  /* Opaque, unlike every other raised surface here: a translucent panel over a
+     drifting background is unreadable. It still gets the page's own ground
+     treatment, a coral wash and the dot grid, so it reads as part of the site
+     rather than a blank sheet dropped on top of it. */
   background-color: var(--color-base);
+  background-image:
+    radial-gradient(70% 45% at 8% 88%, var(--color-accent-wash), transparent 70%),
+    radial-gradient(60% 40% at 100% 0%, var(--color-depth-wash), transparent 70%),
+    radial-gradient(rgb(234 242 246 / 7%) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    26px 26px;
+  background-position:
+    0 0,
+    0 0,
+    -13px -13px;
+
   animation: panel-in var(--duration-medium) var(--ease-out);
 
   @include reduced-motion {
@@ -50,23 +67,54 @@
   }
 }
 
+/**
+ * 嘱. Big enough to be a texture rather than a glyph, cropped by the panel edge
+ * and sitting under the navigation, so it reads as a watermark and never
+ * competes with the links for the eye.
+ */
+.kanji {
+  position: absolute;
+  right: 16px;
+  bottom: 84px;
+  font-family: var(--font-kanji);
+  font-size: 200px;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.17;
+  pointer-events: none;
+  user-select: none;
+
+  /* Clear of the last nav row rather than sitting under it: at this opacity it
+     is still a watermark, but overlapping a link makes the link look like a
+     mistake rather than the kanji look deliberate. */
+  @media screen and (max-height: 760px) {
+    font-size: 150px;
+    bottom: 76px;
+  }
+}
+
 .panelHeader {
+  position: relative;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
   padding: 18px 24px;
+  border-bottom: 1px solid var(--color-border-faint);
 }
 
 .nav {
+  position: relative;
   display: flex;
   flex-grow: 1;
   align-items: center;
-  padding: 0 24px 15vh;
+  padding: var(--spacer-3) 24px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacer-1);
+  gap: var(--spacer-xs);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -74,7 +122,9 @@
 }
 
 .link {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
   padding-block: var(--spacer-xs);
   font-family: var(--font-display);
   font-size: var(--typography-size-5);
@@ -82,11 +132,34 @@
   color: var(--color-foreground);
   transition: color var(--duration-fast) ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: var(--color-accent);
   }
 
   @include reduced-motion {
     transition: none;
   }
+}
+
+/* The numbering is the coral in the list. It also gives the eye a left edge to
+   run down, which a ragged column of words on its own does not. */
+.index {
+  flex-shrink: 0;
+  width: 2.2em;
+  font-family: var(--font-body);
+  font-size: var(--typography-size-caption);
+  font-weight: var(--typography-weight-bold);
+  letter-spacing: var(--typography-tracking-label);
+  color: var(--color-accent);
+}
+
+.panelFooter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  padding: var(--spacer-1) 24px calc(var(--spacer-1) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-border-faint);
 }
