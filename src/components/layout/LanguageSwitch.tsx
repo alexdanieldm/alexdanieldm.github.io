@@ -48,13 +48,15 @@ export function LanguageSwitch({ current, target, href, label, targetName }: Lan
       aria-label={`${label}: ${targetName}`}
       onClick={remember}
     >
-      <span aria-hidden="true">{current.toUpperCase()}</span>
+      <span className={styles.current} aria-hidden="true">
+        {current.toUpperCase()}
+      </span>
       <span className={styles.slash} aria-hidden="true">
         /
       </span>
-      <span className={styles.target} aria-hidden="true">
-        {target.toUpperCase()}
-      </span>
+      {/* Deliberately unclassed: it inherits the link's own colour, which is
+          the one the hover rule moves. */}
+      <span aria-hidden="true">{target.toUpperCase()}</span>
     </a>
   );
 }

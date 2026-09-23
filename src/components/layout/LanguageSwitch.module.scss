@@ -20,8 +20,14 @@
   }
 }
 
-/* The language you would switch to is the one in colour. */
-.target {
+/* The language you are reading is the one in colour, so which one is active is
+   answerable at a glance rather than by inference.
+
+   The other half of the pair stays at the link's own muted colour and is the
+   only part that lifts to full-strength foreground on hover. That keeps the two
+   jobs visually separate: coral says where you are, the brightening says what
+   you would get. */
+.current {
   color: var(--color-accent);
 }
 
