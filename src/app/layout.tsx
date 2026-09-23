@@ -33,7 +33,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${body.variable} ${display.variable} ${kanji.variable}`}>
+    /* The reveal script sets data-reveal-ready here before React hydrates, so
+       React finds an attribute it did not render. This is the documented
+       escape hatch for exactly that, and it applies to this element only. */
+    <html
+      lang="en"
+      className={`${body.variable} ${display.variable} ${kanji.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
         <a className="skip-link" href="#main">

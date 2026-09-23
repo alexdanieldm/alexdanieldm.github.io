@@ -4,7 +4,13 @@ import styles from './About.module.scss';
 
 export function About() {
   return (
-    <section className={styles.about} id="about" aria-labelledby="about-title" data-reveal>
+    <section
+      className={styles.about}
+      id="about"
+      aria-labelledby="about-title"
+      data-reveal
+      suppressHydrationWarning
+    >
       <RailHeading
         id="about-title"
         note={

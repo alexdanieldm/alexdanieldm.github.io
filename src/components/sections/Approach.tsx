@@ -7,7 +7,7 @@ import styles from './Approach.module.scss';
 export function Approach() {
   return (
     <section className={styles.approach} id="approach" aria-labelledby="approach-title">
-      <div className={styles.header} data-reveal>
+      <div className={styles.header} data-reveal suppressHydrationWarning>
         <div>
           <h2 className={styles.title} id="approach-title">
             How I work
@@ -26,6 +26,7 @@ export function Approach() {
       <ul
         className={styles.cards}
         data-reveal
+        suppressHydrationWarning
         style={{ '--reveal-delay': '0.1s' } as CSSProperties}
       >
         <Card index="01" title="Write it for whoever comes next">

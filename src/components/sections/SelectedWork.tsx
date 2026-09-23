@@ -39,7 +39,12 @@ function WorkArticle({
   lead = false,
 }: WorkArticleProps) {
   return (
-    <article className={styles.article} data-lead={lead || undefined} data-reveal>
+    <article
+      className={styles.article}
+      data-lead={lead || undefined}
+      data-reveal
+      suppressHydrationWarning
+    >
       <div className={styles.rail}>
         {icon}
         <p className={styles.index}>{index}</p>
@@ -66,7 +71,7 @@ function WorkArticle({
 export function SelectedWork() {
   return (
     <section className={styles.work} id="work" aria-labelledby="work-title">
-      <div data-reveal>
+      <div data-reveal suppressHydrationWarning>
         <SectionHeading id="work-title" kicker="Tooling, data, interface">
           Selected work
         </SectionHeading>
@@ -163,7 +168,7 @@ export function SelectedWork() {
         <SurfacesDiagram />
       </WorkArticle>
 
-      <div className={styles.article} data-reveal>
+      <div className={styles.article} data-reveal suppressHydrationWarning>
         <div className={styles.rail}>
           <p className={styles.discipline}>Also</p>
         </div>
