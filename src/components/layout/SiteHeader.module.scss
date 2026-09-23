@@ -1,0 +1,74 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  padding-block: 30px;
+
+  @include page-gutter;
+
+  &[data-variant='solid'] {
+    border-bottom: 1px solid var(--color-border-faint);
+  }
+
+  @include desktop-down {
+    padding-block: 18px;
+  }
+}
+
+/* The full nav and the icon row are both replaced by the menu button below the
+   desktop breakpoint. Neither fits, and neither is worth shrinking to fit. */
+.nav,
+.socials {
+  @include desktop-down {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* 34px so the hit area clears the 24px minimum without the text moving. */
+  min-height: 34px;
+  font-size: var(--typography-size-caption);
+  color: var(--color-foreground);
+
+  &[data-current] {
+    color: var(--color-accent);
+    font-weight: var(--typography-weight-bold);
+  }
+
+  /* The bar sits inside the padded box rather than under it, so it lands on the
+     text baseline instead of floating below the hit area. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 5px;
+    height: 2px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-medium) var(--ease-out);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  @include reduced-motion {
+    &::after {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 11px;
+  font-size: 15px; /* the logotype is its own size, not a step on the scale */
+  font-weight: var(--typography-weight-bold);
+  color: var(--color-foreground);
+  white-space: nowrap;
+
+  @include mobile-down {
+    gap: 9px;
+    font-size: var(--typography-size-body-x-small);
+  }
+}
+
+.kanji {
+  font-family: var(--font-kanji);
+  font-size: 20px;
+  color: var(--color-accent);
+
+  @include mobile-down {
+    font-size: 18px;
+  }
+}
+
+.stop {
+  color: var(--color-accent);
+}

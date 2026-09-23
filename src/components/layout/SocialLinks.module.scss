@@ -1,0 +1,43 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 32px box around a 21px mark. The glyph does not need the room; the pointer
+     target does, and 24px is the floor. */
+  width: 32px;
+  height: 32px;
+  color: var(--color-foreground);
+  transition:
+    transform var(--duration-fast) ease,
+    filter var(--duration-medium) ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 9px rgb(247 81 85 / 70%));
+  }
+
+  [data-tone='quiet'] & {
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

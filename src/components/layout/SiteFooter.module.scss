@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  padding-block: 34px;
+  border-top: 1px solid var(--color-border-faint);
+
+  @include page-gutter;
+
+  @include desktop-down {
+    flex-direction: column;
+    gap: var(--spacer-1);
+    text-align: center;
+  }
+}
+
+.note {
+  font-size: var(--typography-size-meta);
+  color: var(--color-faint);
+}

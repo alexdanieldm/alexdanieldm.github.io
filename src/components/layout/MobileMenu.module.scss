@@ -1,0 +1,92 @@
+.toggle {
+  /* 44px, comfortably past the 24px minimum, because this is the one control on
+     a phone that everything else depends on. */
+  width: 44px;
+  height: 44px;
+  background-color: rgb(2 25 38 / 40%);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-foreground);
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-base);
+  }
+
+  /* Above the desktop breakpoint the full nav is visible and this is noise. */
+  @media screen and (min-width: 991px) {
+    display: none;
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  /* Opaque, unlike every other raised surface here. A translucent panel over a
+     drifting background is unreadable. */
+  background-color: var(--color-base);
+  animation: panel-in var(--duration-medium) var(--ease-out);
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 24px;
+}
+
+.nav {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  padding: 0 24px 15vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-1);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: block;
+  padding-block: var(--spacer-xs);
+  font-family: var(--font-display);
+  font-size: var(--typography-size-5);
+  line-height: var(--typography-height-display);
+  color: var(--color-foreground);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
