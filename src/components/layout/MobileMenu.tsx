@@ -26,6 +26,7 @@ const FOCUSABLE = 'a[href], button:not([disabled])';
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const panelId = useId();
 
   const close = useCallback(() => setOpen(false), []);
@@ -34,7 +35,6 @@ export function MobileMenu() {
     const panel = panelRef.current;
     if (!open || !panel) return;
 
-    const returnFocusTo = document.activeElement as HTMLElement | null;
     panel.querySelector<HTMLElement>(FOCUSABLE)?.focus();
 
     /* Lock the page, and give back the width the scrollbar was using so the
@@ -71,12 +71,18 @@ export function MobileMenu() {
     document.addEventListener('keydown', onKeyDown);
 
     /* Leave no residue: every listener removed, the scroll lock released, and
-       focus put back where it came from. */
+       focus put back on the control that opened this.
+
+       Back on the toggle specifically, not on whatever held focus beforehand.
+       A pointer click does not necessarily focus a button, so activeElement at
+       open time is often <body>, and restoring that drops the keyboard user at
+       the top of the document. The button that opened the dialog is where
+       focus belongs on close either way. */
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       body.style.overflow = previousOverflow;
       body.style.paddingRight = previousPadding;
-      returnFocusTo?.focus();
+      toggleRef.current?.focus();
     };
   }, [open, close]);
 
@@ -84,6 +90,7 @@ export function MobileMenu() {
     <>
       <button
         className={styles.toggle}
+        ref={toggleRef}
         type="button"
         aria-label="Open menu"
         aria-expanded={open}

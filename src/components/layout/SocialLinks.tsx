@@ -12,10 +12,14 @@ const LINKS = [
 /**
  * The three ways to reach me, as icons.
  *
- * Each one is a 32px target around a 21px mark. The mark is the only label, so
- * unlike everywhere else on the site these icons are named rather than hidden,
- * and the box is sized to clear the 24px minimum for a pointer target rather
- * than to fit the glyph.
+ * Each one is a 32px target around a 21px mark: the box is sized to clear the
+ * 24px minimum for a pointer target, not to fit the glyph.
+ *
+ * The name goes on the link, not on the mark inside it. A link does compute its
+ * name from its subtree, so labelling the svg would technically work, but it
+ * leaves the anchor itself unnamed in the accessibility tree and risks being
+ * read twice, as a link and again as an image. One name, on the thing that is
+ * actually the control.
  */
 export function SocialLinks({ tone = 'default' }: { tone?: 'default' | 'quiet' }) {
   return (
@@ -27,8 +31,9 @@ export function SocialLinks({ tone = 'default' }: { tone?: 'default' | 'quiet' }
             href={href}
             rel={href.startsWith('http') ? 'noreferrer' : undefined}
             target={href.startsWith('http') ? '_blank' : undefined}
+            aria-label={label}
           >
-            <Icon size={21} title={label} />
+            <Icon size={21} />
           </a>
         </li>
       ))}
