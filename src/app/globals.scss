@@ -12,7 +12,12 @@
   --color-base: #021926;
   --color-foreground: #eaf2f6; /* 15.9:1 */
   --color-muted: #94acba; /*  7.6:1 — meta, captions, schematic labels */
-  --color-faint: #6e8798; /* 4.78:1 — the quietest labels, still AA at 16px */
+  /* 5.75:1 on the plain ground, 4.68:1 at the centre of the accent wash, which
+     is the case that actually decides it. The old #6e8798 measured 4.78 on the
+     ground but only 4.34 over a wash, and a contrast check that composites
+     background-color alone never sees that: the washes are background-images on
+     a layer of their own. */
+  --color-faint: #7e95a4;
   --color-accent: #f75155; /* 5.33:1 */
 
   /* Raised bands are translucent on purpose. The background washes have to pass
@@ -29,7 +34,12 @@
   --color-focus: #ffd5a8;
 
   --color-accent-soft: rgb(247 81 85 / 45%);
-  --color-accent-wash: rgb(247 81 85 / 11%);
+  /* The two washes are matched by the lift they put on the ground's relative
+     luminance, not by their alpha: coral is a far lighter colour than the depth
+     blue, so equal alphas are nowhere near equally visible. At 11% the coral
+     was carrying 44% of the blue's lift and read as almost nothing. 20% puts it
+     at 103%, so the two now register the same. */
+  --color-accent-wash: rgb(247 81 85 / 20%);
   --color-depth-wash: rgb(14 58 82 / 55%);
 
   /* ── Layout ───────────────────────────────────────────────────────────── */
