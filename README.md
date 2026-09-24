@@ -32,6 +32,7 @@ src/
 ├── app/                  routes; each page owns its own .module.scss
 │   ├── page.tsx          home
 │   ├── contact/
+│   ├── links/            the page a social bio points at
 │   ├── work/cli/         case study
 │   └── not-found.tsx     exported as 404.html
 ├── components/
@@ -134,6 +135,35 @@ Every page builds its own card metadata through `pageMetadata()` in
 declaring its own `openGraph` replaces the parent's wholesale instead of
 filling gaps, so without it every inner page advertised the home page's title
 and URL.
+
+## The link page
+
+`/links/`, with `/es/links/` like every other route. It is what an Instagram
+or Twitter bio points at, so it carries no header and no footer of the site's
+own: somebody arriving came from one link and wants another one, not a tour.
+That leaves nowhere for the language switch, so it sits in the page's own
+footer, and it is the only way across on a route nothing else links to.
+
+The order is the design. Portfolio, email, music and writing first, because
+those are the four worth tapping from a photo app; LinkedIn, the CV and GitHub
+under "Everything else". Leading with those three turns a personal page into a
+CV with some links bolted on.
+
+Music and writing do not exist yet. They are drawn anyway, dashed and tagged
+"Idea" and "Soon", because a row that says where a playlist will go is more
+honest than a gap, and it keeps the page the shape I want it to have.
+
+It is deliberately not in the nav. `ROUTES.links` exists so nothing has to
+spell the path out, but `navItems()` never returns it.
+
+Two things on it differ from the rest of the site, both measured rather than
+guessed. It uses the strip scene at every width, phones included, because the
+tall composition is drawn to fill an 844px viewport and cropped into a 250px
+band it shows the sun at four times the size it should be. And its "Everything
+else" label is muted rather than the accent every other eyebrow uses: coral at
+that size on the bare ground measures 4.85:1, and 4.06:1 where a glyph crosses
+one of the ground's grid dots. Inside a row coral is fine, because the row's
+own fill covers the dots.
 
 ## Deploying
 
