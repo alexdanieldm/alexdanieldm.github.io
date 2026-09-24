@@ -15,7 +15,7 @@
  * So the numbers below are held against two targets, measured rather than
  * eyeballed, and a change that breaks either is a regression:
  *
- *   desktop  all seven rows visible in a 700px viewport (a 1440x800 laptop
+ *   desktop  all eight rows visible in a 700px viewport (a 1440x800 laptop
  *            window once the browser's own chrome is taken off)
  *   phone    the name, all four picked rows and the Everything else heading
  *            visible in 629px (an iPhone 13 mini)
@@ -60,7 +60,7 @@
  */
 .scene {
   position: relative;
-  /* The tallest the strip can be and still leave all seven rows inside a
+  /* The tallest the strip can be and still leave all eight rows inside a
      700px viewport. It was 300, which cost four rows. */
   height: 200px;
   flex-shrink: 0;
@@ -136,10 +136,13 @@
 /**
  * The four I actually want tapped.
  *
- * Portfolio and email run the full width because they are the two that matter;
- * the pair below them shares a row because neither exists yet, and a
- * half-width row is the right amount of attention for something that is still
- * an intention.
+ * Portfolio and writing run the full width. The blog does not exist yet and
+ * still takes the second slot, because it is the other thing worth showing and
+ * a dashed row says "coming" perfectly well at full width.
+ *
+ * Email and music share the row below. A real link sitting beside a
+ * placeholder looks uneven for a second and then reads correctly: email is
+ * third, and third is a half.
  */
 .picked {
   display: grid;
@@ -180,13 +183,29 @@
   text-transform: uppercase;
   color: var(--color-muted);
 }
+/**
+ * Four across, which is what keeps the whole page inside the fold now that
+ * Instagram has joined this group. A second row here would put 90px back on
+ * the page and push the last links off a 1440x800 laptop.
+ *
+ * Four only fit because the group is quieter as well as shorter: smaller rows,
+ * tighter gutters and a smaller value. The trailing arrows come off entirely,
+ * at every width, which is the right treatment for an appendix anyway. The CV
+ * row loses least by it: a cloud-download mark and the words Download PDF have
+ * already said what an arrow would.
+ */
 .restList {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
+
+  --link-row-height: 68px;
+  --link-row-gap: 14px;
+  --link-row-padding: 18px;
+  --link-row-value-size: var(--typography-size-body-x-small);
 
   @include tablet-down {
     grid-template-columns: minmax(0, 1fr);

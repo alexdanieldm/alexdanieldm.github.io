@@ -144,10 +144,12 @@ own: somebody arriving came from one link and wants another one, not a tour.
 That leaves nowhere for the language switch, so it sits in the page's own
 footer, and it is the only way across on a route nothing else links to.
 
-The order is the design. Portfolio, email, music and writing first, because
-those are the four worth tapping from a photo app; LinkedIn, the CV and GitHub
-under "Everything else". Leading with those three turns a personal page into a
-CV with some links bolted on.
+The order is the design. Portfolio and the blog first, because those are the
+two things worth showing, and the blog keeps second place even though it does
+not exist yet. Email and music follow. Instagram, LinkedIn, the CV and GitHub
+sit under "Everything else": Instagram leads that group because the page is
+what my Instagram bio points at, so the handle belongs on it without costing
+one of the top four.
 
 Music and writing do not exist yet. They are drawn anyway, dashed and tagged
 "Idea" and "Soon", because a row that says where a playlist will go is more

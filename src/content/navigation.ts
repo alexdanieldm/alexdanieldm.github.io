@@ -41,6 +41,9 @@ export const SOCIALS = {
   github: 'https://github.com/alexdanieldm',
   linkedin: 'https://www.linkedin.com/in/alexdanieldm/',
   email: 'mailto:alexdanieldm@gmail.com',
+  /* Only the link page uses this one, which is the page Instagram itself
+     points at. The rest of the site has no reason to link out to it. */
+  instagram: 'https://www.instagram.com/alexdanieldm/',
 } as const;
 
 /**

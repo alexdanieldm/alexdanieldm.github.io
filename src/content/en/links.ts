@@ -18,6 +18,7 @@ export const links = {
     email: 'Email',
     music: 'Music',
     writing: 'Writing',
+    instagram: 'Instagram',
     linkedin: 'LinkedIn',
     cv: 'CV',
     github: 'GitHub',

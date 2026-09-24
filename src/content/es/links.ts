@@ -21,6 +21,7 @@ export const links: LinksContent = {
     email: 'Email',
     music: 'Música',
     writing: 'Escribir',
+    instagram: 'Instagram',
     linkedin: 'LinkedIn',
     cv: 'CV',
     github: 'GitHub',

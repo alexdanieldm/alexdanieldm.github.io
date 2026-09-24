@@ -2,9 +2,9 @@ import {
   ArrowUpRightIcon,
   CloudDownloadIcon,
   DocumentIcon,
-  DownloadIcon,
   EnvelopeIcon,
   GithubIcon,
+  InstagramIcon,
   LinkedinIcon,
   MusicIcon,
   SiteMarkIcon,
@@ -29,10 +29,16 @@ const ACTION = 16;
  * from one link and wants another one, not a tour of the site, so the page is
  * the list and the two things that say whose list it is.
  *
- * The order is the whole design. Portfolio, email, music and writing come
- * first because those are the four I would actually want tapped from a photo
- * app; LinkedIn, the CV and GitHub go under Everything else because leading
- * with them turns a personal page into a CV with some links bolted on.
+ * The order is the whole design. Portfolio and the blog lead, because those
+ * are the two things I actually want shown, and the blog holds second even
+ * though it does not exist yet. Email and music follow. Instagram, LinkedIn,
+ * the CV and GitHub sit under Everything else, because leading with the last
+ * three turns a personal page into a CV with some links bolted on.
+ *
+ * Instagram is on the page at all because the page is what my Instagram bio
+ * points at, and at the head of the quiet group rather than in the top four:
+ * sending somebody back where they just came from does not earn a slot up
+ * there, but it is the first thing worth having once you are past them.
  *
  * Music and writing do not exist yet. They are drawn anyway, as pending rows,
  * which is a deliberate choice over leaving them out: the shape of the page is
@@ -80,6 +86,12 @@ export function LinksPage({ locale }: { locale: Locale }) {
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
+              label={links.rows.writing}
+              value={links.pending.writingValue}
+              tag={links.pending.writingTag}
+              icon={<DocumentIcon size={MARK} />}
+            />
+            <LinkRow
               href={SOCIALS.email}
               label={links.rows.email}
               value="alexdanieldm@gmail.com"
@@ -92,12 +104,6 @@ export function LinksPage({ locale }: { locale: Locale }) {
               tag={links.pending.musicTag}
               icon={<MusicIcon size={MARK} />}
             />
-            <LinkRow
-              label={links.rows.writing}
-              value={links.pending.writingValue}
-              tag={links.pending.writingTag}
-              icon={<DocumentIcon size={MARK} />}
-            />
           </ul>
 
           <section className={styles.rest} aria-labelledby="links-rest">
@@ -106,12 +112,21 @@ export function LinksPage({ locale }: { locale: Locale }) {
             </h2>
 
             <ul className={styles.restList}>
+              {/* First of the quiet group rather than last of the loud one.
+                  This page is what my Instagram bio points at, so the handle
+                  belongs on it, but sending someone straight back where they
+                  came from is not worth a row in the top four. */}
+              <LinkRow
+                href={SOCIALS.instagram}
+                label={links.rows.instagram}
+                value="@alexdanieldm"
+                icon={<InstagramIcon size={MARK} />}
+              />
               <LinkRow
                 href={SOCIALS.linkedin}
                 label={links.rows.linkedin}
                 value="in/alexdanieldm"
                 icon={<LinkedinIcon size={MARK} />}
-                action={<ArrowUpRightIcon size={ACTION} />}
               />
               <LinkRow
                 download={CV.filename}
@@ -119,14 +134,12 @@ export function LinksPage({ locale }: { locale: Locale }) {
                 label={links.rows.cv}
                 value={links.cvValue}
                 icon={<CloudDownloadIcon size={MARK} />}
-                action={<DownloadIcon size={ACTION} />}
               />
               <LinkRow
                 href={SOCIALS.github}
                 label={links.rows.github}
                 value="@alexdanieldm"
                 icon={<GithubIcon size={MARK} />}
-                action={<ArrowUpRightIcon size={ACTION} />}
               />
             </ul>
           </section>
