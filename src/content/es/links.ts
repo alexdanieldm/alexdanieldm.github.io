@@ -30,7 +30,8 @@ export const links: LinksContent = {
   cvValue: 'Descargar PDF',
 
   pending: {
-    musicValue: '[UNA LISTA DE SPOTIFY]',
+    /* Short enough for the four-across row, same as the English. */
+    musicValue: '[UNA LISTA]',
     musicTag: 'Idea',
     writingValue: '[UN BLOG]',
     writingTag: 'Pronto',

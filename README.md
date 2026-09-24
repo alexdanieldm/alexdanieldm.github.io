@@ -145,11 +145,11 @@ That leaves nowhere for the language switch, so it sits in the page's own
 footer, and it is the only way across on a route nothing else links to.
 
 The order is the design. Portfolio and the blog first, because those are the
-two things worth showing, and the blog keeps second place even though it does
-not exist yet. Email and music follow. Instagram, LinkedIn, the CV and GitHub
-sit under "Everything else": Instagram leads that group because the page is
-what my Instagram bio points at, so the handle belongs on it without costing
-one of the top four.
+two things worth showing, and the blog keeps second even though it does not
+exist yet. Email and Instagram finish the top four, so everything up there
+works. LinkedIn, the CV and GitHub sit under "Everything else", with music
+last of all: it is further off than the blog and there is no date on it, so it
+keeps its row and loses its place.
 
 Music and writing do not exist yet. They are drawn anyway, dashed and tagged
 "Idea" and "Soon", because a row that says where a playlist will go is more

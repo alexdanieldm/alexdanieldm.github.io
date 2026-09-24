@@ -140,9 +140,9 @@
  * still takes the second slot, because it is the other thing worth showing and
  * a dashed row says "coming" perfectly well at full width.
  *
- * Email and music share the row below. A real link sitting beside a
- * placeholder looks uneven for a second and then reads correctly: email is
- * third, and third is a half.
+ * Email and Instagram share the row below. All four of these work, which is
+ * the point of the group: a playlist I have not made does not belong in front
+ * of links that do something.
  */
 .picked {
   display: grid;

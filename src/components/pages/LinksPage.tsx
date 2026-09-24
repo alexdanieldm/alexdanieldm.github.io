@@ -31,14 +31,13 @@ const ACTION = 16;
  *
  * The order is the whole design. Portfolio and the blog lead, because those
  * are the two things I actually want shown, and the blog holds second even
- * though it does not exist yet. Email and music follow. Instagram, LinkedIn,
- * the CV and GitHub sit under Everything else, because leading with the last
- * three turns a personal page into a CV with some links bolted on.
+ * though it does not exist yet: it is close enough to be worth promising.
+ * Email and Instagram finish the top four, and everything up there works.
  *
- * Instagram is on the page at all because the page is what my Instagram bio
- * points at, and at the head of the quiet group rather than in the top four:
- * sending somebody back where they just came from does not earn a slot up
- * there, but it is the first thing worth having once you are past them.
+ * LinkedIn, the CV and GitHub sit under Everything else, because leading with
+ * them turns a personal page into a CV with some links bolted on. Music is
+ * last of all. It is further off than the blog and I do not know when it
+ * lands, so it keeps its row and loses its place.
  *
  * Music and writing do not exist yet. They are drawn anyway, as pending rows,
  * which is a deliberate choice over leaving them out: the shape of the page is
@@ -99,10 +98,11 @@ export function LinksPage({ locale }: { locale: Locale }) {
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
-              label={links.rows.music}
-              value={links.pending.musicValue}
-              tag={links.pending.musicTag}
-              icon={<MusicIcon size={MARK} />}
+              href={SOCIALS.instagram}
+              label={links.rows.instagram}
+              value="@alexdanieldm"
+              icon={<InstagramIcon size={MARK} />}
+              action={<ArrowUpRightIcon size={ACTION} />}
             />
           </ul>
 
@@ -112,16 +112,6 @@ export function LinksPage({ locale }: { locale: Locale }) {
             </h2>
 
             <ul className={styles.restList}>
-              {/* First of the quiet group rather than last of the loud one.
-                  This page is what my Instagram bio points at, so the handle
-                  belongs on it, but sending someone straight back where they
-                  came from is not worth a row in the top four. */}
-              <LinkRow
-                href={SOCIALS.instagram}
-                label={links.rows.instagram}
-                value="@alexdanieldm"
-                icon={<InstagramIcon size={MARK} />}
-              />
               <LinkRow
                 href={SOCIALS.linkedin}
                 label={links.rows.linkedin}
@@ -140,6 +130,15 @@ export function LinksPage({ locale }: { locale: Locale }) {
                 label={links.rows.github}
                 value="@alexdanieldm"
                 icon={<GithubIcon size={MARK} />}
+              />
+              {/* Last, and down here at all, because a playlist I have not made
+                  should not sit in front of the links that work. It stays
+                  drawn rather than dropped: the row is where it will go. */}
+              <LinkRow
+                label={links.rows.music}
+                value={links.pending.musicValue}
+                tag={links.pending.musicTag}
+                icon={<MusicIcon size={MARK} />}
               />
             </ul>
           </section>
