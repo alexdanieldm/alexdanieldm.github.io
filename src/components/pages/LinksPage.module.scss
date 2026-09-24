@@ -16,7 +16,7 @@
  * eyeballed, and a change that breaks either is a regression:
  *
  *   desktop  the WHOLE page inside 750px, footer and all, so a MacBook Air
- *            never scrolls at all. It measures 738. The version before this
+ *            never scrolls at all. It measures 731. The version before this
  *            fitted the eight links and still ran 861 tall, so it scrolled
  *            about 60px to reveal nothing but the footer and a watermark,
  *            and a page that scrolls to show you nothing is just a taller
@@ -185,6 +185,10 @@
  */
 .restTitle {
   margin-bottom: var(--spacer-xs);
+  /* One short word in caps, so it takes the tight leading the row labels take
+     rather than the body's 1.85. Inheriting cost 7px of a page that has none
+     to spare, on a line that is never going to wrap. */
+  line-height: 1.2;
   font-size: var(--typography-size-label);
   font-weight: var(--typography-weight-bold);
   letter-spacing: var(--typography-tracking-label-wide);
