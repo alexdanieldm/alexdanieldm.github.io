@@ -30,8 +30,20 @@ export type CommonContent = typeof commonEn;
 export type LinksContent = typeof linksEn;
 
 const CONTENT = {
-  en: { home: homeEn, caseStudy: caseStudyEn, contact: contactEn, links: linksEn, common: commonEn },
-  es: { home: homeEs, caseStudy: caseStudyEs, contact: contactEs, links: linksEs, common: commonEs },
+  en: {
+    home: homeEn,
+    caseStudy: caseStudyEn,
+    contact: contactEn,
+    links: linksEn,
+    common: commonEn,
+  },
+  es: {
+    home: homeEs,
+    caseStudy: caseStudyEs,
+    contact: contactEs,
+    links: linksEs,
+    common: commonEs,
+  },
 } satisfies Record<Locale, unknown>;
 
 export function contentFor(locale: Locale) {
