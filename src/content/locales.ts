@@ -11,10 +11,12 @@ import { caseStudy as caseStudyEn } from './en/caseStudy';
 import { common as commonEn } from './en/common';
 import { contact as contactEn } from './en/contact';
 import { home as homeEn } from './en/home';
+import { links as linksEn } from './en/links';
 import { caseStudy as caseStudyEs } from './es/caseStudy';
 import { common as commonEs } from './es/common';
 import { contact as contactEs } from './es/contact';
 import { home as homeEs } from './es/home';
+import { links as linksEs } from './es/links';
 
 export const LOCALES = ['en', 'es'] as const;
 export type Locale = (typeof LOCALES)[number];
@@ -25,10 +27,11 @@ export type HomeContent = typeof homeEn;
 export type CaseStudyContent = typeof caseStudyEn;
 export type ContactContent = typeof contactEn;
 export type CommonContent = typeof commonEn;
+export type LinksContent = typeof linksEn;
 
 const CONTENT = {
-  en: { home: homeEn, caseStudy: caseStudyEn, contact: contactEn, common: commonEn },
-  es: { home: homeEs, caseStudy: caseStudyEs, contact: contactEs, common: commonEs },
+  en: { home: homeEn, caseStudy: caseStudyEn, contact: contactEn, links: linksEn, common: commonEn },
+  es: { home: homeEs, caseStudy: caseStudyEs, contact: contactEs, links: linksEs, common: commonEs },
 } satisfies Record<Locale, unknown>;
 
 export function contentFor(locale: Locale) {

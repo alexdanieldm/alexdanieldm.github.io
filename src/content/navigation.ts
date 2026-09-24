@@ -32,6 +32,9 @@ export const ROUTES = {
   home: '/',
   contact: '/contact/',
   caseStudy: '/work/cli/',
+  /* Not in navItems on purpose. It is what a social bio points at, not a
+     destination anyone should reach from the site's own nav. */
+  links: '/links/',
 } as const;
 
 export const SOCIALS = {

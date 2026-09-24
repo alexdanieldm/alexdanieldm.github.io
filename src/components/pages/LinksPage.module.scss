@@ -1,0 +1,220 @@
+/**
+ * The link page. Drawn at 1440 and narrowed, like the rest of the site.
+ *
+ * It has no header and no footer of the site's own, so the whole page is one
+ * flex column: scene, who, the four that matter, everything else, and a footer
+ * pushed to the bottom by `margin-top: auto`.
+ */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* svh, so browser chrome collapsing mid-scroll does not resize the page
+     under you, the same reason the banner uses it. */
+  min-height: 100svh;
+}
+/* Positioned, so it paints above the scene. The scene is `position: relative`
+   for its own absolutely placed layers, which is enough to put it in front of
+   static siblings, and the name block deliberately overlaps it: without this
+   the fade covers the top of the 作. */
+.column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  /* 880px of rows plus the gutter either side, which is the column the comp
+     was drawn on. */
+  max-width: 928px;
+  margin-inline: auto;
+  padding-inline: var(--spacer-2);
+}
+
+/**
+ * The banner scene, shallow, in the strip composition at every width. The
+ * reason it is not the tall one on a phone is in LinksPage.tsx.
+ */
+.scene {
+  position: relative;
+  height: 300px;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  @include desktop-down {
+    height: 250px;
+  }
+}
+.sceneArt,
+.fade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.fade {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(2 25 38 / 10%) 0%,
+    rgb(2 25 38 / 30%) 46%,
+    rgb(2 25 38 / 80%) 80%,
+    var(--color-base) 100%
+  );
+}
+
+/**
+ * Name and one line about me, centred and lifted into the scene's fade so the
+ * artwork and the type read as one block rather than as two stacked bands.
+ */
+.who {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacer-sm);
+  margin-top: -42px;
+  text-align: center;
+
+  @include desktop-down {
+    gap: 10px;
+    margin-top: -34px;
+  }
+}
+.kanji {
+  font-family: var(--font-kanji);
+  /* The wordmark is its own size rather than a step on the scale, here as it
+     is in the header. */
+  font-size: 52px;
+  line-height: 1;
+  color: var(--color-accent);
+
+  @include desktop-down {
+    font-size: 44px;
+  }
+}
+.name {
+  font-family: var(--font-display);
+  font-size: var(--typography-size-3);
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+}
+.bio {
+  max-width: 520px;
+  font-size: var(--typography-size-body-small);
+  line-height: var(--typography-height-body-loose);
+
+  @include mobile-down {
+    max-width: 300px;
+  }
+}
+
+/**
+ * The four I actually want tapped.
+ *
+ * Portfolio and email run the full width because they are the two that matter;
+ * the pair below them shares a row because neither exists yet, and a
+ * half-width row is the right amount of attention for something that is still
+ * an intention.
+ */
+.picked {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: var(--spacer-3) 0 0;
+  padding: 0;
+  list-style: none;
+
+  > :nth-child(-n + 2) {
+    grid-column: 1 / -1;
+  }
+
+  @include tablet-down {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 34px;
+  }
+}
+
+.rest {
+  margin-top: 30px;
+}
+/**
+ * Muted rather than the accent every other eyebrow on the site uses.
+ *
+ * Coral at this size sitting straight on the ground measures 4.85:1, and
+ * 4.06:1 where a glyph crosses one of the ground's grid dots, so it misses AA
+ * on the case that actually decides it. Coral inside a row is fine, because
+ * the row's own fill covers the dots; this label has no fill under it. Muted
+ * measures 6.5:1 on the same spot, and a group called Everything else has no
+ * business being the loudest thing on the page anyway.
+ */
+.restTitle {
+  margin-bottom: var(--spacer-sm);
+  font-size: var(--typography-size-label);
+  font-weight: var(--typography-weight-bold);
+  letter-spacing: var(--typography-tracking-label-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.restList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include tablet-down {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Shorter rows on a phone: seven of them at the desktop height is a lot of
+   scrolling for a page whose whole job is to be one screen of choices. */
+@include tablet-down {
+  .picked,
+  .restList {
+    --link-row-height: 64px;
+    --link-row-gap: 14px;
+    --link-row-padding: 20px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-block: var(--spacer-4) var(--spacer-2);
+}
+.footerText {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-1);
+
+  @include tablet-down {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}
+.note {
+  font-size: var(--typography-size-meta);
+  color: var(--color-faint);
+}
+/**
+ * 嘱 again, the way the contact page signs off, at the opacity that lets it
+ * read as a watermark rather than as content.
+ */
+.entrust {
+  font-family: var(--font-kanji);
+  font-size: 112px;
+  line-height: 0.78;
+  color: var(--color-accent);
+  opacity: 0.2;
+
+  @include tablet-down {
+    font-size: 84px;
+    line-height: 0.8;
+    opacity: 0.22;
+  }
+}
