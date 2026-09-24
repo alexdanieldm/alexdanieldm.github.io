@@ -22,6 +22,12 @@
  *
  * That leaves the first link at 310 on desktop and 299 on a phone. The scene
  * heights are the largest that still clear those, not a look I picked.
+ *
+ * Both targets have to hold in BOTH languages, which is the part that is easy
+ * to miss: the Spanish bio ran a line longer than the English and quietly blew
+ * through both of them while the English page measured fine. The two now lay
+ * out identically to the pixel, and the copy is held to that in
+ * src/content/es/links.ts.
  */
 .page {
   position: relative;
@@ -119,9 +125,10 @@
   letter-spacing: var(--typography-tracking-display);
 }
 .bio {
-  /* Wide enough for the line to set once on a desktop and twice on a phone.
-     At 520 it took two and three, which is 50px of the budget for nothing. */
-  max-width: 720px;
+  /* Wide enough for the line to set once on a desktop and twice on a phone, in
+     both languages. At 520 it took two and three, which is 50px of the budget
+     for nothing, and at 720 the Spanish wrapped where the English did not. */
+  max-width: 820px;
   font-size: var(--typography-size-body-small);
   line-height: var(--typography-height-body-loose);
 }

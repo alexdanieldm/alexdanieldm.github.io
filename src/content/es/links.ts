@@ -7,7 +7,11 @@ export const links: LinksContent = {
   metaDescription:
     'Todo donde estoy, en una página. Portfolio, email, y las dos cosas que llevo tiempo queriendo empezar.',
 
-  bio: 'Barcelona. Construyo cosas para la web, entreno casi todos los días, y leo bastante manga.',
+  /* Held to the same line count as the English: one line on a desktop and two
+     on a phone. A third line here pushed the Everything else heading off an
+     iPhone 13 mini, so the budget in LinksPage.module.scss only held in one
+     of the two languages. */
+  bio: 'Barcelona. Construyo cosas para la web, entreno casi a diario, y leo mucho manga.',
 
   listLabel: 'Dónde encontrarme',
   restLabel: 'Todo lo demás',
