@@ -4,6 +4,24 @@
  * It has no header and no footer of the site's own, so the whole page is one
  * flex column: scene, who, the four that matter, everything else, and a footer
  * pushed to the bottom by `margin-top: auto`.
+ *
+ * ── The vertical budget ───────────────────────────────────────────────────
+ * Everything above the first link is overhead, and on this page the links are
+ * the job. The first pass spent 483px of it on desktop and 419px on a phone,
+ * which put two rows above the fold on a laptop and two on an iPhone 13 mini.
+ * It looked right as a whole comp and failed as a page, because a comp is
+ * something you see all of at once and a page is not.
+ *
+ * So the numbers below are held against two targets, measured rather than
+ * eyeballed, and a change that breaks either is a regression:
+ *
+ *   desktop  all seven rows visible in a 700px viewport (a 1440x800 laptop
+ *            window once the browser's own chrome is taken off)
+ *   phone    the name, all four picked rows and the Everything else heading
+ *            visible in 629px (an iPhone 13 mini)
+ *
+ * That leaves the first link at 310 on desktop and 299 on a phone. The scene
+ * heights are the largest that still clear those, not a look I picked.
  */
 .page {
   position: relative;
@@ -36,12 +54,15 @@
  */
 .scene {
   position: relative;
-  height: 300px;
+  /* The tallest the strip can be and still leave all seven rows inside a
+     700px viewport. It was 300, which cost four rows. */
+  height: 200px;
   flex-shrink: 0;
   overflow: hidden;
 
   @include desktop-down {
-    height: 250px;
+    /* Likewise against 629px, an iPhone 13 mini. Was 250. */
+    height: 180px;
   }
 }
 .sceneArt,
@@ -69,25 +90,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacer-sm);
-  margin-top: -42px;
+  gap: var(--spacer-xs);
+  /* Deeper into the fade than the comp's -42. The scene is shorter now, so
+     the block can sit further up it without landing on the artwork. */
+  margin-top: -56px;
   text-align: center;
 
   @include desktop-down {
-    gap: 10px;
-    margin-top: -34px;
+    margin-top: -40px;
   }
 }
 .kanji {
   font-family: var(--font-kanji);
   /* The wordmark is its own size rather than a step on the scale, here as it
      is in the header. */
-  font-size: 52px;
+  font-size: 42px;
   line-height: 1;
   color: var(--color-accent);
 
   @include desktop-down {
-    font-size: 44px;
+    font-size: 38px;
   }
 }
 .name {
@@ -97,13 +119,11 @@
   letter-spacing: var(--typography-tracking-display);
 }
 .bio {
-  max-width: 520px;
+  /* Wide enough for the line to set once on a desktop and twice on a phone.
+     At 520 it took two and three, which is 50px of the budget for nothing. */
+  max-width: 720px;
   font-size: var(--typography-size-body-small);
   line-height: var(--typography-height-body-loose);
-
-  @include mobile-down {
-    max-width: 300px;
-  }
 }
 
 /**
@@ -118,7 +138,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  margin: var(--spacer-3) 0 0;
+  margin: var(--spacer-2) 0 0;
   padding: 0;
   list-style: none;
 
@@ -129,12 +149,11 @@
   @include tablet-down {
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
-    margin-top: 34px;
   }
 }
 
 .rest {
-  margin-top: 30px;
+  margin-top: var(--spacer-2);
 }
 /**
  * Muted rather than the accent every other eyebrow on the site uses.

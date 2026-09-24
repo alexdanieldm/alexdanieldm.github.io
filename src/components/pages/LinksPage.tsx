@@ -43,16 +43,17 @@ export function LinksPage({ locale }: { locale: Locale }) {
   const other = otherLocale(locale);
 
   return (
-    /* 300px rather than a token: the scene is 300 tall at its tallest and 250
+    /* 200px rather than a token: the scene is 200 tall at its tallest and 180
        on a phone, so offsetting by the taller of the two means no wash can
        reach up into the scene's fade at any width. */
-    <Ground washes={COMPACT_WASHES} washOffset="300px">
+    <Ground washes={COMPACT_WASHES} washOffset="200px">
       <main className={styles.page} id="main">
         {/* The strip composition at every width, including phones, where the
             banner uses the tall one. The tall scene is drawn to fill an 844px
-            viewport; cropped into a 250px band it shows the sun at four times
-            the size it should be and no horizon at all. The strip is already
-            the shallow composition, so it is the one that survives the crop. */}
+            viewport; cropped into a band this shallow it shows the sun at
+            several times the size it should be and no horizon at all. The
+            strip is already the shallow composition, so it survives the crop
+            and, at a phone's width, shows its full height rather than a slice. */}
         <div className={styles.scene} aria-hidden="true">
           <StripScene className={styles.sceneArt} />
           {/* Fades the artwork into the page colour, or the bottom edge of the
