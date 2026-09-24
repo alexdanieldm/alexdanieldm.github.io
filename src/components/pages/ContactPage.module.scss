@@ -38,71 +38,19 @@
   @include desktop-down {
     width: 100%;
   }
+
+  /* The row's own defaults are these numbers; only the phone gutter differs. */
+  @include mobile-down {
+    --link-row-padding: 18px;
+  }
 }
 
 /* ── One way to reach me ──────────────────────────────────────────────────── */
 
-.channel {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 76px;
-  padding-inline: 26px;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  color: var(--color-foreground);
 
-  /* Email is the one I actually want used, so it is the only filled row. */
-  &[data-primary] {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-base);
-  }
 
-  @include mobile-down {
-    padding-inline: 18px;
-  }
-}
 
-.channelText {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 3px;
-  /* Without this a flex child will not shrink below its content, and a long
-     email address then pushes the arrow off the end of the row. */
-  min-width: 0;
-}
 
-.channelLabel {
-  /* The label is one short word above its value, so it takes the tight leading
-     rather than the body's 1.85. */
-  line-height: 1.2;
-  font-size: var(--typography-size-label);
-  letter-spacing: var(--typography-tracking-label);
-  text-transform: uppercase;
-  color: var(--color-muted);
-
-  [data-primary] & {
-    color: var(--color-base);
-  }
-}
-
-.channelValue {
-  line-height: 1.3;
-  font-size: var(--typography-size-body-small);
-  font-weight: var(--typography-weight-bold);
-  overflow-wrap: anywhere;
-}
-
-.channelArrow {
-  flex-shrink: 0;
-  color: var(--color-muted);
-
-  [data-primary] & {
-    color: var(--color-base);
-  }
-}
 
 /* ── 嘱 ───────────────────────────────────────────────────────────────────── */
 

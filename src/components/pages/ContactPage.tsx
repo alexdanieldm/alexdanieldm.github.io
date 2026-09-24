@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 import {
   ArrowUpRightIcon,
   CloudDownloadIcon,
@@ -12,51 +10,12 @@ import { Ground, COMPACT_WASHES } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Banner } from '@/components/sections';
+import { LinkRow } from '@/components/ui';
 import { contentFor, type Locale } from '@/content/locales';
 import { CV, ROUTES, SOCIALS } from '@/content/navigation';
 import { Copy } from '@/content/rich';
 
 import styles from './ContactPage.module.scss';
-
-type ChannelProps = {
-  href: string;
-  label: string;
-  value: string;
-  icon: ReactNode;
-  /** Trailing mark: an arrow out, or an arrow down for a file. */
-  action: ReactNode;
-  primary?: boolean;
-  /** A string renames the file on disk; see CV.filename. */
-  download?: boolean | string;
-};
-
-/**
- * One way to reach me. The whole row is the link, so the target is 452 by 76
- * rather than the width of the address inside it.
- */
-function Channel({ href, label, value, icon, action, primary, download }: ChannelProps) {
-  const external = href.startsWith('http');
-
-  return (
-    <li>
-      <a
-        className={`${styles.channel} glow`}
-        href={href}
-        data-primary={primary || undefined}
-        download={download}
-        rel={external ? 'noreferrer' : undefined}
-        target={external ? '_blank' : undefined}
-      >
-        {icon}
-        <span className={styles.channelText}>
-          <span className={styles.channelLabel}>{label}</span>
-          <span className={styles.channelValue}>{value}</span>
-        </span>
-        <span className={styles.channelArrow}>{action}</span>
-      </a>
-    </li>
-  );
-}
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const { contact } = contentFor(locale);
@@ -76,7 +35,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
           </div>
 
           <ul className={styles.channels}>
-            <Channel
+            <LinkRow
               primary
               href={SOCIALS.email}
               label={contact.channels.email}
@@ -84,21 +43,21 @@ export function ContactPage({ locale }: { locale: Locale }) {
               icon={<EnvelopeIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
             />
-            <Channel
+            <LinkRow
               href={SOCIALS.linkedin}
               label={contact.channels.linkedin}
               value="in/alexdanieldm"
               icon={<LinkedinIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
             />
-            <Channel
+            <LinkRow
               href={SOCIALS.github}
               label={contact.channels.github}
               value="@alexdanieldm"
               icon={<GithubIcon size={24} />}
               action={<ArrowUpRightIcon size={16} />}
             />
-            <Channel
+            <LinkRow
               download={CV.filename}
               href={CV.href}
               label={contact.channels.cv}
