@@ -15,13 +15,21 @@
  * So the numbers below are held against two targets, measured rather than
  * eyeballed, and a change that breaks either is a regression:
  *
- *   desktop  all eight rows visible in a 700px viewport (a 1440x800 laptop
- *            window once the browser's own chrome is taken off)
+ *   desktop  the WHOLE page inside 750px, footer and all, so a MacBook Air
+ *            never scrolls at all. It measures 738. The version before this
+ *            fitted the eight links and still ran 861 tall, so it scrolled
+ *            about 60px to reveal nothing but the footer and a watermark,
+ *            and a page that scrolls to show you nothing is just a taller
+ *            page.
  *   phone    the name, all four picked rows and the Everything else heading
- *            visible in 629px (an iPhone 13 mini)
+ *            inside 629px (an iPhone 13 mini). It now clears an iPhone SE's
+ *            560 for the four rows too.
  *
- * That leaves the first link at 310 on desktop and 299 on a phone. The scene
- * heights are the largest that still clear those, not a look I picked.
+ * That leaves the first link at 264 on desktop and 255 on a phone. The scene
+ * heights are the largest that still clear those, not a look I picked, and
+ * the footer is as short as it is for the same reason: it was 171px tall to
+ * hold a copyright line, a language switch and a decorative kanji, which is
+ * most of what the page was scrolling for.
  *
  * Both targets have to hold in BOTH languages, which is the part that is easy
  * to miss: the Spanish bio ran a line longer than the English and quietly blew
@@ -60,15 +68,15 @@
  */
 .scene {
   position: relative;
-  /* The tallest the strip can be and still leave all eight rows inside a
-     700px viewport. It was 300, which cost four rows. */
-  height: 200px;
+  /* The tallest the strip can be with the whole page still inside 750px.
+     It was 300, then 200. */
+  height: 170px;
   flex-shrink: 0;
   overflow: hidden;
 
   @include desktop-down {
-    /* Likewise against 629px, an iPhone 13 mini. Was 250. */
-    height: 180px;
+    /* Likewise against 629px, an iPhone 13 mini. Was 250, then 180. */
+    height: 150px;
   }
 }
 .sceneArt,
@@ -96,14 +104,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacer-xs);
+  gap: 6px;
   /* Deeper into the fade than the comp's -42. The scene is shorter now, so
      the block can sit further up it without landing on the artwork. */
-  margin-top: -56px;
+  margin-top: -64px;
   text-align: center;
 
   @include desktop-down {
-    margin-top: -40px;
+    margin-top: -46px;
   }
 }
 .kanji {
@@ -148,7 +156,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  margin: var(--spacer-2) 0 0;
+  margin: var(--spacer-1) 0 0;
   padding: 0;
   list-style: none;
 
@@ -163,7 +171,7 @@
 }
 
 .rest {
-  margin-top: var(--spacer-2);
+  margin-top: var(--spacer-1);
 }
 /**
  * Muted rather than the accent every other eyebrow on the site uses.
@@ -176,7 +184,7 @@
  * business being the loudest thing on the page anyway.
  */
 .restTitle {
-  margin-bottom: var(--spacer-sm);
+  margin-bottom: var(--spacer-xs);
   font-size: var(--typography-size-label);
   font-weight: var(--typography-weight-bold);
   letter-spacing: var(--typography-tracking-label-wide);
@@ -229,7 +237,9 @@
   align-items: flex-end;
   justify-content: space-between;
   margin-top: auto;
-  padding-block: var(--spacer-4) var(--spacer-2);
+  /* Was 60 on top. The footer is the part you were scrolling to reach and
+     there is nothing in it worth the trip, so it gets out of the way. */
+  padding-block: var(--spacer-1);
 }
 .footerText {
   display: flex;
@@ -252,13 +262,15 @@
  */
 .entrust {
   font-family: var(--font-kanji);
-  font-size: 112px;
+  /* It sets the footer's whole height, so its size is a page-length decision
+     as much as a visual one. 112 cost 87px of a page that had none to give. */
+  font-size: 80px;
   line-height: 0.78;
   color: var(--color-accent);
   opacity: 0.2;
 
   @include tablet-down {
-    font-size: 84px;
+    font-size: 72px;
     line-height: 0.8;
     opacity: 0.22;
   }

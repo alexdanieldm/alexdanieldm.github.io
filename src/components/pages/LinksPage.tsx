@@ -48,10 +48,10 @@ export function LinksPage({ locale }: { locale: Locale }) {
   const other = otherLocale(locale);
 
   return (
-    /* 200px rather than a token: the scene is 200 tall at its tallest and 180
+    /* 170px rather than a token: the scene is 170 tall at its tallest and 150
        on a phone, so offsetting by the taller of the two means no wash can
        reach up into the scene's fade at any width. */
-    <Ground washes={COMPACT_WASHES} washOffset="200px">
+    <Ground washes={COMPACT_WASHES} washOffset="170px">
       <main className={styles.page} id="main">
         {/* The strip composition at every width, including phones, where the
             banner uses the tall one. The tall scene is drawn to fill an 844px
