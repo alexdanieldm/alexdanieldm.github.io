@@ -42,6 +42,24 @@ export const CloseIcon = (props: IconProps) => (
   </Icon>
 );
 
+/** A playlist. Two note heads under a beam, so it reads at 21px. */
+export const MusicIcon = (props: IconProps) => (
+  <Icon {...props} viewBox="0 0 24 24" variant="stroke" strokeWidth={1.8}>
+    <path d="M9 18V5l11-2v13" />
+    <circle cx="6" cy="18" r="3" />
+    <circle cx="17" cy="16" r="3" />
+  </Icon>
+);
+
+/** A written page: a folded corner and two lines of text. */
+export const DocumentIcon = (props: IconProps) => (
+  <Icon {...props} viewBox="0 0 24 24" variant="stroke" strokeWidth={1.8}>
+    <path d="M4 4h10l6 6v10H4z" />
+    <path d="M14 4v6h6" />
+    <path d="M8 14h8M8 17h5" />
+  </Icon>
+);
+
 /** Carried over from the previous site, where it was also the favicon. */
 export const TerminalIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 640 640">

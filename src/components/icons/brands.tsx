@@ -12,6 +12,25 @@
 
 import { Icon, type IconProps } from './Icon';
 
+/**
+ * This site's own mark: the sun over the ridge line, the same scene the banner
+ * and the favicon draw.
+ *
+ * Not the favicon's geometry verbatim. That was drawn to sit on a 32px rounded
+ * tile, and without the tile behind it the filled ridges run into the sun and
+ * the whole thing reads as a silhouetted bust at 21px. Here the sun is clear of
+ * two stroked ridges instead, which survives the size.
+ *
+ * The one mark in this file that is mine rather than somebody else's.
+ */
+export const SiteMarkIcon = (props: IconProps) => (
+  <Icon {...props} viewBox="0 0 32 32" variant="stroke" strokeWidth={2.4}>
+    <circle cx="16" cy="10" r="5.5" fill="currentColor" stroke="none" />
+    <path d="M2 23 L9.5 18 L16.5 22.5 L24 17.5 L30 21.5" />
+    <path d="M2 29 L10 25 L20 29 L30 24.5" opacity="0.5" />
+  </Icon>
+);
+
 /** Font Awesome brand mark, carried over from the previous site. */
 export const ReactIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 512 512">
