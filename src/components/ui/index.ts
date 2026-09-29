@@ -3,6 +3,7 @@ export { Button } from './Button';
 export { Card } from './Card';
 export { LinkRow } from './LinkRow';
 export { Mark } from './Mark';
+export { Poster } from './Poster';
 export { RailHeading } from './RailHeading';
 export { SectionHeading } from './SectionHeading';
 export { Caret, Terminal, TerminalLine, Value } from './Terminal';

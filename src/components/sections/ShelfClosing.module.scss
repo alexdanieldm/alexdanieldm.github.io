@@ -1,0 +1,62 @@
+.closing {
+  margin-top: var(--shelf-section-gap);
+  padding-block: var(--spacer-4) var(--spacer-3);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border-faint);
+
+  @include page-gutter;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: var(--spacer-sm);
+  font-family: var(--font-display);
+  font-size: var(--typography-size-4);
+  font-style: italic;
+  line-height: var(--typography-height-display);
+}
+
+.rule {
+  display: block;
+  width: 46px; /* a drawn mark, not a space, so no spacing token applies */
+  height: 3px;
+  margin-bottom: var(--spacer-2);
+  background-color: var(--color-accent);
+}
+
+.paragraph {
+  font-size: var(--typography-size-body-medium);
+  line-height: var(--typography-height-body);
+
+  & + & {
+    margin-top: var(--spacer-1);
+  }
+}
+
+.link {
+  margin-top: var(--spacer-3);
+}
+
+.button {
+  display: none;
+  width: 100%;
+  margin-top: var(--spacer-2);
+}
+
+@include mobile-down {
+  .link {
+    display: none;
+  }
+
+  .button {
+    display: block;
+  }
+}

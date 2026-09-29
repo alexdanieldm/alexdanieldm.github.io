@@ -1,0 +1,40 @@
+/**
+ * The shelf's own display steps, declared once for everything inside it.
+ *
+ * The site's scale has no step at 64 or 52, and the shelf needs both. It was
+ * drawn as a ladder: the banner one step above the section titles, the section
+ * titles one step above the feature titles, which are the site's own section
+ * heading (--typography-size-4). The lede is one step above the takes it
+ * introduces rather than larger than them. Each size was checked on a real
+ * screen at 1440 by 810 and 390 by 844, where they are what put the first
+ * poster above the fold, so they are sizes by measurement rather than taste.
+ */
+.page {
+  --shelf-title: 64px;
+  --shelf-lede: 17px;
+  --shelf-section: 52px;
+  --shelf-highlight: 26px;
+  --shelf-wall: 19px;
+
+  /* The space above each section. More than the site's usual section rhythm:
+     by the second section you are already scrolling, and the posters need the
+     room between them. */
+  --shelf-section-gap: calc(var(--spacer-5) + var(--spacer-xs));
+
+  @include desktop-down {
+    --shelf-title: 48px;
+    --shelf-section: 40px;
+    --shelf-highlight: 24px;
+    --shelf-section-gap: calc(var(--spacer-4) + var(--spacer-sm));
+  }
+
+  /* 36px is the largest size at which the title holds one line on a 390px
+     phone, which saves a whole line above the first section. */
+  @include mobile-down {
+    --shelf-title: 36px;
+    --shelf-lede: 15px;
+    --shelf-section: 32px;
+    --shelf-wall: 18px;
+    --shelf-section-gap: var(--spacer-4);
+  }
+}

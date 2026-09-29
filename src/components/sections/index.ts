@@ -3,4 +3,7 @@ export { Approach } from './Approach';
 export { Banner } from './Banner';
 export { ContactCta } from './ContactCta';
 export { SelectedWork } from './SelectedWork';
+export { ShelfClosing } from './ShelfClosing';
+export { ShelfHero } from './ShelfHero';
+export { ShelfSection } from './ShelfSection';
 export { TechBand } from './TechBand';

@@ -1,0 +1,344 @@
+.section {
+  padding-top: var(--shelf-section-gap);
+
+  @include page-gutter;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+/* The intro is held to two lines at both widths, so on desktop the heading,
+   not the intro, sets this row's height. That is what pays for the room above
+   each section without pushing its content down. */
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--spacer-4) + var(--spacer-sm));
+  padding-bottom: var(--spacer-1);
+  margin-bottom: var(--spacer-3);
+  border-bottom: 1px solid var(--color-border);
+
+  @include tablet-down {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacer-sm);
+    margin-bottom: var(--spacer-2);
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-1);
+  font-family: var(--font-display);
+  font-size: var(--shelf-section);
+  font-style: italic;
+  line-height: 1;
+
+  @include mobile-down {
+    gap: var(--spacer-sm);
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 10px; /* a drawn mark, not a space: it scales with nothing */
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+
+  @include mobile-down {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+.intro {
+  max-width: 430px;
+  font-size: var(--typography-size-body-x-small);
+  line-height: var(--typography-height-body);
+  color: var(--color-muted);
+
+  @include mobile-down {
+    font-size: var(--typography-size-caption);
+  }
+}
+
+/* ── Feature: the one thing a section leads with ─────────────────────────── */
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacer-3);
+  padding: var(--spacer-3);
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+
+  @include desktop-down {
+    gap: var(--spacer-2);
+    padding: var(--spacer-2);
+  }
+
+  /* Stacked, the poster goes first and as wide as the card, up to a size that
+     still leaves the text on screen with it. On a phone that cap never binds. */
+  @include tablet-down {
+    flex-direction: column;
+    gap: var(--spacer-1);
+    padding: var(--spacer-1);
+  }
+}
+
+.featurePoster {
+  flex: 0 0 220px;
+
+  @include desktop-down {
+    flex-basis: 200px;
+  }
+
+  @include tablet-down {
+    flex: none;
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.featureBody {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin-bottom: var(--spacer-sm);
+  font-size: var(--typography-size-label);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.5;
+  letter-spacing: var(--typography-tracking-label-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-xs);
+    font-size: var(--typography-size-label-small);
+  }
+}
+
+.featureTitle {
+  margin-bottom: var(--spacer-sm);
+  font-family: var(--font-display);
+  font-size: var(--typography-size-4);
+  line-height: var(--typography-height-display);
+}
+
+.featureCredit {
+  margin-bottom: var(--spacer-1);
+  font-size: var(--typography-size-caption);
+  line-height: 1.5;
+  color: var(--color-muted);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-sm);
+    font-size: var(--typography-size-meta);
+  }
+}
+
+.featureTake {
+  max-width: 700px;
+  font-size: var(--typography-size-body-medium);
+  line-height: var(--typography-height-body);
+}
+
+/* Nested for weight: the link's own module sets its size at one class, and
+   which of two single-class rules wins would depend on bundle order. */
+.feature .featureRead {
+  margin-top: var(--spacer-2);
+
+  @include mobile-down {
+    margin-top: var(--spacer-1);
+    font-size: var(--typography-size-caption);
+  }
+}
+
+/* ── Highlights: anything with a sentence attached ───────────────────────── */
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--spacer-3) + var(--spacer-xs)) var(--spacer-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .feature + & {
+    margin-top: calc(var(--spacer-3) + var(--spacer-sm));
+  }
+
+  @include tablet-down {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--spacer-3);
+
+    .feature + & {
+      margin-top: var(--spacer-3);
+    }
+  }
+}
+
+/* One piece of markup, two arrangements. Beside a tall poster on desktop, the
+   take stays in the text column; on a phone the poster shrinks to sit beside
+   the title alone and the take runs full width under both. The last row takes
+   the leftover height, so a tall poster never pries the title and credit
+   apart. */
+.highlight {
+  display: grid;
+  grid-template-areas:
+    'poster title'
+    'poster credit'
+    'poster take'
+    'poster read';
+  grid-template-rows: auto auto auto 1fr;
+  grid-template-columns: 215px minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--spacer-2);
+
+  @include desktop-down {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+
+  @include mobile-down {
+    grid-template-areas:
+      'poster title'
+      'poster credit'
+      'take take'
+      'read read';
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-columns: 140px minmax(0, 1fr);
+    column-gap: var(--spacer-sm);
+  }
+}
+
+.highlightPoster {
+  grid-area: poster;
+}
+
+.highlightTitle {
+  grid-area: title;
+  font-family: var(--font-display);
+  font-size: var(--shelf-highlight);
+  line-height: 1.15;
+}
+
+.highlightCredit {
+  grid-area: credit;
+  margin-top: var(--spacer-xs);
+  font-size: var(--typography-size-meta);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.highlightTake {
+  grid-area: take;
+  margin-top: var(--spacer-sm);
+  font-size: var(--typography-size-body-x-small);
+  line-height: var(--typography-height-body);
+
+  @include mobile-down {
+    margin-top: var(--spacer-1);
+    font-size: var(--typography-size-body-medium);
+  }
+}
+
+.highlight .highlightRead {
+  grid-area: read;
+  margin-top: var(--spacer-sm);
+  font-size: var(--typography-size-caption);
+}
+
+/* ── The wall: everything else ────────────────────────────────────────────── */
+
+.wallHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacer-sm);
+  margin: var(--spacer-3) 0 var(--spacer-2);
+  padding-bottom: var(--spacer-sm);
+  border-bottom: 1px solid var(--color-border-faint);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-1);
+    padding-bottom: var(--spacer-xs);
+  }
+}
+
+/* Tight leading on both: one line each, and they will never wrap. */
+.wallLabel {
+  font-size: var(--typography-size-label);
+  line-height: 1.2;
+  letter-spacing: var(--typography-tracking-label);
+  text-transform: uppercase;
+  color: var(--color-faint);
+
+  @include mobile-down {
+    font-size: var(--typography-size-label-small);
+  }
+}
+
+.wallNote {
+  font-size: var(--typography-size-meta);
+  line-height: 1.2;
+  color: var(--color-faint);
+
+  @include mobile-down {
+    font-size: var(--typography-size-label);
+  }
+}
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--spacer-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-down {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--spacer-2);
+  }
+
+  @include tablet-down {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include mobile-down {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacer-2) var(--spacer-sm);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  margin-top: var(--spacer-sm);
+  font-family: var(--font-display);
+  font-size: var(--shelf-wall);
+  line-height: 1.2;
+}
+
+.cardCredit {
+  margin-top: 6px; /* the credit belongs to the title above it, not to the grid */
+  font-size: var(--typography-size-label);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.card .cardRead {
+  margin-top: var(--spacer-sm);
+  font-size: var(--typography-size-meta);
+
+  @include mobile-down {
+    font-size: var(--typography-size-label);
+  }
+}

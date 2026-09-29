@@ -49,6 +49,19 @@ export const ARTICLE_WASHES: Wash[] = [
   { x: 5, y: 73, radiusX: 820, radiusY: 470, tone: 'accent', drift: -24, duration: 26 },
 ];
 
+/**
+ * Five washes, for the shelf. It runs to about 7,700px on a laptop, twice the
+ * home page, so the field needs more lights to keep any stretch of it from
+ * going flat. They alternate sides, as the shelf's own boards did.
+ */
+export const SHELF_WASHES: Wash[] = [
+  { x: 6, y: 6, radiusX: 760, radiusY: 440, tone: 'accent', drift: -28, duration: 24 },
+  { x: 94, y: 25, radiusX: 800, radiusY: 460, tone: 'depth', drift: 18, duration: 29 },
+  { x: 5, y: 46, radiusX: 820, radiusY: 470, tone: 'accent', drift: -24, duration: 26 },
+  { x: 95, y: 67, radiusX: 800, radiusY: 460, tone: 'depth', drift: 16, duration: 31 },
+  { x: 6, y: 88, radiusX: 820, radiusY: 470, tone: 'accent', drift: -22, duration: 27 },
+];
+
 /** Two washes, for a page short enough that more would crowd it. */
 export const COMPACT_WASHES: Wash[] = [
   { x: 8, y: 41, radiusX: 620, radiusY: 260, tone: 'accent', drift: -22, duration: 24 },
