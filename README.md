@@ -253,6 +253,10 @@ page's centre instead of 58px right of it.
 Push to `master`. The workflow typechecks, lints, builds and hands `out/` to
 Pages. No build output is committed.
 
+A pull request into `master` runs the same install, checks and build, and
+stops there. So a branch that would break the site shows it on the PR, before
+anything reaches `master`.
+
 It needs **Settings → Pages → Source** set to **GitHub Actions**. Until that is
 switched over the deploy job fails and whatever is published stays up.
 

@@ -13,6 +13,11 @@ name: Deploy
 on:
   push:
     branches: [master]
+  # A pull request into master gets the same install, checks and build, so a
+  # branch that would break the site fails on the PR instead of on master. It
+  # stops there: nothing is uploaded and nothing deploys.
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -22,9 +27,14 @@ permissions:
 
 # Never two deploys at once. Queue rather than cancel: a half-finished deploy
 # that gets cancelled leaves the site in whatever state it reached.
+#
+# A pull request gets a group of its own. A group holds one pending run, and a
+# newer one replaces it, so sharing `pages` would let a PR check cancel a
+# deploy waiting its turn. In its own group, a new push to the PR cancels the
+# run still checking the old one, which is the only one worth finishing.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.event_name == 'pull_request' && format('checks-{0}', github.event.pull_request.number) || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -53,15 +63,20 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Everything from here on is the hand-off to Pages, which a pull request
+      # never gets.
       - name: Configure Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
