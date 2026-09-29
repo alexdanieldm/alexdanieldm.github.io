@@ -3,6 +3,8 @@
  *
  * The invitation asks what to try next rather than inviting an argument: this
  * is a page for sharing things, and the way back to me from it should be too.
+ * It leads to the shelf's own page for writing to me, not the portfolio's
+ * contact page, so answering it never takes anyone out of the shelf.
  */
 
 import { ArrowUpRightIcon } from '@/components/icons';
@@ -15,7 +17,7 @@ import styles from './ShelfClosing.module.scss';
 
 export function ShelfClosing({ locale }: { locale: Locale }) {
   const { closing } = contentFor(locale).shelf;
-  const contact = localePath(locale, ROUTES.contact);
+  const contact = localePath(locale, ROUTES.shelfContact);
 
   return (
     <section
