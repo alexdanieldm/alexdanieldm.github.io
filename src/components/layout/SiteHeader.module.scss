@@ -95,6 +95,24 @@
   }
 }
 
+/* Between the menu and 1180 the icons step out so the nav never has to wrap.
+   Measured, not guessed: the widest header, six items in Spanish, needs a
+   1127px layout beside the wordmark and the icons, and only 971px without
+   them, so every nav fits at every desktop width. The line sits at 1180 rather
+   than 1127 because a media query measures the window including a classic
+   scrollbar, which on Windows takes about 17px of the layout; 1180 leaves 36px
+   to spare even then. The nav is the part that has
+   to stay, since it carries the one door between the portfolio and the shelf;
+   the icons are also in the menu, the home footer and the contact page.
+
+   The Spanish nav already wrapped "Sobre mí" onto two lines between 991 and
+   1010 with five items. This fixes that too. */
+.socials {
+  @media screen and (max-width: 1180px) {
+    display: none;
+  }
+}
+
 .list {
   display: flex;
   align-items: center;
