@@ -143,8 +143,12 @@ export const SHELF: Record<ShelfSectionKey, ShelfItem[]> = {
  */
 export const SHELF_UPDATED = '2026-09-29';
 
-/** The poster widths on disk. 720 covers a retina screen at any card size. */
-export const POSTER_WIDTHS = [360, 720] as const;
+/**
+ * The poster widths on disk. 480 is the one a retina laptop actually wants: a
+ * wall card is 204px, so 408 device pixels, which used to round up to the 720
+ * file at twice the bytes. 720 still covers a phone at three times density.
+ */
+export const POSTER_WIDTHS = [360, 480, 720] as const;
 
 export function posterSrc(slug: string, width: (typeof POSTER_WIDTHS)[number]): string {
   return `/shelf/${slug}-${width}.webp`;

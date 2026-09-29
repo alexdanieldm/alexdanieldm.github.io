@@ -20,9 +20,10 @@ import { SHELF, SHELF_SECTIONS, type ShelfItem, type ShelfSectionKey } from '@/c
 import styles from './ShelfSection.module.scss';
 
 /**
- * How wide each tier shows its poster, so the browser picks 360 or 720 for
- * the screen it is on. These follow the breakpoints in the module; they only
- * have to be close, because there are two files to choose between, not ten.
+ * How wide each tier shows its poster, so the browser picks 360, 480 or 720
+ * for the screen it is on. These follow the breakpoints in the module; they
+ * only have to be close, because there are three files to choose between, not
+ * ten.
  */
 const SIZES = {
   feature:

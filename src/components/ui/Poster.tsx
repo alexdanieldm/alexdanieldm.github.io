@@ -16,7 +16,7 @@ import styles from './Poster.module.scss';
 type PosterProps = {
   slug: string;
   alt: string;
-  /** How wide the card shows it, so the browser fetches 360 or 720 correctly. */
+  /** How wide the card shows it, so the browser fetches the smallest file that covers it. */
   sizes: string;
   /** The feature's frame is coral; everything else is the quiet border. */
   tone?: 'accent';

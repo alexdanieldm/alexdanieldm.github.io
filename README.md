@@ -201,11 +201,12 @@ The count on desktop ("Ten anime, six manga…") and the phone's row of numbers
 are built from the data, singular and gender included in Spanish. The date in
 "Last updated" is `SHELF_UPDATED`, and it is set by hand.
 
-The posters are WebP at 360 and 720 wide in `public/shelf/`, every one cropped
-to the same 2:3 frame. They go through a hand-made `srcset` on a plain `<img>`,
-because static export has no image optimiser and `next/image` would ship one
-source to every screen. The art belongs to its creators; the footer says so
-and names where it came from.
+The posters are WebP at 360, 480 and 720 wide in `public/shelf/`, every one
+cropped to the same 2:3 frame. They go through a hand-made `srcset` on a plain
+`<img>`, because static export has no image optimiser and `next/image` would
+ship one source to every screen. 480 exists for the laptop: a wall card is
+204px, which on a retina screen used to round up to the 720 file. The art
+belongs to its creators; the footer says so and names where it came from.
 
 Two things on it were measured rather than drawn. On a 1440 by 810 laptop the
 first screen reaches the Gurren Lagann poster, and on a 390 by 844 phone it
