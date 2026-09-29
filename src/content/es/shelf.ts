@@ -3,7 +3,10 @@
 import type { ShelfContent } from '../locales';
 
 export const shelf: ShelfContent = {
-  title: 'Cosas a las que siempre vuelvo',
+  /* Not "Cosas a las que siempre vuelvo": at 30 characters it broke onto a
+     second line on a 390px phone, where the English holds one, and cost the
+     first poster 37px of the first screen. This is shorter and more natural. */
+  title: 'A lo que siempre vuelvo',
   metaDescription:
     'El manga, el anime, los juegos, las películas y las series que más quiero, y lo que me ' +
     'enseñó cada uno.',
