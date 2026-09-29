@@ -84,7 +84,7 @@ export const shelf: ShelfContent = {
     movies: {
       name: 'Películas',
       short: 'Películas',
-      intro: 'Dos que he visto más veces de las que sé contar. Las demás aún se están asentando.',
+      intro: 'Películas de las que nunca me canso. Pídeme ver una contigo y te diré que sí.',
     },
     television: {
       name: 'Televisión',

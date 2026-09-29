@@ -90,8 +90,7 @@ export const shelf = {
     movies: {
       name: 'Movies',
       short: 'Movies',
-      intro:
-        'Two I have watched more times than I can count. The rest are newer, still settling in.',
+      intro: 'Films I never get tired of. Ask me to watch one with you and I will say yes.',
     },
     television: {
       name: 'Television',
