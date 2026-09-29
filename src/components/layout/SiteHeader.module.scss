@@ -77,6 +77,27 @@
   }
 }
 
+/* The shelf's nav sits at the middle of the page. Spread with space-between it
+   sat in the middle of the room left between the wordmark and the icons, which
+   on the portfolio is close enough, since three icons nearly balance the
+   wordmark, but the shelf keeps one, and its nav drifted right of centre.
+   Three columns fix it: the sides take equal shares, so the middle column is
+   the page's middle. A side that needs more than its share takes it, so where
+   there is not room to centre, the nav moves only as far as it has to. */
+.header[data-nav='shelf'] {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-items: start;
+
+  .socials {
+    justify-self: end;
+  }
+
+  @include desktop-down {
+    display: flex;
+  }
+}
+
 .spacer {
   height: var(--header-height);
 }

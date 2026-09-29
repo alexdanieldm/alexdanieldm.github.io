@@ -45,7 +45,7 @@ export function SiteHeader({ locale, path, variant = 'overlay', nav = 'site' }: 
   const home = localePath(locale, nav === 'shelf' ? ROUTES.shelf : ROUTES.home);
 
   return (
-    <StickyHeader variant={variant}>
+    <StickyHeader variant={variant} nav={nav}>
       <Wordmark href={home} />
 
       <nav className={styles.nav} aria-label={common.mainNavLabel}>

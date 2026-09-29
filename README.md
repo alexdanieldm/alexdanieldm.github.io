@@ -240,7 +240,8 @@ scale, are declared once in `ShelfPage.module.scss` with that reason. And the
 portfolio's six items do not fit beside the header's icons below 1127px in
 Spanish, so between the menu and 1180 its icons leave the header and the nav
 keeps the room. The shelf's five items and one icon fit at every desktop width,
-so its email stays.
+so its email stays, and its nav is laid out on three columns so it sits at the
+page's centre instead of 58px right of it.
 
 ## Deploying
 
