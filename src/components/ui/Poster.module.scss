@@ -1,4 +1,7 @@
 .poster {
+  /* Block, because a written-up poster is an <a>, and an inline box would
+     ignore the aspect ratio and the overflow below. */
+  display: block;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--color-border);

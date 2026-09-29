@@ -81,12 +81,18 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
   const labelled = Boolean(feature) || highlights.length > 0;
   const unwritten = wall.every((item) => !item.writtenUp);
 
-  const read = (item: ShelfItem, className?: string) =>
-    item.writtenUp ? (
-      <ArrowLink href={localePath(locale, `${ROUTES.shelf}${item.slug}/`)} className={className}>
+  /* Where a written-up item leads, from its poster and from its button alike. */
+  const writeUp = (item: ShelfItem) =>
+    item.writtenUp ? localePath(locale, `${ROUTES.shelf}${item.slug}/`) : undefined;
+
+  const read = (item: ShelfItem, className?: string) => {
+    const href = writeUp(item);
+    return href ? (
+      <ArrowLink href={href} className={className}>
         {shelf.readWriteUp}
       </ArrowLink>
     ) : null;
+  };
 
   return (
     <section
@@ -112,6 +118,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
             sizes={SIZES.feature}
             tone="accent"
             priority={section === SHELF_SECTIONS[0]}
+            href={writeUp(feature.item)}
             className={styles.featurePoster}
           />
           <div className={styles.featureBody}>
@@ -135,6 +142,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
                   slug={item.slug}
                   alt={altFor(shelf, item)}
                   sizes={SIZES.highlight}
+                  href={writeUp(item)}
                   className={styles.highlightPoster}
                 />
                 <h3 className={styles.highlightTitle}>{item.title}</h3>
@@ -159,7 +167,12 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
           {wall.map((item) => (
             <li key={item.slug}>
               <article className={styles.card}>
-                <Poster slug={item.slug} alt={altFor(shelf, item)} sizes={SIZES.wall} />
+                <Poster
+                  slug={item.slug}
+                  alt={altFor(shelf, item)}
+                  sizes={SIZES.wall}
+                  href={writeUp(item)}
+                />
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardCredit}>{creditFor(shelf, item)}</p>
                 {read(item, styles.cardRead)}
