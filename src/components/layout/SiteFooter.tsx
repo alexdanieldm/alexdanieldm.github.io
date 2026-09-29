@@ -25,6 +25,12 @@ type SiteFooterProps = {
   /** What the inner variant's way back says. The shelf's does not say home. */
   backLabel?: string;
   /**
+   * Where the inner variant's way back leads, unprefixed like `path`. Home,
+   * unless the page sits below the shelf: the shelf page's own footer is the
+   * one door out to the portfolio, and every page under it leads back to it.
+   */
+  backTo?: string;
+  /**
    * The line beside the language switch. The portfolio says what it is built
    * with; the shelf says what it is made of.
    */
@@ -48,6 +54,7 @@ export function SiteFooter({
   longLocation = false,
   note,
   backLabel,
+  backTo = ROUTES.home,
   colophon,
 }: SiteFooterProps) {
   const { footer, language } = contentFor(locale).common;
@@ -66,7 +73,7 @@ export function SiteFooter({
         {variant === 'home' ? (
           <SocialLinks tone="quiet" />
         ) : (
-          <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
+          <ArrowLink href={localePath(locale, backTo)} direction="back">
             {backLabel ?? footer.backHome}
           </ArrowLink>
         )}
