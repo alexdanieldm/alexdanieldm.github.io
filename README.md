@@ -191,6 +191,27 @@ sees the portfolio is fine by me. Where the portfolio's footer lists what it is
 built with, the shelf's says what it is made of: rewatches, rereads and
 replays.
 
+That footer is the only door out, and answering the shelf does not open
+another. Its closing asks what I should try next, and that leads to
+`/shelf/contact/`, the personal half's contact page, not to `/contact/`, which
+is about work. It wears the shelf's header and footer, and its footer's way
+back says "Back to the shelf" and goes there, as every page under the shelf
+should. It is a route of its own rather than `/contact/` switching by where you
+came from, because on a static site that switch could only happen in the
+browser, and without JavaScript it would show the work page.
+
+It says "Your turn", lists a few of the emails I enjoy most, and offers email
+and nothing else, with the subject already written so a shelf email is
+recognisable before I open it. The email row is the contact page's, made
+quieter through the custom properties `LinkRow` already has for that, because
+by then the reader has chosen to write. Beside it are ten posters, the first
+two of each section in the shelf's order. They take the shelf's link rule from
+the other side: on the shelf, a poster with nothing written about it goes
+nowhere, because you are already where it lives; from this page it leads to its
+section there, and one with a write-up leads to that. On a phone the posters
+and the email row come straight after the first line, which keeps the row on
+the first screen.
+
 Everything on it is conditional on what I have written, and no tier is stored:
 
 - An item with a take in `src/content/{en,es}/shelf.ts` is a highlight. A
