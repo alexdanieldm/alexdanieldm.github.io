@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
 
   reactStrictMode: true,
 
+  experimental: {
+    /* The site has two root layouts, one per language, so there is no layout
+       at the top of `app/` for a 404 to sit in. A plain `not-found.tsx` got
+       wrapped in Next's default layout anyway, whose bare `<html>` merged with
+       ours in the browser, and every 404 logged a hydration mismatch on
+       `lang` and the font classes. `global-not-found.tsx` is the documented
+       answer for multiple root layouts: Next returns it whole, unwrapped. */
+    globalNotFound: true,
+  },
+
   sassOptions: {
     /* Lets every module say `@use 'abstracts' as *` regardless of its depth. */
     loadPaths: [path.join(process.cwd(), 'src/styles')],

@@ -38,7 +38,7 @@ src/
 │   ├── links/            the page a social bio points at
 │   ├── shelf/            things I love, and what each of them taught me
 │   ├── work/cli/         case study
-│   └── not-found.tsx     exported as 404.html
+│   └── global-not-found.tsx   exported as 404.html
 ├── components/
 │   ├── icons/            every mark, drawn in currentColor
 │   ├── layout/           header, mobile menu, footer, the animated ground

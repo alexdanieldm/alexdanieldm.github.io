@@ -19,9 +19,10 @@ export const metadata = pageMetadata({
  * It renders its own document. With two root layouts there is no single one for
  * a global not-found to sit inside, so it brings its own, in the default
  * language: a 404 is by definition a path that matched no route, so there is no
- * language in it to read.
+ * language in it to read. That is also why it is `global-not-found` rather than
+ * `not-found`: see the flag in `next.config.ts`.
  */
-export default function NotFound() {
+export default function GlobalNotFound() {
   return (
     <RootDocument locale={DEFAULT_LOCALE}>
       <NotFoundPage locale={DEFAULT_LOCALE} />
