@@ -25,6 +25,8 @@ export function navItems(locale: Locale, common: CommonContent): NavItem[] {
     { href: at('/#tech'), label: common.nav.tech },
     { href: at('/#approach'), label: common.nav.approach },
     { href: at('/contact/'), label: common.nav.contact },
+    /* The one door into the shelf, the way the shelf's nav has one door out. */
+    { href: at(ROUTES.shelf), label: common.nav.shelf },
   ];
 }
 
