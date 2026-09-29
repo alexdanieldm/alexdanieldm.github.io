@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { ArrowLink } from '@/components/ui';
 import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
@@ -15,6 +17,11 @@ type SiteFooterProps = {
   variant?: 'home' | 'inner';
   /** The contact page says where Barcelona is; everywhere else just says it. */
   longLocation?: boolean;
+  /**
+   * A line above the row, for something a page has to say about itself: the
+   * shelf's note that the artwork on it is not mine.
+   */
+  note?: ReactNode;
 };
 
 /**
@@ -32,6 +39,7 @@ export function SiteFooter({
   path,
   variant = 'home',
   longLocation = false,
+  note,
 }: SiteFooterProps) {
   const { footer, language } = contentFor(locale).common;
   const place = longLocation ? footer.locationLong : footer.location;
@@ -39,27 +47,31 @@ export function SiteFooter({
 
   return (
     <footer className={styles.footer}>
-      <p className={styles.note}>
-        © {new Date().getFullYear()} Alex Durán, {place}
-      </p>
+      {note && <p className={styles.disclaimer}>{note}</p>}
 
-      {variant === 'home' ? (
-        <SocialLinks tone="quiet" />
-      ) : (
-        <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
-          {footer.backHome}
-        </ArrowLink>
-      )}
+      <div className={styles.row}>
+        <p className={styles.note}>
+          © {new Date().getFullYear()} Alex Durán, {place}
+        </p>
 
-      <div className={styles.end}>
-        <LanguageSwitch
-          current={locale}
-          target={other}
-          href={localePath(other, path)}
-          label={language.label}
-          targetName={language[other]}
-        />
-        <p className={styles.note}>{footer.builtWith}</p>
+        {variant === 'home' ? (
+          <SocialLinks tone="quiet" />
+        ) : (
+          <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
+            {footer.backHome}
+          </ArrowLink>
+        )}
+
+        <div className={styles.end}>
+          <LanguageSwitch
+            current={locale}
+            target={other}
+            href={localePath(other, path)}
+            label={language.label}
+            targetName={language[other]}
+          />
+          <p className={styles.note}>{footer.builtWith}</p>
+        </div>
       </div>
     </footer>
   );
