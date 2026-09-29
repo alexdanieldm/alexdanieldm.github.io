@@ -48,7 +48,7 @@ export const SHELF: Record<ShelfSectionKey, ShelfItem[]> = {
     { slug: 'my-hero-academia', title: 'My Hero Academia', credit: 'Bones · 2016' },
     { slug: 'a-silent-voice', title: 'A Silent Voice', credit: 'Kyoto Animation · 2016' },
     { slug: 'banana-fish', title: 'Banana Fish', credit: 'MAPPA · 2018' },
-    { slug: 'code-geass', title: 'Code Geass', credit: 'Sunrise · 2006', art: 'cover' },
+    { slug: 'code-geass', title: 'Code Geass', credit: 'Sunrise · 2006' },
     { slug: 'fate-zero', title: 'Fate/Zero', credit: 'ufotable · 2011' },
     {
       slug: 'in-this-corner-of-the-world',

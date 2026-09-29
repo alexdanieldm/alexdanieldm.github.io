@@ -152,5 +152,5 @@ export const shelf = {
   disclaimer:
     'Cover and poster artwork on this page belongs to its creators and publishers. It is ' +
     'reproduced here to point you at the work, and is not presented as mine. Sources: ' +
-    'Wikipedia, TMDB, Steam and WEBTOON.',
+    'TMDB, Steam, MangaDex, Kyobo, WEBTOON and Wikipedia.',
 };

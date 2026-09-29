@@ -134,6 +134,6 @@ export const shelf: ShelfContent = {
 
   disclaimer:
     'Las portadas y los pósteres de esta página pertenecen a sus creadores y editoriales. ' +
-    'Están aquí para señalarte la obra, no como algo mío. Fuentes: Wikipedia, TMDB, Steam y ' +
-    'WEBTOON.',
+    'Están aquí para señalarte la obra, no como algo mío. Fuentes: TMDB, Steam, MangaDex, ' +
+    'Kyobo, WEBTOON y Wikipedia.',
 };
