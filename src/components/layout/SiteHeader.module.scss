@@ -106,8 +106,13 @@
    the icons are also in the menu, the home footer and the contact page.
 
    The Spanish nav already wrapped "Sobre mí" onto two lines between 991 and
-   1010 with five items. This fixes that too. */
-.socials {
+   1010 with five items. This fixes that too.
+
+   Only the portfolio's header needs it. The shelf's has five items and one
+   icon, and in Spanish with a classic scrollbar, at 979px of layout, its nav
+   still clears the wordmark and the icon by 51px each side. So the shelf's
+   email stays in the header at every width the header has a nav. */
+.socials[data-nav='site'] {
   @media screen and (max-width: 1180px) {
     display: none;
   }

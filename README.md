@@ -175,7 +175,9 @@ most, and what each of them taught me. It is the personal half of the site, so
 it carries its own nav, just the shelf's five sections. The portfolio's nav has
 a door in; the shelf's has no door back out. That is deliberate: the portfolio
 is where people get sent into the write-ups, and once they are reading, the
-page should not be offering them a way out to my work.
+page should not be offering them a way out to my work. For the same reason its
+header keeps one icon, email, and its phone menu has no CV: someone writing to
+me about a film is the one exit worth offering.
 
 Everything on it is conditional on what I have written, and no tier is stored:
 
@@ -211,9 +213,11 @@ belongs to its creators; the footer says so and names where it came from.
 Two things on it were measured rather than drawn. On a 1440 by 810 laptop the
 first screen reaches the Gurren Lagann poster, and on a 390 by 844 phone it
 shows 172px of it; the shelf's type sizes, which have no token on the site's
-scale, are declared once in `ShelfPage.module.scss` with that reason. And six
-items do not fit beside the header's icons below 1127px in Spanish, so between
-the menu and 1180 the icons leave the header and the nav keeps the room.
+scale, are declared once in `ShelfPage.module.scss` with that reason. And the
+portfolio's six items do not fit beside the header's icons below 1127px in
+Spanish, so between the menu and 1180 its icons leave the header and the nav
+keeps the room. The shelf's five items and one icon fit at every desktop width,
+so its email stays.
 
 ## Deploying
 
