@@ -33,6 +33,7 @@ src/
 │   ├── page.tsx          home
 │   ├── contact/
 │   ├── links/            the page a social bio points at
+│   ├── shelf/            things I love, and what each of them taught me
 │   ├── work/cli/         case study
 │   └── not-found.tsx     exported as 404.html
 ├── components/
@@ -166,6 +167,51 @@ else" label is muted rather than the accent every other eyebrow uses: coral at
 that size on the bare ground measures 4.85:1, and 4.06:1 where a glyph crosses
 one of the ground's grid dots. Inside a row coral is fine, because the row's
 own fill covers the dots.
+
+## The shelf
+
+`/shelf/`, with `/es/shelf/`. The manga, anime, games, films and shows I love
+most, and what each of them taught me. It is the personal half of the site, so
+it carries its own nav, the shelf's five sections and one link back to the
+portfolio, and the portfolio's nav carries one link in. Those two links are the
+only place the two halves touch.
+
+Everything on it is conditional on what I have written, and no tier is stored:
+
+- An item with a take in `src/content/{en,es}/shelf.ts` is a highlight. A
+  highlight marked `featured` in `src/content/shelf.ts` leads its section.
+  Everything else is the wall.
+- An item gets a "Read the write up" button only once `writtenUp` is set on it,
+  and only the button is a link. A card with nothing behind it is not a link at
+  all: no pointer cursor and nowhere to go, but the same hover lift.
+- The wall says "no write up on these yet" only while every card on it is
+  unwritten, and only when something sits above it.
+
+So publishing is data, never layout: write the take, set the flag. Frieren and
+Edith Finch are already marked `featured`, so each leads its section the day it
+gets a take.
+
+What ships first is day one: Gurren Lagann written up and featured, the other
+thirty three on the walls. Its `writtenUp` is already set so the page can be
+seen whole, which means its button points at `/shelf/gurren-lagann/` before
+that page exists. The shelf and that article ship together.
+
+The count on desktop ("Ten anime, six manga…") and the phone's row of numbers
+are built from the data, singular and gender included in Spanish. The date in
+"Last updated" is `SHELF_UPDATED`, and it is set by hand.
+
+The posters are WebP at 360 and 720 wide in `public/shelf/`, every one cropped
+to the same 2:3 frame. They go through a hand-made `srcset` on a plain `<img>`,
+because static export has no image optimiser and `next/image` would ship one
+source to every screen. The art belongs to its creators; the footer says so
+and names where it came from.
+
+Two things on it were measured rather than drawn. On a 1440 by 810 laptop the
+first screen reaches the Gurren Lagann poster, and on a 390 by 844 phone it
+shows 172px of it; the shelf's type sizes, which have no token on the site's
+scale, are declared once in `ShelfPage.module.scss` with that reason. And six
+items do not fit beside the header's icons below 1127px in Spanish, so between
+the menu and 1180 the icons leave the header and the nav keeps the room.
 
 ## Deploying
 
