@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { DownloadIcon } from '@/components/icons';
 import { contentFor, localePath, type Locale } from '@/content/locales';
-import { CV, navItems, ROUTES } from '@/content/navigation';
+import { CV, navItems, ROUTES, shelfNavItems } from '@/content/navigation';
 
 import { MobileMenu } from './MobileMenu';
 import { SocialLinks } from './SocialLinks';
@@ -23,16 +23,23 @@ type SiteHeaderProps = {
    * `solid` is its own strip with a rule under it, for a page with no banner.
    */
   variant?: 'overlay' | 'solid';
+  /**
+   * Which world the header belongs to. The shelf carries its own sections and
+   * one link back, and its wordmark stays on the shelf: the only way out is the
+   * link that says where it goes.
+   */
+  nav?: 'site' | 'shelf';
 };
 
-export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProps) {
-  const { common } = contentFor(locale);
-  const items = navItems(locale, common);
+export function SiteHeader({ locale, path, variant = 'overlay', nav = 'site' }: SiteHeaderProps) {
+  const { common, shelf } = contentFor(locale);
+  const items = nav === 'shelf' ? shelfNavItems(locale, common, shelf) : navItems(locale, common);
   const here = localePath(locale, path);
+  const home = localePath(locale, nav === 'shelf' ? ROUTES.shelf : ROUTES.home);
 
   return (
     <StickyHeader variant={variant}>
-      <Wordmark href={localePath(locale, ROUTES.home)} />
+      <Wordmark href={home} />
 
       <nav className={styles.nav} aria-label={common.mainNavLabel}>
         <ul className={styles.list}>
@@ -68,7 +75,7 @@ export function SiteHeader({ locale, path, variant = 'overlay' }: SiteHeaderProp
           close: common.closeMenu,
           dialog: common.siteNavLabel,
         }}
-        brand={<Wordmark href={localePath(locale, ROUTES.home)} />}
+        brand={<Wordmark href={home} />}
         footer={
           <>
             <SocialLinks />

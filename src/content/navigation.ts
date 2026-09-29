@@ -9,7 +9,8 @@
  * scroll when you are already there.
  */
 
-import { localePath, type CommonContent, type Locale } from './locales';
+import { localePath, type CommonContent, type Locale, type ShelfContent } from './locales';
+import { SHELF_SECTIONS } from './shelf';
 
 export type NavItem = {
   href: string;
@@ -24,6 +25,28 @@ export function navItems(locale: Locale, common: CommonContent): NavItem[] {
     { href: at('/#tech'), label: common.nav.tech },
     { href: at('/#approach'), label: common.nav.approach },
     { href: at('/contact/'), label: common.nav.contact },
+  ];
+}
+
+/**
+ * The shelf's own nav: its five sections, and one way back to the portfolio.
+ *
+ * A shelf route is a different world from the rest of the site, so it does
+ * not carry About, Work and the rest. It carries one door out, the way the
+ * portfolio's nav carries one door in, and the two worlds meet only there.
+ */
+export function shelfNavItems(
+  locale: Locale,
+  common: CommonContent,
+  shelf: ShelfContent,
+): NavItem[] {
+  const at = (path: string) => localePath(locale, path);
+  return [
+    ...SHELF_SECTIONS.map((key) => ({
+      href: at(`${ROUTES.shelf}#${key}`),
+      label: shelf.sections[key].name,
+    })),
+    { href: at(ROUTES.home), label: common.nav.portfolio },
   ];
 }
 
