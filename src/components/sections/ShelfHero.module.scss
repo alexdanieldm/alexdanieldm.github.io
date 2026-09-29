@@ -145,6 +145,13 @@
   margin: 0;
 }
 
+/* Each number centred under its label, so the row reads as five columns with
+   a figure in the middle of each rather than five ragged left edges. An item
+   is as wide as its label, so the labels stay exactly where they were. */
+.stat {
+  text-align: center;
+}
+
 .number {
   margin: 0;
   font-size: var(--typography-size-caption);

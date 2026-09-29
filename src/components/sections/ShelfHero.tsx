@@ -73,7 +73,7 @@ export function ShelfHero({ locale }: { locale: Locale }) {
           <div className={styles.counts}>
             <dl className={styles.stats}>
               {SHELF_SECTIONS.map((key) => (
-                <div key={key}>
+                <div key={key} className={styles.stat}>
                   <dt className={styles.label}>{shelf.sections[key].short}</dt>
                   <dd className={styles.number}>{SHELF[key].length}</dd>
                 </div>
