@@ -5,11 +5,18 @@
  * the shelf's texture, not an affordance: a card with no write-up is not a
  * link, keeps the arrow cursor, and goes nowhere, but it still responds.
  *
+ * Until its file arrives it shows itself blurred, from a 12x18 copy that comes
+ * inline with the page (`content/shelf-placeholders.ts`), so scrolling faster
+ * than the network never shows an empty frame.
+ *
  * @example
  * <Poster slug="frieren" alt="Cover art for Frieren" sizes="204px" />
  */
 
+import type { CSSProperties } from 'react';
+
 import { POSTER_WIDTHS, posterSrc } from '@/content/shelf';
+import { POSTER_PLACEHOLDERS } from '@/content/shelf-placeholders';
 
 import styles from './Poster.module.scss';
 
@@ -26,8 +33,18 @@ type PosterProps = {
 };
 
 export function Poster({ slug, alt, sizes, tone, priority = false, className }: PosterProps) {
+  const placeholder = POSTER_PLACEHOLDERS[slug];
+
   return (
-    <div className={['glow', styles.poster, className].filter(Boolean).join(' ')} data-tone={tone}>
+    <div
+      className={['glow', styles.poster, className].filter(Boolean).join(' ')}
+      data-tone={tone}
+      style={
+        placeholder
+          ? ({ '--poster-placeholder': `url(${placeholder})` } as CSSProperties)
+          : undefined
+      }
+    >
       {/* A plain <img> on purpose. Static export has no image optimiser, so
           next/image would render one src and no srcset, and every phone would
           fetch the retina file. The two widths are made once, ahead of time. */}

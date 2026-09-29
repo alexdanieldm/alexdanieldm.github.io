@@ -23,6 +23,9 @@ npm run dev
 | `npm run lint`      | ESLint                                            |
 | `npm run format`    | Prettier                                          |
 
+`npm run shelf:placeholders` regenerates the shelf's blurred placeholders. Run
+it after adding or replacing a poster.
+
 Node 20.9 or newer.
 
 ## How it is laid out
@@ -216,6 +219,15 @@ cropped to the same 2:3 frame. They go through a hand-made `srcset` on a plain
 ship one source to every screen. 480 exists for the laptop: a wall card is
 204px, which on a retina screen used to round up to the 720 file. The art
 belongs to its creators; the footer says so and names where it came from.
+
+Until its file arrives, every card shows its own poster blurred: a 12x18 copy,
+inlined in the page as a data URI, drawn under the image. All thirty four cost
+the page about 10KB compressed, half of it in the copy of the markup Next
+appends for hydration, which comes after everything a first paint needs. In
+exchange, scrolling faster than the network shows colour that sharpens, never
+an empty frame. The copies live in
+`src/content/shelf-placeholders.ts`, which `npm run shelf:placeholders` writes
+from the 360 files, so it has to be run again whenever a poster changes.
 
 Two things on it were measured rather than drawn. On a 1440 by 810 laptop the
 first screen reaches the Gurren Lagann poster, and on a 390 by 844 phone it
