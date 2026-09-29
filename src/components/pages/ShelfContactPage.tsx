@@ -18,10 +18,10 @@ import styles from './ShelfContactPage.module.scss';
  */
 const COLLAGE = SHELF_SECTIONS.map((key) => ({ key, items: SHELF[key].slice(0, 2) }));
 
-/* 81px wherever the grid keeps the laptop's width, which is everywhere but a
-   phone; there it is a fifth of the width, less the gutters and the gaps. The
-   360 file covers both, even at three times the density. */
-const SIZES = '(max-width: 450px) calc(20vw - 16px), 81px';
+/* 106px on a laptop, 84px where a tablet keeps the grid at 452, and on a phone
+   a fifth of the width less the gutters and the gaps. The 360 file covers all
+   three, even at three times the density. */
+const SIZES = '(max-width: 450px) calc(20vw - 16px), (max-width: 990px) 84px, 106px';
 
 /**
  * The shelf's own page for writing to me, at /shelf/contact/.
@@ -55,9 +55,9 @@ export function ShelfContactPage({ locale }: { locale: Locale }) {
         {/* The shelf's display steps come from the shelf page's module, which
             declares them once for everything inside the shelf. */}
         <main id="main" className={`${shelfPage.page} ${styles.page}`}>
-          <h1 className={styles.title}>{page.title}</h1>
+          <div className={styles.body}>
+            <h1 className={styles.title}>{page.title}</h1>
 
-          <section className={styles.body} aria-label={page.bodyLabel}>
             <div className={styles.text}>
               <Copy text={page.lede} className={styles.lede} />
 
@@ -110,7 +110,7 @@ export function ShelfContactPage({ locale }: { locale: Locale }) {
                 />
               </ul>
             </div>
-          </section>
+          </div>
         </main>
 
         <SiteFooter

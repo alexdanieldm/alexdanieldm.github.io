@@ -168,7 +168,6 @@ export const shelf = {
     metaDescription:
       'Write to me about the shelf: something I should try next, what a write up made you ' +
       'think of, or what you keep going back to.',
-    bodyLabel: 'How to write to me',
     /* Self-contained on purpose. "These things" assumed the reader already
        knew everything on the shelf; this only assumes they love something. */
     lede: 'I like hearing what other people love, and why.',

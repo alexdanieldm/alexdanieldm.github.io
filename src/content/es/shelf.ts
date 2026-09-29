@@ -139,7 +139,6 @@ export const shelf: ShelfContent = {
     metaDescription:
       'Escríbeme sobre la estantería: algo que debería probar, lo que te hizo pensar un ' +
       'artículo o aquello a lo que siempre vuelves.',
-    bodyLabel: 'Cómo escribirme',
     lede: 'Me gusta saber qué le encanta a la gente, y por qué.',
     promptsIntro: 'Algunos de los emails que más disfruto:',
     prompts: [
