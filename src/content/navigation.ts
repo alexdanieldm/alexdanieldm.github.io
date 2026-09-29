@@ -31,25 +31,21 @@ export function navItems(locale: Locale, common: CommonContent): NavItem[] {
 }
 
 /**
- * The shelf's own nav: its five sections, and one way back to the portfolio.
+ * The shelf's own nav: its five sections, and nothing that leads away.
  *
- * A shelf route is a different world from the rest of the site, so it does
- * not carry About, Work and the rest. It carries one door out, the way the
- * portfolio's nav carries one door in, and the two worlds meet only there.
+ * The portfolio's nav carries a door into the shelf, and the shelf carries no
+ * door back. That asymmetry is the point: the portfolio is where people get
+ * sent into the write-ups, and once they are reading, the page should keep
+ * them there rather than offer them a way out to my work. The way home is
+ * still there for anyone who wants it, at the top of the page and in the
+ * footer, just not in the nav.
  */
-export function shelfNavItems(
-  locale: Locale,
-  common: CommonContent,
-  shelf: ShelfContent,
-): NavItem[] {
+export function shelfNavItems(locale: Locale, shelf: ShelfContent): NavItem[] {
   const at = (path: string) => localePath(locale, path);
-  return [
-    ...SHELF_SECTIONS.map((key) => ({
-      href: at(`${ROUTES.shelf}#${key}`),
-      label: shelf.sections[key].name,
-    })),
-    { href: at(ROUTES.home), label: common.nav.portfolio },
-  ];
+  return SHELF_SECTIONS.map((key) => ({
+    href: at(`${ROUTES.shelf}#${key}`),
+    label: shelf.sections[key].name,
+  }));
 }
 
 /** Routes, in one place, so a page never spells a path out. */

@@ -14,8 +14,6 @@ export const common = {
     approach: 'Approach',
     contact: 'Contact',
     shelf: 'Shelf',
-    /* The shelf's one way back to the rest of the site. */
-    portfolio: 'Portfolio',
   },
 
   footer: {

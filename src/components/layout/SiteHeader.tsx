@@ -24,16 +24,16 @@ type SiteHeaderProps = {
    */
   variant?: 'overlay' | 'solid';
   /**
-   * Which world the header belongs to. The shelf carries its own sections and
-   * one link back, and its wordmark stays on the shelf: the only way out is the
-   * link that says where it goes.
+   * Which world the header belongs to. The shelf carries only its own
+   * sections, and its wordmark stays on the shelf, so nothing in the header
+   * leads a reader away from what they came to read.
    */
   nav?: 'site' | 'shelf';
 };
 
 export function SiteHeader({ locale, path, variant = 'overlay', nav = 'site' }: SiteHeaderProps) {
   const { common, shelf } = contentFor(locale);
-  const items = nav === 'shelf' ? shelfNavItems(locale, common, shelf) : navItems(locale, common);
+  const items = nav === 'shelf' ? shelfNavItems(locale, shelf) : navItems(locale, common);
   const here = localePath(locale, path);
   const home = localePath(locale, nav === 'shelf' ? ROUTES.shelf : ROUTES.home);
 

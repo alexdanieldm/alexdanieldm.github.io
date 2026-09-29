@@ -172,9 +172,10 @@ own fill covers the dots.
 
 `/shelf/`, with `/es/shelf/`. The manga, anime, games, films and shows I love
 most, and what each of them taught me. It is the personal half of the site, so
-it carries its own nav, the shelf's five sections and one link back to the
-portfolio, and the portfolio's nav carries one link in. Those two links are the
-only place the two halves touch.
+it carries its own nav, just the shelf's five sections. The portfolio's nav has
+a door in; the shelf's has no door back out. That is deliberate: the portfolio
+is where people get sent into the write-ups, and once they are reading, the
+page should not be offering them a way out to my work.
 
 Everything on it is conditional on what I have written, and no tier is stored:
 

@@ -16,8 +16,6 @@ export const common: CommonContent = {
     approach: 'Método',
     contact: 'Contacto',
     shelf: 'Estantería',
-    /* The shelf's one way back to the rest of the site. */
-    portfolio: 'Portfolio',
   },
 
   footer: {
