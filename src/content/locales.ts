@@ -12,11 +12,13 @@ import { common as commonEn } from './en/common';
 import { contact as contactEn } from './en/contact';
 import { home as homeEn } from './en/home';
 import { links as linksEn } from './en/links';
+import { shelf as shelfEn } from './en/shelf';
 import { caseStudy as caseStudyEs } from './es/caseStudy';
 import { common as commonEs } from './es/common';
 import { contact as contactEs } from './es/contact';
 import { home as homeEs } from './es/home';
 import { links as linksEs } from './es/links';
+import { shelf as shelfEs } from './es/shelf';
 
 export const LOCALES = ['en', 'es'] as const;
 export type Locale = (typeof LOCALES)[number];
@@ -28,6 +30,7 @@ export type CaseStudyContent = typeof caseStudyEn;
 export type ContactContent = typeof contactEn;
 export type CommonContent = typeof commonEn;
 export type LinksContent = typeof linksEn;
+export type ShelfContent = typeof shelfEn;
 
 const CONTENT = {
   en: {
@@ -35,6 +38,7 @@ const CONTENT = {
     caseStudy: caseStudyEn,
     contact: contactEn,
     links: linksEn,
+    shelf: shelfEn,
     common: commonEn,
   },
   es: {
@@ -42,6 +46,7 @@ const CONTENT = {
     caseStudy: caseStudyEs,
     contact: contactEs,
     links: linksEs,
+    shelf: shelfEs,
     common: commonEs,
   },
 } satisfies Record<Locale, unknown>;

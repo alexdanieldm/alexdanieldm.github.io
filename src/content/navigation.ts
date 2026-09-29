@@ -35,6 +35,7 @@ export const ROUTES = {
   /* Not in navItems on purpose. It is what a social bio points at, not a
      destination anyone should reach from the site's own nav. */
   links: '/links/',
+  shelf: '/shelf/',
 } as const;
 
 export const SOCIALS = {
