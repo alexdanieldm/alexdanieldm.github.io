@@ -1,12 +1,13 @@
 /**
  * The shelf's own page for writing to me.
  *
- * On a laptop, two stacks side by side: the words on the left, the email row on
- * the right, at the contact page's two measures, 620 and 452. On a phone the
- * stacks give up their boxes (`display: contents`) so their pieces can be put in
- * the order a phone needs: the email row straight after the first line, where
- * it is still on the first screen. The markup keeps the laptop's order, which
- * is also the order it is read aloud in.
+ * On a laptop, two stacks side by side, at the contact page's two measures, 620
+ * and 452: the words on the left, and on the right ten posters from the shelf
+ * with the email row under them as their last row. On a phone the stacks give
+ * up their boxes (`display: contents`) so their pieces can be put in the order a
+ * phone needs: the posters and the email row straight after the first line,
+ * where the row is still on the first screen, and the list after them. The
+ * markup keeps the laptop's order, which is also the order it is read aloud in.
  */
 
 .frame {
@@ -128,6 +129,28 @@
   background-color: var(--color-accent);
 }
 
+/* A column per section, and the email row one grid gap under them, as wide as
+   the grid, so it reads as the collage's last row rather than a banner. */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--spacer-sm);
+
+  @include mobile-down {
+    gap: var(--spacer-xs);
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-sm);
+
+  @include mobile-down {
+    gap: var(--spacer-xs);
+  }
+}
+
 .channels {
   margin: 0;
   padding: 0;
@@ -153,11 +176,33 @@
     order: 1;
   }
 
-  .channels {
+  .shelf {
     order: 2;
   }
 
-  .more {
+  /* One grid gap under the posters, as on a laptop, rather than the column's
+     wider gap between everything else. */
+  .channels {
     order: 3;
+    margin-top: calc(var(--spacer-sm) - var(--spacer-2));
+  }
+
+  .more {
+    order: 4;
+  }
+
+  /* A tablet's column is far wider than the pair was drawn for. Stretched to a
+     768px tablet's 673px, the posters grew to 125px and the grid to 387px
+     tall, and the list ended at 993px, past the first screen of an iPad. At
+     the laptop's width it ends at 861. */
+  .shelf,
+  .channels {
+    max-width: 452px;
+  }
+}
+
+@include mobile-down {
+  .channels {
+    margin-top: calc(var(--spacer-xs) - var(--spacer-2));
   }
 }
