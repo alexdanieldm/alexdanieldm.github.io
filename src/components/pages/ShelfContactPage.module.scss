@@ -1,0 +1,163 @@
+/**
+ * The shelf's own page for writing to me.
+ *
+ * On a laptop, two stacks side by side: the words on the left, the email row on
+ * the right, at the contact page's two measures, 620 and 452. On a phone the
+ * stacks give up their boxes (`display: contents`) so their pieces can be put in
+ * the order a phone needs: the email row straight after the first line, where
+ * it is still on the first screen. The markup keeps the laptop's order, which
+ * is also the order it is read aloud in.
+ */
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  /* The header is fixed and its spacer sits above this, so this is the rest of
+     the window. On a screen taller than the page, the footer sits at the
+     bottom of it instead of floating halfway up. */
+  min-height: calc(100svh - var(--header-height));
+}
+
+.page {
+  flex-grow: 1;
+  padding-block: var(--spacer-4) var(--section-padding-block);
+
+  @include page-gutter;
+
+  @include mobile-down {
+    padding-top: var(--spacer-3);
+  }
+}
+
+/* The shelf title's size and voice, balanced so a two line title on a phone
+   never leaves one word on the second line. */
+.title {
+  margin-bottom: var(--spacer-2);
+  font-family: var(--font-display);
+  font-size: var(--shelf-title);
+  font-style: italic;
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+  text-wrap: balance;
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-1);
+  }
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacer-5);
+
+  @include desktop-down {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacer-2);
+  }
+}
+
+/* Both columns give way between the breakpoint and 1232px, in proportion, so
+   the words are never squeezed to a strip beside a column that kept its size. */
+.text {
+  display: flex;
+  flex: 0 1 620px;
+  flex-direction: column;
+  gap: 22px; /* the contact page's paragraph rhythm */
+  min-width: 0;
+}
+
+.side {
+  display: flex;
+  flex: 0 1 452px;
+  flex-direction: column;
+  gap: var(--spacer-sm);
+  min-width: 0;
+}
+
+.lede {
+  font-size: var(--shelf-lede);
+  line-height: var(--typography-height-body);
+  text-wrap: pretty;
+}
+
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-sm);
+}
+
+.prompts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border-faint);
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-block: var(--spacer-sm);
+    border-bottom: 1px solid var(--color-border-faint);
+    line-height: 1.6;
+    text-wrap: pretty;
+
+    @include mobile-down {
+      gap: var(--spacer-sm);
+      padding-block: 10px;
+    }
+  }
+}
+
+/* The shelf's section dot, at the size it has on a phone. */
+.dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.channels {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* Quieter than the contact page's row. By the time someone is here they have
+     already decided to write, so it does not need to shout. The link page's
+     quiet rows are 68px with a 14px address; this one is smaller again, and
+     keeps its icon at full size. */
+  --link-row-height: 56px;
+  --link-row-gap: 14px;
+  --link-row-padding: 18px;
+  --link-row-value-size: var(--typography-size-caption);
+}
+
+@include desktop-down {
+  .text,
+  .side {
+    display: contents;
+  }
+
+  .lede {
+    order: 1;
+  }
+
+  .channels {
+    order: 2;
+  }
+
+  .more {
+    order: 3;
+  }
+}

@@ -9,6 +9,9 @@ export const shelf = {
      because the shelf is one, and it is worded so that leaving sounds like
      the less fun option. */
   back: 'Back to the boring stuff',
+  /* The way back from a page below the shelf. Only the shelf's own footer
+     leads out to the portfolio; from anywhere under it, back is the shelf. */
+  backToShelf: 'Back to the shelf',
   lede:
     'Nothing on this page is work. These are the manga, anime, games, films and shows I love ' +
     'most, the ones I have read, played or watched enough times to know by heart, and ' +
@@ -150,6 +153,38 @@ export const shelf = {
       'I add to it slowly, one piece at a time, so it is never quite finished.',
     ],
     cta: 'Tell me what I should try next',
+  },
+
+  /**
+   * The shelf's own page for writing to me, which the closing leads to. It is
+   * the personal half's contact page, so it offers email and nothing else: no
+   * LinkedIn, no GitHub, no CV.
+   */
+  contact: {
+    title: 'Your turn',
+    /* What the tab and a search result say. The heading can be playful because
+       the page around it explains it; a tab on its own cannot. */
+    metaTitle: 'Write to me',
+    metaDescription:
+      'Write to me about the shelf: something I should try next, what a write up made you ' +
+      'think of, or what you keep going back to.',
+    bodyLabel: 'How to write to me',
+    /* Self-contained on purpose. "These things" assumed the reader already
+       knew everything on the shelf; this only assumes they love something. */
+    lede: 'I like hearing what other people love, and why.',
+    promptsIntro: 'A few of the emails I enjoy most:',
+    /* Things I enjoy getting, not questions to answer: as questions they read
+       like a form to fill in. */
+    prompts: [
+      'Something I should try next, and what it gave you',
+      'What a write up made you think of',
+      'Something here you love for a different reason than I do',
+      'Whatever you keep rewatching, rereading or replaying',
+    ],
+    closing: 'Email is the way to reach me, and [[I read every one]].',
+    /* Already in the subject line, and people can change it. It tells me which
+       half of the site an email came from before I open it. */
+    subject: 'About the shelf',
   },
 
   disclaimer:

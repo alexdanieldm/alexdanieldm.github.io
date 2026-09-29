@@ -12,6 +12,7 @@ export const shelf: ShelfContent = {
     'enseñó cada uno.',
 
   back: 'Volver a lo aburrido',
+  backToShelf: 'Volver a la estantería',
   lede:
     'Nada en esta página es trabajo. Son el manga, el anime, los juegos, las películas y las ' +
     'series que más quiero, los que he leído, jugado o visto tantas veces que me los sé de ' +
@@ -130,6 +131,25 @@ export const shelf: ShelfContent = {
       'La voy ampliando poco a poco, pieza a pieza, así que nunca está del todo terminada.',
     ],
     cta: 'Dime qué debería probar ahora',
+  },
+
+  contact: {
+    title: 'Te toca',
+    metaTitle: 'Escríbeme',
+    metaDescription:
+      'Escríbeme sobre la estantería: algo que debería probar, lo que te hizo pensar un ' +
+      'artículo o aquello a lo que siempre vuelves.',
+    bodyLabel: 'Cómo escribirme',
+    lede: 'Me gusta saber qué le encanta a la gente, y por qué.',
+    promptsIntro: 'Algunos de los emails que más disfruto:',
+    prompts: [
+      'Algo que debería probar, y lo que te dio',
+      'Lo que te hizo pensar un artículo',
+      'Algo de aquí que te encante por un motivo distinto al mío',
+      'Lo que tú vuelves a ver, a leer o a jugar',
+    ],
+    closing: 'El email es la manera de escribirme, y [[los leo todos]].',
+    subject: 'Sobre la estantería',
   },
 
   disclaimer:

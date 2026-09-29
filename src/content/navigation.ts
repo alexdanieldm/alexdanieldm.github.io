@@ -57,6 +57,13 @@ export const ROUTES = {
      destination anyone should reach from the site's own nav. */
   links: '/links/',
   shelf: '/shelf/',
+  /* Writing to me from inside the shelf. A route of its own rather than
+     /contact/ switching its content by where you came from: the site is
+     static, so that switch could only happen in the browser, and anyone
+     without JavaScript would get the work page, its nav and its CV. A static
+     route also wins over a write-up's /shelf/[slug]/, and nothing on the
+     shelf will ever be called contact. */
+  shelfContact: '/shelf/contact/',
 } as const;
 
 export const SOCIALS = {
