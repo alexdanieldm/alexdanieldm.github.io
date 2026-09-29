@@ -12,10 +12,9 @@ import styles from './ShelfPage.module.scss';
  * The shelf: things I love, and what each of them taught me.
  *
  * It is the personal half of the site, so it carries its own nav rather than
- * the portfolio's, with no way back in it. The way out is a quiet link above
- * the title and another in the footer, both worded not to pull. Everything on
- * it is conditional on what I have written: see `ShelfSection` for how an item
- * earns its place.
+ * the portfolio's, with no way back in it. The way out is one quiet link in the
+ * footer, worded not to pull. Everything on it is conditional on what I have
+ * written: see `ShelfSection` for how an item earns its place.
  */
 export function ShelfPage({ locale }: { locale: Locale }) {
   const { shelf } = contentFor(locale);

@@ -8,19 +8,6 @@
   }
 }
 
-/* Flex, and tight leading, because as a plain block this wrapper was 30px tall
-   around a 13px link: it drew a line box at the body's 1.85 leading. Those
-   14px came straight out of the first poster's room above the fold. */
-.back {
-  display: flex;
-  margin-bottom: var(--spacer-3);
-  line-height: 1.2;
-
-  @include mobile-down {
-    margin-bottom: var(--spacer-2);
-  }
-}
-
 /* The box sits beside the title, not beside the paragraph: beside the
    paragraph it was two and a half times its height, and the difference was
    233px of nothing between the page and its first poster. It stretches to the

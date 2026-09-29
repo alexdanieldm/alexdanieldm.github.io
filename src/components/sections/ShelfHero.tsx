@@ -6,9 +6,7 @@
  * that the first section and its feature start above the fold on a laptop.
  */
 
-import { ArrowLink } from '@/components/ui';
-import { contentFor, localePath, type Locale, type ShelfContent } from '@/content/locales';
-import { ROUTES } from '@/content/navigation';
+import { contentFor, type Locale, type ShelfContent } from '@/content/locales';
 import { Copy } from '@/content/rich';
 import { SHELF, SHELF_SECTIONS, SHELF_UPDATED } from '@/content/shelf';
 
@@ -41,12 +39,6 @@ export function ShelfHero({ locale }: { locale: Locale }) {
 
   return (
     <section className={styles.hero} aria-labelledby="shelf-title">
-      <div className={styles.back}>
-        <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
-          {shelf.back}
-        </ArrowLink>
-      </div>
-
       <div className={styles.row}>
         <div className={styles.text}>
           <h1 className={styles.title} id="shelf-title">

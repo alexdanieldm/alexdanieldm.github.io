@@ -5,9 +5,9 @@ export const shelf = {
   metaDescription:
     'The manga, anime, games, films and shows I love most, and what each of them taught me.',
 
-  /* The way out to the portfolio, above the title and in the footer. It does
-     not say home, because the shelf is one, and it is worded so that leaving
-     sounds like the less fun option. */
+  /* The way out to the portfolio, in the footer. It does not say home,
+     because the shelf is one, and it is worded so that leaving sounds like
+     the less fun option. */
   back: 'Back to the boring stuff',
   lede:
     'Nothing on this page is work. These are the manga, anime, games, films and shows I love ' +

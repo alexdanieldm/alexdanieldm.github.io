@@ -182,10 +182,12 @@ page should not be offering them a way out to my work. For the same reason its
 header keeps one icon, email, and its phone menu has no CV: someone writing to
 me about a film is the one exit worth offering.
 
-There is still a way out, above the title and in the footer, but it does not
-say "Back home", because the shelf is a home too. It says "Back to the boring
-stuff", which is honest about where it goes and does not make going there
-sound like the better option. Where the portfolio's footer lists what it is
+There is still a way out, one link in the footer, and it does not say "Back
+home", because the shelf is a home too. It says "Back to the boring stuff",
+which is honest about where it goes and does not make going there sound like
+the better option. There used to be a second one above the title; it was the
+first thing under the header, and someone who bookmarks the shelf and never
+sees the portfolio is fine by me. Where the portfolio's footer lists what it is
 built with, the shelf's says what it is made of: rewatches, rereads and
 replays.
 
@@ -234,9 +236,9 @@ an empty frame. The copies live in
 from the 360 files, so it has to be run again whenever a poster changes.
 
 Two things on it were measured rather than drawn. On a 1440 by 810 laptop the
-first screen reaches the Gurren Lagann poster, and on a 390 by 844 phone it
-shows 172px of it; the shelf's type sizes, which have no token on the site's
-scale, are declared once in `ShelfPage.module.scss` with that reason. And the
+first screen shows 195px of the Gurren Lagann poster, and on a 390 by 844 phone
+212px of it; the shelf's type sizes, which have no token on the site's scale,
+are declared once in `ShelfPage.module.scss` with that reason. And the
 portfolio's six items do not fit beside the header's icons below 1127px in
 Spanish, so between the menu and 1180 its icons leave the header and the nav
 keeps the room. The shelf's five items and one icon fit at every desktop width,
