@@ -217,8 +217,12 @@ The posters are WebP at 360, 480 and 720 wide in `public/shelf/`, every one
 cropped to the same 2:3 frame. They go through a hand-made `srcset` on a plain
 `<img>`, because static export has no image optimiser and `next/image` would
 ship one source to every screen. 480 exists for the laptop: a wall card is
-204px, which on a retina screen used to round up to the 720 file. The art
-belongs to its creators; the footer says so and names where it came from.
+204px, which on a retina screen used to round up to the 720 file. A big
+monitor gets the 720 anyway. The cards are no bigger there, since the page
+stops at its container, but each pixel is physically larger and the 480 looks
+soft, so past 1800px, which laptops do not reach at their default scaling, the
+`sizes` claim the slot at 720. The art belongs to its creators; the footer says
+so and names where it came from.
 
 Until its file arrives, every card shows its own poster blurred: a 12x18 copy,
 inlined in the page as a data URI, drawn under the image. All thirty four cost

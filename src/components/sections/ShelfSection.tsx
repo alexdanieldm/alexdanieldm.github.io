@@ -24,12 +24,19 @@ import styles from './ShelfSection.module.scss';
  * for the screen it is on. These follow the breakpoints in the module; they
  * only have to be close, because there are three files to choose between, not
  * ten.
+ *
+ * One entry is not a width. The page stops growing at its container, so on a
+ * big monitor a card is the same 204px it is on a laptop, but each of those
+ * pixels is physically bigger and the 480 file's softness starts to show. Past
+ * 1800px, a width laptops do not reach at their default scaling, the slot is
+ * claimed at 720, which makes every screen density fetch the 720 file.
  */
+const BIG_MONITOR = '(min-width: 1800px) 720px';
+
 const SIZES = {
-  feature:
-    '(max-width: 450px) calc(100vw - 92px), (max-width: 769px) 320px, (max-width: 990px) 200px, 220px',
-  highlight: '(max-width: 450px) 140px, (max-width: 990px) 180px, 215px',
-  wall: '(max-width: 450px) calc(50vw - 32px), (max-width: 769px) calc(33vw - 40px), (max-width: 990px) calc(25vw - 40px), 204px',
+  feature: `(max-width: 450px) calc(100vw - 92px), (max-width: 769px) 320px, (max-width: 990px) 200px, ${BIG_MONITOR}, 220px`,
+  highlight: `(max-width: 450px) 140px, (max-width: 990px) 180px, ${BIG_MONITOR}, 215px`,
+  wall: `(max-width: 450px) calc(50vw - 32px), (max-width: 769px) calc(33vw - 40px), (max-width: 990px) calc(25vw - 40px), ${BIG_MONITOR}, 204px`,
 };
 
 type Written = { item: ShelfItem; take: Rich };
