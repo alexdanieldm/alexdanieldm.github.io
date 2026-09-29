@@ -5,7 +5,10 @@ export const shelf = {
   metaDescription:
     'The manga, anime, games, films and shows I love most, and what each of them taught me.',
 
-  backHome: 'Back home',
+  /* The way out to the portfolio, above the title and in the footer. It does
+     not say home, because the shelf is one, and it is worded so that leaving
+     sounds like the less fun option. */
+  back: 'Back to the boring stuff',
   lede:
     'Nothing on this page is work. These are the manga, anime, games, films and shows I love ' +
     'most, the ones I have read, played or watched enough times to know by heart, and ' +
@@ -153,4 +156,8 @@ export const shelf = {
     'Cover and poster artwork on this page belongs to its creators and publishers. It is ' +
     'reproduced here to point you at the work, and is not presented as mine. Sources: ' +
     'TMDB, Steam, MangaDex, Kyobo, WEBTOON and Wikipedia.',
+
+  /* Where the portfolio's footer lists what it is built with. The shelf is
+     made of the thing its title is about. */
+  colophon: 'Made of rewatches, rereads and replays',
 };

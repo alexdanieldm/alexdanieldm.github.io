@@ -11,7 +11,7 @@ export const shelf: ShelfContent = {
     'El manga, el anime, los juegos, las películas y las series que más quiero, y lo que me ' +
     'enseñó cada uno.',
 
-  backHome: 'Volver al inicio',
+  back: 'Volver a lo aburrido',
   lede:
     'Nada en esta página es trabajo. Son el manga, el anime, los juegos, las películas y las ' +
     'series que más quiero, los que he leído, jugado o visto tantas veces que me los sé de ' +
@@ -136,4 +136,7 @@ export const shelf: ShelfContent = {
     'Las portadas y los pósteres de esta página pertenecen a sus creadores y editoriales. ' +
     'Están aquí para señalarte la obra, no como algo mío. Fuentes: TMDB, Steam, MangaDex, ' +
     'Kyobo, WEBTOON y Wikipedia.',
+
+  /* Echoes the title: "vuelvo" there, "volver a" here. */
+  colophon: 'Hecho de volver a ver, a leer y a jugar',
 };

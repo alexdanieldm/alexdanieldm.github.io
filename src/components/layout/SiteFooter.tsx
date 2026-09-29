@@ -22,6 +22,13 @@ type SiteFooterProps = {
    * shelf's note that the artwork on it is not mine.
    */
   note?: ReactNode;
+  /** What the inner variant's way back says. The shelf's does not say home. */
+  backLabel?: string;
+  /**
+   * The line beside the language switch. The portfolio says what it is built
+   * with; the shelf says what it is made of.
+   */
+  colophon?: string;
 };
 
 /**
@@ -40,6 +47,8 @@ export function SiteFooter({
   variant = 'home',
   longLocation = false,
   note,
+  backLabel,
+  colophon,
 }: SiteFooterProps) {
   const { footer, language } = contentFor(locale).common;
   const place = longLocation ? footer.locationLong : footer.location;
@@ -58,7 +67,7 @@ export function SiteFooter({
           <SocialLinks tone="quiet" />
         ) : (
           <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
-            {footer.backHome}
+            {backLabel ?? footer.backHome}
           </ArrowLink>
         )}
 
@@ -70,7 +79,7 @@ export function SiteFooter({
             label={language.label}
             targetName={language[other]}
           />
-          <p className={styles.note}>{footer.builtWith}</p>
+          <p className={styles.note}>{colophon ?? footer.builtWith}</p>
         </div>
       </div>
     </footer>

@@ -43,7 +43,7 @@ export function ShelfHero({ locale }: { locale: Locale }) {
     <section className={styles.hero} aria-labelledby="shelf-title">
       <div className={styles.back}>
         <ArrowLink href={localePath(locale, ROUTES.home)} direction="back">
-          {shelf.backHome}
+          {shelf.back}
         </ArrowLink>
       </div>
 

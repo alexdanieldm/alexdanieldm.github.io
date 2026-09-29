@@ -179,6 +179,13 @@ page should not be offering them a way out to my work. For the same reason its
 header keeps one icon, email, and its phone menu has no CV: someone writing to
 me about a film is the one exit worth offering.
 
+There is still a way out, above the title and in the footer, but it does not
+say "Back home", because the shelf is a home too. It says "Back to the boring
+stuff", which is honest about where it goes and does not make going there
+sound like the better option. Where the portfolio's footer lists what it is
+built with, the shelf's says what it is made of: rewatches, rereads and
+replays.
+
 Everything on it is conditional on what I have written, and no tier is stored:
 
 - An item with a take in `src/content/{en,es}/shelf.ts` is a highlight. A
