@@ -1,16 +1,24 @@
+import type { Metadata } from 'next';
+
 import { NotFoundPage } from '@/components/pages/NotFoundPage';
 import { DEFAULT_LOCALE } from '@/content/locales';
-import { pageMetadata } from '@/content/seo';
+import { pageMetadata, SITE_URL } from '@/content/seo';
 
 import { RootDocument } from './RootDocument';
 
-export const metadata = pageMetadata({
-  locale: DEFAULT_LOCALE,
-  title: 'Page not found',
-  description: 'That page does not exist. The work is all on the home page.',
-  path: '/404/',
-  noIndex: true,
-});
+export const metadata: Metadata = {
+  /* Every other page inherits this from its language layout. Nothing sits
+     above this one, so without it Next resolved the card image against the
+     build machine and 404.html shipped http://localhost:3000/og.png. */
+  metadataBase: new URL(SITE_URL),
+  ...pageMetadata({
+    locale: DEFAULT_LOCALE,
+    title: 'Page not found',
+    description: 'That page does not exist. The work is all on the home page.',
+    path: '/404/',
+    noIndex: true,
+  }),
+};
 
 /**
  * Exported as 404.html by the static build, which is the filename GitHub Pages
