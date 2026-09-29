@@ -6,13 +6,13 @@
 
 export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'a-silent-voice':
-    'data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAwBACdASoMABIAPtFUo0uoJKMhsAgBABoJZACdAYvWtqsvHQ2IbQqiz4AA/ppRxm2yOqpy4ak+EwHqJVITRpJElQUVwO9N72zx2YTE8JQg0ypleweaX0y/wXc+11OsQBKvHlHTtXSpXxfe2k5ypk3UV1MkxxlK+bvY6dwP2WMSruAA',
+    'data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAwCdASoMABIAPtFUo0uoJKMhsAgBABoJYgCw7Buvdzs9AgEBAwgA/shVDYkkUpoy/v43tNut4RGyb8btv0dxIqgWpIu/xwZBx0RzD6g72xEjAmE3bsRvNTPemqt7L7S34MfGi0Pe0AAA',
   'about-time':
     'data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBACdASoMABIAPtFUo0uoJKMhsAgBABoJaACdMoMYAEIuqBdsdvE88AAA+7xv8PJ9T8LUCGztgWp33KZ/TrdhS8LQ9gZb3LWGpfxRZvDjWnXlhYBlJtDvOtUSIiFTNGOqSaJ2w93kb/VBLTPK+kpzDoj7/bBdUEjbFohKotXGHhRUBii2KiIN9gAAAA==',
   'banana-fish':
     'data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJaACdAYxOyt+gcs5lkz0NZdwAAP64Aa6Gn6+TixkeXgZCfg1qP9On/TQ25zzb271QsQurQIyKMhjRb5da9rYlWYeJXjTAJXkI+4bdFfCsv+u005jswP1AVul+RHcE/IIz9nM2wdYjuAs2+w993TRuEFhRmUv2yBpEg1Sf/8Ny2d+fcm//w3LZ35+DX9qlD8nfGJdgwAA=',
   berserk:
-    'data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJYgCw7Yww33a6Vpxo/yu+Gzw0AP40Q3P2DjJuwAdVY4yensNcBjYDpkRj6hOdMDZVEKBw9rSfbsCDlQH6Bb4FHT0tXiyUXuPstvHWaMuZcH9IyXJUJMZyNRxGgg3vYvRknGJbhx499H2VIgdWPVoLC+qXomplI2XhAN7nZa+p6y4x3lICRDQA',
+    'data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABwBACdASoMABIAPtFUo0uoJKMhsAgBABoJaACdAYvC4K4NqcT2EFd8HLVIwAD6moRoQtkqf7C2uGubHDgjFSnLRxu5ZbmyQ3SyvvV0Pl70hNUCH64eI2hjEbh+FwsVxDM/4XqUO5fuXPR4CgFZrwPRuk8C9fvug/2XDKBuxYnEfyb7HFGQrHvs5GYK+UNc6e8vy0yl8gAAAA==',
   'bojack-horseman':
     'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACQAwCdASoMABIAPtFUo0uoJKMhsAgBABoJbAAAXARo39UvJf6AAP7VEEwazgEYKftILiyExKafhZRebyNR4ZERr9XTGv1XclJ04xp2c2dXZxq230ZaWIDeFuumvtWqn/BsQl3C9JHZuhtp6fYGzGuCm+ro2KwZhcAAAA==',
   'brooklyn-nine-nine':
@@ -22,7 +22,7 @@ export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'fate-zero':
     'data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACQAwCdASoMABIAPtFUo0uoJKMhsAgBABoJbACw7B5Qce0mPu9AAP7xf4aSLAUDj3dWjcen3iedif/AJN8a/fF3kpwhKzWB0LcAq49dLslWcPAnRe7XRnM/twqm8AFo92zbkdndkfFec8LVklzJ+bSWQAA=',
   frieren:
-    'data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJZACsAYv+4R65i70iUSjoGhMAAP7fgMzE1UDxHNqhBN3t6NA61wWkbOAw8LEmOEpmN80NNspjqgHH3oWvw8D6Wxx553vM00Fkq6CD8xU06m1fx9Zm5I1vL+WEZ1+UCO6ZCrQ0zwuWQSRH3ENAAA==',
+    'data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJZgCdMoADg5QDw+ossOT6wJaAAP7nU/Ojtv6QqmNxw9k2LEyNJVP0NnwPXkgc0DKo5Pc9MghhRtmf7gKHN+F19P4Y3P6b+aHz47uJhtBANr1CQDGIvisGBkqppCwbECEk37nb9w2NRRDEmhg9khf2Fyt0xiHQYAA=',
   'god-of-war':
     'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBACdASoMABIAPtFUo0uoJKMhsAgBABoJagCdMoADCzIpjR4j4TVLqAAA/jK/gzu39gvJrWzcIejcM25uFcHi3/j7+yPizT4SoEgLwaGxs/FAaYYCi76cy9/Hm29gaGMdc5J9yPmBD32kH8IAAA==',
   'gurren-lagann':
@@ -32,7 +32,7 @@ export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'hollow-knight':
     'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQAwCdASoMABIAPtFUo0uoJKMhsAgBABoJZwAAVktUxnoZkxsAAP6Jo17h+ZJKbLQ3EH4Ucvm6EUw1T1YNWANUZ8+oHphI63Mzmeq0Ul6MbCYNjoypG4D5y36HJGrapMI2sgVHkPoAAA==',
   'in-this-corner-of-the-world':
-    'data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAwCdASoMABIAPtFUo0uoJKMhsAgBABoJQBOl4AAutZtiIn1ggoDAAP6TaQmxlVYg2gIoLiahGbdRdBPCQ2cMntCwivn+PdSMtqxKASkhpd/d0aOakavi04vXsX15FvoQr4S23n4+2CTtZOMhyj85sLOKdRUgAAA=',
+    'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBACdASoMABIAPtFUo0uoJKMhsAgBABoJZACdMoADTtoXf0IiY6NH0AD+4M1M3SnZ7g8K8VbdgDw46deAcnKDwRB0Z61nokyj5CqRDfmuJSpRzURSGse4KImu/3oyt2Mz4AT6tf2w5I8sbIrgM9oP6xx7XDbruaAAAA==',
   invincible:
     'data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACdMoAlvBNntq1ZsB9dovwrh6AA4Tezpe9f9r18ytnily7kmyYWdiAPL8Goxys7b4sbEhwb3F24U5jAwhSb60Nj8Q502Z5hJIdf8pcVGFReAs/dvm88SBTmPzBDI9UAmz4/TCJvP1qrlOfGAJ+qLT32shvkeKUpUESi4ysgAA==',
   'it-takes-two':
@@ -48,7 +48,7 @@ export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'on-the-way-to-meet-mom':
     'data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABwBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACdL1AVhE33pSDeVZ/rm9xUQAD+7iazZbFj0B/JjMHggu9AS3sUhPdJCbkkDh+y4IJCBKHhdCyYxT+1o6YfTG5ScXgw46ZXlwOpfbNpmyC2JzR6UJmYuFOC8X/FDqqXX/xHseO7h0HKs/aXq8J/5OIX2wDH/7HNyoz8q/igcdTlVELLCHVT57ktyg/d9cIkefjSjTAAAA==',
   parasite:
-    'data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJYgCw7CIQfnd+A/yQX/DfDH1AAOJ8RYnrWYqlFhIOob15zSrLMNJmXGpVBZx+bIfg1TDJlXYlb36JbHLsCbctw0CBKn0Vz0KF7PKoXBlOcZFVVO3qURK74kapH/ZDZERQWb70ElfXrYAA',
+    'data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBACdASoMABIAPtFUo0uoJKMhsAgBABoJQBOgBC2B/KKWlcw2/pnaIADOM4lBR20QchDTHjnDGYWqzKePxsrVyfr95Jdd+25nDmnae4YkquowsHyyoslupTPIudufGDKBhyutzGx4xfDIYj/winmYAyHNO+pIQvMOEAAA',
   parasyte:
     'data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBACdASoMABIAPtFUo0uoJKMhsAgBABoJZACdH8ADMdvNYqsPV8gty0AA/sFq6o6kbMnj6ygL85tLRgZZOIK8HqcjoZSA6lerHjQboc9Ai4tOnaVmMeEOq4UMWtKIvHCTe8+2WXiXHMONoI+Za70sj0Ph8JtrhiRe4jCTJtz/ZWhBPJC9gkPTtrz4AA==',
   redline:
@@ -62,7 +62,7 @@ export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'the-gentlemen':
     'data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwAwCdASoMABIAPtFWo0uoJKMhsAgBABoJZwAD5CINGIHAF6NDrWysAP72D6p4KPpFH1jcqrPAuXEXNTzpN/jEztOlg6KrfKhScQZI/Yh1tHLsDJ+35zzKLzIT8/yjzuqaBzcdeP/AxkmpWsl73mqNwGP/TqtoGO9jgAAA',
   'the-greatest-estate-developer':
-    'data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACsAYxOtp256KaRH+8cmVYAAP7oAEE3MLI+oiNMzhOXVmEIxjmJZSAgr8G6U3zIszcMzeazmEA9bGfxM0HJzg3aqkhoqi8k2WDhRjp/zEkC7wsSkxU7BnrWqrmkHAX/UfNfLGC93xR4QmGOVkZhrdDqyMt5cx+/tLAA',
+    'data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAACwBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACdDichymUXA6F+4rZ80tM092MAAP7rNmKwzzxozupcna4fTG4R/SPjr6mUcmtxf+lQryiU/ewLMj4VPgoqmSPCWfCkvEASFaRQ+a6auxeQJU83irxbnT6LK3f1jHSZ6xL8ATgw8f/LqqUxr8aGJxCb0Wa35LtBXkDTf04q/4nVV5oRl+ZoAAA=',
   'the-last-of-us':
     'data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoMABIAPtFUo0uoJKMhsAgBABoJZAAAVUyy4KLtOfJlaeOAAPIYASO+n0EFy30eH385XtIGCXk625WmizcP4ZsTzelEd2GUp584S7rIpZ3jepvMJk/gdp4NAfvpznvDl7ErZ1iQYAA=',
   'the-midnight-gospel':
@@ -70,7 +70,7 @@ export const POSTER_PLACEHOLDERS: Record<string, string> = {
   'the-nice-guys':
     'data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAADwBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACdMoMYNcB//xBbi+64rGPToRJjDAAA/plm4L0Jw35GE2xigXZMkpBRkCTErbJNzpbtrBq7dLydsyJUStVS7QLObiiRwdK/DhUd6SaXLac/1PVLuG1k3AkkojizvBnKzd1CXIvg2o3HbfvBitLfgJRun1ppBQDELh5nFE2p3amk2AA=',
   vagabond:
-    'data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABQBACdASoMABIAPtFUo0uoJKMhsAgBABoJQBdkFTwVgnPUuP1eTQzS/J3wAM4QlEYIxPYJ9rQjRlfBcdjX6b64Phlkf3WSMZ6k3L+nIKs0ydFixi6gtt0BUWSRxt6k4ECWsGIT5hLoM9G8fNlyjibvXh81BXJ6U8tl5DSGfc+HifuH3WAKIokrKPjS8fTbh3zHkVFj4RyFxIAA',
+    'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwBACdASoMABIAPtFUo0uoJKMhsAgBABoJbACdMoMgtb/MOgFFlz8skKE//gL5/AAA/t2iNLtU51rSln0/Ftynw43r2aEoAQ8vRDd/z2wyFiFNODvQcw8y5x46+Y/u2mxX/KH9W8ABRc3axHnBT3LlOxjU0Risc81FtmkJfxcnEeni3kqdHEzN5KnQ8AAA',
   'what-remains-of-edith-finch':
     'data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAwCdASoMABIAPtFUo0uoJKMhsAgBABoJZwDA3YtK7finFiEi8zAA/soKnh331vdr7IE7cNNutClSeKmvWtvSnsvV0C0EvR5eqvkWAkmIHmNzV82MXTtBU/XRjisDLmKnlXTFgAA=',
 };
