@@ -18,11 +18,12 @@ import { ROUTES, writeUpPath } from '../navigation';
 import { plainText } from '../rich';
 import { shelfEntry } from '../shelf';
 
+import { gurrenLagann } from './gurren-lagann';
 import type { Block, Placeholder, WriteUp } from './types';
 
 export type { Block, Fact, Placeholder, WriteUp } from './types';
 
-const WRITE_UPS: WriteUp[] = [];
+const WRITE_UPS: WriteUp[] = [gurrenLagann];
 
 const BY_SLUG = new Map(WRITE_UPS.map((piece) => [piece.slug, piece]));
 
