@@ -237,7 +237,12 @@ out. That is deliberate: the portfolio is where people get sent into the
 write-ups, and once they are reading, the page should not be offering them a way
 out to my work. For the same reason its header keeps one icon, email, and its
 phone menu has no CV: someone writing to me about a film is the one exit worth
-offering.
+offering. Beside that icon it carries the language switch, which the portfolio
+leaves to its footer: the portfolio follows the browser's language, so there the
+switch corrects a guess, while the shelf guesses no one's, and for anyone who
+reads English the switch is the first thing they need. At 1080px and below it
+steps out of the bar, where it would crowd the nav, and in the phone menu it
+sits opposite the email icon.
 
 There is still a way out, one link in the footer, and it does not say "Back
 home", because the shelf is a home too. It says "Back to the boring stuff",

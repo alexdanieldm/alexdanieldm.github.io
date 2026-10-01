@@ -54,7 +54,9 @@ type SiteFooterProps = {
  * The language switch lives here rather than in the header. The browser's own
  * language already decides which version you land on, so the switch is a
  * correction for the minority who want the other one, not a primary control,
- * and the header has no room for it on a phone.
+ * and the header has no room for it on a phone. The shelf is the exception: it
+ * guesses no one's language, so its header carries the switch as well, and
+ * this one stays for anyone who reaches the end of a page.
  */
 export function SiteFooter({
   locale,
