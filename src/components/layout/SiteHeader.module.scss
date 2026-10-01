@@ -98,6 +98,39 @@
   }
 }
 
+/* The shelf's end of the bar: the language switch, then email. 12px apart,
+   which with the switch's own padding and the icon's spare box puts its
+   letters as far from the envelope as the portfolio's icons are from each
+   other.
+
+   It hides again below the desktop breakpoint, where both are in the menu.
+   This rule outranks the `display: none` further down, and without its own it
+   would put the row back on a phone, beside the menu button. */
+.socials[data-nav='shelf'] {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-sm);
+
+  @include desktop-down {
+    display: none;
+  }
+}
+
+/* The switch steps out of the bar at 1080 and below, the way the portfolio's
+   icons do at 1180. Measured in Spanish, the wider nav: the bar needs 1005px of
+   layout to hold the switch at all, and 1042 to keep the nav centred beside
+   it. At 1081, even with a classic 17px scrollbar, the nav is centred and the
+   switch stands 72px from it, nearly twice the gap between the nav's own
+   items, so it reads as a thing of its own. Below the line the bar is exactly
+   what it was, and the switch is in the footer, where it always was. */
+.languageSwitch {
+  display: flex;
+
+  @media screen and (max-width: 1080px) {
+    display: none;
+  }
+}
+
 .spacer {
   height: var(--header-height);
 }
