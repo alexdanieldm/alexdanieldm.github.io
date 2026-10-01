@@ -181,9 +181,10 @@ English at `/` and Spanish under `/es/`, because my work has always been in
 English. The shelf is the other way round, because it is the personal half and
 Spanish is my first language; there the English is the translation, as the
 Spanish is on the portfolio. One function, `localePath`, knows which half a path
-belongs to, so every link, canonical and hreflang pair follows. At the root of
-either half the browser's language still decides, and a choice made on the
-switch sticks across both. It is the personal half of the site, so
+belongs to, so every link, canonical and hreflang pair follows. The portfolio
+still guesses at its root, sending a Spanish browser to `/es/`; the shelf does
+not, and is in Spanish for everyone until they choose English on the switch. A
+choice made on the switch sticks across both halves. It is the personal half of the site, so
 it carries its own nav, just the shelf's five sections. The portfolio's nav has
 a door in; the shelf's has no door back out. That is deliberate: the portfolio
 is where people get sent into the write-ups, and once they are reading, the

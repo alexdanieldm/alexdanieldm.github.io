@@ -8,18 +8,18 @@
  * does not bounce.
  *
  * Each half of the site has its own first language at the root: English for
- * the portfolio, Spanish for the shelf (see `locales.ts`). The rules are the
- * same for both, and the second two are the ones that matter:
+ * the portfolio, Spanish for the shelf (see `locales.ts`).
  *
  * An explicit choice always wins. The switcher writes it to localStorage and
  * this reads it, so picking English on a Spanish browser sticks, on both
  * halves, instead of being overridden on the next visit.
  *
- * Guessing only happens at the root, never on a prefixed page. A prefixed
- * link someone deliberately shared, `/es/contact/` or `/en/shelf/`, must not
- * bounce its reader back; they asked for that page. At the root the reader's
- * browser language decides, so a Spanish browser on `/` goes to `/es/`, and an
- * English one on `/shelf/` goes to `/en/shelf/`.
+ * Without a choice, only the portfolio guesses. At its root the browser's
+ * language decides, so a Spanish browser on `/` goes to `/es/`. The shelf does
+ * not guess: it is in Spanish, for everyone, until they choose English on the
+ * switch. A prefixed page is never second-guessed either; a link someone
+ * deliberately shared, `/es/contact/` or `/en/shelf/`, must not bounce its
+ * reader back, since they asked for that page.
  *
  * A page prefixed with the language it already lives in, `/es/shelf/` or
  * `/en/`, is sent to its root address, so an old or hand-typed link lands.
@@ -39,7 +39,7 @@ m=s==='en'||s==='es'?s:null,b=m?p.slice(3)||'/':p,
 h=b==='/shelf'||b.indexOf('/shelf/')===0?'es':'en',x=m||h,w=null;
 if(m===h){location.replace(b+q);return}
 try{w=localStorage.getItem(K)}catch(e){}
-if(w!=='en'&&w!=='es'){if(m)return;
+if(w!=='en'&&w!=='es'){if(m||h==='es')return;
 var l=(navigator.languages&&navigator.languages[0])||navigator.language||'';
 w=String(l).toLowerCase().indexOf('es')===0?'es':'en'}
 if(w!==x)location.replace((w===h?b:'/'+w+b)+q)
