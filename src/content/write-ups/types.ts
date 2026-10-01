@@ -55,6 +55,8 @@ export type WriteUp = {
   slug: string;
   /** The language the piece is written in. */
   lang: Locale;
+  /** The day it went up, as YYYY-MM-DD: for its metadata and the sitemap. */
+  published: string;
   standfirst?: Prose | Placeholder;
   facts: Fact[];
   /**

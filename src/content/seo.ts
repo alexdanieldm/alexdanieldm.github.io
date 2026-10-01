@@ -72,6 +72,8 @@ type PageSeo = {
    * half of the site and brings its own.
    */
   image?: PreviewImage;
+  /** For an article: the day it went up, and the shelf section it sits in. */
+  article?: { published: string; section: string };
 };
 
 export function pageMetadata({
@@ -84,6 +86,7 @@ export function pageMetadata({
   original,
   type = 'website',
   image = OG_IMAGE,
+  article,
 }: PageSeo): Metadata {
   const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
   const canonical = localePath(original ?? locale, path);
@@ -117,6 +120,9 @@ export function pageMetadata({
       title: fullTitle,
       description,
       images: [image],
+      ...(type === 'article' && article
+        ? { publishedTime: article.published, section: article.section, authors: [`${SITE_URL}/`] }
+        : {}),
     },
     twitter: {
       card: 'summary_large_image',
@@ -125,5 +131,56 @@ export function pageMetadata({
       description,
       images: [{ url: image.url, alt: image.alt }],
     },
+  };
+}
+
+/* ── Structured data ───────────────────────────────────────────────────────── */
+
+const absolute = (route: string) => new URL(route, SITE_URL).href;
+
+/** Me, as the author of everything here. */
+const ME = {
+  '@type': 'Person',
+  '@id': `${SITE_URL}/#me`,
+  name: SITE_NAME,
+  url: `${SITE_URL}/`,
+} as const;
+
+type ArticleSeo = {
+  title: string;
+  description: string;
+  /** The route, without a language prefix. */
+  path: string;
+  /** The language the piece is written in, whose address is its canonical one. */
+  lang: Locale;
+  published: string;
+  image: PreviewImage;
+  /** The work the piece is about, by its title. */
+  about: string;
+};
+
+/** A write-up, for search engines: a post of mine, when it went up, in what language, and about what. */
+export function articleSchema({
+  title,
+  description,
+  path,
+  lang,
+  published,
+  image,
+  about,
+}: ArticleSeo) {
+  const url = absolute(localePath(lang, path));
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    url,
+    mainEntityOfPage: url,
+    inLanguage: lang,
+    datePublished: published,
+    image: absolute(image.url),
+    author: ME,
+    about: { '@type': 'CreativeWork', name: about },
   };
 }

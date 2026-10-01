@@ -1,6 +1,7 @@
 export { ArrowLink } from './ArrowLink';
 export { Button } from './Button';
 export { Card } from './Card';
+export { JsonLd } from './JsonLd';
 export { LinkRow } from './LinkRow';
 export { Mark } from './Mark';
 export { Poster } from './Poster';

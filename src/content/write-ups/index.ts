@@ -133,6 +133,9 @@ function check(piece: WriteUp) {
   };
 
   if (!shelfEntry(piece.slug)) fail('nothing on the shelf has this slug');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(piece.published) || Number.isNaN(Date.parse(piece.published))) {
+    fail(`it was published on "${piece.published}", which is not a day as YYYY-MM-DD`);
+  }
   if (TAKEN.includes(piece.slug)) fail(`/shelf/${piece.slug}/ is already another page`);
 
   const ids = headings(piece).map(({ id }) => id);
