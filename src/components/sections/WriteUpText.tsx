@@ -17,10 +17,12 @@ import { FIGURE_WIDTHS, figureSrc, headingId, type Block, type WriteUp } from '@
 
 import styles from './WriteUpText.module.scss';
 
-/* The column is 760 on a laptop and the window less its gutters below that,
-   which reaches 760 again at 840. */
+/* How wide the text column is. On a laptop it is the page's width less its
+   gutters, the 240 rail and the 60 gap, up to 880 at 1440. Below the rail's
+   breakpoint it is 760, or the window less its gutters, whichever is smaller. */
 const FIGURE_SIZES =
-  '(max-width: 450px) calc(100vw - 48px), (max-width: 840px) calc(100vw - 80px), 760px';
+  '(max-width: 450px) calc(100vw - 48px), (max-width: 840px) calc(100vw - 80px), ' +
+  '(max-width: 990px) 760px, (max-width: 1440px) calc(100vw - 560px), 880px';
 
 /**
  * What the manuscript has not supplied yet, drawn so it cannot be missed. The

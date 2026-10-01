@@ -78,11 +78,11 @@ export function headings(piece: WriteUp): { id: string; text: string }[] {
 }
 
 /**
- * The widths a still is cut at. 760 is the column on a laptop. 1160 is as far
- * as the first still goes, and a still is never enlarged to fill a width its
- * source does not have: 1160 covers the column at one and a half times the
- * density, and a phone's 342px at three. A still that arrives bigger is the
- * moment to add 1520, the column at twice.
+ * The widths a still is cut at. 760 covers a phone or a smaller laptop's
+ * column; the column reaches 880 at 1440. 1160 is as far as the first still
+ * goes, and a still is never enlarged to fill a width its source does not
+ * have: 1160 covers the widest column, and a phone's 342px at three times the
+ * density. A still that arrives bigger is the moment to add a wider cut.
  */
 export const FIGURE_WIDTHS = [760, 1160] as const;
 

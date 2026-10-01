@@ -59,15 +59,18 @@
 /* ── The row ─────────────────────────────────────────────────────────────── */
 
 /* The rail spans both rows, so the title and the text share the right column
-   while the rail sticks beside all of it. On a phone the three stack, and the
+   while the rail sticks beside all of it. The text takes all the width the
+   page has after the rail, so its right edge lines up with the header's and
+   the band's below it: at 1440, 880px. On a phone the three stack, and the
    order in the markup is already the order they read in: the title, the poster
-   and the facts, then the text. */
+   and the facts, then the text, which stays at 760 on a tablet, where nothing
+   beside it sets an edge. */
 .piece {
   display: grid;
   grid-template-areas:
     'rail head'
     'rail body';
-  grid-template-columns: 240px minmax(0, 760px);
+  grid-template-columns: 240px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: var(--spacer-4);
   align-items: start;
