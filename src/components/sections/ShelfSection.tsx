@@ -12,10 +12,17 @@
  */
 
 import { ArrowLink, Poster } from '@/components/ui';
-import { contentFor, localePath, type Locale, type ShelfContent } from '@/content/locales';
+import { contentFor, localePath, type Locale } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
 import { Copy, type Rich } from '@/content/rich';
-import { SHELF, SHELF_SECTIONS, type ShelfItem, type ShelfSectionKey } from '@/content/shelf';
+import {
+  creditLine,
+  posterAlt,
+  SHELF,
+  SHELF_SECTIONS,
+  type ShelfItem,
+  type ShelfSectionKey,
+} from '@/content/shelf';
 
 import styles from './ShelfSection.module.scss';
 
@@ -51,16 +58,6 @@ function tiers(items: ShelfItem[], takes: Partial<Record<string, Rich>>) {
   }
   const feature = written.find(({ item }) => item.featured);
   return { feature, highlights: written.filter((entry) => entry !== feature), wall };
-}
-
-function altFor(shelf: ShelfContent, item: ShelfItem) {
-  return shelf.art[item.art ?? 'poster'].replace('{title}', item.title);
-}
-
-function creditFor(shelf: ShelfContent, item: ShelfItem) {
-  const notes: Partial<Record<string, string>> = shelf.notes;
-  const note = notes[item.slug];
-  return note ? `${item.credit} · ${note}` : item.credit;
 }
 
 type ShelfSectionProps = {
@@ -114,7 +111,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
         <article className={styles.feature}>
           <Poster
             slug={feature.item.slug}
-            alt={altFor(shelf, feature.item)}
+            alt={posterAlt(shelf, feature.item)}
             sizes={SIZES.feature}
             tone="accent"
             priority={section === SHELF_SECTIONS[0]}
@@ -126,7 +123,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
               <p className={styles.eyebrow}>{eyebrows[feature.item.slug]}</p>
             )}
             <h3 className={styles.featureTitle}>{feature.item.title}</h3>
-            <p className={styles.featureCredit}>{creditFor(shelf, feature.item)}</p>
+            <p className={styles.featureCredit}>{creditLine(shelf, feature.item)}</p>
             <Copy text={feature.take} className={styles.featureTake} />
             {read(feature.item, styles.featureRead)}
           </div>
@@ -140,13 +137,13 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
               <article className={styles.highlight}>
                 <Poster
                   slug={item.slug}
-                  alt={altFor(shelf, item)}
+                  alt={posterAlt(shelf, item)}
                   sizes={SIZES.highlight}
                   href={writeUp(item)}
                   className={styles.highlightPoster}
                 />
                 <h3 className={styles.highlightTitle}>{item.title}</h3>
-                <p className={styles.highlightCredit}>{creditFor(shelf, item)}</p>
+                <p className={styles.highlightCredit}>{creditLine(shelf, item)}</p>
                 <Copy text={take} className={styles.highlightTake} />
                 {read(item, styles.highlightRead)}
               </article>
@@ -169,12 +166,12 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
               <article className={styles.card}>
                 <Poster
                   slug={item.slug}
-                  alt={altFor(shelf, item)}
+                  alt={posterAlt(shelf, item)}
                   sizes={SIZES.wall}
                   href={writeUp(item)}
                 />
                 <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardCredit}>{creditFor(shelf, item)}</p>
+                <p className={styles.cardCredit}>{creditLine(shelf, item)}</p>
                 {read(item, styles.cardRead)}
               </article>
             </li>

@@ -12,6 +12,8 @@
  * the name on the poster beside them, and the one you would search for.
  */
 
+import type { ShelfContent } from './locales';
+
 export const SHELF_SECTIONS = ['anime', 'manga', 'games', 'movies', 'television'] as const;
 export type ShelfSectionKey = (typeof SHELF_SECTIONS)[number];
 
@@ -153,4 +155,16 @@ export const POSTER_WIDTHS = [360, 480, 720] as const;
 
 export function posterSrc(slug: string, width: (typeof POSTER_WIDTHS)[number]): string {
   return `/shelf/${slug}-${width}.webp`;
+}
+
+/** What a screen reader hears for an item's art: box art and manga are covers, the rest posters. */
+export function posterAlt(shelf: ShelfContent, item: ShelfItem): string {
+  return shelf.art[item.art ?? 'poster'].replace('{title}', item.title);
+}
+
+/** The line under a title: the credit, and the word of context a couple of items carry. */
+export function creditLine(shelf: ShelfContent, item: ShelfItem): string {
+  const notes: Partial<Record<string, string>> = shelf.notes;
+  const note = notes[item.slug];
+  return note ? `${item.credit} · ${note}` : item.credit;
 }

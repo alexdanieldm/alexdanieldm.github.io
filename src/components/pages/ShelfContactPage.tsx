@@ -6,7 +6,13 @@ import { LinkRow, Poster } from '@/components/ui';
 import { contentFor, localePath, type Locale } from '@/content/locales';
 import { ROUTES, SOCIALS } from '@/content/navigation';
 import { Copy } from '@/content/rich';
-import { SHELF, SHELF_SECTIONS, type ShelfItem, type ShelfSectionKey } from '@/content/shelf';
+import {
+  posterAlt,
+  SHELF,
+  SHELF_SECTIONS,
+  type ShelfItem,
+  type ShelfSectionKey,
+} from '@/content/shelf';
 
 import shelfPage from './ShelfPage.module.scss';
 import styles from './ShelfContactPage.module.scss';
@@ -90,7 +96,7 @@ export function ShelfContactPage({ locale }: { locale: Locale }) {
                       <Poster
                         key={item.slug}
                         slug={item.slug}
-                        alt={shelf.art[item.art ?? 'poster'].replace('{title}', item.title)}
+                        alt={posterAlt(shelf, item)}
                         sizes={SIZES}
                         href={leadsTo(key, item)}
                       />
