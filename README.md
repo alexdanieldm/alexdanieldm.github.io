@@ -330,9 +330,8 @@ there instead of pages, which would break find in page, a link to a passage and
 the scroll position. There is no reading time either: a word count over an
 assumed speed is a guess about a stranger.
 
-Every piece ends the same way: one line and an email with the piece already in
-its subject, so I know what it is about before I open it, then four more from
-its section in the shelf's order.
+Every piece ends the same way: one line and a link to the shelf's own page for
+writing to me, then four more from its section in the shelf's order.
 
 No piece has a recording yet, so there is no player. One is designed, and it
 gets built against the first real recording.

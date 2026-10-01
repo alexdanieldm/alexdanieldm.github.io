@@ -7,7 +7,7 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { PlaceholderNote, ShelfMore, WriteUpContents, WriteUpText } from '@/components/sections';
 import { ArrowLink, Poster, ReadingProgress } from '@/components/ui';
 import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locales';
-import { ROUTES, SOCIALS, writeUpPath } from '@/content/navigation';
+import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
 import { pageMetadata } from '@/content/seo';
 import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
@@ -72,7 +72,6 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
   const lang = piece.lang === locale ? undefined : HTML_LANG[piece.lang];
   const contents = headings(piece);
   const { coda } = shelf.writeUp;
-  const subject = coda.subject.replace('{title}', item.title);
 
   return (
     <Ground washes={ARTICLE_WASHES}>
@@ -133,17 +132,15 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
               <span className={styles.rule} aria-hidden="true" />
               <WriteUpText piece={piece} locale={locale} id={TEXT_ID} />
 
-              {/* The way in to writing to me, at the end of every piece. The
-                address is printed under the link: on a computer with no mail
-                app a mail link does nothing, and one click selects all of it
-                to copy. */}
+              {/* The way in to writing to me, at the end of every piece. It
+                leads to the shelf's own page for it, which keeps the reader
+                inside the shelf and has the address on it. */}
               <aside className={styles.coda} aria-label={coda.label}>
                 <span className={styles.codaRule} aria-hidden="true" />
                 <p className={styles.codaLine}>{coda.line}</p>
-                <ArrowLink href={`${SOCIALS.email}?subject=${encodeURIComponent(subject)}`}>
+                <ArrowLink href={localePath(locale, ROUTES.shelfContact)}>
                   {coda.link.replace('{title}', item.title)}
                 </ArrowLink>
-                <p className={styles.codaAddress}>{SOCIALS.email.replace('mailto:', '')}</p>
               </aside>
             </div>
           </article>

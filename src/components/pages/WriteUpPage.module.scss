@@ -268,8 +268,8 @@
 
 /* ── The way in to writing to me ──────────────────────────────────────────── */
 
-/* The shelf contact canvas's coda, as settled there: the closing's coral rule,
-   one line, the link, and the address under it. */
+/* The shelf contact canvas's coda: the closing's coral rule, one line, and the
+   link to the shelf's page for writing to me. */
 .coda {
   display: flex;
   flex-direction: column;
@@ -294,12 +294,4 @@
   font-size: var(--write-up-body);
   line-height: var(--typography-height-body);
   text-wrap: pretty;
-}
-
-.codaAddress {
-  margin-top: var(--spacer-xs);
-  font-size: var(--typography-size-caption);
-  line-height: 1.5;
-  color: var(--color-muted);
-  user-select: all;
 }

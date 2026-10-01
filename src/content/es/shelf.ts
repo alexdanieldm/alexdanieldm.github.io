@@ -144,7 +144,6 @@ export const shelf: ShelfContent = {
       label: 'Escríbeme',
       line: 'Si también se te quedó, o te hizo pensar en algo que debería probar, cuéntamelo.',
       link: 'Escríbeme sobre {title}',
-      subject: 'Sobre {title}',
     },
   },
 

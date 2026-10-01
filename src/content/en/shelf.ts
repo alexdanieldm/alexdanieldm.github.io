@@ -171,14 +171,12 @@ export const shelf = {
       all: 'All of it',
       allShelf: 'All of the shelf',
     },
-    /* The end of every piece, word for word as the shelf contact canvas
-       settled it: one line, and an email that already says which piece it is
-       about, so I know before I open it. */
+    /* The end of every piece, in the words the shelf contact canvas settled:
+       one line, and a link to the shelf's own page for writing to me. */
     coda: {
       label: 'Write to me',
       line: 'If it stayed with you too, or it made you think of something I should try, tell me.',
       link: 'Write to me about {title}',
-      subject: 'About {title}',
     },
   },
 
