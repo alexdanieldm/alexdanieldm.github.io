@@ -5,8 +5,9 @@
  * paragraph is one string on one line, so a change to the manuscript is a
  * change to one line here. The highlights, the sentences set large, the lines
  * from the show and the thanks at the end are the treatments I chose for it.
- * What the manuscript has not supplied yet is a placeholder: drawn as a
- * visible box, and never deployed.
+ * The still is the one the preview places after "se ve y se siente en cada
+ * fotograma". What the manuscript has not supplied yet is a placeholder: drawn
+ * as a visible box, and never deployed.
  */
 
 import type { WriteUp } from './types';
@@ -143,10 +144,7 @@ export const gurrenLagann: WriteUp = {
       type: 'paragraph',
       text: 'Estudio Gainax fue el responsable de la creación de estos personajes y el mundo donde seguimos sus historias, el equipo dejó todo su esfuerzo, dedicación y pasión durante la producción del anime, lo cual [[se ve y se siente en cada fotograma]].',
     },
-    {
-      type: 'placeholder',
-      note: 'the still the preview puts here (assets/gurren-lagann-scene.jpg), and a sentence describing it for anyone who cannot see it',
-    },
+    { type: 'figure', image: 'scene', alt: 'Imagen de Gurren Lagann' },
     {
       type: 'paragraph',
       text: 'Gurren Lagann es un anime que [[me hizo llorar]] en más de una ocasión, gran parte de esto se debe a personajes memorables como lo son Kamina, Simon, Nia, Rossiu y muchos otros que faltarán por mencionar, personajes que se sienten más grandes que la vida misma y aun así se sienten sumamente reales y entrañables.',
