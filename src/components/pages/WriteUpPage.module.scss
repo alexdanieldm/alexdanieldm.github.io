@@ -5,17 +5,19 @@
  */
 
 .page {
-  /* The piece's type. The site's scale moves in bigger strides than a long
-     read wants: it has no 17 for body text, 36 for a section heading or 32 for
-     a quote, and these were drawn and read at those sizes. */
-  --write-up-body: 17px;
-  --write-up-standfirst: var(--typography-size-body-large);
+  /* The piece's type. Running text is the site's smaller body step, 15 and
+     14 on a phone, the size the rich-text preview set it at: the canvas's 17
+     read too big for a long piece. The standfirst and the closing paragraphs
+     sit one step up. The scale has no 36 for a section heading or 32 for a
+     quote, which were drawn and read at those sizes. */
+  --write-up-body: var(--typography-size-body-small);
+  --write-up-standfirst: var(--typography-size-body-medium);
   --write-up-heading: 36px;
   --write-up-quote: 32px;
   /* A question, and a line from the work, a step under a statement, in the
      proportion the rich-text preview set them. */
   --write-up-quote-small: 28px;
-  --write-up-closing: var(--typography-size-body-large);
+  --write-up-closing: var(--typography-size-body-medium);
 
   /* Its rhythm, as drawn. 22 between paragraphs is the contact page's; the
      rest have no step on the scale either. */
@@ -29,12 +31,9 @@
   @include page-gutter;
 
   @include mobile-down {
-    --write-up-body: 16px;
-    --write-up-standfirst: 17px;
     --write-up-heading: 30px;
     --write-up-quote: 26px;
     --write-up-quote-small: 23px;
-    --write-up-closing: 18px;
     --write-up-gap: var(--spacer-1);
     --write-up-heading-above: 34px;
     --write-up-heading-below: 16px;
