@@ -104,9 +104,21 @@ function BlockView({ block, piece, locale }: { block: Block; piece: WriteUp; loc
  * so a screen reader reads a Spanish piece in Spanish under an English header
  * and footer, and switches back for them.
  */
-export function WriteUpText({ piece, locale }: { piece: WriteUp; locale: Locale }) {
+export function WriteUpText({
+  piece,
+  locale,
+  id,
+}: {
+  piece: WriteUp;
+  locale: Locale;
+  id?: string;
+}) {
   return (
-    <div className={styles.text} lang={piece.lang === locale ? undefined : HTML_LANG[piece.lang]}>
+    <div
+      id={id}
+      className={styles.text}
+      lang={piece.lang === locale ? undefined : HTML_LANG[piece.lang]}
+    >
       {piece.body.map((block, index) => (
         <BlockView key={index} block={block} piece={piece} locale={locale} />
       ))}

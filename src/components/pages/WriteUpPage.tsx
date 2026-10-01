@@ -5,7 +5,7 @@ import { ARTICLE_WASHES, Ground } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { PlaceholderNote, WriteUpContents, WriteUpText } from '@/components/sections';
-import { ArrowLink, Poster } from '@/components/ui';
+import { ArrowLink, Poster, ReadingProgress } from '@/components/ui';
 import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locales';
 import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
@@ -14,6 +14,9 @@ import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
 import { headings, isPlaceholder, writeUpFor } from '@/content/write-ups';
 
 import styles from './WriteUpPage.module.scss';
+
+/* What the progress bar measures: the text, not the page. */
+const TEXT_ID = 'write-up-text';
 
 /* 240 in the rail on a laptop; above the text, as wide as the phone comp drew
    it, everywhere narrower. */
@@ -71,6 +74,7 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
 
   return (
     <Ground washes={ARTICLE_WASHES}>
+      <ReadingProgress target={TEXT_ID} />
       <SiteHeader locale={locale} path={route} variant="solid" nav="shelf" />
 
       <main id="main" className={styles.page}>
@@ -120,7 +124,7 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
               )
             )}
             <span className={styles.rule} aria-hidden="true" />
-            <WriteUpText piece={piece} locale={locale} />
+            <WriteUpText piece={piece} locale={locale} id={TEXT_ID} />
           </div>
         </article>
       </main>
