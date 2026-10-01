@@ -52,6 +52,14 @@ jobs:
       - name: Install
         run: npm ci
 
+      # The shelf's generated images, made again from the shelf as it is in
+      # this commit: the blurred placeholders and the link preview cards. A
+      # reordered shelf or a new poster never ships with a stale one because
+      # nobody ran the script; the committed copies are what local builds use.
+      # Before the checks, so they see exactly what gets built.
+      - name: Regenerate the shelf's images
+        run: npm run shelf:placeholders && npm run shelf:cards
+
       # The checks run before the build, so a type error or a lint failure
       # stops the deploy instead of shipping alongside it.
       - name: Typecheck

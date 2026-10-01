@@ -9,8 +9,10 @@
  *   its `linkPreview`: that still, cut to the card's shape.
  *
  * Run it after reordering the shelf, replacing one of those posters, or giving
- * a write-up its preview: `npm run shelf:cards`. The build stops while a card a
- * page names is missing, but it cannot tell a stale one, so run this.
+ * a write-up its preview: `npm run shelf:cards`. The deploy runs it again
+ * before every build, so the live site never shows a stale card; running it
+ * here keeps the committed copies, which local builds use, current. The build
+ * stops while a card a page names is missing.
  *
  * The shelf and the pieces are read from their own TypeScript, compiled here
  * with the compiler the repo already has, so the collage follows the shelf's
@@ -18,7 +20,7 @@
  * those files import nothing but types.
  *
  * sharp is not a dependency of this repo. It is already installed because Next
- * depends on it, and this runs by hand, never in the build.
+ * depends on it, and this runs as a step of its own, never inside `next build`.
  */
 
 import { readdirSync, readFileSync } from 'node:fs';

@@ -30,6 +30,10 @@ it after adding or replacing a poster.
 reordering the shelf, replacing one of the first two posters in a section, or
 giving a write-up its link preview.
 
+The deploy runs both again before every build, so the live site is never behind
+when one is forgotten. Running them here keeps the committed copies current,
+which is what local builds use.
+
 Node 20.9 or newer.
 
 ## How it is laid out
@@ -156,7 +160,7 @@ carry no type, so unlike `og.png` they need no browser, and the script reads
 the shelf's order from `shelf.ts` itself, through the TypeScript compiler, so
 the collage follows the shelf rather than a list of its own. The build stops
 when a card a page names is not on disk; it cannot tell a stale one, which is
-why the script is worth running. Chat apps keep a link's preview once they
+why the deploy cuts them again before every build. Chat apps keep a link's preview once they
 have fetched it, so a link already shared shows its old card until the app
 fetches it again.
 
