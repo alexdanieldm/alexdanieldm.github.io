@@ -148,6 +148,16 @@ export const SHELF_UPDATED = '2026-09-29';
  */
 export const POSTER_WIDTHS = [360, 480, 720] as const;
 
+/**
+ * The one entry in a poster's `sizes` that is not a width. The page stops
+ * growing at its container, so on a big monitor a card is the size it is on a
+ * laptop, but each of its pixels is physically bigger and the 480 file's
+ * softness starts to show. Past 1800px, a width laptops do not reach at their
+ * default scaling, the slot is claimed at 720, so every density fetches the
+ * 720 file.
+ */
+export const POSTER_BIG_MONITOR = '(min-width: 1800px) 720px';
+
 export function posterSrc(slug: string, width: (typeof POSTER_WIDTHS)[number]): string {
   return `/shelf/${slug}-${width}.webp`;
 }
