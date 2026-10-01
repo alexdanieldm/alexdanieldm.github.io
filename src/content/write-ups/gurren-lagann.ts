@@ -1,9 +1,11 @@
 /**
  * @fileoverview Gurren Lagann, the first write-up.
  *
- * Its words are my manuscript's, version 11, unchanged and in its order. Each
- * paragraph is one string on one line, so a change to the manuscript is a
- * change to one line here. The highlights, the sentences set large, the lines
+ * Its words are my manuscript's, version 11, in its order, with five fixes I
+ * made after it: "solo él puede" for "solo el puede", a full stop closing the
+ * paragraphs that end "de esto" and "él mismo", and opening quote marks on
+ * "El taladro…" and the second "No creas en…". Each paragraph is one string on
+ * one line, so a change to the manuscript is a change to one line here. The highlights, the sentences set large, the lines
  * from the show and the thanks at the end are the treatments I chose for it.
  * The still is the one the preview places after "se ve y se siente en cada
  * fotograma". What the manuscript has not supplied yet is a placeholder: drawn
@@ -122,7 +124,7 @@ export const gurrenLagann: WriteUp = {
     },
     {
       type: 'paragraph',
-      text: 'Sin embargo un credo es fácil de forjar pero difícil de mantener, los valores solo pueden verse como virtudes cuando nos cuestan algo, y el camino que recorrió Rossiu estuvo plagado de justificantes, [[Rossiu sale de la caverna pero la caverna no salió de él]], y no es hasta años más tarde que se da cuenta de esto',
+      text: 'Sin embargo un credo es fácil de forjar pero difícil de mantener, los valores solo pueden verse como virtudes cuando nos cuestan algo, y el camino que recorrió Rossiu estuvo plagado de justificantes, [[Rossiu sale de la caverna pero la caverna no salió de él]], y no es hasta años más tarde que se da cuenta de esto.',
     },
     {
       type: 'paragraph',
@@ -157,7 +159,7 @@ export const gurrenLagann: WriteUp = {
       type: 'paragraph',
       text: 'La obra presenta una medicina ante el existencialismo cínico, una medicina ante la apatía de la vida, un camino para romper los límites que se nos han impuesto, y al igual que su escala de poder que nunca deja de crecer, al igual que Simon, al igual que Kamina, al igual que toda la aventura que hemos seguido, la historia sigue y sigue escalando, excavando y atravesando cielos.',
     },
-    { type: 'quotation', text: '"El taladro que atravesará los cielos”' },
+    { type: 'quotation', text: '“El taladro que atravesará los cielos”' },
     {
       type: 'paragraph',
       text: 'Porque Gurren Lagann es eso: es un ideal que atraviesa los cielos, atraviesa lo que se supone que es infinito y descubre lo que hay más allá. [[Nos planta sus ideas en el corazón]] y además nos toma de la mano y nos muestra los posibles desafíos que se nos pueden presentar en el mundo material que nos rodea, pone en vista lo que nos espera y nos grita: [[HAZLO]].',
@@ -225,11 +227,11 @@ export const gurrenLagann: WriteUp = {
     },
     {
       type: 'quotation',
-      text: '”No creas en el tú que cree en mí. No creas en el yo que cree en ti. Cree en el tú que cree en ti”',
+      text: '“No creas en el tú que cree en mí. No creas en el yo que cree en ti. Cree en el tú que cree en ti”',
     },
     {
       type: 'paragraph',
-      text: 'Simon se transforma en un “Kamina” y al seguir creciendo, lo supera. No al ser mejor que Kamina sino al seguir siendo Simon y porque ve lo que todo el mundo veía en él, entiende el valor que solo el puede aportar a quienes lo rodean, se ve al espejo y decide no convertirse solo en el producto de su entorno, [[se convierte en él mismo]]',
+      text: 'Simon se transforma en un “Kamina” y al seguir creciendo, lo supera. No al ser mejor que Kamina sino al seguir siendo Simon y porque ve lo que todo el mundo veía en él, entiende el valor que solo él puede aportar a quienes lo rodean, se ve al espejo y decide no convertirse solo en el producto de su entorno, [[se convierte en él mismo]].',
     },
     {
       type: 'paragraph',
