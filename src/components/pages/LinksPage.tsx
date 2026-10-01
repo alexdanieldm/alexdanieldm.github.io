@@ -16,7 +16,7 @@ import { LinkRow } from '@/components/ui';
 import { localeStorageKey } from '@/content/localePreference';
 import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
 import { CV, ROUTES, SOCIALS } from '@/content/navigation';
-import { SITE_NAME } from '@/content/seo';
+import { SITE_NAME, SITE_URL } from '@/content/seo';
 
 import styles from './LinksPage.module.scss';
 
@@ -81,7 +81,7 @@ export function LinksPage({ locale }: { locale: Locale }) {
               primary
               href={localePath(locale, ROUTES.home)}
               label={links.rows.portfolio}
-              value="alexdanieldm.github.io"
+              value={new URL(SITE_URL).host}
               icon={<SiteMarkIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />

@@ -143,7 +143,10 @@ draw the scene plus type into a 1200x630 canvas, and re-encode the result with
 down to 33KB with no loss.
 
 Every page builds its own card metadata through `pageMetadata()` in
-`src/content/seo.ts`. That exists because Next shallow-merges metadata: a page
+`src/content/seo.ts`. Every absolute address in it, and in the sitemap and the
+structured data, is built on `SITE_URL`: `https://alexdanieldm.com`, the custom
+domain the Pages settings serve the site from. `alexdanieldm.github.io` only
+redirects there, so it is never the address a crawler is given. That exists because Next shallow-merges metadata: a page
 declaring its own `openGraph` replaces the parent's wholesale instead of
 filling gaps, so without it every inner page advertised the home page's title
 and URL.

@@ -13,7 +13,13 @@ import type { Metadata } from 'next';
 import { contentFor, defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
 import { SOCIALS } from './navigation';
 
-export const SITE_URL = 'https://alexdanieldm.github.io';
+/**
+ * The address the site is served from: the custom domain set in the Pages
+ * settings. alexdanieldm.github.io only redirects here, so every absolute
+ * address a crawler or an unfurler reads, the canonical, the card, the
+ * sitemap, is built on this one rather than on the redirect.
+ */
+export const SITE_URL = 'https://alexdanieldm.com';
 export const SITE_NAME = 'Alex Durán';
 
 export const DEFAULT_TITLE: Record<Locale, string> = {
