@@ -41,6 +41,16 @@ export function writeUpHref(locale: Locale, slug: string): string | undefined {
   return BY_SLUG.has(slug) ? localePath(locale, writeUpPath(slug)) : undefined;
 }
 
+/**
+ * Whether an item's piece is written in the other language from the page that
+ * links to it. A Spanish piece is the same Spanish text on the English route,
+ * so the link says so before anyone follows it.
+ */
+export function inOtherLanguage(locale: Locale, slug: string): boolean {
+  const piece = BY_SLUG.get(slug);
+  return Boolean(piece && piece.lang !== locale);
+}
+
 export function isPlaceholder(value: unknown): value is Placeholder {
   return (
     typeof value === 'object' && value !== null && 'type' in value && value.type === 'placeholder'

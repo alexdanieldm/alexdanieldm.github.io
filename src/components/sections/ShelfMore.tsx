@@ -23,7 +23,7 @@ import {
   SHELF,
   type ShelfSectionKey,
 } from '@/content/shelf';
-import { writeUpHref } from '@/content/write-ups';
+import { inOtherLanguage, writeUpHref } from '@/content/write-ups';
 
 import styles from './ShelfMore.module.scss';
 
@@ -75,7 +75,9 @@ export function ShelfMore({ locale, section, slug }: ShelfMoreProps) {
                 <p className={styles.cardCredit}>{creditLine(shelf, item)}</p>
                 {written && (
                   <ArrowLink href={written} className={styles.cardRead}>
-                    {shelf.readWriteUp}
+                    {inOtherLanguage(locale, item.slug)
+                      ? shelf.readWriteUpOther
+                      : shelf.readWriteUp}
                   </ArrowLink>
                 )}
               </article>

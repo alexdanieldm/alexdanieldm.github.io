@@ -119,6 +119,7 @@ export const shelf: ShelfContent = {
   },
 
   readWriteUp: 'Leer el artículo',
+  readWriteUpOther: 'Leer el artículo, en inglés',
   art: { poster: 'Póster de {title}', cover: 'Portada de {title}' },
 
   writeUp: {

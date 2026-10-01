@@ -138,6 +138,9 @@ export const shelf = {
   },
 
   readWriteUp: 'Read the write up',
+  /* For a piece written in the other language, which the page shows as it
+     was written rather than translated. */
+  readWriteUpOther: 'Read the write up, in Spanish',
   art: { poster: 'Poster for {title}', cover: 'Cover art for {title}' },
 
   /**

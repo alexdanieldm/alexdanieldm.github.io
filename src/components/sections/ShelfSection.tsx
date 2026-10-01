@@ -23,7 +23,7 @@ import {
   type ShelfItem,
   type ShelfSectionKey,
 } from '@/content/shelf';
-import { writeUpHref } from '@/content/write-ups';
+import { inOtherLanguage, writeUpHref } from '@/content/write-ups';
 
 import styles from './ShelfSection.module.scss';
 
@@ -82,7 +82,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
     const href = writeUp(item);
     return href ? (
       <ArrowLink href={href} className={className}>
-        {shelf.readWriteUp}
+        {inOtherLanguage(locale, item.slug) ? shelf.readWriteUpOther : shelf.readWriteUp}
       </ArrowLink>
     ) : null;
   };
