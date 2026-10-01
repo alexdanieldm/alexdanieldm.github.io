@@ -259,3 +259,41 @@
     margin-bottom: var(--spacer-2);
   }
 }
+
+/* ── The way in to writing to me ──────────────────────────────────────────── */
+
+/* The shelf contact canvas's coda, as settled there: the closing's coral rule,
+   one line, the link, and the address under it. */
+.coda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: var(--spacer-3);
+
+  @include mobile-down {
+    margin-top: var(--spacer-2);
+  }
+}
+
+.codaRule {
+  display: block;
+  width: 46px; /* the shelf closing's mark, at its size */
+  height: 3px;
+  margin-bottom: var(--spacer-2);
+  background-color: var(--color-accent);
+}
+
+.codaLine {
+  margin-bottom: var(--spacer-1);
+  font-size: var(--write-up-body);
+  line-height: var(--typography-height-body);
+  text-wrap: pretty;
+}
+
+.codaAddress {
+  margin-top: var(--spacer-xs);
+  font-size: var(--typography-size-caption);
+  line-height: 1.5;
+  color: var(--color-muted);
+  user-select: all;
+}

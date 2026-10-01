@@ -154,6 +154,15 @@ export const shelf = {
       director: 'Director',
       year: 'Year',
     },
+    /* The end of every piece, word for word as the shelf contact canvas
+       settled it: one line, and an email that already says which piece it is
+       about, so I know before I open it. */
+    coda: {
+      label: 'Write to me',
+      line: 'If it stayed with you too, or it made you think of something I should try, tell me.',
+      link: 'Write to me about {title}',
+      subject: 'About {title}',
+    },
   },
 
   closing: {
