@@ -10,7 +10,7 @@
 
 import type { Metadata } from 'next';
 
-import { DEFAULT_LOCALE, localePath, OG_LOCALE, type Locale } from './locales';
+import { defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
 
 export const SITE_URL = 'https://alexdanieldm.github.io';
 export const SITE_NAME = 'Alex Durán';
@@ -88,13 +88,14 @@ export function pageMetadata({
       ? { canonical }
       : {
           canonical,
-          /* Both languages point at each other, and x-default at English, so a
-             crawler treats them as one page in two languages rather than as
-             duplicates competing with each other. */
+          /* Both languages point at each other, and x-default at the one the
+             page lives in first, English for the portfolio and Spanish for the
+             shelf, so a crawler treats them as one page in two languages
+             rather than as duplicates competing with each other. */
           languages: {
             en: localePath('en', path),
             es: localePath('es', path),
-            'x-default': localePath(DEFAULT_LOCALE, path),
+            'x-default': localePath(defaultLocaleFor(path), path),
           },
         },
     ...(noIndex ? { robots: { index: false, follow: true } } : {}),
