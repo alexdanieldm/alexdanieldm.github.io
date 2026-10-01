@@ -10,7 +10,8 @@
 
 import type { Metadata } from 'next';
 
-import { defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
+import { contentFor, defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
+import { SOCIALS } from './navigation';
 
 export const SITE_URL = 'https://alexdanieldm.github.io';
 export const SITE_NAME = 'Alex Durán';
@@ -145,6 +146,38 @@ const ME = {
   name: SITE_NAME,
   url: `${SITE_URL}/`,
 } as const;
+
+/**
+ * The site and me, for search engines, from the home page: what I do, where,
+ * and the profiles elsewhere that are also me, so a search for my name can
+ * treat them as one person rather than several namesakes.
+ */
+export function siteSchema(locale: Locale) {
+  const { home, common } = contentFor(locale);
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        ...ME,
+        jobTitle: home.banner.eyebrow,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: common.footer.location,
+          addressCountry: 'ES',
+        },
+        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#site`,
+        url: `${SITE_URL}/`,
+        name: SITE_NAME,
+        inLanguage: ['en', 'es'],
+        author: { '@id': ME['@id'] },
+      },
+    ],
+  };
+}
 
 type ArticleSeo = {
   title: string;

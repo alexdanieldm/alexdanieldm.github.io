@@ -3,15 +3,17 @@ import { Ground, HOME_WASHES } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/components/sections';
-import { Button } from '@/components/ui';
+import { Button, JsonLd } from '@/components/ui';
 import { contentFor, type Locale } from '@/content/locales';
 import { CV, ROUTES } from '@/content/navigation';
+import { siteSchema } from '@/content/seo';
 
 export function HomePage({ locale }: { locale: Locale }) {
   const { home } = contentFor(locale);
 
   return (
     <Ground washes={HOME_WASHES} washOffset="var(--banner-height)">
+      <JsonLd data={siteSchema(locale)} />
       <SiteHeader locale={locale} path={ROUTES.home} />
 
       <main id="main">
