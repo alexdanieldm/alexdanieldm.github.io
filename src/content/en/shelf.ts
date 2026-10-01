@@ -228,10 +228,14 @@ export const shelf = {
     subject: 'About the shelf',
   },
 
+  /* All of it, not just the posters: a write-up can carry a still too, which
+     is also why the sources "include" these rather than being all of them.
+     Held to two lines on a laptop, where a third pushed the shelf's contact
+     page past the first screen. */
   disclaimer:
-    'Cover and poster artwork on this page belongs to its creators and publishers. It is ' +
-    'reproduced here to point you at the work, and is not presented as mine. Sources: ' +
-    'TMDB, Steam, Amazon, MangaDex, Kyobo and WEBTOON.',
+    'All artwork on this page belongs to its authors, studios and publishers. It is ' +
+    'reproduced here to point you at the work, and is not presented as mine. Sources ' +
+    'include TMDB, Steam, Amazon, MangaDex, Kyobo and WEBTOON.',
 
   /* Where the portfolio's footer lists what it is built with. The shelf is
      made of the thing its title is about. */

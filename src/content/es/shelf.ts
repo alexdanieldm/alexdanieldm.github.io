@@ -179,9 +179,9 @@ export const shelf: ShelfContent = {
   },
 
   disclaimer:
-    'Las portadas y los pósteres de esta página pertenecen a sus creadores y editoriales. ' +
-    'Están aquí para señalarte la obra, no como algo mío. Fuentes: TMDB, Steam, Amazon, ' +
-    'MangaDex, Kyobo y WEBTOON.',
+    'Todas las imágenes de esta página pertenecen a sus autores, estudios y editoriales. ' +
+    'Están aquí para señalarte la obra, no como algo mío. Fuentes, entre otras: TMDB, ' +
+    'Steam, Amazon, MangaDex, Kyobo y WEBTOON.',
 
   /* Echoes the title: "vuelvo" there, "volver a" here. */
   colophon: 'Hecho de volver a ver, a leer y a jugar',
