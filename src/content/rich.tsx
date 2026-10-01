@@ -39,9 +39,13 @@ export function renderRich(text: Rich): ReactNode[] {
   return parts;
 }
 
-/** A paragraph of rich copy. */
-export function Copy({ text, className }: { text: Rich; className?: string }) {
-  return <p className={className}>{renderRich(text)}</p>;
+/** A paragraph of rich copy, marked with its language when it is not the page's. */
+export function Copy({ text, className, lang }: { text: Rich; className?: string; lang?: string }) {
+  return (
+    <p className={className} lang={lang}>
+      {renderRich(text)}
+    </p>
+  );
 }
 
 /**

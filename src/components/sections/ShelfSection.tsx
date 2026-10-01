@@ -12,7 +12,13 @@
  */
 
 import { ArrowLink, Poster } from '@/components/ui';
-import { contentFor, type Locale } from '@/content/locales';
+import {
+  contentFor,
+  HTML_LANG,
+  otherLocale,
+  type Locale,
+  type ShelfContent,
+} from '@/content/locales';
 import { Copy, type Rich } from '@/content/rich';
 import {
   creditLine,
@@ -41,13 +47,35 @@ const SIZES = {
   wall: `(max-width: 450px) calc(50vw - 32px), (max-width: 769px) calc(33vw - 40px), (max-width: 990px) calc(25vw - 40px), ${BIG_MONITOR}, 204px`,
 };
 
-type Written = { item: ShelfItem; take: Rich };
+/** Words about an item, and their language when it is not the page's. */
+type Words = { text: Rich; lang?: string };
 
-function tiers(items: ShelfItem[], takes: Partial<Record<string, Rich>>) {
+/**
+ * An item's take or eyebrow in the page's language, or else in the other one,
+ * marked with its language. The shelf is written in Spanish first, and English
+ * is a translation I add when I want to; until I do, the English shelf shows
+ * the Spanish words, read in a Spanish voice, and both shelves keep the same
+ * tiers.
+ */
+function wordsFor(
+  locale: Locale,
+  slug: string,
+  pick: (shelf: ShelfContent) => Partial<Record<string, Rich>>,
+): Words | undefined {
+  const own = pick(contentFor(locale).shelf)[slug];
+  if (own) return { text: own };
+  const other = otherLocale(locale);
+  const theirs = pick(contentFor(other).shelf)[slug];
+  return theirs ? { text: theirs, lang: HTML_LANG[other] } : undefined;
+}
+
+type Written = { item: ShelfItem; take: Words };
+
+function tiers(items: ShelfItem[], locale: Locale) {
   const written: Written[] = [];
   const wall: ShelfItem[] = [];
   for (const item of items) {
-    const take = takes[item.slug];
+    const take = wordsFor(locale, item.slug, (shelf) => shelf.takes);
     if (take) written.push({ item, take });
     else wall.push(item);
   }
@@ -62,9 +90,9 @@ type ShelfSectionProps = {
 
 export function ShelfSection({ section, locale }: ShelfSectionProps) {
   const { shelf } = contentFor(locale);
-  const eyebrows: Partial<Record<string, string>> = shelf.eyebrows;
   const { name, intro } = shelf.sections[section];
-  const { feature, highlights, wall } = tiers(SHELF[section], shelf.takes);
+  const { feature, highlights, wall } = tiers(SHELF[section], locale);
+  const eyebrow = feature && wordsFor(locale, feature.item.slug, (shelf) => shelf.eyebrows);
   const titleId = `${section}-title`;
 
   /* Where a written-up item leads, from its poster and from its button alike.
@@ -115,12 +143,18 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
             className={styles.featurePoster}
           />
           <div className={styles.featureBody}>
-            {eyebrows[feature.item.slug] && (
-              <p className={styles.eyebrow}>{eyebrows[feature.item.slug]}</p>
+            {eyebrow && (
+              <p className={styles.eyebrow} lang={eyebrow.lang}>
+                {eyebrow.text}
+              </p>
             )}
             <h3 className={styles.featureTitle}>{feature.item.title}</h3>
             <p className={styles.featureCredit}>{creditLine(shelf, feature.item)}</p>
-            <Copy text={feature.take} className={styles.featureTake} />
+            <Copy
+              text={feature.take.text}
+              lang={feature.take.lang}
+              className={styles.featureTake}
+            />
             {read(feature.item, styles.featureRead)}
           </div>
         </article>
@@ -140,7 +174,7 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
                 />
                 <h3 className={styles.highlightTitle}>{item.title}</h3>
                 <p className={styles.highlightCredit}>{creditLine(shelf, item)}</p>
-                <Copy text={take} className={styles.highlightTake} />
+                <Copy text={take.text} lang={take.lang} className={styles.highlightTake} />
                 {read(item, styles.highlightRead)}
               </article>
             </li>
