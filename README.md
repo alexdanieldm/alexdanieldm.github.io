@@ -131,7 +131,7 @@ authored separately, so it cannot drift away from the site it advertises.
 It has to be a browser doing the drawing: the three faces are woff2 only, and
 nothing here can rasterise woff2 outside one. To regenerate, open the site,
 draw the scene plus type into a 1200x630 canvas, and re-encode the result with
-`sharp().png({ effort: 10 })` — that took the canvas's 220KB default output
+`sharp().png({ effort: 10 })`: that took the canvas's 220KB default output
 down to 33KB with no loss.
 
 Every page builds its own card metadata through `pageMetadata()` in
