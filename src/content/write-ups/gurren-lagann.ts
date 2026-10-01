@@ -4,12 +4,13 @@
  * Its words are my manuscript's, version 11, in its order, with five fixes I
  * made after it: "solo él puede" for "solo el puede", a full stop closing the
  * paragraphs that end "de esto" and "él mismo", and opening quote marks on
- * "El taladro…" and the second "No creas en…". Each paragraph is one string on
- * one line, so a change to the manuscript is a change to one line here. The highlights, the sentences set large, the lines
- * from the show and the thanks at the end are the treatments I chose for it.
- * The still is the one the preview places after "se ve y se siente en cada
- * fotograma". What the manuscript has not supplied yet is a placeholder: drawn
- * as a visible box, and never deployed.
+ * "El taladro…" and the second "No creas en…". Each paragraph is one string
+ * on one line, so a change to the manuscript is a change to one line here.
+ *
+ * The highlights, the sentences set large, the lines from the show and the
+ * thanks at the end are the treatments I chose for it. The still is the one
+ * the preview places after "se ve y se siente en cada fotograma". The
+ * standfirst is one of the piece's own paragraphs, chosen to open it too.
  */
 
 import type { WriteUp } from './types';
@@ -17,7 +18,8 @@ import type { WriteUp } from './types';
 export const gurrenLagann: WriteUp = {
   slug: 'gurren-lagann',
   lang: 'es',
-  standfirst: { type: 'placeholder', note: 'the standfirst, if the piece is to have one' },
+  standfirst:
+    'Gurren Lagann te dice una y otra y otra vez a tu cara que no hay nada más poderoso que el indomable espíritu humano.',
   /* The shelf's credit for it, split into the rail's rows. */
   facts: [
     { label: 'studio', value: 'Gainax' },
