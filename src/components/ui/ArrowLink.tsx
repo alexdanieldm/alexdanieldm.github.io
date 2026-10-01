@@ -26,17 +26,29 @@ type ArrowLinkProps = {
   children: ReactNode;
   direction?: 'forward' | 'back';
   className?: string;
+  /**
+   * Followed as a full page load rather than a client transition, for a link
+   * whose destination decides its language on arrival.
+   */
+  fullLoad?: boolean;
 };
 
-export function ArrowLink({ href, children, direction = 'forward', className }: ArrowLinkProps) {
+export function ArrowLink({
+  href,
+  children,
+  direction = 'forward',
+  className,
+  fullLoad = false,
+}: ArrowLinkProps) {
   const forward = direction === 'forward';
   const classes = [styles.link, forward && 'text-link', className].filter(Boolean).join(' ');
+  const Anchor = fullLoad ? 'a' : Link;
 
   return (
-    <Link className={classes} href={href} data-direction={direction}>
+    <Anchor className={classes} href={href} data-direction={direction}>
       {!forward && <ArrowLeftIcon size={14} className={styles.arrow} />}
       {children}
       {forward && <ArrowUpRightIcon size={14} className={styles.arrow} />}
-    </Link>
+    </Anchor>
   );
 }

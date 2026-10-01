@@ -9,12 +9,24 @@
  * scroll when you are already there.
  */
 
-import { localePath, type CommonContent, type Locale, type ShelfContent } from './locales';
+import {
+  crossingPath,
+  localePath,
+  type CommonContent,
+  type Locale,
+  type ShelfContent,
+} from './locales';
 import { SHELF_SECTIONS } from './shelf';
 
 export type NavItem = {
   href: string;
   label: string;
+  /**
+   * Followed as a full page load rather than a client transition: the door
+   * into the other half, whose language is decided on arrival (see
+   * `crossingPath`).
+   */
+  fullLoad?: boolean;
 };
 
 export function navItems(locale: Locale, common: CommonContent): NavItem[] {
@@ -25,8 +37,10 @@ export function navItems(locale: Locale, common: CommonContent): NavItem[] {
     { href: at('/#tech'), label: common.nav.tech },
     { href: at('/#approach'), label: common.nav.approach },
     { href: at('/contact/'), label: common.nav.contact },
-    /* The one door into the shelf, the way the shelf's nav has one door out. */
-    { href: at(ROUTES.shelf), label: common.nav.shelf },
+    /* The one door into the shelf, the way the shelf's nav has one door out.
+       It opens the shelf in Spanish whichever language this nav is in: each
+       half is entered in its own language. */
+    { href: crossingPath(ROUTES.shelf), label: common.nav.shelf, fullLoad: true },
   ];
 }
 

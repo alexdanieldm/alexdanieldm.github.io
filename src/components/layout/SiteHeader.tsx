@@ -50,18 +50,19 @@ export function SiteHeader({ locale, path, variant = 'overlay', nav = 'site' }: 
 
       <nav className={styles.nav} aria-label={common.mainNavLabel}>
         <ul className={styles.list}>
-          {items.map(({ href, label }) => {
+          {items.map(({ href, label, fullLoad }) => {
             const isCurrent = href === here;
+            const Anchor = fullLoad ? 'a' : Link;
             return (
               <li key={href}>
-                <Link
+                <Anchor
                   className={styles.link}
                   href={href}
                   data-current={isCurrent || undefined}
                   aria-current={isCurrent ? 'page' : undefined}
                 >
                   {label}
-                </Link>
+                </Anchor>
               </li>
             );
           })}
