@@ -54,6 +54,15 @@ type PageSeo = {
   /** Skip the tab-title template, for the one page that is already the full title. */
   isHome?: boolean;
   noIndex?: boolean;
+  /**
+   * The one language the page's text exists in, when it is not both. A
+   * write-up in Spanish is the same Spanish text under either language's
+   * header and footer, not a translation, so both routes name the Spanish URL
+   * as the canonical and neither claims an alternate.
+   */
+  original?: Locale;
+  /** `article` for a write-up; everything else is a page of the site. */
+  type?: 'website' | 'article';
 };
 
 export function pageMetadata({
@@ -63,8 +72,11 @@ export function pageMetadata({
   path,
   isHome,
   noIndex,
+  original,
+  type = 'website',
 }: PageSeo): Metadata {
   const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
+  const canonical = localePath(original ?? locale, path);
 
   return {
     /* Omitted rather than set to undefined on the home page. An explicit
@@ -72,23 +84,25 @@ export function pageMetadata({
        page ships with no <title> at all; leaving the key out lets it inherit. */
     ...(isHome ? {} : { title }),
     description,
-    alternates: {
-      canonical: localePath(locale, path),
-      /* Both languages point at each other, and x-default at English, so a
-         crawler treats them as one page in two languages rather than as
-         duplicates competing with each other. */
-      languages: {
-        en: localePath('en', path),
-        es: localePath('es', path),
-        'x-default': localePath(DEFAULT_LOCALE, path),
-      },
-    },
+    alternates: original
+      ? { canonical }
+      : {
+          canonical,
+          /* Both languages point at each other, and x-default at English, so a
+             crawler treats them as one page in two languages rather than as
+             duplicates competing with each other. */
+          languages: {
+            en: localePath('en', path),
+            es: localePath('es', path),
+            'x-default': localePath(DEFAULT_LOCALE, path),
+          },
+        },
     ...(noIndex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
-      type: 'website',
-      locale: OG_LOCALE[locale],
+      type,
+      locale: OG_LOCALE[original ?? locale],
       siteName: SITE_NAME,
-      url: localePath(locale, path),
+      url: canonical,
       title: fullTitle,
       description,
       images: [OG_IMAGE],
