@@ -225,7 +225,9 @@ Everything on it is conditional on what I have written, and no tier is stored:
 
 - An item with a take in `src/content/{en,es}/shelf.ts` is a highlight. A
   highlight marked `featured` in `src/content/shelf.ts` leads its section.
-  Everything else is the wall.
+  Everything else is the wall. Takes are written in Spanish first, and one
+  with no English yet shows on the English shelf in Spanish, marked as such,
+  so both shelves keep the same shape.
 - An item gets a "Read the write up" button only once its piece is in
   `src/content/write-ups/`, and then its poster links there too, because on a phone the button can sit a
   screen below the poster. The poster's link is for pointers: keyboards and
