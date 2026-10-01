@@ -118,7 +118,7 @@ function check(piece: WriteUp) {
      have already read it. This makes sure they have, and that a pull quote is
      always a sentence of the piece rather than words of its own. */
   const paragraphs = piece.body.flatMap((block) =>
-    block.type === 'paragraph' ? [plainText(block.text)] : [],
+    block.type === 'paragraph' || block.type === 'standout' ? [plainText(block.text)] : [],
   );
   for (const block of piece.body) {
     if (block.type === 'pull' && !paragraphs.some((text) => text.includes(block.text))) {

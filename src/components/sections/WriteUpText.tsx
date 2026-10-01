@@ -1,11 +1,14 @@
 /**
  * @fileoverview A write-up's text: the manuscript's blocks, in its order.
  *
- * Two things here look alike and are not. A quotation is somebody else's
- * words, so it is a real `<blockquote>`, with its source in a caption. A pull
- * quote is one of the piece's own sentences said again, larger; a screen
- * reader has just read it, so it is hidden from one, and the build has already
- * checked that it is a repeat (see `write-ups/index.ts`).
+ * Three things here look alike and are not. A quotation is somebody else's
+ * words, a line from the work or a person, so it is a real `<blockquote>`, and
+ * its rule is grey rather than coral. A standout is one of the piece's own
+ * sentences set large where it falls: it is said once, so it is a paragraph
+ * like any other to a screen reader. A pull quote is one of the piece's own
+ * sentences said again; a screen reader has just read it, so it is hidden from
+ * one, and the build has already checked that it is a repeat (see
+ * `write-ups/index.ts`).
  */
 
 import { HTML_LANG, type Locale } from '@/content/locales';
@@ -35,7 +38,18 @@ export function PlaceholderNote({ note }: { note: string }) {
 function BlockView({ block, piece, locale }: { block: Block; piece: WriteUp; locale: Locale }) {
   switch (block.type) {
     case 'paragraph':
-      return <p className={styles.paragraph}>{renderProse(block.text, locale)}</p>;
+      return (
+        <p className={styles.paragraph} data-closing={block.closing || undefined}>
+          {renderProse(block.text, locale)}
+        </p>
+      );
+
+    case 'standout':
+      return (
+        <p className={styles.quote} data-question={block.question || undefined}>
+          {renderProse(block.text, locale)}
+        </p>
+      );
 
     case 'heading':
       return (
@@ -92,6 +106,17 @@ function BlockView({ block, piece, locale }: { block: Block; piece: WriteUp; loc
             </figcaption>
           )}
         </figure>
+      );
+
+    case 'signoff':
+      return (
+        <div className={styles.signoff}>
+          {block.lines.map((line) => (
+            <p key={line} className={styles.signoffLine}>
+              {renderProse(line, locale)}
+            </p>
+          ))}
+        </div>
       );
 
     case 'placeholder':

@@ -13,6 +13,11 @@
 .paragraph {
   margin-bottom: var(--write-up-gap);
   text-wrap: pretty;
+
+  /* The piece's last thoughts, a step above the rest. */
+  &[data-closing] {
+    font-size: var(--write-up-closing);
+  }
 }
 
 /* A link inside the prose is underlined all the time, not only on hover like
@@ -44,7 +49,10 @@
   text-wrap: balance;
 }
 
-/* One look for both kinds of quote: the markup says which it is. */
+/* One look for every kind of quote: the markup says which it is, and the
+   colour of the rule says whose words they are, coral for the piece's own and
+   grey for anybody else's. A question, and a line from the work, are set a step
+   smaller than a statement. */
 .quote {
   margin-block: var(--write-up-aside);
   padding: 4px 0 4px 32px;
@@ -59,9 +67,15 @@
     padding: 2px 0 2px 22px;
   }
 
+  &[data-question] {
+    font-size: var(--write-up-quote-small);
+  }
+
   /* Inside a quotation the figure holds the space, so the quote does not. */
   .quotation & {
     margin: 0;
+    border-left-color: var(--color-faint);
+    font-size: var(--write-up-quote-small);
   }
 }
 
@@ -133,6 +147,29 @@
 
   @include mobile-down {
     display: none;
+  }
+}
+
+/* The thanks that end the piece: the display face, the last line in coral, and
+   a shout in it set in capitals by style, so the words stay as written. */
+.signoff {
+  margin-bottom: var(--write-up-gap);
+  font-family: var(--font-display);
+  font-size: 24px; /* as the preview sets it; between the scale's body and display steps */
+  font-style: italic;
+  line-height: var(--typography-height-heading);
+}
+
+.signoffLine {
+  text-wrap: balance;
+
+  &:last-child {
+    color: var(--color-accent);
+  }
+
+  em {
+    font-style: inherit;
+    text-transform: uppercase;
   }
 }
 

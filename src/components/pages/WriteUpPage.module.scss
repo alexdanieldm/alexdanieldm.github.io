@@ -12,6 +12,10 @@
   --write-up-standfirst: var(--typography-size-body-large);
   --write-up-heading: 36px;
   --write-up-quote: 32px;
+  /* A question, and a line from the work, a step under a statement, in the
+     proportion the rich-text preview set them. */
+  --write-up-quote-small: 28px;
+  --write-up-closing: var(--typography-size-body-large);
 
   /* Its rhythm, as drawn. 22 between paragraphs is the contact page's; the
      rest have no step on the scale either. */
@@ -29,6 +33,8 @@
     --write-up-standfirst: 17px;
     --write-up-heading: 30px;
     --write-up-quote: 26px;
+    --write-up-quote-small: 23px;
+    --write-up-closing: 18px;
     --write-up-gap: var(--spacer-1);
     --write-up-heading-above: 34px;
     --write-up-heading-below: 16px;
