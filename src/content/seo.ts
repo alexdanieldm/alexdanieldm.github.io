@@ -91,6 +91,20 @@ export function pageMetadata({
 }: PageSeo): Metadata {
   const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
   const canonical = localePath(original ?? locale, path);
+  const alternates = original
+    ? { canonical }
+    : {
+        canonical,
+        /* Both languages point at each other, and x-default at the one the
+           page lives in first, English for the portfolio and Spanish for the
+           shelf, so a crawler treats them as one page in two languages rather
+           than as duplicates competing with each other. */
+        languages: {
+          en: localePath('en', path),
+          es: localePath('es', path),
+          'x-default': localePath(defaultLocaleFor(path), path),
+        },
+      };
 
   return {
     /* Omitted rather than set to undefined on the home page. An explicit
@@ -98,21 +112,9 @@ export function pageMetadata({
        page ships with no <title> at all; leaving the key out lets it inherit. */
     ...(isHome ? {} : { title }),
     description,
-    alternates: original
-      ? { canonical }
-      : {
-          canonical,
-          /* Both languages point at each other, and x-default at the one the
-             page lives in first, English for the portfolio and Spanish for the
-             shelf, so a crawler treats them as one page in two languages
-             rather than as duplicates competing with each other. */
-          languages: {
-            en: localePath('en', path),
-            es: localePath('es', path),
-            'x-default': localePath(defaultLocaleFor(path), path),
-          },
-        },
-    ...(noIndex ? { robots: { index: false, follow: true } } : {}),
+    /* A page kept out of search claims no address and names no twin. The 404
+       is that page, and its Spanish twin would be a page that does not exist. */
+    ...(noIndex ? { robots: { index: false, follow: true } } : { alternates }),
     openGraph: {
       type,
       locale: OG_LOCALE[original ?? locale],
