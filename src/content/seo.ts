@@ -123,7 +123,7 @@ export function pageMetadata({
       creator: '@alexdanieldm',
       title: fullTitle,
       description,
-      images: [image.url],
+      images: [{ url: image.url, alt: image.alt }],
     },
   };
 }
