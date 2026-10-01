@@ -154,6 +154,20 @@ export const shelf = {
       director: 'Director',
       year: 'Year',
     },
+    /* After the piece, more from its section. The laptop has room to say
+       where; the phone keeps the short title, and a button in place of the
+       link. */
+    more: {
+      titles: {
+        anime: { long: 'More anime on the shelf', short: 'More anime' },
+        manga: { long: 'More manga on the shelf', short: 'More manga' },
+        games: { long: 'More games on the shelf', short: 'More games' },
+        movies: { long: 'More movies on the shelf', short: 'More movies' },
+        television: { long: 'More shows on the shelf', short: 'More shows' },
+      },
+      all: 'All of it',
+      allShelf: 'All of the shelf',
+    },
     /* The end of every piece, word for word as the shelf contact canvas
        settled it: one line, and an email that already says which piece it is
        about, so I know before I open it. */

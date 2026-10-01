@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ARTICLE_WASHES, Ground } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { PlaceholderNote, WriteUpContents, WriteUpText } from '@/components/sections';
+import { PlaceholderNote, ShelfMore, WriteUpContents, WriteUpText } from '@/components/sections';
 import { ArrowLink, Poster, ReadingProgress } from '@/components/ui';
 import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locales';
 import { ROUTES, SOCIALS, writeUpPath } from '@/content/navigation';
@@ -79,69 +79,77 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
       <ReadingProgress target={TEXT_ID} />
       <SiteHeader locale={locale} path={route} variant="solid" nav="shelf" />
 
-      <main id="main" className={styles.page}>
-        <ArrowLink href={localePath(locale, ROUTES.shelf)} direction="back" className={styles.back}>
-          {shelf.backToShelf}
-        </ArrowLink>
+      <main id="main">
+        <div className={styles.page}>
+          <ArrowLink
+            href={localePath(locale, ROUTES.shelf)}
+            direction="back"
+            className={styles.back}
+          >
+            {shelf.backToShelf}
+          </ArrowLink>
 
-        <article className={styles.piece}>
-          <header className={styles.head}>
-            <p className={styles.eyebrow}>
-              <span className={styles.bar} aria-hidden="true" />
-              {shelf.sections[section].name}
-            </p>
-            <h1 className={styles.title}>{item.title}</h1>
-          </header>
+          <article className={styles.piece}>
+            <header className={styles.head}>
+              <p className={styles.eyebrow}>
+                <span className={styles.bar} aria-hidden="true" />
+                {shelf.sections[section].name}
+              </p>
+              <h1 className={styles.title}>{item.title}</h1>
+            </header>
 
-          <div className={styles.rail}>
-            <Poster
-              slug={slug}
-              alt={posterAlt(shelf, item)}
-              sizes={POSTER_SIZES}
-              tone="accent"
-              priority
-              className={styles.poster}
-            />
-            <dl className={styles.facts}>
-              {piece.facts.map(({ label, value }) => (
-                <div key={label} className={styles.fact}>
-                  <dt className={styles.factLabel}>{shelf.writeUp.facts[label]}</dt>
-                  <dd className={styles.factValue}>{value}</dd>
-                </div>
-              ))}
-            </dl>
-            {contents.length > 0 && (
-              <WriteUpContents label={shelf.writeUp.contents} items={contents} lang={lang} />
-            )}
-          </div>
+            <div className={styles.rail}>
+              <Poster
+                slug={slug}
+                alt={posterAlt(shelf, item)}
+                sizes={POSTER_SIZES}
+                tone="accent"
+                priority
+                className={styles.poster}
+              />
+              <dl className={styles.facts}>
+                {piece.facts.map(({ label, value }) => (
+                  <div key={label} className={styles.fact}>
+                    <dt className={styles.factLabel}>{shelf.writeUp.facts[label]}</dt>
+                    <dd className={styles.factValue}>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              {contents.length > 0 && (
+                <WriteUpContents label={shelf.writeUp.contents} items={contents} lang={lang} />
+              )}
+            </div>
 
-          <div className={styles.body}>
-            {isPlaceholder(piece.standfirst) ? (
-              <PlaceholderNote note={piece.standfirst.note} />
-            ) : (
-              piece.standfirst && (
-                <p className={styles.standfirst} lang={lang}>
-                  {renderProse(piece.standfirst, locale)}
-                </p>
-              )
-            )}
-            <span className={styles.rule} aria-hidden="true" />
-            <WriteUpText piece={piece} locale={locale} id={TEXT_ID} />
+            <div className={styles.body}>
+              {isPlaceholder(piece.standfirst) ? (
+                <PlaceholderNote note={piece.standfirst.note} />
+              ) : (
+                piece.standfirst && (
+                  <p className={styles.standfirst} lang={lang}>
+                    {renderProse(piece.standfirst, locale)}
+                  </p>
+                )
+              )}
+              <span className={styles.rule} aria-hidden="true" />
+              <WriteUpText piece={piece} locale={locale} id={TEXT_ID} />
 
-            {/* The way in to writing to me, at the end of every piece. The
+              {/* The way in to writing to me, at the end of every piece. The
                 address is printed under the link: on a computer with no mail
                 app a mail link does nothing, and one click selects all of it
                 to copy. */}
-            <aside className={styles.coda} aria-label={coda.label}>
-              <span className={styles.codaRule} aria-hidden="true" />
-              <p className={styles.codaLine}>{coda.line}</p>
-              <ArrowLink href={`${SOCIALS.email}?subject=${encodeURIComponent(subject)}`}>
-                {coda.link.replace('{title}', item.title)}
-              </ArrowLink>
-              <p className={styles.codaAddress}>{SOCIALS.email.replace('mailto:', '')}</p>
-            </aside>
-          </div>
-        </article>
+              <aside className={styles.coda} aria-label={coda.label}>
+                <span className={styles.codaRule} aria-hidden="true" />
+                <p className={styles.codaLine}>{coda.line}</p>
+                <ArrowLink href={`${SOCIALS.email}?subject=${encodeURIComponent(subject)}`}>
+                  {coda.link.replace('{title}', item.title)}
+                </ArrowLink>
+                <p className={styles.codaAddress}>{SOCIALS.email.replace('mailto:', '')}</p>
+              </aside>
+            </div>
+          </article>
+        </div>
+
+        <ShelfMore locale={locale} section={section} slug={slug} />
       </main>
 
       <SiteFooter

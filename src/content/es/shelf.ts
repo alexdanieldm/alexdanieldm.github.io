@@ -128,6 +128,17 @@ export const shelf: ShelfContent = {
       director: 'Director',
       year: 'Año',
     },
+    more: {
+      titles: {
+        anime: { long: 'Más anime en la estantería', short: 'Más anime' },
+        manga: { long: 'Más manga en la estantería', short: 'Más manga' },
+        games: { long: 'Más juegos en la estantería', short: 'Más juegos' },
+        movies: { long: 'Más películas en la estantería', short: 'Más películas' },
+        television: { long: 'Más series en la estantería', short: 'Más series' },
+      },
+      all: 'Toda la estantería',
+      allShelf: 'Toda la estantería',
+    },
     coda: {
       label: 'Escríbeme',
       line: 'Si también se te quedó, o te hizo pensar en algo que debería probar, cuéntamelo.',
