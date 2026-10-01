@@ -19,6 +19,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "shelf:placeholders": "node scripts/shelf-placeholders.mjs",
+    "shelf:cards": "node scripts/shelf-cards.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,scss,json,md}\""
   },
   "dependencies": {

@@ -55,7 +55,15 @@ export type WriteUp = {
   slug: string;
   /** The language the piece is written in. */
   lang: Locale;
+  /** The day it went up, as YYYY-MM-DD: for its metadata and the sitemap. */
+  published: string;
   standfirst?: Prose | Placeholder;
   facts: Fact[];
+  /**
+   * The still a link to the piece previews as, by its file stem: one of the
+   * piece's own figures, cut to the card's shape by `npm run shelf:cards`.
+   * Left out, a link to it previews as the shelf.
+   */
+  linkPreview?: string;
   body: Block[];
 };

@@ -18,6 +18,7 @@ import type { WriteUp } from './types';
 export const gurrenLagann: WriteUp = {
   slug: 'gurren-lagann',
   lang: 'es',
+  published: '2026-10-01',
   standfirst:
     'Gurren Lagann te dice una y otra y otra vez a tu cara que no hay nada más poderoso que el indomable espíritu humano.',
   /* The shelf's credit for it, split into the rail's rows. */
@@ -26,6 +27,9 @@ export const gurrenLagann: WriteUp = {
     { label: 'director', value: 'Hiroyuki Imaishi' },
     { label: 'year', value: '2007' },
   ],
+  /* The landscape from the show itself, rather than the poster, which is
+     portrait and would be cropped to a strip. */
+  linkPreview: 'scene',
   body: [
     {
       type: 'paragraph',

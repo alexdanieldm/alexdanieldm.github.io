@@ -5,13 +5,19 @@ import { ARTICLE_WASHES, Ground } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { PlaceholderNote, ShelfMore, WriteUpContents, WriteUpText } from '@/components/sections';
-import { ArrowLink, Poster, ReadingProgress } from '@/components/ui';
+import { ArrowLink, JsonLd, Poster, ReadingProgress } from '@/components/ui';
 import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locales';
 import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
-import { pageMetadata } from '@/content/seo';
+import { articleSchema, pageMetadata } from '@/content/seo';
 import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
-import { headings, isPlaceholder, writeUpFor } from '@/content/write-ups';
+import {
+  headings,
+  isPlaceholder,
+  writeUpCard,
+  writeUpFor,
+  type WriteUp,
+} from '@/content/write-ups';
 
 import styles from './WriteUpPage.module.scss';
 
@@ -31,25 +37,35 @@ function find(slug: string) {
   return { piece, ...entry };
 }
 
+/* The piece's own standfirst. Until it is in, the shelf's description stands
+   in; a placeholder never deploys, so that is never the one that ships. */
+function describe(piece: WriteUp, locale: Locale): string {
+  const { standfirst } = piece;
+  return standfirst && !isPlaceholder(standfirst)
+    ? plainText(standfirst)
+    : contentFor(locale).shelf.metaDescription;
+}
+
 /**
  * What the tab and a link preview say. The text exists in one language, so
  * both routes name that language's URL as the canonical.
  */
 export function writeUpMetadata(locale: Locale, slug: string): Metadata {
-  const { piece, item } = find(slug);
-  const { standfirst } = piece;
+  const { piece, item, section } = find(slug);
   return pageMetadata({
     locale,
     title: item.title,
-    /* Until the standfirst is in, the shelf's own description stands in. A
-       placeholder never deploys, so this is never the one that ships. */
-    description:
-      standfirst && !isPlaceholder(standfirst)
-        ? plainText(standfirst)
-        : contentFor(locale).shelf.metaDescription,
+    description: describe(piece, locale),
     path: writeUpPath(slug),
     original: piece.lang,
     type: 'article',
+    image: writeUpCard(piece, locale),
+    /* The section in the piece's language, like the rest of what these tags
+       say about it. */
+    article: {
+      published: piece.published,
+      section: contentFor(piece.lang).shelf.sections[section].name,
+    },
   });
 }
 
@@ -75,6 +91,17 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
 
   return (
     <Ground washes={ARTICLE_WASHES}>
+      <JsonLd
+        data={articleSchema({
+          title: item.title,
+          description: describe(piece, locale),
+          path: route,
+          lang: piece.lang,
+          published: piece.published,
+          image: writeUpCard(piece, locale),
+          about: item.title,
+        })}
+      />
       <ReadingProgress target={TEXT_ID} />
       <SiteHeader locale={locale} path={route} variant="solid" nav="shelf" />
 

@@ -26,6 +26,14 @@ npm run dev
 `npm run shelf:placeholders` regenerates the shelf's blurred placeholders. Run
 it after adding or replacing a poster.
 
+`npm run shelf:cards` cuts the shelf's link preview cards. Run it after
+reordering the shelf, replacing one of the first two posters in a section, or
+giving a write-up its link preview.
+
+The deploy runs both again before every build, so the live site is never behind
+when one is forgotten. Running them here keeps the committed copies current,
+which is what local builds use.
+
 Node 20.9 or newer.
 
 ## How it is laid out
@@ -121,7 +129,7 @@ Everything that moves does so for a reason, and nothing moves fast.
 - Vapour trails cross 32px over 16 seconds.
 - The terminal cursor is still waiting for the theme ID.
 
-## The link preview card
+## Link previews and search
 
 `public/og.png` is what WhatsApp, Slack and LinkedIn show when the link gets
 pasted. It is the banner scene with my name and 作 over it, drawn by
@@ -139,6 +147,36 @@ Every page builds its own card metadata through `pageMetadata()` in
 declaring its own `openGraph` replaces the parent's wholesale instead of
 filling gaps, so without it every inner page advertised the home page's title
 and URL.
+
+The shelf previews as itself rather than as the portfolio. The shelf and its
+contact page show `public/shelf/card.jpg`: the first two of each section, a
+column each, on the shelf's ground, the collage the contact page shows. A
+write-up shows a still from its own work, the one it names as its
+`linkPreview`, cut to the card's shape with its top kept and described by the
+still's own alt text; one that names none shows the shelf's card. Gurren
+Lagann's is the landscape from the show, since its poster is portrait and
+would be cropped to a strip. `npm run shelf:cards` cuts both with sharp. They
+carry no type, so unlike `og.png` they need no browser, and the script reads
+the shelf's order from `shelf.ts` itself, through the TypeScript compiler, so
+the collage follows the shelf rather than a list of its own. The build stops
+when a card a page names is not on disk; it cannot tell a stale one, which is
+why the deploy cuts them again before every build. Chat apps keep a link's preview once they
+have fetched it, so a link already shared shows its old card until the app
+fetches it again.
+
+For search engines, the home page describes me as a schema.org Person, with
+what I do and where taken from its own copy and the profiles that are also me,
+and the site as a WebSite. Each write-up is a BlogPosting by that same Person,
+with the day it went up, its language and the work it is about, and its link
+preview carries the same as article tags. The JSON-LD goes in through one
+component that escapes every `<`, so no title can end the script early.
+
+`sitemap.xml` lists every page at both its addresses, the language it lives in
+first ahead of its translation, each naming the other, and each write-up once,
+at the address in its own language. It is built from `ROUTES` and the write-up
+registry, so a page or a piece is in it the day it exists. `robots.txt` allows
+everything and points at it. The 404 is the one page kept out: it is marked
+`noindex`, and claims no canonical and no twin.
 
 ## The link page
 
@@ -309,30 +347,31 @@ has made all keep working, because every write-up exists at both paths. The
 English shelf says so before anyone follows it: "Read the write up, in
 Spanish".
 
-Each piece is a typed module in `src/content/write-ups/`, named by its slug:
-its language, its standfirst, the rail's facts, and the manuscript as a list of
-blocks in the manuscript's order: paragraphs, headings, stills, and the large
-type. The large type comes in three kinds that look alike and are not. A
-standout is one of my own sentences set large where it falls, said once, so a
-screen reader reads it like any paragraph. A pull quote repeats one, so it is
-hidden from screen readers. A quotation is somebody else's words, a real
-`<blockquote>` with a grey rule where mine are coral. A closing paragraph
-is set a step larger, and a sign-off ends the piece. Its title, credit and
-poster are the shelf item's. The prose is
-plain strings, with the marker's `[[double brackets]]` plus `*emphasis*` and
+Each piece is a typed module in `src/content/write-ups/`, named by its slug: its
+language, the day it went up, its standfirst, the rail's facts, the still a link
+to it previews as, and the manuscript as a list of blocks in the manuscript's
+order: paragraphs, headings, stills, and the large type. The large type comes in
+three kinds that look alike and are not. A standout is one of my own sentences
+set large where it falls, said once, so a screen reader reads it like any
+paragraph. A pull quote repeats one, so it is hidden from screen readers. A
+quotation is somebody else's words, a real `<blockquote>` with a grey rule where
+mine are coral. A closing paragraph is set a step larger, and a sign-off ends
+the piece. Its title, credit and poster are the shelf item's. The prose is plain
+strings, with the marker's `[[double brackets]]` plus `*emphasis*` and
 `[links](/like/this/)`. That parser sits beside the site's one-treatment one
 rather than inside it, so nothing already written for that one reads any
 differently. A piece being in that folder is what makes its item written up:
 there is no flag to set, so a card can never lead to a page that is not there.
 
 The registry checks every piece whenever it loads, so the build fails on a slug
-that is not on the shelf or that collides with a page under it, two headings
-with one id, a still without alt text or its files, and a pull quote that is
-not a sentence of the piece. That last one matters because a pull quote is
-hidden from screen readers, which is only fair when they have just read it.
-Anything the manuscript has not supplied yet is a placeholder: a dashed box
-that builds on my machine, so the page can be looked at, and fails the build
-under CI, so it can never be deployed.
+that is not on the shelf or that collides with a page under it, a date that is
+not a real day, two headings with one id, a still without alt text or its files,
+a link preview that is not one of its stills or has no card, and a pull quote
+that is not a sentence of the piece. That last one matters because a pull quote
+is hidden from screen readers, which is only fair when they have just read it.
+Anything the manuscript has not supplied yet is a placeholder: a dashed box that
+builds on my machine, so the page can be looked at, and fails the build under
+CI, so it can never be deployed.
 
 The layout is the write-up canvas's Current draft. One grid: the rail, with the
 poster, the facts and the contents, spans both rows on the left and sticks while

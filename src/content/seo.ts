@@ -10,7 +10,8 @@
 
 import type { Metadata } from 'next';
 
-import { defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
+import { contentFor, defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
+import { SOCIALS } from './navigation';
 
 export const SITE_URL = 'https://alexdanieldm.github.io';
 export const SITE_NAME = 'Alex Durán';
@@ -44,6 +45,9 @@ export const OG_IMAGE = {
   alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
 } as const;
 
+/** The card a chat app or a feed shows for a link, and what it says it shows. */
+export type PreviewImage = { url: string; width: number; height: number; alt: string };
+
 type PageSeo = {
   locale: Locale;
   /** Goes through the title template for the tab; og:title gets it spelled out. */
@@ -63,6 +67,14 @@ type PageSeo = {
   original?: Locale;
   /** `article` for a write-up; everything else is a page of the site. */
   type?: 'website' | 'article';
+  /**
+   * The page's own link preview. Left out, a page shows the site's card, which
+   * is the portfolio's: right for it, wrong for the shelf, which is its own
+   * half of the site and brings its own.
+   */
+  image?: PreviewImage;
+  /** For an article: the day it went up, and the shelf section it sits in. */
+  article?: { published: string; section: string };
 };
 
 export function pageMetadata({
@@ -74,9 +86,25 @@ export function pageMetadata({
   noIndex,
   original,
   type = 'website',
+  image = OG_IMAGE,
+  article,
 }: PageSeo): Metadata {
   const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
   const canonical = localePath(original ?? locale, path);
+  const alternates = original
+    ? { canonical }
+    : {
+        canonical,
+        /* Both languages point at each other, and x-default at the one the
+           page lives in first, English for the portfolio and Spanish for the
+           shelf, so a crawler treats them as one page in two languages rather
+           than as duplicates competing with each other. */
+        languages: {
+          en: localePath('en', path),
+          es: localePath('es', path),
+          'x-default': localePath(defaultLocaleFor(path), path),
+        },
+      };
 
   return {
     /* Omitted rather than set to undefined on the home page. An explicit
@@ -84,21 +112,9 @@ export function pageMetadata({
        page ships with no <title> at all; leaving the key out lets it inherit. */
     ...(isHome ? {} : { title }),
     description,
-    alternates: original
-      ? { canonical }
-      : {
-          canonical,
-          /* Both languages point at each other, and x-default at the one the
-             page lives in first, English for the portfolio and Spanish for the
-             shelf, so a crawler treats them as one page in two languages
-             rather than as duplicates competing with each other. */
-          languages: {
-            en: localePath('en', path),
-            es: localePath('es', path),
-            'x-default': localePath(defaultLocaleFor(path), path),
-          },
-        },
-    ...(noIndex ? { robots: { index: false, follow: true } } : {}),
+    /* A page kept out of search claims no address and names no twin. The 404
+       is that page, and its Spanish twin would be a page that does not exist. */
+    ...(noIndex ? { robots: { index: false, follow: true } } : { alternates }),
     openGraph: {
       type,
       locale: OG_LOCALE[original ?? locale],
@@ -106,14 +122,100 @@ export function pageMetadata({
       url: canonical,
       title: fullTitle,
       description,
-      images: [OG_IMAGE],
+      images: [image],
+      ...(type === 'article' && article
+        ? { publishedTime: article.published, section: article.section, authors: [`${SITE_URL}/`] }
+        : {}),
     },
     twitter: {
       card: 'summary_large_image',
       creator: '@alexdanieldm',
       title: fullTitle,
       description,
-      images: [OG_IMAGE.url],
+      images: [{ url: image.url, alt: image.alt }],
     },
+  };
+}
+
+/* ── Structured data ───────────────────────────────────────────────────────── */
+
+const absolute = (route: string) => new URL(route, SITE_URL).href;
+
+/** Me, as the author of everything here. */
+const ME = {
+  '@type': 'Person',
+  '@id': `${SITE_URL}/#me`,
+  name: SITE_NAME,
+  url: `${SITE_URL}/`,
+} as const;
+
+/**
+ * The site and me, for search engines, from the home page: what I do, where,
+ * and the profiles elsewhere that are also me, so a search for my name can
+ * treat them as one person rather than several namesakes.
+ */
+export function siteSchema(locale: Locale) {
+  const { home, common } = contentFor(locale);
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        ...ME,
+        jobTitle: home.banner.eyebrow,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: common.footer.location,
+          addressCountry: 'ES',
+        },
+        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#site`,
+        url: `${SITE_URL}/`,
+        name: SITE_NAME,
+        inLanguage: ['en', 'es'],
+        author: { '@id': ME['@id'] },
+      },
+    ],
+  };
+}
+
+type ArticleSeo = {
+  title: string;
+  description: string;
+  /** The route, without a language prefix. */
+  path: string;
+  /** The language the piece is written in, whose address is its canonical one. */
+  lang: Locale;
+  published: string;
+  image: PreviewImage;
+  /** The work the piece is about, by its title. */
+  about: string;
+};
+
+/** A write-up, for search engines: a post of mine, when it went up, in what language, and about what. */
+export function articleSchema({
+  title,
+  description,
+  path,
+  lang,
+  published,
+  image,
+  about,
+}: ArticleSeo) {
+  const url = absolute(localePath(lang, path));
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    url,
+    mainEntityOfPage: url,
+    inLanguage: lang,
+    datePublished: published,
+    image: absolute(image.url),
+    author: ME,
+    about: { '@type': 'CreativeWork', name: about },
   };
 }

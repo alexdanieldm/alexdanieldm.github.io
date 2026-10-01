@@ -4,12 +4,13 @@
  * its own poster blurred from the first paint and sharpens when the real file
  * lands, instead of sitting empty while it loads.
  *
- * Run it after adding or replacing a poster: `npm run shelf:placeholders`.
- * It reads the 360 files, the smallest on disk; anything larger is wasted at
- * twelve pixels.
+ * Run it after adding or replacing a poster: `npm run shelf:placeholders`. The
+ * deploy runs it again before every build, so a poster added without it still
+ * ships with its placeholder. It reads the 360 files, the smallest on disk;
+ * anything larger is wasted at twelve pixels.
  *
  * sharp is not a dependency of this repo. It is already installed because Next
- * depends on it, and this runs by hand, never in the build.
+ * depends on it, and this runs as a step of its own, never inside `next build`.
  */
 
 import { readdirSync, writeFileSync } from 'node:fs';

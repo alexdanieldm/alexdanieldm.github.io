@@ -10,12 +10,11 @@
  * build, so a mistake in a piece stops the build instead of reaching the site.
  */
 
-import { existsSync } from 'node:fs';
-import path from 'node:path';
-
+import { CARD_SIZE, inPublic, shelfCard } from '../cards';
 import { localePath, type Locale } from '../locales';
 import { ROUTES, writeUpPath } from '../navigation';
 import { plainText } from '../rich';
+import type { PreviewImage } from '../seo';
 import { shelfEntry } from '../shelf';
 
 import { gurrenLagann } from './gurren-lagann';
@@ -90,6 +89,29 @@ export function figureSrc(slug: string, image: string, width: (typeof FIGURE_WID
   return `/shelf/${slug}/${image}-${width}.webp`;
 }
 
+/** Where a piece's link preview is, cut from the still it names. */
+function stillCardSrc(slug: string, still: string): string {
+  return `/shelf/${slug}/${still}-card.jpg`;
+}
+
+type Figure = Extract<Block, { type: 'figure' }>;
+
+function linkPreviewStill(piece: WriteUp): Figure | undefined {
+  return piece.body.find(
+    (block): block is Figure => block.type === 'figure' && block.image === piece.linkPreview,
+  );
+}
+
+/**
+ * What a link to a piece previews as: the still it names, described by the
+ * still's own alt text, or the shelf's card while it names none.
+ */
+export function writeUpCard(piece: WriteUp, locale: Locale): PreviewImage {
+  const still = linkPreviewStill(piece);
+  if (!still) return shelfCard(locale);
+  return { url: stillCardSrc(piece.slug, still.image), ...CARD_SIZE, alt: still.alt };
+}
+
 /* ── Checks ────────────────────────────────────────────────────────────────── */
 
 /* The static pages under the shelf, whose path a write-up's /shelf/<slug>/
@@ -111,6 +133,9 @@ function check(piece: WriteUp) {
   };
 
   if (!shelfEntry(piece.slug)) fail('nothing on the shelf has this slug');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(piece.published) || Number.isNaN(Date.parse(piece.published))) {
+    fail(`it was published on "${piece.published}", which is not a day as YYYY-MM-DD`);
+  }
   if (TAKEN.includes(piece.slug)) fail(`/shelf/${piece.slug}/ is already another page`);
 
   const ids = headings(piece).map(({ id }) => id);
@@ -131,9 +156,17 @@ function check(piece: WriteUp) {
       if (!block.alt.trim()) fail(`the still "${block.image}" has no alt text`);
       for (const width of FIGURE_WIDTHS) {
         const file = figureSrc(piece.slug, block.image, width);
-        if (!existsSync(path.join(process.cwd(), 'public', file))) fail(`${file} is missing`);
+        if (!inPublic(file)) fail(`${file} is missing`);
       }
     }
+  }
+
+  if (piece.linkPreview) {
+    if (!linkPreviewStill(piece)) {
+      fail(`its link preview, "${piece.linkPreview}", is not one of its stills`);
+    }
+    const card = stillCardSrc(piece.slug, piece.linkPreview);
+    if (!inPublic(card)) fail(`${card} is missing: run npm run shelf:cards`);
   }
 
   /* A placeholder can be built and looked at on my machine, but never
