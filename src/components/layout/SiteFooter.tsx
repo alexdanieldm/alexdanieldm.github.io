@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { ArrowLink } from '@/components/ui';
+import { localeStorageKey } from '@/content/localePreference';
 import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
 
@@ -83,6 +84,7 @@ export function SiteFooter({
             current={locale}
             target={other}
             href={localePath(other, path)}
+            storageKey={localeStorageKey(path)}
             label={language.label}
             targetName={language[other]}
           />

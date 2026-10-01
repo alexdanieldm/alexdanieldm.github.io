@@ -13,6 +13,7 @@ import { Ground, COMPACT_WASHES } from '@/components/layout/Ground';
 import { LanguageSwitch } from '@/components/layout/LanguageSwitch';
 import { StripScene } from '@/components/sections/BannerScene';
 import { LinkRow } from '@/components/ui';
+import { localeStorageKey } from '@/content/localePreference';
 import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
 import { CV, ROUTES, SOCIALS } from '@/content/navigation';
 import { SITE_NAME } from '@/content/seo';
@@ -155,6 +156,7 @@ export function LinksPage({ locale }: { locale: Locale }) {
                 current={locale}
                 target={other}
                 href={localePath(other, ROUTES.links)}
+                storageKey={localeStorageKey(ROUTES.links)}
                 label={common.language.label}
                 targetName={common.language[other]}
               />

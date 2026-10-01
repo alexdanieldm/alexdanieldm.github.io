@@ -176,21 +176,24 @@ own fill covers the dots.
 `/shelf/`, in Spanish, with English at `/en/shelf/`. The manga, anime, games,
 films and shows I love most, and what each of them taught me.
 
-Each half of the site lives first in its own language. The portfolio is
-English at `/` and Spanish under `/es/`, because my work has always been in
-English. The shelf is the other way round, because it is the personal half and
-Spanish is my first language; there the English is the translation, as the
-Spanish is on the portfolio. One function, `localePath`, knows which half a path
-belongs to, so every link, canonical and hreflang pair follows. The portfolio
-still guesses at its root, sending a Spanish browser to `/es/`; the shelf does
-not, and is in Spanish for everyone until they choose English on the switch. A
-choice made on the switch sticks across both halves. It is the personal half of the site, so
-it carries its own nav, just the shelf's five sections. The portfolio's nav has
-a door in; the shelf's has no door back out. That is deliberate: the portfolio
-is where people get sent into the write-ups, and once they are reading, the
-page should not be offering them a way out to my work. For the same reason its
-header keeps one icon, email, and its phone menu has no CV: someone writing to
-me about a film is the one exit worth offering.
+Each half of the site lives first in its own language. The portfolio is English
+at `/` and Spanish under `/es/`, because my work has always been in English. The
+shelf is the other way round, because it is the personal half and Spanish is my
+first language; there the English is the translation, as the Spanish is on the
+portfolio. One function, `halfOf`, knows which half a path belongs to, and
+`localePath` builds on it, so every link, canonical and hreflang pair follows.
+The portfolio still guesses at its root, sending a Spanish browser to `/es/`;
+the shelf does not, and is in Spanish for everyone until they choose English on
+the switch. A choice made on the switch holds for the half it was made on, each
+kept under its own key.
+
+It is the personal half of the site, so it carries its own nav, just the shelf's
+five sections. The portfolio's nav has a door in; the shelf's has no door back
+out. That is deliberate: the portfolio is where people get sent into the
+write-ups, and once they are reading, the page should not be offering them a way
+out to my work. For the same reason its header keeps one icon, email, and its
+phone menu has no CV: someone writing to me about a film is the one exit worth
+offering.
 
 There is still a way out, one link in the footer, and it does not say "Back
 home", because the shelf is a home too. It says "Back to the boring stuff",

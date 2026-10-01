@@ -36,9 +36,17 @@ export const DEFAULT_LOCALE: Locale = 'en';
    routes are built on this file. */
 const SHELF_ROOT = '/shelf';
 
+/** The two halves of the site: my work, and the shelf. */
+export type Half = 'portfolio' | 'shelf';
+
+/** Which half a path, without a language prefix, belongs to. */
+export function halfOf(path: string): Half {
+  return path === SHELF_ROOT || path.startsWith(`${SHELF_ROOT}/`) ? 'shelf' : 'portfolio';
+}
+
 /** The language a path lives in at the root: Spanish for the shelf, English everywhere else. */
 export function defaultLocaleFor(path: string): Locale {
-  return path === SHELF_ROOT || path.startsWith(`${SHELF_ROOT}/`) ? 'es' : DEFAULT_LOCALE;
+  return halfOf(path) === 'shelf' ? 'es' : DEFAULT_LOCALE;
 }
 
 export type HomeContent = typeof homeEn;

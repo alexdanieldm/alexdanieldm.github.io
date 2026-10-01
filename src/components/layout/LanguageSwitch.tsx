@@ -6,7 +6,8 @@
  * It writes the choice to localStorage before navigating. That is the whole
  * point of it being a client component: the detection script reads that key
  * and stops guessing once someone has told it, so picking English on a Spanish
- * browser sticks instead of being overridden on the next visit.
+ * browser sticks instead of being overridden on the next visit. Each half of
+ * the site keeps its own, so the choice holds for the half it was made on.
  *
  * A plain link underneath, so it still works with the storage write failing or
  * scripting off. It is a full page load rather than a client transition, which
@@ -14,7 +15,6 @@
  * document's `lang` has to change with them.
  */
 
-import { LOCALE_STORAGE_KEY } from '@/content/localePreference';
 import type { Locale } from '@/content/locales';
 
 import styles from './LanguageSwitch.module.scss';
@@ -26,14 +26,27 @@ type LanguageSwitchProps = {
   target: Locale;
   /** Where this same page lives in the target language. */
   href: string;
+  /**
+   * Where the choice is kept: the key of this page's half, from
+   * `localeStorageKey`. Passed in rather than worked out here, so the browser
+   * is not sent the routing module and all the copy it imports.
+   */
+  storageKey: string;
   label: string;
   targetName: string;
 };
 
-export function LanguageSwitch({ current, target, href, label, targetName }: LanguageSwitchProps) {
+export function LanguageSwitch({
+  current,
+  target,
+  href,
+  storageKey,
+  label,
+  targetName,
+}: LanguageSwitchProps) {
   const remember = () => {
     try {
-      localStorage.setItem(LOCALE_STORAGE_KEY, target);
+      localStorage.setItem(storageKey, target);
     } catch {
       /* Private mode, blocked storage. The link still works; the guess resumes. */
     }
