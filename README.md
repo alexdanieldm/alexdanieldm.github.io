@@ -142,7 +142,7 @@ and URL.
 
 ## The link page
 
-`/links/`, with `/es/links/` like every other route. It is what an Instagram
+`/links/`, with `/es/links/` like every page of the portfolio. It is what an Instagram
 or Twitter bio points at, so it carries no header and no footer of the site's
 own: somebody arriving came from one link and wants another one, not a tour.
 That leaves nowhere for the language switch, so it sits in the page's own
@@ -173,8 +173,17 @@ own fill covers the dots.
 
 ## The shelf
 
-`/shelf/`, with `/es/shelf/`. The manga, anime, games, films and shows I love
-most, and what each of them taught me. It is the personal half of the site, so
+`/shelf/`, in Spanish, with English at `/en/shelf/`. The manga, anime, games,
+films and shows I love most, and what each of them taught me.
+
+Each half of the site lives first in its own language. The portfolio is
+English at `/` and Spanish under `/es/`, because my work has always been in
+English. The shelf is the other way round, because it is the personal half and
+Spanish is my first language; there the English is the translation, as the
+Spanish is on the portfolio. One function, `localePath`, knows which half a path
+belongs to, so every link, canonical and hreflang pair follows. At the root of
+either half the browser's language still decides, and a choice made on the
+switch sticks across both. It is the personal half of the site, so
 it carries its own nav, just the shelf's five sections. The portfolio's nav has
 a door in; the shelf's has no door back out. That is deliberate: the portfolio
 is where people get sent into the write-ups, and once they are reading, the
@@ -272,7 +281,7 @@ page's centre instead of 58px right of it.
 
 ## The write-ups
 
-`/shelf/<slug>/`, with `/es/shelf/<slug>/`: the longer piece behind a card on
+`/shelf/<slug>/`, with `/en/shelf/<slug>/`: the longer piece behind a card on
 the shelf. They are pages under the shelf, so they wear its header and footer,
 and both ways back, above the piece and in the footer, lead to the shelf rather
 than out of it.
