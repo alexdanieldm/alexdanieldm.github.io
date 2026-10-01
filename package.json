@@ -18,6 +18,7 @@
     "preview": "npx --yes serve@latest out",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "shelf:placeholders": "node scripts/shelf-placeholders.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,scss,json,md}\""
   },
   "dependencies": {

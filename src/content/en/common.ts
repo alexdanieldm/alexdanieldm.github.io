@@ -13,6 +13,7 @@ export const common = {
     tech: 'Tech',
     approach: 'Approach',
     contact: 'Contact',
+    shelf: 'Shelf',
   },
 
   footer: {

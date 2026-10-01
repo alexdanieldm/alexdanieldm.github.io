@@ -33,7 +33,12 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
       className={`${body.variable} ${display.variable} ${kanji.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      {/* Browser extensions write attributes onto <body> before React loads
+          (ColorZilla's cz-shortcut-listen, Grammarly's data-gr-ext-installed),
+          and every page then logged a hydration mismatch that was never ours.
+          Same escape hatch as <html>, and like it, this element only: nothing
+          inside the body is exempt. */}
+      <body suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: LOCALE_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
         <a className="skip-link" href="#main">

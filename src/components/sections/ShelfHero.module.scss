@@ -1,0 +1,172 @@
+.hero {
+  padding-top: var(--spacer-4);
+
+  @include page-gutter;
+
+  @include mobile-down {
+    padding-top: var(--spacer-3);
+  }
+}
+
+/* The box sits beside the title, not beside the paragraph: beside the
+   paragraph it was two and a half times its height, and the difference was
+   233px of nothing between the page and its first poster. It stretches to the
+   text, so its edges meet the title's top and the paragraph's last line. */
+.row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacer-5);
+
+  @include desktop-down {
+    flex-direction: column;
+    gap: var(--spacer-2);
+  }
+}
+
+.text {
+  /* 760 holds the title on one line at 64px, about 35 characters. */
+  flex: 0 1 760px;
+  min-width: 0;
+
+  /* Once the row is a column, a flex basis is a height. Left as 760px it made
+     the stacked text block 760px tall on a phone, and pushed the first poster
+     420px below the fold. */
+  @include desktop-down {
+    flex: none;
+  }
+}
+
+.title {
+  margin-bottom: var(--spacer-2);
+  font-family: var(--font-display);
+  font-size: var(--shelf-title);
+  font-style: italic;
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-1);
+  }
+}
+
+.lede {
+  font-size: var(--shelf-lede);
+  line-height: var(--typography-height-body);
+}
+
+/* The phone keeps two sentences of three; see `ledeShort` in the content. */
+.short {
+  display: none;
+}
+
+@include mobile-down {
+  .long {
+    display: none;
+  }
+
+  .short {
+    display: block;
+  }
+}
+
+.summary {
+  flex: 1 1 260px;
+  min-width: 260px;
+  padding: var(--spacer-2);
+  background-color: var(--color-surface);
+  border-left: 2px solid var(--color-accent);
+
+  @include desktop-down {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+
+    /* Five counts spread across a tablet's full width read as scattered
+       rather than as one row. */
+    max-width: 560px;
+    padding: var(--spacer-sm) var(--spacer-1);
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px; /* between the scale's 0 and 8: a label sits on its value */
+  font-size: var(--typography-size-label);
+  line-height: 1.2;
+  letter-spacing: var(--typography-tracking-label);
+  text-transform: uppercase;
+  color: var(--color-faint);
+
+  @include desktop-down {
+    font-size: var(--typography-size-label-small);
+  }
+}
+
+/* ── Beside the title ─────────────────────────────────────────────────────── */
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacer-1);
+  height: 100%;
+  margin: 0;
+
+  @include desktop-down {
+    display: none;
+  }
+}
+
+.value {
+  margin: 0;
+  font-size: var(--typography-size-body-x-small);
+  line-height: 1.6;
+}
+
+.aside {
+  display: block;
+  color: var(--color-muted);
+}
+
+/* ── Under the title ──────────────────────────────────────────────────────── */
+
+.counts {
+  display: none;
+
+  @include desktop-down {
+    display: block;
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacer-xs);
+  margin: 0;
+}
+
+/* Each number centred under its label, so the row reads as five columns with
+   a figure in the middle of each rather than five ragged left edges. An item
+   is as wide as its label, so the labels stay exactly where they were. */
+.stat {
+  text-align: center;
+}
+
+.number {
+  margin: 0;
+  font-size: var(--typography-size-caption);
+  line-height: 1.3;
+}
+
+.updated {
+  margin-top: var(--spacer-sm);
+  padding-top: var(--spacer-sm);
+  border-top: 1px solid var(--color-border-faint);
+  font-size: var(--typography-size-meta);
+  line-height: 1.5;
+
+  .label {
+    display: inline;
+    margin: 0 var(--spacer-xs) 0 0;
+  }
+}

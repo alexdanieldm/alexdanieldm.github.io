@@ -25,10 +25,12 @@ const MIN_DELTA = 6;
 
 type StickyHeaderProps = {
   variant: 'overlay' | 'solid';
+  /** Which world's header this is; the shelf's lays its row out differently. */
+  nav: 'site' | 'shelf';
   children: ReactNode;
 };
 
-export function StickyHeader({ variant, children }: StickyHeaderProps) {
+export function StickyHeader({ variant, nav, children }: StickyHeaderProps) {
   const [hidden, setHidden] = useState(false);
   const [settled, setSettled] = useState(false);
 
@@ -69,6 +71,7 @@ export function StickyHeader({ variant, children }: StickyHeaderProps) {
       <header
         className={styles.header}
         data-variant={variant}
+        data-nav={nav}
         data-settled={settled || undefined}
         data-hidden={hidden || undefined}
       >

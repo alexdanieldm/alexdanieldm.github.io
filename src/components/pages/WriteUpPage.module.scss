@@ -1,0 +1,303 @@
+/**
+ * A write-up. The measurements are the write-up canvas's Current draft, at
+ * 1440 and at 390. A token is used wherever the site has one; the few it has
+ * no step for are declared here once, with why, as the shelf declares its own.
+ */
+
+.page {
+  /* The piece's type. Running text is 17, 16 on a phone: 15 read too small
+     on a real screen, and at 17 the full-width column holds about 90 to 95
+     characters a line, which is still a comfortable read. The standfirst and
+     the closing paragraphs sit a step up, at 18 and 17. The site's scale has
+     none of these, nor 36 for a section heading or 32 for a quote; they were
+     each set on a real screen. */
+  --write-up-body: 17px;
+  --write-up-standfirst: 18px;
+  --write-up-heading: 36px;
+  --write-up-quote: 32px;
+  /* A question, and a line from the work, a step under a statement, in the
+     proportion the rich-text preview set them. */
+  --write-up-quote-small: 28px;
+  --write-up-closing: 18px;
+
+  /* Its rhythm, as drawn. 22 between paragraphs is the contact page's; the
+     rest have no step on the scale either. */
+  --write-up-gap: 22px;
+  --write-up-heading-above: 42px;
+  --write-up-heading-below: var(--spacer-1);
+  --write-up-aside: 34px; /* above and below a quote or a still */
+
+  padding-block: 52px 64px;
+
+  @include page-gutter;
+
+  @include mobile-down {
+    --write-up-body: 16px;
+    --write-up-standfirst: 17px;
+    --write-up-closing: 17px;
+    --write-up-heading: 30px;
+    --write-up-quote: 26px;
+    --write-up-quote-small: 23px;
+    --write-up-gap: var(--spacer-1);
+    --write-up-heading-above: 34px;
+    --write-up-heading-below: 16px;
+    --write-up-aside: 28px;
+
+    padding-block: 34px var(--section-padding-block);
+  }
+}
+
+/* Nested for weight: the link's own module sets its display at one class, and
+   which of two single-class rules wins would depend on bundle order. A block
+   rather than an inline box, so the line it would sit in adds no height. */
+.page .back {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 38px;
+
+  @include mobile-down {
+    margin-bottom: 26px;
+  }
+}
+
+/* ── The row ─────────────────────────────────────────────────────────────── */
+
+/* The rail spans both rows, so the title and the text share the right column
+   while the rail sticks beside all of it. The text takes all the width the
+   page has after the rail, so its right edge lines up with the header's and
+   the band's below it: at 1440, 880px. On a phone the three stack, and the
+   order in the markup is already the order they read in: the title, the poster
+   and the facts, then the text, which stays at 760 on a tablet, where nothing
+   beside it sets an edge. */
+.piece {
+  display: grid;
+  grid-template-areas:
+    'rail head'
+    'rail body';
+  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--spacer-4);
+  align-items: start;
+
+  @include desktop-down {
+    grid-template-areas:
+      'head'
+      'rail'
+      'body';
+    grid-template-columns: minmax(0, 760px);
+    grid-template-rows: none;
+  }
+}
+
+.head {
+  grid-area: head;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-sm);
+  margin-bottom: 16px;
+  font-size: var(--typography-size-label);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.2;
+  letter-spacing: var(--typography-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent);
+
+  @include mobile-down {
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: var(--typography-size-label-small);
+  }
+}
+
+.bar {
+  flex-shrink: 0;
+  width: 28px; /* a drawn mark, not a space */
+  height: 3px;
+  background-color: var(--color-accent);
+
+  @include mobile-down {
+    width: 24px;
+  }
+}
+
+.title {
+  margin-bottom: var(--spacer-1);
+  font-family: var(--font-display);
+  font-size: var(--typography-size-2);
+  font-style: italic;
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+  text-wrap: balance;
+
+  @include mobile-down {
+    margin-bottom: 22px;
+  }
+}
+
+/* ── The rail ────────────────────────────────────────────────────────────── */
+
+/**
+ * It sticks 30px from the top of the window, and the header comes back over
+ * that space on any upward scroll. So while the header is in, the rail sits
+ * under it, and while it is away the rail takes its room, moving on the
+ * header's own duration and curve so the two read as one movement. Focus
+ * inside a hidden header brings it back, so that counts as in.
+ *
+ * Its height is capped at the window, less the same 30px and 20px clear below.
+ * The poster and the facts never shrink, so on a short screen, or a piece with
+ * more sections than fit, it is the contents list that scrolls, and the poster
+ * never slides away.
+ */
+.rail {
+  --rail-top: 30px;
+  --rail-room: 20px;
+
+  position: sticky;
+  top: calc(var(--header-height) + var(--rail-top));
+  display: flex;
+  grid-area: rail;
+  flex-direction: column;
+  max-height: calc(100svh - var(--header-height) - var(--rail-top) - var(--rail-room));
+  transition:
+    top var(--duration-medium) var(--ease-out),
+    max-height var(--duration-medium) var(--ease-out);
+
+  :root:has(header[data-hidden]:not(:focus-within)) & {
+    top: var(--rail-top);
+    max-height: calc(100svh - var(--rail-top) - var(--rail-room));
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+
+  /* No rail on a phone or a tablet: the poster and the facts sit between the
+     title and the text, as wide as the phone comp drew them and no wider. */
+  @include desktop-down {
+    position: static;
+    max-width: 342px;
+    max-height: none;
+    margin-bottom: var(--spacer-2);
+  }
+}
+
+.poster {
+  flex-shrink: 0;
+}
+
+.facts {
+  flex-shrink: 0;
+  margin: 22px 0 0;
+  padding: 6px 20px 12px;
+  background-color: var(--color-surface);
+  border-left: 2px solid var(--color-accent);
+
+  @include mobile-down {
+    margin-top: var(--spacer-1);
+    padding: 4px 18px 12px;
+  }
+}
+
+/* A rule between rows and none under the last, which has nothing under it.
+   The values sit right, so a name that wraps looks meant. */
+.fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding-block: 9px;
+  line-height: 1.15;
+
+  & + & {
+    border-top: 1px solid var(--color-border-faint);
+  }
+
+  /* The phone keeps the room the laptop gave up to fit its rail. */
+  @include mobile-down {
+    padding-block: 11px;
+  }
+}
+
+.factLabel {
+  font-size: var(--typography-size-label);
+  letter-spacing: var(--typography-tracking-label-wide);
+  text-transform: uppercase;
+  color: var(--color-faint);
+
+  @include mobile-down {
+    font-size: var(--typography-size-label-small);
+  }
+}
+
+.factValue {
+  margin: 0;
+  font-size: var(--typography-size-body-x-small);
+  text-align: right;
+
+  @include mobile-down {
+    font-size: var(--typography-size-caption);
+  }
+}
+
+/* ── The text column ─────────────────────────────────────────────────────── */
+
+.body {
+  grid-area: body;
+  min-width: 0;
+}
+
+.standfirst {
+  margin-bottom: 30px;
+  font-size: var(--write-up-standfirst);
+  line-height: var(--typography-height-body);
+  color: var(--color-muted);
+  text-wrap: pretty;
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-2);
+  }
+}
+
+.rule {
+  display: block;
+  height: 1px;
+  margin-bottom: 30px;
+  background-color: var(--color-border-faint);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-2);
+  }
+}
+
+/* ── The way in to writing to me ──────────────────────────────────────────── */
+
+/* The shelf contact canvas's coda: the closing's coral rule, one line, and the
+   link to the shelf's page for writing to me. */
+.coda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: var(--spacer-3);
+
+  @include mobile-down {
+    margin-top: var(--spacer-2);
+  }
+}
+
+.codaRule {
+  display: block;
+  width: 46px; /* the shelf closing's mark, at its size */
+  height: 3px;
+  margin-bottom: var(--spacer-2);
+  background-color: var(--color-accent);
+}
+
+.codaLine {
+  margin-bottom: var(--spacer-1);
+  font-size: var(--write-up-body);
+  line-height: var(--typography-height-body);
+  text-wrap: pretty;
+}

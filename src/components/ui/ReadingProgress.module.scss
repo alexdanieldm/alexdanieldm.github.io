@@ -1,0 +1,19 @@
+/* Over everything, the header included, which is 50. Without JavaScript the
+   fill never moves, and what is left is a faint line along the top. */
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  height: 3px;
+  background-color: var(--color-border-faint);
+  pointer-events: none;
+}
+
+/* Scaled rather than resized, so following the scroll never touches layout. */
+.fill {
+  display: block;
+  height: 100%;
+  background-color: var(--color-accent);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+}

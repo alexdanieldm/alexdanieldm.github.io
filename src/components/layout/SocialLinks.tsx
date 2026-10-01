@@ -6,13 +6,15 @@ import styles from './SocialLinks.module.scss';
 /* The three names are the same word in both languages, so they stay here
    rather than becoming three more strings to translate identically. */
 const LINKS = [
-  { href: SOCIALS.github, label: 'GitHub', Icon: GithubIcon },
-  { href: SOCIALS.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
-  { href: SOCIALS.email, label: 'Email', Icon: EnvelopeIcon },
+  { key: 'github', href: SOCIALS.github, label: 'GitHub', Icon: GithubIcon },
+  { key: 'linkedin', href: SOCIALS.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
+  { key: 'email', href: SOCIALS.email, label: 'Email', Icon: EnvelopeIcon },
 ] as const;
 
+export type SocialKey = (typeof LINKS)[number]['key'];
+
 /**
- * The three ways to reach me, as icons.
+ * The three ways to reach me, as icons, or the ones named in `only`.
  *
  * Each one is a 32px target around a 21px mark: the box is sized to clear the
  * 24px minimum for a pointer target, not to fit the glyph.
@@ -23,10 +25,18 @@ const LINKS = [
  * read twice, as a link and again as an image. One name, on the thing that is
  * actually the control.
  */
-export function SocialLinks({ tone = 'default' }: { tone?: 'default' | 'quiet' }) {
+export function SocialLinks({
+  tone = 'default',
+  only,
+}: {
+  tone?: 'default' | 'quiet';
+  only?: readonly SocialKey[];
+}) {
+  const links = only ? LINKS.filter(({ key }) => only.includes(key)) : LINKS;
+
   return (
     <ul className={styles.list} data-tone={tone}>
-      {LINKS.map(({ href, label, Icon }) => (
+      {links.map(({ href, label, Icon }) => (
         <li key={label}>
           <a
             className={styles.link}

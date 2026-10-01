@@ -1,0 +1,213 @@
+/**
+ * @fileoverview One section of the shelf, in its three tiers.
+ *
+ * The tiers are worked out here from what exists rather than stored anywhere:
+ * an item with a take is a highlight, a featured highlight leads the section,
+ * and the rest is the wall. So the section reshapes itself as things get
+ * written, and a section with nothing written yet is simply all wall.
+ *
+ * Only a written-up item gets a button, and only the button is a link. A card
+ * with nothing behind it is not a link, keeps the arrow cursor, and goes
+ * nowhere; it still lifts on hover, because that is the shelf's texture.
+ */
+
+import { ArrowLink, Poster } from '@/components/ui';
+import {
+  contentFor,
+  HTML_LANG,
+  otherLocale,
+  type Locale,
+  type ShelfContent,
+} from '@/content/locales';
+import { Copy, type Rich } from '@/content/rich';
+import {
+  creditLine,
+  POSTER_BIG_MONITOR,
+  posterAlt,
+  SHELF,
+  SHELF_SECTIONS,
+  type ShelfItem,
+  type ShelfSectionKey,
+} from '@/content/shelf';
+import { inOtherLanguage, writeUpHref } from '@/content/write-ups';
+
+import styles from './ShelfSection.module.scss';
+
+/**
+ * How wide each tier shows its poster, so the browser picks 360, 480 or 720
+ * for the screen it is on. These follow the breakpoints in the module; they
+ * only have to be close, because there are three files to choose between, not
+ * ten. The big monitor's entry is explained where it is defined.
+ */
+const BIG_MONITOR = POSTER_BIG_MONITOR;
+
+const SIZES = {
+  feature: `(max-width: 450px) calc(100vw - 92px), (max-width: 769px) 320px, (max-width: 990px) 200px, ${BIG_MONITOR}, 220px`,
+  highlight: `(max-width: 450px) 140px, (max-width: 990px) 180px, ${BIG_MONITOR}, 215px`,
+  wall: `(max-width: 450px) calc(50vw - 32px), (max-width: 769px) calc(33vw - 40px), (max-width: 990px) calc(25vw - 40px), ${BIG_MONITOR}, 204px`,
+};
+
+/** Words about an item, and their language when it is not the page's. */
+type Words = { text: Rich; lang?: string };
+
+/**
+ * An item's take or eyebrow in the page's language, or else in the other one,
+ * marked with its language. The shelf is written in Spanish first, and English
+ * is a translation I add when I want to; until I do, the English shelf shows
+ * the Spanish words, read in a Spanish voice, and both shelves keep the same
+ * tiers.
+ */
+function wordsFor(
+  locale: Locale,
+  slug: string,
+  pick: (shelf: ShelfContent) => Partial<Record<string, Rich>>,
+): Words | undefined {
+  const own = pick(contentFor(locale).shelf)[slug];
+  if (own) return { text: own };
+  const other = otherLocale(locale);
+  const theirs = pick(contentFor(other).shelf)[slug];
+  return theirs ? { text: theirs, lang: HTML_LANG[other] } : undefined;
+}
+
+type Written = { item: ShelfItem; take: Words };
+
+function tiers(items: ShelfItem[], locale: Locale) {
+  const written: Written[] = [];
+  const wall: ShelfItem[] = [];
+  for (const item of items) {
+    const take = wordsFor(locale, item.slug, (shelf) => shelf.takes);
+    if (take) written.push({ item, take });
+    else wall.push(item);
+  }
+  const feature = written.find(({ item }) => item.featured);
+  return { feature, highlights: written.filter((entry) => entry !== feature), wall };
+}
+
+type ShelfSectionProps = {
+  section: ShelfSectionKey;
+  locale: Locale;
+};
+
+export function ShelfSection({ section, locale }: ShelfSectionProps) {
+  const { shelf } = contentFor(locale);
+  const { name, intro } = shelf.sections[section];
+  const { feature, highlights, wall } = tiers(SHELF[section], locale);
+  const eyebrow = feature && wordsFor(locale, feature.item.slug, (shelf) => shelf.eyebrows);
+  const titleId = `${section}-title`;
+
+  /* Where a written-up item leads, from its poster and from its button alike.
+     An item is written up when its piece exists, so this cannot point at a
+     page that is not there. */
+  const writeUp = (item: ShelfItem) => writeUpHref(locale, item.slug);
+
+  /* The wall is labelled only when something sits above it: a section that is
+     all wall does not need telling it is also a list. And it says nothing on it
+     is written up only while that is true of every card. */
+  const labelled = Boolean(feature) || highlights.length > 0;
+  const unwritten = wall.every((item) => !writeUp(item));
+
+  const read = (item: ShelfItem, className?: string) => {
+    const href = writeUp(item);
+    return href ? (
+      <ArrowLink href={href} className={className}>
+        {inOtherLanguage(locale, item.slug) ? shelf.readWriteUpOther : shelf.readWriteUp}
+      </ArrowLink>
+    ) : null;
+  };
+
+  return (
+    <section
+      id={section}
+      className={styles.section}
+      aria-labelledby={titleId}
+      data-reveal
+      suppressHydrationWarning
+    >
+      <div className={styles.head}>
+        <h2 className={styles.title} id={titleId}>
+          <span className={styles.dot} aria-hidden="true" />
+          {name}
+        </h2>
+        <p className={styles.intro}>{intro}</p>
+      </div>
+
+      {feature && (
+        <article className={styles.feature}>
+          <Poster
+            slug={feature.item.slug}
+            alt={posterAlt(shelf, feature.item)}
+            sizes={SIZES.feature}
+            tone="accent"
+            priority={section === SHELF_SECTIONS[0]}
+            href={writeUp(feature.item)}
+            className={styles.featurePoster}
+          />
+          <div className={styles.featureBody}>
+            {eyebrow && (
+              <p className={styles.eyebrow} lang={eyebrow.lang}>
+                {eyebrow.text}
+              </p>
+            )}
+            <h3 className={styles.featureTitle}>{feature.item.title}</h3>
+            <p className={styles.featureCredit}>{creditLine(shelf, feature.item)}</p>
+            <Copy
+              text={feature.take.text}
+              lang={feature.take.lang}
+              className={styles.featureTake}
+            />
+            {read(feature.item, styles.featureRead)}
+          </div>
+        </article>
+      )}
+
+      {highlights.length > 0 && (
+        <ul className={styles.highlights}>
+          {highlights.map(({ item, take }) => (
+            <li key={item.slug}>
+              <article className={styles.highlight}>
+                <Poster
+                  slug={item.slug}
+                  alt={posterAlt(shelf, item)}
+                  sizes={SIZES.highlight}
+                  href={writeUp(item)}
+                  className={styles.highlightPoster}
+                />
+                <h3 className={styles.highlightTitle}>{item.title}</h3>
+                <p className={styles.highlightCredit}>{creditLine(shelf, item)}</p>
+                <Copy text={take.text} lang={take.lang} className={styles.highlightTake} />
+                {read(item, styles.highlightRead)}
+              </article>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {wall.length > 0 && labelled && (
+        <div className={styles.wallHead}>
+          <p className={styles.wallLabel}>{shelf.wall.label}</p>
+          {unwritten && <p className={styles.wallNote}>{shelf.wall.unwritten}</p>}
+        </div>
+      )}
+
+      {wall.length > 0 && (
+        <ul className={styles.wall}>
+          {wall.map((item) => (
+            <li key={item.slug}>
+              <article className={styles.card}>
+                <Poster
+                  slug={item.slug}
+                  alt={posterAlt(shelf, item)}
+                  sizes={SIZES.wall}
+                  href={writeUp(item)}
+                />
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p className={styles.cardCredit}>{creditLine(shelf, item)}</p>
+                {read(item, styles.cardRead)}
+              </article>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}

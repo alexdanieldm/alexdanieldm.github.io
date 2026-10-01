@@ -77,6 +77,27 @@
   }
 }
 
+/* The shelf's nav sits at the middle of the page. Spread with space-between it
+   sat in the middle of the room left between the wordmark and the icons, which
+   on the portfolio is close enough, since three icons nearly balance the
+   wordmark, but the shelf keeps one, and its nav drifted right of centre.
+   Three columns fix it: the sides take equal shares, so the middle column is
+   the page's middle. A side that needs more than its share takes it, so where
+   there is not room to centre, the nav moves only as far as it has to. */
+.header[data-nav='shelf'] {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-items: start;
+
+  .socials {
+    justify-self: end;
+  }
+
+  @include desktop-down {
+    display: flex;
+  }
+}
+
 .spacer {
   height: var(--header-height);
 }
@@ -91,6 +112,29 @@
 .nav,
 .socials {
   @include desktop-down {
+    display: none;
+  }
+}
+
+/* Between the menu and 1180 the icons step out so the nav never has to wrap.
+   Measured, not guessed: the widest header, six items in Spanish, needs a
+   1127px layout beside the wordmark and the icons, and only 971px without
+   them, so every nav fits at every desktop width. The line sits at 1180 rather
+   than 1127 because a media query measures the window including a classic
+   scrollbar, which on Windows takes about 17px of the layout; 1180 leaves 36px
+   to spare even then. The nav is the part that has
+   to stay, since the portfolio's carries the one door into the shelf;
+   the icons are also in the menu, the home footer and the contact page.
+
+   The Spanish nav already wrapped "Sobre mí" onto two lines between 991 and
+   1010 with five items. This fixes that too.
+
+   Only the portfolio's header needs it. The shelf's has five items and one
+   icon, and in Spanish with a classic scrollbar, at 979px of layout, its nav
+   still clears the wordmark and the icon by 51px each side. So the shelf's
+   email stays in the header at every width the header has a nav. */
+.socials[data-nav='site'] {
+  @media screen and (max-width: 1180px) {
     display: none;
   }
 }

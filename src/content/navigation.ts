@@ -9,7 +9,8 @@
  * scroll when you are already there.
  */
 
-import { localePath, type CommonContent, type Locale } from './locales';
+import { localePath, type CommonContent, type Locale, type ShelfContent } from './locales';
+import { SHELF_SECTIONS } from './shelf';
 
 export type NavItem = {
   href: string;
@@ -24,7 +25,27 @@ export function navItems(locale: Locale, common: CommonContent): NavItem[] {
     { href: at('/#tech'), label: common.nav.tech },
     { href: at('/#approach'), label: common.nav.approach },
     { href: at('/contact/'), label: common.nav.contact },
+    /* The one door into the shelf, the way the shelf's nav has one door out. */
+    { href: at(ROUTES.shelf), label: common.nav.shelf },
   ];
+}
+
+/**
+ * The shelf's own nav: its five sections, and nothing that leads away.
+ *
+ * The portfolio's nav carries a door into the shelf, and the shelf carries no
+ * door back. That asymmetry is the point: the portfolio is where people get
+ * sent into the write-ups, and once they are reading, the page should keep
+ * them there rather than offer them a way out to my work. The way home is
+ * still there for anyone who wants it, at the top of the page and in the
+ * footer, just not in the nav.
+ */
+export function shelfNavItems(locale: Locale, shelf: ShelfContent): NavItem[] {
+  const at = (path: string) => localePath(locale, path);
+  return SHELF_SECTIONS.map((key) => ({
+    href: at(`${ROUTES.shelf}#${key}`),
+    label: shelf.sections[key].name,
+  }));
 }
 
 /** Routes, in one place, so a page never spells a path out. */
@@ -35,7 +56,23 @@ export const ROUTES = {
   /* Not in navItems on purpose. It is what a social bio points at, not a
      destination anyone should reach from the site's own nav. */
   links: '/links/',
+  shelf: '/shelf/',
+  /* Writing to me from inside the shelf. A route of its own rather than
+     /contact/ switching its content by where you came from: the site is
+     static, so that switch could only happen in the browser, and anyone
+     without JavaScript would get the work page, its nav and its CV. A static
+     route also wins over a write-up's /shelf/[slug]/, and nothing on the
+     shelf will ever be called contact. */
+  shelfContact: '/shelf/contact/',
 } as const;
+
+/**
+ * A write-up's route, without a language prefix: the shelf's, then the item's
+ * slug, which is also its poster's file stem.
+ */
+export function writeUpPath(slug: string): string {
+  return `${ROUTES.shelf}${slug}/`;
+}
 
 export const SOCIALS = {
   github: 'https://github.com/alexdanieldm',

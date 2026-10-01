@@ -1,0 +1,122 @@
+/* A band across the page, on the raised surface, as the shelf's closing is. */
+.more {
+  padding-block: 52px 56px;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border-faint);
+
+  @include page-gutter;
+
+  @include mobile-down {
+    padding-block: var(--spacer-3) var(--section-padding-block);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacer-2);
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border-faint);
+
+  @include mobile-down {
+    margin-bottom: var(--spacer-2);
+    padding-bottom: 16px;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 38px; /* drawn between the scale's 34 and 46; the band's heading, not the page's */
+  font-style: italic;
+  line-height: 1;
+
+  @include mobile-down {
+    gap: var(--spacer-sm);
+    font-size: 30px;
+    line-height: var(--typography-height-display);
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 9px; /* a drawn mark, not a space */
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.short {
+  display: none;
+}
+
+@include mobile-down {
+  .long,
+  .all {
+    display: none;
+  }
+
+  .short {
+    display: inline;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacer-3) 68px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-down {
+    column-gap: var(--spacer-2);
+  }
+
+  @include mobile-down {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 16px; /* as the phone comp draws them, tighter than the scale's steps */
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  margin-top: var(--spacer-sm);
+  font-family: var(--font-display);
+  font-size: 21px; /* a wall card's title, a step up for a card a fifth wider */
+  line-height: 1.2;
+
+  @include mobile-down {
+    font-size: 18px; /* a wall card's title on a phone */
+  }
+}
+
+.cardCredit {
+  margin-top: 6px; /* the credit belongs to the title above it, as on the wall */
+  font-size: var(--typography-size-label);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+/* Nested for weight over the link's own module, as on the shelf. */
+.card .cardRead {
+  margin-top: var(--spacer-sm);
+  font-size: var(--typography-size-meta);
+}
+
+.button {
+  display: none;
+  margin-top: 26px;
+
+  @include mobile-down {
+    display: block;
+  }
+}

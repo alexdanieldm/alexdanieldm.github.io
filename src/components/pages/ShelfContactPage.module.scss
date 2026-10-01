@@ -1,0 +1,217 @@
+/**
+ * The shelf's own page for writing to me.
+ *
+ * On a laptop, two columns: the title and the words on the left, and on the
+ * right ten posters from the shelf with the email row under them as their last
+ * row, starting level with the title. On a phone the columns give up their
+ * boxes (`display: contents`) so their pieces can be put in the order a phone
+ * needs: the posters and the email row straight after the first line, where the
+ * row is still on the first screen, and the list after them. The markup keeps
+ * the laptop's order, which is also the order it is read aloud in.
+ */
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  /* The header is fixed and its spacer sits above this, so this is the rest of
+     the window. On a screen taller than the page, the footer sits at the
+     bottom of it instead of floating halfway up. */
+  min-height: calc(100svh - var(--header-height));
+}
+
+.page {
+  flex-grow: 1;
+  padding-block: var(--spacer-4) var(--section-padding-block);
+
+  @include page-gutter;
+
+  @include mobile-down {
+    padding-top: var(--spacer-3);
+  }
+}
+
+/**
+ * The words take only the width their longest line needs, and the posters the
+ * rest. 540 is that line, the Spanish list's third item at 521px with its dot,
+ * and a little room; at 1440 the posters get 560, which makes each one 106px
+ * where 452 made them 81. They start level with the title, in the space the
+ * short title leaves beside it, so the bigger grid costs the page no height.
+ *
+ * On a narrower laptop the posters give way first, so the list keeps its one
+ * line per item: at 1366 they are 91px, still bigger than they were. Only below
+ * a 300px grid do the words start to wrap.
+ */
+.body {
+  display: grid;
+  grid-template-areas:
+    'title side'
+    'text side';
+  grid-template-columns: minmax(0, 540px) minmax(300px, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--spacer-5);
+  align-items: start;
+
+  @include desktop-down {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacer-2);
+  }
+}
+
+/* The shelf title's size and voice, balanced so a two line title on a phone
+   never leaves one word on the second line. */
+.title {
+  grid-area: title;
+  margin-bottom: var(--spacer-2);
+  font-family: var(--font-display);
+  font-size: var(--shelf-title);
+  font-style: italic;
+  line-height: var(--typography-height-display-tight);
+  letter-spacing: var(--typography-tracking-display);
+  text-wrap: balance;
+
+  /* In one column the column's gap is the space under it: 24 on a tablet,
+     and 20 on a phone, as the shelf's own title has. */
+  @include desktop-down {
+    margin-bottom: 0;
+  }
+
+  @include mobile-down {
+    margin-bottom: calc(var(--spacer-1) - var(--spacer-2));
+  }
+}
+
+.text {
+  display: flex;
+  grid-area: text;
+  flex-direction: column;
+  gap: 22px; /* the contact page's paragraph rhythm */
+  min-width: 0;
+}
+
+.side {
+  display: flex;
+  grid-area: side;
+  flex-direction: column;
+  gap: var(--spacer-xs);
+  min-width: 0;
+}
+
+.lede {
+  font-size: var(--shelf-lede);
+  line-height: var(--typography-height-body);
+  text-wrap: pretty;
+}
+
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-sm);
+}
+
+.prompts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border-faint);
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-block: var(--spacer-sm);
+    border-bottom: 1px solid var(--color-border-faint);
+    line-height: 1.6;
+    text-wrap: pretty;
+
+    @include mobile-down {
+      gap: var(--spacer-sm);
+      padding-block: 10px;
+    }
+  }
+}
+
+/* The shelf's section dot, at the size it has on a phone. */
+.dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+/* A column per section, close together so the posters read as one collage,
+   and the email row one gap under them, as wide as the grid, so it reads as
+   its last row rather than a banner. */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--spacer-xs);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-xs);
+}
+
+.channels {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* Quieter than the contact page's row. By the time someone is here they have
+     already decided to write, so it does not need to shout. The link page's
+     quiet rows are 68px with a 14px address; this one is smaller again, and
+     keeps its icon at full size. */
+  --link-row-height: 56px;
+  --link-row-gap: 14px;
+  --link-row-padding: 18px;
+  --link-row-value-size: var(--typography-size-caption);
+}
+
+@include desktop-down {
+  .text,
+  .side {
+    display: contents;
+  }
+
+  .lede {
+    order: 1;
+  }
+
+  .shelf {
+    order: 2;
+  }
+
+  /* One gap under the posters, as on a laptop, rather than the column's wider
+     gap between everything else. */
+  .channels {
+    order: 3;
+    margin-top: calc(var(--spacer-xs) - var(--spacer-2));
+  }
+
+  .more {
+    order: 4;
+  }
+
+  /* A tablet's column is far wider than the pair was drawn for. Stretched to a
+     768px tablet's 673px, the posters grew to 128px and the grid to 393px
+     tall, and the list ended at 995px, past the first screen of an iPad. At
+     452 it ends at 862. */
+  .shelf,
+  .channels {
+    max-width: 452px;
+  }
+}

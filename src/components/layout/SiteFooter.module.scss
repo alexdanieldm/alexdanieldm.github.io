@@ -1,18 +1,35 @@
 .footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacer-2);
+  flex-direction: column;
+  gap: var(--spacer-1);
   padding-block: 34px;
   border-top: 1px solid var(--color-border-faint);
 
   @include page-gutter;
+}
+
+/* The row every page has. It used to be the footer itself; it moved into its
+   own box so a page can put a line above it without the row changing shape. */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer-2);
 
   @include desktop-down {
     flex-direction: column;
     gap: var(--spacer-1);
     text-align: center;
   }
+}
+
+.disclaimer {
+  max-width: 760px; /* the measure the page's own prose is set to */
+  margin-inline: auto;
+  font-size: var(--typography-size-meta);
+  line-height: var(--typography-height-body-loose);
+  color: var(--color-muted);
+  text-align: center;
 }
 
 .note {
