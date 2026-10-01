@@ -150,14 +150,24 @@
   }
 }
 
-/* The thanks that end the piece: the display face, the last line in coral, and
-   a shout in it set in capitals by style, so the words stay as written. */
+/* The thanks that end the piece, set a size above the text around them: the
+   display face, upright, the last line in coral, and a shout in it set in
+   capitals by style, so the words stay as written.
+
+   The preview set them in Georgia italic at 24. Instrument Serif at 24 has as
+   tall a lowercase but runs far narrower and lighter, so the same line came
+   out at 455px to Georgia's 628 and read no bigger than the text. At 28 it is
+   531, twice the text's x-height, and upright, since the site's italic is only
+   the roman leaned over. */
 .signoff {
   margin-bottom: var(--write-up-gap);
   font-family: var(--font-display);
-  font-size: 24px; /* as the preview sets it; between the scale's body and display steps */
-  font-style: italic;
+  font-size: 28px;
   line-height: var(--typography-height-heading);
+
+  @include mobile-down {
+    font-size: 26px;
+  }
 }
 
 .signoffLine {
