@@ -36,9 +36,17 @@ export const DEFAULT_LOCALE: Locale = 'en';
    routes are built on this file. */
 const SHELF_ROOT = '/shelf';
 
+/** The two halves of the site: my work, and the shelf. */
+export type Half = 'portfolio' | 'shelf';
+
+/** Which half a path, without a language prefix, belongs to. */
+export function halfOf(path: string): Half {
+  return path === SHELF_ROOT || path.startsWith(`${SHELF_ROOT}/`) ? 'shelf' : 'portfolio';
+}
+
 /** The language a path lives in at the root: Spanish for the shelf, English everywhere else. */
 export function defaultLocaleFor(path: string): Locale {
-  return path === SHELF_ROOT || path.startsWith(`${SHELF_ROOT}/`) ? 'es' : DEFAULT_LOCALE;
+  return halfOf(path) === 'shelf' ? 'es' : DEFAULT_LOCALE;
 }
 
 export type HomeContent = typeof homeEn;
@@ -80,6 +88,17 @@ export function contentFor(locale: Locale) {
 export function localePath(locale: Locale, path: string): string {
   if (locale === defaultLocaleFor(path)) return path;
   return path === '/' ? `/${locale}/` : `/${locale}${path}`;
+}
+
+/**
+ * A route in the other half, for a link that crosses into it: in the language
+ * that half lives in first, whichever language the reader is in now. The shelf
+ * is entered in Spanish and the portfolio in English, the way I live them. A
+ * choice the reader made on that half's own switch is applied once they arrive
+ * (see `localePreference.ts`), so a link that crosses is a full page load.
+ */
+export function crossingPath(path: string): string {
+  return localePath(defaultLocaleFor(path), path);
 }
 
 /** The same page in the other language, for the switcher and for hreflang. */

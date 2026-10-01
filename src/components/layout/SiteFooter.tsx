@@ -1,7 +1,15 @@
 import type { ReactNode } from 'react';
 
 import { ArrowLink } from '@/components/ui';
-import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
+import { localeStorageKey } from '@/content/localePreference';
+import {
+  contentFor,
+  crossingPath,
+  halfOf,
+  localePath,
+  otherLocale,
+  type Locale,
+} from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
 
 import { LanguageSwitch } from './LanguageSwitch';
@@ -28,6 +36,7 @@ type SiteFooterProps = {
    * Where the inner variant's way back leads, unprefixed like `path`. Home,
    * unless the page sits below the shelf: the shelf page's own footer is the
    * one door out to the portfolio, and every page under it leads back to it.
+   * A way back into the other half lands in that half's own language.
    */
   backTo?: string;
   /**
@@ -60,6 +69,11 @@ export function SiteFooter({
   const { footer, language } = contentFor(locale).common;
   const place = longLocation ? footer.locationLong : footer.location;
   const other = otherLocale(locale);
+  /* The shelf's way out crosses into the portfolio, so it lands on the
+     portfolio in English rather than in this page's language, as a full page
+     load, so a choice made on the portfolio's own switch is applied on
+     arrival. */
+  const crossing = halfOf(backTo) !== halfOf(path);
 
   return (
     <footer className={styles.footer}>
@@ -73,7 +87,11 @@ export function SiteFooter({
         {variant === 'home' ? (
           <SocialLinks tone="quiet" />
         ) : (
-          <ArrowLink href={localePath(locale, backTo)} direction="back">
+          <ArrowLink
+            href={crossing ? crossingPath(backTo) : localePath(locale, backTo)}
+            direction="back"
+            fullLoad={crossing}
+          >
             {backLabel ?? footer.backHome}
           </ArrowLink>
         )}
@@ -83,6 +101,7 @@ export function SiteFooter({
             current={locale}
             target={other}
             href={localePath(other, path)}
+            storageKey={localeStorageKey(path)}
             label={language.label}
             targetName={language[other]}
           />

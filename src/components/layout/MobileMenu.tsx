@@ -170,14 +170,17 @@ export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
 
             <nav className={styles.nav}>
               <ul className={styles.list}>
-                {items.map(({ href, label }, index) => (
-                  <li key={href}>
-                    <Link className={styles.link} href={href} onClick={close}>
-                      <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
+                {items.map(({ href, label, fullLoad }, index) => {
+                  const Anchor = fullLoad ? 'a' : Link;
+                  return (
+                    <li key={href}>
+                      <Anchor className={styles.link} href={href} onClick={close}>
+                        <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
+                        {label}
+                      </Anchor>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
 
