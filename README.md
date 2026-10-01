@@ -81,7 +81,7 @@ year.
 | `--color-base`       | `#021926`           | the ground          |
 | `--color-foreground` | `#eaf2f6`           | 15.9:1              |
 | `--color-muted`      | `#94acba`           | 7.6:1               |
-| `--color-faint`      | `#6e8798`           | 4.78:1              |
+| `--color-faint`      | `#7e95a4`           | 5.75:1              |
 | `--color-accent`     | `#f75155`           | 5.33:1              |
 | `--color-surface`    | `rgb(5 31 45 /66%)` | raised, translucent |
 
