@@ -44,6 +44,9 @@ export const OG_IMAGE = {
   alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
 } as const;
 
+/** The card a chat app or a feed shows for a link, and what it says it shows. */
+export type PreviewImage = { url: string; width: number; height: number; alt: string };
+
 type PageSeo = {
   locale: Locale;
   /** Goes through the title template for the tab; og:title gets it spelled out. */
@@ -63,6 +66,12 @@ type PageSeo = {
   original?: Locale;
   /** `article` for a write-up; everything else is a page of the site. */
   type?: 'website' | 'article';
+  /**
+   * The page's own link preview. Left out, a page shows the site's card, which
+   * is the portfolio's: right for it, wrong for the shelf, which is its own
+   * half of the site and brings its own.
+   */
+  image?: PreviewImage;
 };
 
 export function pageMetadata({
@@ -74,6 +83,7 @@ export function pageMetadata({
   noIndex,
   original,
   type = 'website',
+  image = OG_IMAGE,
 }: PageSeo): Metadata {
   const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
   const canonical = localePath(original ?? locale, path);
@@ -106,14 +116,14 @@ export function pageMetadata({
       url: canonical,
       title: fullTitle,
       description,
-      images: [OG_IMAGE],
+      images: [image],
     },
     twitter: {
       card: 'summary_large_image',
       creator: '@alexdanieldm',
       title: fullTitle,
       description,
-      images: [OG_IMAGE.url],
+      images: [image.url],
     },
   };
 }
