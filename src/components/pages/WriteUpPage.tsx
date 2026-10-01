@@ -11,7 +11,7 @@ import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
 import { pageMetadata } from '@/content/seo';
 import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
-import { headings, isPlaceholder, writeUpFor } from '@/content/write-ups';
+import { headings, isPlaceholder, writeUpCard, writeUpFor } from '@/content/write-ups';
 
 import styles from './WriteUpPage.module.scss';
 
@@ -50,6 +50,7 @@ export function writeUpMetadata(locale: Locale, slug: string): Metadata {
     path: writeUpPath(slug),
     original: piece.lang,
     type: 'article',
+    image: writeUpCard(piece, locale),
   });
 }
 

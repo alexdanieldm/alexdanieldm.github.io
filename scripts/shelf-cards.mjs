@@ -6,7 +6,7 @@
  *   section, a column each, on the shelf's ground. It is the collage the
  *   contact page shows, so the link previews what it leads to.
  * - `<slug>/<still>-card.jpg`, for a write-up that names one of its stills as
- *   its `preview`: that still, cut to the card's shape.
+ *   its `linkPreview`: that still, cut to the card's shape.
  *
  * Run it after reordering the shelf, replacing one of those posters, or giving
  * a write-up its preview: `npm run shelf:cards`. The build stops while a card a
@@ -31,6 +31,11 @@ import ts from 'typescript';
 const WIDTH = 1200;
 const HEIGHT = 630;
 const QUALITY = 82;
+
+/* Facebook asks for 1080 wide to look sharp on a dense screen. A still a
+   little narrower than the card, as 1160 is, enlarges without anyone seeing;
+   one under this is worth a bigger source. */
+const SHARP_ENOUGH = 1080;
 
 /* The collage's posters, 180 wide. The contact page sets them 8px apart at 106
    wide, and the gap here keeps that proportion. */
@@ -143,17 +148,18 @@ async function stillCards() {
   for (const file of files) {
     const exports = await load(`${WRITE_UPS_DIR}/${file}`);
     const piece = Object.values(exports).find((value) => value?.slug && value?.body);
-    if (!piece?.preview) continue;
+    const still = piece?.linkPreview;
+    if (!still) continue;
 
-    const width = widestCut(piece.slug, piece.preview);
-    if (width < WIDTH) {
-      console.warn(`${piece.slug}: "${piece.preview}" is ${width} wide, enlarged to ${WIDTH}.`);
+    const width = widestCut(piece.slug, still);
+    if (width < SHARP_ENOUGH) {
+      console.warn(`${piece.slug}: "${still}" is ${width} wide, too soft enlarged to ${WIDTH}.`);
     }
-    const out = `${SHELF_DIR}/${piece.slug}/${piece.preview}-card.jpg`;
+    const out = `${SHELF_DIR}/${piece.slug}/${still}-card.jpg`;
     /* The top is kept: a still's faces sit high in it more often than what is
        at its feet matters. */
     await encode(
-      sharp(`${SHELF_DIR}/${piece.slug}/${piece.preview}-${width}.webp`).resize(WIDTH, HEIGHT, {
+      sharp(`${SHELF_DIR}/${piece.slug}/${still}-${width}.webp`).resize(WIDTH, HEIGHT, {
         fit: 'cover',
         position: 'top',
       }),

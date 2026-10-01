@@ -26,6 +26,9 @@ export const gurrenLagann: WriteUp = {
     { label: 'director', value: 'Hiroyuki Imaishi' },
     { label: 'year', value: '2007' },
   ],
+  /* The landscape from the show itself, rather than the poster, which is
+     portrait and would be cropped to a strip. */
+  linkPreview: 'scene',
   body: [
     {
       type: 'paragraph',
