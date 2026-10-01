@@ -157,6 +157,17 @@ export function posterSrc(slug: string, width: (typeof POSTER_WIDTHS)[number]): 
   return `/shelf/${slug}-${width}.webp`;
 }
 
+/** An item, and the section it sits in, by its slug. */
+export function shelfEntry(
+  slug: string,
+): { section: ShelfSectionKey; item: ShelfItem } | undefined {
+  for (const section of SHELF_SECTIONS) {
+    const item = SHELF[section].find((entry) => entry.slug === slug);
+    if (item) return { section, item };
+  }
+  return undefined;
+}
+
 /** What a screen reader hears for an item's art: box art and manga are covers, the rest posters. */
 export function posterAlt(shelf: ShelfContent, item: ShelfItem): string {
   return shelf.art[item.art ?? 'poster'].replace('{title}', item.title);

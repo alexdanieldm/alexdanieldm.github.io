@@ -121,6 +121,14 @@ export const shelf: ShelfContent = {
   readWriteUp: 'Leer el artículo',
   art: { poster: 'Póster de {title}', cover: 'Portada de {title}' },
 
+  writeUp: {
+    facts: {
+      studio: 'Estudio',
+      director: 'Director',
+      year: 'Año',
+    },
+  },
+
   closing: {
     title: 'Por qué existe esta página',
     paragraphs: [

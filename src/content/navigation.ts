@@ -66,6 +66,14 @@ export const ROUTES = {
   shelfContact: '/shelf/contact/',
 } as const;
 
+/**
+ * A write-up's route, without a language prefix: the shelf's, then the item's
+ * slug, which is also its poster's file stem.
+ */
+export function writeUpPath(slug: string): string {
+  return `${ROUTES.shelf}${slug}/`;
+}
+
 export const SOCIALS = {
   github: 'https://github.com/alexdanieldm',
   linkedin: 'https://www.linkedin.com/in/alexdanieldm/',

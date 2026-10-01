@@ -140,6 +140,20 @@ export const shelf = {
   readWriteUp: 'Read the write up',
   art: { poster: 'Poster for {title}', cover: 'Cover art for {title}' },
 
+  /**
+   * The page around a write-up. The piece itself keeps the language it was
+   * written in; these are in the reader's.
+   */
+  writeUp: {
+    /* The rail's rows. Only the label is translated: a value is a name or a
+       year, the same in both languages. */
+    facts: {
+      studio: 'Studio',
+      director: 'Director',
+      year: 'Year',
+    },
+  },
+
   closing: {
     title: 'Why this page exists',
     paragraphs: [
