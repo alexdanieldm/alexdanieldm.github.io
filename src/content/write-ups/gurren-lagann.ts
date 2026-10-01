@@ -144,7 +144,11 @@ export const gurrenLagann: WriteUp = {
       type: 'paragraph',
       text: 'Estudio Gainax fue el responsable de la creación de estos personajes y el mundo donde seguimos sus historias, el equipo dejó todo su esfuerzo, dedicación y pasión durante la producción del anime, lo cual [[se ve y se siente en cada fotograma]].',
     },
-    { type: 'figure', image: 'scene', alt: 'Imagen de Gurren Lagann' },
+    {
+      type: 'figure',
+      image: 'scene',
+      alt: 'Yoko con su rifle, Kamina con la espada al hombro, Simon con su taladro colgado del cuello, la bandera del equipo Gurren ondeando y un cielo estrellado.',
+    },
     {
       type: 'paragraph',
       text: 'Gurren Lagann es un anime que [[me hizo llorar]] en más de una ocasión, gran parte de esto se debe a personajes memorables como lo son Kamina, Simon, Nia, Rossiu y muchos otros que faltarán por mencionar, personajes que se sienten más grandes que la vida misma y aun así se sienten sumamente reales y entrañables.',
