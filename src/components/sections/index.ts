@@ -7,3 +7,4 @@ export { ShelfClosing } from './ShelfClosing';
 export { ShelfHero } from './ShelfHero';
 export { ShelfSection } from './ShelfSection';
 export { TechBand } from './TechBand';
+export { PlaceholderNote, WriteUpText } from './WriteUpText';
