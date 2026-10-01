@@ -290,8 +290,14 @@ Spanish".
 
 Each piece is a typed module in `src/content/write-ups/`, named by its slug:
 its language, its standfirst, the rail's facts, and the manuscript as a list of
-blocks in the manuscript's order, paragraphs, headings, quotations, pull quotes
-and stills. Its title, credit and poster are the shelf item's. The prose is
+blocks in the manuscript's order: paragraphs, headings, stills, and the large
+type. The large type comes in three kinds that look alike and are not. A
+standout is one of my own sentences set large where it falls, said once, so a
+screen reader reads it like any paragraph. A pull quote repeats one, so it is
+hidden from screen readers. A quotation is somebody else's words, a real
+`<blockquote>` with a grey rule where mine are coral. A closing paragraph
+is set a step larger, and a sign-off ends the piece. Its title, credit and
+poster are the shelf item's. The prose is
 plain strings, with the marker's `[[double brackets]]` plus `*emphasis*` and
 `[links](/like/this/)`. That parser sits beside the site's one-treatment one
 rather than inside it, so nothing already written for that one reads any
