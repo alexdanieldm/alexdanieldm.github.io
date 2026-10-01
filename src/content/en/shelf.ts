@@ -105,24 +105,19 @@ export const shelf = {
     },
   },
 
-  /** Only an item that is featured and has a take ever shows one of these. */
+  /**
+   * Only an item that is featured and has a take ever shows one of these. One
+   * with none here shows its Spanish one, marked as Spanish.
+   */
   eyebrows: {
-    'gurren-lagann': 'The one I will not shut up about',
     frieren: 'The one I hand people first',
     'what-remains-of-edith-finch': 'The one I keep recommending',
-  },
+  } as Partial<Record<string, string>>,
 
-  /* A draft in the right voice, standing in until the real one is written.
-     Having a take is what lifts an item off the wall, so on day one this is the
-     only one there is. */
-  takes: {
-    'gurren-lagann':
-      'It treats getting stronger as a promise rather than a cost, then keeps raising the ' +
-      'promise until the scale stops making any sense at all, and it works because [[the show ' +
-      'never once treats its own sincerity as a joke]]. It is where I learned that being this ' +
-      'earnest, this loudly, takes more nerve than irony does, and I have loved it for that ' +
-      'ever since.',
-  },
+  /* Written in Spanish first, in es/shelf.ts. An item with no take here shows
+     its Spanish one on the English shelf, marked as Spanish, so the two shelves
+     keep the same tiers. An English take goes here when I want one. */
+  takes: {} as Partial<Record<string, string>>,
 
   /** A word of context a couple of credits carry after the year. */
   notes: {

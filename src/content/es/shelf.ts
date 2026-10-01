@@ -95,17 +95,20 @@ export const shelf: ShelfContent = {
   },
 
   eyebrows: {
-    'gurren-lagann': 'Del que no puedo dejar de hablar',
+    'gurren-lagann': 'A mí esta obra me cambió la vida',
     frieren: 'El primero que le paso a la gente',
     'what-remains-of-edith-finch': 'El que no paro de recomendar',
   },
 
+  /* Mine, written in Spanish first. The English shelf shows these, marked as
+     Spanish, until it has its own. */
   takes: {
     'gurren-lagann':
-      'Trata el hacerse más fuerte como una promesa y no como un precio, y sigue subiendo esa ' +
-      'promesa hasta que la escala deja de tener ningún sentido. Funciona porque [[la serie ' +
-      'nunca se toma su propia sinceridad a broma]]. Con ella aprendí que ser tan sincero, y a ' +
-      'ese volumen, pide más valor que la ironía, y desde entonces la quiero por eso.',
+      'Esa escala absurda no oculta su temática profunda, sino que la refuerza, y lleva su ' +
+      'acción absurda con sinceridad y orgullo. Esta obra jamás se avergüenza de su estética ' +
+      '(o de sus momentos más sencillos y adorablemente estúpidos). Gurren Lagann ve el techo ' +
+      'encima de nosotros y nos recuerda que hay un cielo infinito más allá, y que podemos ' +
+      'seguir excavando.',
   },
 
   notes: {
