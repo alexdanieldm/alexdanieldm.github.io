@@ -137,6 +137,9 @@ export const shelf = {
      was written rather than translated. */
   readWriteUpOther: 'Read the write up, in Spanish',
   art: { poster: 'Poster for {title}', cover: 'Cover art for {title}' },
+  /* What the shelf's link preview shows, for a feed or chat app that reads it
+     out: the collage on the contact page. */
+  cardAlt: 'Posters and cover art from the shelf, two from each section.',
 
   /**
    * The page around a write-up. The piece itself keeps the language it was
