@@ -91,7 +91,7 @@ function BlockView({ block, piece, locale }: { block: Block; piece: WriteUp; loc
               ).join(', ')}
               sizes={FIGURE_SIZES}
               width={FIGURE_WIDTHS[0]}
-              height={(FIGURE_WIDTHS[0] * 9) / 16}
+              height={Math.round((FIGURE_WIDTHS[0] * 9) / 16)}
               alt={block.alt}
               loading="lazy"
               decoding="async"
