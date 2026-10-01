@@ -270,6 +270,67 @@ keeps the room. The shelf's five items and one icon fit at every desktop width,
 so its email stays, and its nav is laid out on three columns so it sits at the
 page's centre instead of 58px right of it.
 
+## The write-ups
+
+`/shelf/<slug>/`, with `/es/shelf/<slug>/`: the longer piece behind a card on
+the shelf. They are pages under the shelf, so they wear its header and footer,
+and both ways back, above the piece and in the footer, lead to the shelf rather
+than out of it.
+
+A piece is written in one language and is not translated. Gurren Lagann is in
+Spanish, and both routes show it: the page around it is in the reader's
+language and the piece in its own, marked with `lang`, so a screen reader reads
+the Spanish in Spanish under the English header and switches back for the
+footer. Both routes name the Spanish URL as the canonical and declare no
+alternates, because the English one is the same text, not a translation. The
+language switch, the guess from the browser's language and a choice someone
+has made all keep working, because every write-up exists at both paths. The
+English shelf says so before anyone follows it: "Read the write up, in
+Spanish".
+
+Each piece is a typed module in `src/content/write-ups/`, named by its slug:
+its language, its standfirst, the rail's facts, and the manuscript as a list of
+blocks in the manuscript's order, paragraphs, headings, quotations, pull quotes
+and stills. Its title, credit and poster are the shelf item's. The prose is
+plain strings, with the marker's `[[double brackets]]` plus `*emphasis*` and
+`[links](/like/this/)`. That parser sits beside the site's one-treatment one
+rather than inside it, so nothing already written for that one reads any
+differently. A piece being in that folder is what makes its item written up:
+there is no flag to set, so a card can never lead to a page that is not there.
+
+The registry checks every piece whenever it loads, so the build fails on a slug
+that is not on the shelf or that collides with a page under it, two headings
+with one id, a still without alt text or its files, and a pull quote that is
+not a sentence of the piece. That last one matters because a pull quote is
+hidden from screen readers, which is only fair when they have just read it.
+Anything the manuscript has not supplied yet is a placeholder: a dashed box
+that builds on my machine, so the page can be looked at, and fails the build
+under CI, so it can never be deployed.
+
+The layout is the write-up canvas's Current draft. One grid: the rail, with the
+poster, the facts and the contents, spans both rows on the left and sticks while
+the title and the text share the right column. It sticks 30px from the top, but
+the header comes back over that space on any upward scroll, so while the header
+is in, the rail sits under it, moving on the header's own duration and curve.
+Its height is capped at the window, and when a piece's contents do not fit, the
+list scrolls and the poster stays put. The section being read is marked as the
+reader goes, found by sweeping the headings on scroll for the same reason the
+reveal script sweeps. On a phone there is no rail: the poster and the facts sit
+under the title, and there is no contents list.
+
+A 3px bar across the top fills as the piece is read. It measures the text, not
+the page, so it is full at the last paragraph rather than at the footer. It is
+there instead of pages, which would break find in page, a link to a passage and
+the scroll position. There is no reading time either: a word count over an
+assumed speed is a guess about a stranger.
+
+Every piece ends the same way: one line and an email with the piece already in
+its subject, so I know what it is about before I open it, then four more from
+its section in the shelf's order.
+
+No piece has a recording yet, so there is no player. One is designed, and it
+gets built against the first real recording.
+
 ## Deploying
 
 Push to `master`. The workflow typechecks, lints, builds and hands `out/` to
