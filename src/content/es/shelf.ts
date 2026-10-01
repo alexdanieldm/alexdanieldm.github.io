@@ -122,6 +122,7 @@ export const shelf: ShelfContent = {
   art: { poster: 'Póster de {title}', cover: 'Portada de {title}' },
 
   writeUp: {
+    contents: 'Índice',
     facts: {
       studio: 'Estudio',
       director: 'Director',

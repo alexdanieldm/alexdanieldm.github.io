@@ -1,0 +1,77 @@
+/* Under the facts, and the one part of the rail that gives way: when the rail
+   meets its cap, this list scrolls and the poster and facts stay put. The
+   phone has no rail and its comp draws no contents. */
+.contents {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 22px;
+
+  @include desktop-down {
+    display: none;
+  }
+}
+
+.label {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  font-size: var(--typography-size-label-small);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.2;
+  letter-spacing: var(--typography-tracking-label-wide);
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+/* The rule down the list is painted inside it rather than drawn as a border.
+   A list that scrolls clips everything outside its padding box, so a border
+   would cut the current item's 2px bar, which sits over the rule, to 1px. A
+   background that does not scroll with the items stays the list's height. */
+.list {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 0 15px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  background: linear-gradient(var(--color-border), var(--color-border)) left top / 1px 100%
+    no-repeat;
+  scrollbar-color: var(--color-border-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.item {
+  position: relative;
+}
+
+.link {
+  display: block;
+  padding-block: 6px;
+  font-size: var(--typography-size-caption);
+  line-height: 1.5;
+  color: var(--color-muted);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-foreground);
+  }
+
+  /* The section being read: brighter, with a coral bar over the rule. */
+  &[data-current] {
+    color: var(--color-foreground);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 2px;
+      left: -15px;
+      width: 2px;
+      background-color: var(--color-accent);
+    }
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}

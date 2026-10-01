@@ -4,14 +4,14 @@ import { notFound } from 'next/navigation';
 import { ARTICLE_WASHES, Ground } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { PlaceholderNote, WriteUpText } from '@/components/sections';
+import { PlaceholderNote, WriteUpContents, WriteUpText } from '@/components/sections';
 import { ArrowLink, Poster } from '@/components/ui';
 import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locales';
 import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
 import { pageMetadata } from '@/content/seo';
 import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
-import { isPlaceholder, writeUpFor } from '@/content/write-ups';
+import { headings, isPlaceholder, writeUpFor } from '@/content/write-ups';
 
 import styles from './WriteUpPage.module.scss';
 
@@ -67,6 +67,7 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
   const { shelf } = contentFor(locale);
   const route = writeUpPath(slug);
   const lang = piece.lang === locale ? undefined : HTML_LANG[piece.lang];
+  const contents = headings(piece);
 
   return (
     <Ground washes={ARTICLE_WASHES}>
@@ -103,6 +104,9 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
                 </div>
               ))}
             </dl>
+            {contents.length > 0 && (
+              <WriteUpContents label={shelf.writeUp.contents} items={contents} lang={lang} />
+            )}
           </div>
 
           <div className={styles.body}>

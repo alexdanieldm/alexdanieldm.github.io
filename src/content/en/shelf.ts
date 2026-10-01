@@ -145,6 +145,8 @@ export const shelf = {
    * written in; these are in the reader's.
    */
   writeUp: {
+    /* Above the rail's list of sections. */
+    contents: 'Contents',
     /* The rail's rows. Only the label is translated: a value is a name or a
        year, the same in both languages. */
     facts: {
