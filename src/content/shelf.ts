@@ -6,7 +6,8 @@
  * An item's tier is never stored. It follows from what exists. An item with a
  * take is a highlight, a highlight marked `featured` leads its section, and
  * everything else sits on the wall. Writing a take is what promotes something,
- * so publishing one never means touching a layout.
+ * so publishing one never means touching a layout. Whether it is written up
+ * follows the same way: it is, once its piece is in `write-ups/`.
  *
  * Titles stay in the form they were released under, in both languages. It is
  * the name on the poster beside them, and the one you would search for.
@@ -27,24 +28,18 @@ export type ShelfItem = {
   art?: 'cover';
   /** What its section leads with, once it has a take to lead with. */
   featured?: true;
-  /**
-   * Set once its write-up is published. Without it the card has no button and
-   * is not a link at all: no pointer cursor, nowhere to go, but the same hover.
-   */
-  writtenUp?: true;
 };
 
 export const SHELF: Record<ShelfSectionKey, ShelfItem[]> = {
   anime: [
-    /* Day one is this card and nothing else written up. The article itself is
-       still being written, so /shelf/gurren-lagann/ does not exist yet and its
-       button leads nowhere until it does: ship the two together. */
+    /* Day one is this card and nothing else written up. It links to its
+       write-up because the piece is in write-ups/, not because of a flag
+       here, so the card and the page cannot ship apart. */
     {
       slug: 'gurren-lagann',
       title: 'Gurren Lagann',
       credit: 'Hiroyuki Imaishi, Gainax · 2007',
       featured: true,
-      writtenUp: true,
     },
     { slug: 'haikyu', title: 'Haikyu!!', credit: 'Production I.G · 2014' },
     { slug: 'my-hero-academia', title: 'My Hero Academia', credit: 'Bones · 2016' },

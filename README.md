@@ -217,8 +217,8 @@ Everything on it is conditional on what I have written, and no tier is stored:
 - An item with a take in `src/content/{en,es}/shelf.ts` is a highlight. A
   highlight marked `featured` in `src/content/shelf.ts` leads its section.
   Everything else is the wall.
-- An item gets a "Read the write up" button only once `writtenUp` is set on it,
-  and then its poster links there too, because on a phone the button can sit a
+- An item gets a "Read the write up" button only once its piece is in
+  `src/content/write-ups/`, and then its poster links there too, because on a phone the button can sit a
   screen below the poster. The poster's link is for pointers: keyboards and
   screen readers get the one link with words on it, the button. A card with
   nothing behind it is not a link at all: no pointer cursor and nowhere to go,
@@ -226,14 +226,15 @@ Everything on it is conditional on what I have written, and no tier is stored:
 - The wall says "no write up on these yet" only while every card on it is
   unwritten, and only when something sits above it.
 
-So publishing is data, never layout: write the take, set the flag. Frieren and
+So publishing is data, never layout: write the take, add the piece. Frieren and
 Edith Finch are already marked `featured`, so each leads its section the day it
 gets a take.
 
 What ships first is day one: Gurren Lagann written up and featured, the other
-thirty three on the walls. Its `writtenUp` is already set so the page can be
-seen whole, which means its button points at `/shelf/gurren-lagann/` before
-that page exists. The shelf and that article ship together.
+thirty three on the walls. Nothing on the item says it is written up; its piece
+existing is what gives it a button. So the shelf and that article ship
+together, and there is no flag that could ever point at a page that is not
+there.
 
 The count on desktop ("Ten anime, six manga…") and the phone's row of numbers
 are built from the data, singular and gender included in Spanish. The date in

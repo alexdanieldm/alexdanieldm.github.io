@@ -12,8 +12,7 @@
  */
 
 import { ArrowLink, Poster } from '@/components/ui';
-import { contentFor, localePath, type Locale } from '@/content/locales';
-import { ROUTES } from '@/content/navigation';
+import { contentFor, type Locale } from '@/content/locales';
 import { Copy, type Rich } from '@/content/rich';
 import {
   creditLine,
@@ -23,6 +22,7 @@ import {
   type ShelfItem,
   type ShelfSectionKey,
 } from '@/content/shelf';
+import { writeUpHref } from '@/content/write-ups';
 
 import styles from './ShelfSection.module.scss';
 
@@ -72,15 +72,16 @@ export function ShelfSection({ section, locale }: ShelfSectionProps) {
   const { feature, highlights, wall } = tiers(SHELF[section], shelf.takes);
   const titleId = `${section}-title`;
 
+  /* Where a written-up item leads, from its poster and from its button alike.
+     An item is written up when its piece exists, so this cannot point at a
+     page that is not there. */
+  const writeUp = (item: ShelfItem) => writeUpHref(locale, item.slug);
+
   /* The wall is labelled only when something sits above it: a section that is
      all wall does not need telling it is also a list. And it says nothing on it
      is written up only while that is true of every card. */
   const labelled = Boolean(feature) || highlights.length > 0;
-  const unwritten = wall.every((item) => !item.writtenUp);
-
-  /* Where a written-up item leads, from its poster and from its button alike. */
-  const writeUp = (item: ShelfItem) =>
-    item.writtenUp ? localePath(locale, `${ROUTES.shelf}${item.slug}/`) : undefined;
+  const unwritten = wall.every((item) => !writeUp(item));
 
   const read = (item: ShelfItem, className?: string) => {
     const href = writeUp(item);

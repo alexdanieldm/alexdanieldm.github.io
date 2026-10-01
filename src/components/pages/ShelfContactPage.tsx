@@ -13,6 +13,7 @@ import {
   type ShelfItem,
   type ShelfSectionKey,
 } from '@/content/shelf';
+import { writeUpHref } from '@/content/write-ups';
 
 import shelfPage from './ShelfPage.module.scss';
 import styles from './ShelfContactPage.module.scss';
@@ -51,7 +52,7 @@ export function ShelfContactPage({ locale }: { locale: Locale }) {
      shelf is somewhere to go, so it leads to its section there, and one with a
      write-up leads to that, as it does on the shelf. */
   const leadsTo = (key: ShelfSectionKey, item: ShelfItem) =>
-    localePath(locale, item.writtenUp ? `${ROUTES.shelf}${item.slug}/` : `${ROUTES.shelf}#${key}`);
+    writeUpHref(locale, item.slug) ?? localePath(locale, `${ROUTES.shelf}#${key}`);
 
   return (
     <Ground washes={COMPACT_WASHES}>
