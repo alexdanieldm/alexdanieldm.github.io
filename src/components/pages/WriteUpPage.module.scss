@@ -150,24 +150,31 @@
  * The poster and the facts never shrink, so on a short screen, or a piece with
  * more sections than fit, it is the contents list that scrolls, and the poster
  * never slides away.
+ *
+ * The header's state sets only how much room it takes, never the rail's top or
+ * cap themselves. Its selector outweighs the phone's rules below, and when it
+ * set the cap, a phone whose header had scrolled away capped a rail that does
+ * not stick: the poster and the facts spilled out of it, and the text came up
+ * under them.
  */
 .rail {
   --rail-top: 30px;
   --rail-room: 20px;
+  --rail-header: var(--header-height);
 
   position: sticky;
-  top: calc(var(--header-height) + var(--rail-top));
+  top: calc(var(--rail-header) + var(--rail-top));
   display: flex;
   grid-area: rail;
   flex-direction: column;
-  max-height: calc(100svh - var(--header-height) - var(--rail-top) - var(--rail-room));
+  max-height: calc(100svh - var(--rail-header) - var(--rail-top) - var(--rail-room));
   transition:
     top var(--duration-medium) var(--ease-out),
     max-height var(--duration-medium) var(--ease-out);
 
+  /* 0px, not 0: a bare zero cannot be added to a length in calc(). */
   :root:has(header[data-hidden]:not(:focus-within)) & {
-    top: var(--rail-top);
-    max-height: calc(100svh - var(--rail-top) - var(--rail-room));
+    --rail-header: 0px;
   }
 
   @include reduced-motion {
