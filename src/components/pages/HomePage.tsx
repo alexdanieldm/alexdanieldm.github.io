@@ -6,7 +6,7 @@ import { About, Approach, Banner, ContactCta, SelectedWork, TechBand } from '@/c
 import { Button, JsonLd } from '@/components/ui';
 import { contentFor, type Locale } from '@/content/locales';
 import { CV, ROUTES } from '@/content/navigation';
-import { siteSchema } from '@/content/seo';
+import { siteSchema, SITE_NAME } from '@/content/seo';
 
 export function HomePage({ locale }: { locale: Locale }) {
   const { home } = contentFor(locale);
@@ -19,6 +19,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <main id="main">
         <Banner
           id="top"
+          name={SITE_NAME}
           eyebrow={home.banner.eyebrow}
           title={home.banner.title}
           lede={home.banner.lede}

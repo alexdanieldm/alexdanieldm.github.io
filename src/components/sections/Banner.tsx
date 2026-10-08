@@ -5,6 +5,11 @@ import { StripScene, TallScene, WideScene } from './BannerScene';
 import styles from './Banner.module.scss';
 
 type BannerProps = {
+  /**
+   * Said before the eyebrow, on the home page only: the one place a search
+   * for my name should find it written on the page, not just in the title.
+   */
+  name?: string;
   eyebrow: string;
   title: ReactNode;
   lede?: string;
@@ -14,7 +19,7 @@ type BannerProps = {
   id?: string;
 };
 
-export function Banner({ eyebrow, title, lede, actions, variant = 'full', id }: BannerProps) {
+export function Banner({ name, eyebrow, title, lede, actions, variant = 'full', id }: BannerProps) {
   return (
     <section className={styles.banner} data-variant={variant} id={id}>
       {variant === 'full' ? (
@@ -32,9 +37,19 @@ export function Banner({ eyebrow, title, lede, actions, variant = 'full', id }: 
 
       <div className={styles.content}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>
+          <p className={styles.eyebrow} data-named={name ? '' : undefined}>
             {variant === 'full' && <span className={styles.dash} aria-hidden="true" />}
-            {eyebrow}
+            {name && (
+              <>
+                <span className={styles.name}>{name}</span>
+                {/* Read out, the name and the title are two phrases, so the
+                    dot between them is not. */}
+                <span className={styles.divider} aria-hidden="true">
+                  ·
+                </span>
+              </>
+            )}
+            <span className={styles.role}>{eyebrow}</span>
           </p>
 
           <h1 className={styles.title}>{title}</h1>

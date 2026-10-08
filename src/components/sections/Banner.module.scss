@@ -137,6 +137,46 @@
   }
 }
 
+.divider {
+  /* Its own gap would double the eyebrow's; the dot sits closer in. It keeps
+     the eyebrow's colour: at most widths the line crosses the sun, and a
+     coral dot there is no dot at all. */
+  margin-inline: -4px;
+}
+
+/* A row too narrow for the name and the title squeezed each of them into a
+   column of its own, side by side. It breaks between them instead, never
+   inside either. */
+.eyebrow[data-named] {
+  flex-wrap: wrap;
+
+  .name,
+  .role {
+    white-space: nowrap;
+  }
+}
+
+/* On a phone they never fit on one line, so they stack: the title under the
+   name, the dash beside the name, and the dot that only separated them on one
+   line goes. */
+@include mobile-down {
+  .eyebrow[data-named] {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 8px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .role {
+    [data-named] > & {
+      grid-column: 2;
+    }
+  }
+}
+
 .dash {
   width: 34px;
   height: 4px;
