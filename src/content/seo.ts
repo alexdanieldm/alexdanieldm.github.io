@@ -164,6 +164,9 @@ const ME = {
   url: `${SITE_URL}/`,
 } as const;
 
+/** The site, for the pages that say they are part of it. */
+const SITE_ID = `${SITE_URL}/#site`;
+
 /**
  * The other names I am searched by: the handle every profile of mine shares,
  * and my name without the accent, the way most people type it and the way
@@ -183,9 +186,21 @@ const ALTERNATE_NAMES = [
  */
 export function siteSchema(locale: Locale) {
   const { home, common } = contentFor(locale);
+  const page = absolute(localePath(locale, '/'));
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      /* The page itself, as a profile: a page about one person, which is the
+         kind Google reads a person's other names and photo from. One per
+         language, each at its own address, both about the same me. */
+      {
+        '@type': 'ProfilePage',
+        '@id': `${page}#profile`,
+        url: page,
+        inLanguage: locale,
+        mainEntity: { '@id': ME['@id'] },
+        isPartOf: { '@id': SITE_ID },
+      },
       {
         ...ME,
         alternateName: ALTERNATE_NAMES,
@@ -205,7 +220,7 @@ export function siteSchema(locale: Locale) {
       },
       {
         '@type': 'WebSite',
-        '@id': `${SITE_URL}/#site`,
+        '@id': SITE_ID,
         url: `${SITE_URL}/`,
         name: SITE_NAME,
         inLanguage: ['en', 'es'],
