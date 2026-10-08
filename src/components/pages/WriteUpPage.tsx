@@ -16,6 +16,7 @@ import {
   isPlaceholder,
   writeUpCard,
   writeUpFor,
+  writeUpTitle,
   type WriteUp,
 } from '@/content/write-ups';
 
@@ -51,10 +52,10 @@ function describe(piece: WriteUp, locale: Locale): string {
  * both routes name that language's URL as the canonical.
  */
 export function writeUpMetadata(locale: Locale, slug: string): Metadata {
-  const { piece, item, section } = find(slug);
+  const { piece, section } = find(slug);
   return pageMetadata({
     locale,
-    title: item.title,
+    title: writeUpTitle(piece),
     description: describe(piece, locale),
     path: writeUpPath(slug),
     original: piece.lang,
@@ -94,7 +95,7 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
     <Ground washes={ARTICLE_WASHES}>
       <JsonLd
         data={articleSchema({
-          title: item.title,
+          title: writeUpTitle(piece),
           description: describe(piece, locale),
           path: route,
           lang: piece.lang,

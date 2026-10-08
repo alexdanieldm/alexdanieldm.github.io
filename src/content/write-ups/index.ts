@@ -35,14 +35,21 @@ export function writtenUpSlugs(): string[] {
   return WRITE_UPS.map((piece) => piece.slug);
 }
 
+/**
+ * What a search result, a shared link and the structured data call a piece:
+ * its own search title, or the work's name while it has none.
+ */
+export function writeUpTitle(piece: WriteUp): string {
+  return piece.searchTitle ?? shelfEntry(piece.slug)?.item.title ?? piece.slug;
+}
+
 /** Every piece, as the shelf's structured data lists it. */
 export function shelfParts(): ShelfPart[] {
-  return WRITE_UPS.flatMap((piece) => {
-    const entry = shelfEntry(piece.slug);
-    return entry
-      ? [{ title: entry.item.title, path: writeUpPath(piece.slug), lang: piece.lang }]
-      : [];
-  });
+  return WRITE_UPS.map((piece) => ({
+    title: writeUpTitle(piece),
+    path: writeUpPath(piece.slug),
+    lang: piece.lang,
+  }));
 }
 
 /** Where an item's write-up is in the reader's language, or nothing while it has none. */
@@ -147,7 +154,8 @@ function check(piece: WriteUp) {
     throw new Error(`Write-up "${piece.slug}": ${reason}.`);
   };
 
-  if (!shelfEntry(piece.slug)) fail('nothing on the shelf has this slug');
+  const entry = shelfEntry(piece.slug);
+  if (!entry) fail('nothing on the shelf has this slug');
   if (!isDay(piece.published)) {
     fail(`it was published on "${piece.published}", which is not a day as YYYY-MM-DD`);
   }
@@ -159,6 +167,15 @@ function check(piece: WriteUp) {
     if (piece.updated <= piece.published) {
       fail(`it was updated on ${piece.updated}, which is not after it went up`);
     }
+  }
+  /* A title that does not name the work reads as some other page's, and
+     leaves the result disagreeing with the heading on the page it leads to. */
+  if (
+    entry &&
+    piece.searchTitle !== undefined &&
+    !piece.searchTitle.toLowerCase().includes(entry.item.title.toLowerCase())
+  ) {
+    fail(`its search title, "${piece.searchTitle}", does not name ${entry.item.title}`);
   }
   if (TAKEN.includes(piece.slug)) fail(`/shelf/${piece.slug}/ is already another page`);
 

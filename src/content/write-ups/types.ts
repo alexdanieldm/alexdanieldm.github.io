@@ -63,6 +63,16 @@ export type WriteUp = {
    * notice, not for a typo. Left out, the piece is as it went up.
    */
   updated?: string;
+  /**
+   * What a search result and a shared link call the piece, in its language,
+   * when the work's name alone would be lost among every other page about the
+   * work: the name, and the angle only this piece takes. The page's heading
+   * stays the work's name. It must name the work, so the result still says
+   * what it is about and still matches the heading. " · Alex Durán" follows
+   * it in a result, so under 50 characters keeps the whole of it in view.
+   * Left out, both use the work's name.
+   */
+  searchTitle?: string;
   standfirst?: Prose | Placeholder;
   facts: Fact[];
   /**
