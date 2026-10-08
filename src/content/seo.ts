@@ -23,8 +23,8 @@ export const SITE_URL = 'https://alexdanieldm.com';
 export const SITE_NAME = 'Alex Durán';
 
 export const DEFAULT_TITLE: Record<Locale, string> = {
-  en: 'Alex Durán, Full Stack Engineer',
-  es: 'Alex Durán, Full Stack Engineer',
+  en: 'Alex Durán, Full Stack Engineer in Barcelona',
+  es: 'Alex Durán, Full Stack Engineer en Barcelona',
 };
 
 export const SITE_DESCRIPTION: Record<Locale, string> = {
