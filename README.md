@@ -167,12 +167,18 @@ why the deploy cuts them again before every build. Chat apps keep a link's previ
 have fetched it, so a link already shared shows its old card until the app
 fetches it again.
 
-For search engines, the home page describes me as a schema.org Person, with
-what I do and where taken from its own copy and the profiles that are also me,
-and the site as a WebSite. Each write-up is a BlogPosting by that same Person,
-with the day it went up, its language and the work it is about, and its link
-preview carries the same as article tags. The JSON-LD goes in through one
-component that escapes every `<`, so no title can end the script early.
+For search engines, the home page is a schema.org ProfilePage about me, a
+Person: what I do and where, taken from its own copy, the other names I am
+searched by, my handle among them, my photo, and the profiles that are also
+me. The photo, `public/alex-duran.jpg`, is for search engines only and is never
+a link preview. The site is a WebSite with my handle as its alternate name.
+The shelf is a CollectionPage by that same Person, part of the same site,
+listing each write-up, so a search for my name can lead to either half. Each
+write-up is a BlogPosting by me, part of the shelf in its own language, with
+the day it went up, the day I last revised it, its language and the work it is
+about, and its link preview carries the same as article tags. The JSON-LD goes
+in through one component that escapes every `<`, so no title can end the
+script early.
 
 `sitemap.xml` lists every page at both its addresses, the language it lives in
 first ahead of its translation, each naming the other, and each write-up once,
@@ -356,9 +362,9 @@ English shelf says so before anyone follows it: "Read the write up, in
 Spanish".
 
 Each piece is a typed module in `src/content/write-ups/`, named by its slug: its
-language, the day it went up, its standfirst, the rail's facts, the still a link
-to it previews as, and the manuscript as a list of blocks in the manuscript's
-order: paragraphs, headings, stills, and the large type. The large type comes in
+language, the day it went up and the day I last revised it, its search title,
+its standfirst, the rail's facts, the still a link to it previews as, and the
+manuscript as a list of blocks in the manuscript's order: paragraphs, headings, stills, and the large type. The large type comes in
 three kinds that look alike and are not. A standout is one of my own sentences
 set large where it falls, said once, so a screen reader reads it like any
 paragraph. A pull quote repeats one, so it is hidden from screen readers. A
@@ -371,9 +377,19 @@ rather than inside it, so nothing already written for that one reads any
 differently. A piece being in that folder is what makes its item written up:
 there is no flag to set, so a card can never lead to a page that is not there.
 
+A piece's heading is the work's name, and without a search title so is its
+search result, which puts it beside every encyclopaedia, database and streaming
+page about the work, where it cannot win. `searchTitle` is what the tab, a
+search result, a shared link and the structured data call it instead: the
+work's name and the angle only this piece takes, in its own language, under 50
+characters so " · Alex Durán" fits after it. The heading stays the work's name.
+`updated` is the day I last revised it, for a change a reader would notice
+rather than a typo: search engines read it as how fresh the piece is.
+
 The registry checks every piece whenever it loads, so the build fails on a slug
 that is not on the shelf or that collides with a page under it, a date that is
-not a real day, two headings with one id, a still without alt text or its files,
+not a real day, a revision that is not after the day it went up, a search
+title that does not name the work, two headings with one id, a still without alt text or its files,
 a link preview that is not one of its stills or has no card, and a pull quote
 that is not a sentence of the piece. That last one matters because a pull quote
 is hidden from screen readers, which is only fair when they have just read it.
