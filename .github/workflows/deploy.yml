@@ -39,6 +39,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      indexnow: ${{ steps.indexnow.outputs.urls }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,6 +85,18 @@ jobs:
         with:
           path: out
 
+      # What this deploy changes for a search engine: each page the build
+      # made, compared with the same page live, while the live one is still
+      # the old one. Only those get posted to IndexNow once the site is up. A
+      # page that cannot be fetched is a warning; a key file that does not
+      # match the key stops the deploy, since every post would be refused.
+      - name: Find what this deploy changes for search engines
+        id: indexnow
+        if: github.event_name != 'pull_request'
+        run: |
+          urls=$(node scripts/indexnow.mjs changed)
+          echo "urls=$urls" >> "$GITHUB_OUTPUT"
+
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
@@ -94,3 +108,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Then the pages that changed, posted to IndexNow, which hands them to
+      # Bing and the protocol's other members. The site is up by now, so a
+      # post that fails is a warning rather than a failed deploy.
+      - name: Checkout
+        if: needs.build.outputs.indexnow != '[]'
+        uses: actions/checkout@v4
+
+      - name: Tell search engines what changed
+        if: needs.build.outputs.indexnow != '[]'
+        continue-on-error: true
+        env:
+          URLS: ${{ needs.build.outputs.indexnow }}
+        run: printf '%s' "$URLS" | node scripts/indexnow.mjs submit
