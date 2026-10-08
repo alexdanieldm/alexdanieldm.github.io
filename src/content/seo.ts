@@ -149,6 +149,9 @@ export function pageMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      /* Credits the account when a link is shared on X, which is all this
+         does. X is deliberately not among the profiles the structured data
+         names as me. */
       creator: '@alexdanieldm',
       title: fullTitle,
       description,
@@ -221,7 +224,7 @@ export function siteSchema(locale: Locale) {
           addressLocality: common.footer.location,
           addressCountry: 'ES',
         },
-        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram, SOCIALS.x],
+        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram],
       },
       {
         '@type': 'WebSite',

@@ -95,10 +95,6 @@ export const SOCIALS = {
   /* Only the link page uses this one, which is the page Instagram itself
      points at. The rest of the site has no reason to link out to it. */
   instagram: 'https://www.instagram.com/alexdanieldm/',
-  /* Nothing on the page links here. It is named to search engines as one of
-     my profiles, and its handle is the card's creator, so a link shared on X
-     credits the account. */
-  x: 'https://x.com/alexdanieldm',
 } as const;
 
 /**
