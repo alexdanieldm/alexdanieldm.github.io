@@ -234,6 +234,12 @@ export function siteSchema(locale: Locale) {
   };
 }
 
+/** Where a write-up's structured data lives: at its address in its own language. */
+const articleId = (lang: Locale, path: string) => `${absolute(localePath(lang, path))}#article`;
+
+/** The shelf in one language, as the structured data names it. */
+const shelfId = (locale: Locale) => `${absolute(localePath(locale, ROUTES.shelf))}#shelf`;
+
 type ArticleSeo = {
   title: string;
   description: string;
@@ -247,7 +253,10 @@ type ArticleSeo = {
   about: string;
 };
 
-/** A write-up, for search engines: a post of mine, when it went up, in what language, and about what. */
+/**
+ * A write-up, for search engines: a post of mine, when it went up, in what
+ * language, about what, and on which shelf.
+ */
 export function articleSchema({
   title,
   description,
@@ -261,6 +270,7 @@ export function articleSchema({
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': articleId(lang, path),
     headline: title,
     description,
     url,
@@ -270,14 +280,10 @@ export function articleSchema({
     image: absolute(image.url),
     author: ME,
     about: { '@type': 'CreativeWork', name: about },
+    /* The shelf in the piece's own language, the one its address is under. */
+    isPartOf: { '@id': shelfId(lang) },
   };
 }
-
-/** Where a write-up's structured data lives: at its address in its own language. */
-const articleId = (lang: Locale, path: string) => `${absolute(localePath(lang, path))}#article`;
-
-/** The shelf in one language, as the structured data names it. */
-const shelfId = (locale: Locale) => `${absolute(localePath(locale, ROUTES.shelf))}#shelf`;
 
 /** A write-up on the shelf, as the shelf's structured data lists it. */
 export type ShelfPart = {
