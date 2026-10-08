@@ -223,6 +223,10 @@ export function siteSchema(locale: Locale) {
         '@id': SITE_ID,
         url: `${SITE_URL}/`,
         name: SITE_NAME,
+        /* What Google may show as the site's name when it passes over mine,
+           in order of preference: the handle the address is built on, then
+           my name without the accent. */
+        alternateName: ['alexdanieldm', 'Alex Duran'],
         inLanguage: ['en', 'es'],
         author: { '@id': ME['@id'] },
       },
