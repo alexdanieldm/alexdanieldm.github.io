@@ -57,6 +57,12 @@ export type WriteUp = {
   lang: Locale;
   /** The day it went up, as YYYY-MM-DD: for its metadata and the sitemap. */
   published: string;
+  /**
+   * The day I last revised it, as YYYY-MM-DD, once I have. Search engines read
+   * it as how fresh the piece is, so it moves for a change a reader would
+   * notice, not for a typo. Left out, the piece is as it went up.
+   */
+  updated?: string;
   standfirst?: Prose | Placeholder;
   facts: Fact[];
   /**

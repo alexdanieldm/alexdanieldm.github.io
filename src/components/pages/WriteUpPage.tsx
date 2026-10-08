@@ -64,6 +64,7 @@ export function writeUpMetadata(locale: Locale, slug: string): Metadata {
        say about it. */
     article: {
       published: piece.published,
+      modified: piece.updated,
       section: contentFor(piece.lang).shelf.sections[section].name,
     },
   });
@@ -98,6 +99,7 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
           path: route,
           lang: piece.lang,
           published: piece.published,
+          updated: piece.updated,
           image: writeUpCard(piece, locale),
           about: item.title,
         })}

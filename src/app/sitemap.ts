@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
       {
         url: absolute(localePath(piece.lang, writeUpPath(slug))),
-        lastModified: piece.published,
+        lastModified: piece.updated ?? piece.published,
       },
     ];
   });

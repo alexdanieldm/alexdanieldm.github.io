@@ -137,14 +137,28 @@ function placeholders(piece: WriteUp): string[] {
   return open;
 }
 
+/** Whether a string is a real day, written YYYY-MM-DD. */
+function isDay(value: string): boolean {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
+}
+
 function check(piece: WriteUp) {
   const fail = (reason: string) => {
     throw new Error(`Write-up "${piece.slug}": ${reason}.`);
   };
 
   if (!shelfEntry(piece.slug)) fail('nothing on the shelf has this slug');
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(piece.published) || Number.isNaN(Date.parse(piece.published))) {
+  if (!isDay(piece.published)) {
     fail(`it was published on "${piece.published}", which is not a day as YYYY-MM-DD`);
+  }
+  if (piece.updated !== undefined) {
+    if (!isDay(piece.updated)) {
+      fail(`it was updated on "${piece.updated}", which is not a day as YYYY-MM-DD`);
+    }
+    /* The dates are YYYY-MM-DD, so they compare as strings. */
+    if (piece.updated <= piece.published) {
+      fail(`it was updated on ${piece.updated}, which is not after it went up`);
+    }
   }
   if (TAKEN.includes(piece.slug)) fail(`/shelf/${piece.slug}/ is already another page`);
 

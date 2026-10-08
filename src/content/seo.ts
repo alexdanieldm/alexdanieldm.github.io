@@ -88,8 +88,8 @@ type PageSeo = {
    * half of the site and brings its own.
    */
   image?: PreviewImage;
-  /** For an article: the day it went up, and the shelf section it sits in. */
-  article?: { published: string; section: string };
+  /** For an article: the day it went up, the day it was last revised, and its shelf section. */
+  article?: { published: string; modified?: string; section: string };
 };
 
 export function pageMetadata({
@@ -139,7 +139,12 @@ export function pageMetadata({
       description,
       images: [image],
       ...(type === 'article' && article
-        ? { publishedTime: article.published, section: article.section, authors: [`${SITE_URL}/`] }
+        ? {
+            publishedTime: article.published,
+            ...(article.modified ? { modifiedTime: article.modified } : {}),
+            section: article.section,
+            authors: [`${SITE_URL}/`],
+          }
         : {}),
     },
     twitter: {
@@ -248,6 +253,8 @@ type ArticleSeo = {
   /** The language the piece is written in, whose address is its canonical one. */
   lang: Locale;
   published: string;
+  /** The day it was last revised, if it has been. */
+  updated?: string;
   image: PreviewImage;
   /** The work the piece is about, by its title. */
   about: string;
@@ -263,6 +270,7 @@ export function articleSchema({
   path,
   lang,
   published,
+  updated,
   image,
   about,
 }: ArticleSeo) {
@@ -277,6 +285,9 @@ export function articleSchema({
     mainEntityOfPage: url,
     inLanguage: lang,
     datePublished: published,
+    /* Google reads this as how fresh the piece is. One never revised was last
+       modified the day it went up. */
+    dateModified: updated ?? published,
     image: absolute(image.url),
     author: ME,
     about: { '@type': 'CreativeWork', name: about },
