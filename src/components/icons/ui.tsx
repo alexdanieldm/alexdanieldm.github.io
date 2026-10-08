@@ -51,12 +51,17 @@ export const MusicIcon = (props: IconProps) => (
   </Icon>
 );
 
-/** A written page: a folded corner and two lines of text. */
-export const DocumentIcon = (props: IconProps) => (
+/**
+ * The shelf: two books standing and a third leaning on them. No spine bands,
+ * which at 21px only blur the books into one block.
+ */
+export const ShelfIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 24 24" variant="stroke" strokeWidth={1.8}>
-    <path d="M4 4h10l6 6v10H4z" />
-    <path d="M14 4v6h6" />
-    <path d="M8 14h8M8 17h5" />
+    <path d="M2.5 20.5h19" />
+    <path d="M4.5 20.5V5h4v15.5" />
+    <path d="M8.5 7.5H12v13" />
+    {/* Tipped 20° about its foot, so its top corner rests on the second book. */}
+    <path d="M16.3 20.5 19.6 19.3 15.3 7.55 12 8.75Z" />
   </Icon>
 );
 

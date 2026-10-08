@@ -1,11 +1,11 @@
 import {
   ArrowUpRightIcon,
   CloudDownloadIcon,
-  DocumentIcon,
   GithubIcon,
   InstagramIcon,
   LinkedinIcon,
   MusicIcon,
+  ShelfIcon,
   SiteMarkIcon,
   SubstackIcon,
 } from '@/components/icons';
@@ -93,7 +93,7 @@ export function LinksPage({ locale }: { locale: Locale }) {
               href={crossingPath(ROUTES.shelf)}
               label={links.rows.shelf}
               value={`${host}${ROUTES.shelf.replace(/\/$/, '')}`}
-              icon={<DocumentIcon size={MARK} />}
+              icon={<ShelfIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
