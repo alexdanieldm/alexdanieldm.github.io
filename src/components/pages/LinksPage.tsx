@@ -14,7 +14,7 @@ import { LanguageSwitch } from '@/components/layout/LanguageSwitch';
 import { StripScene } from '@/components/sections/BannerScene';
 import { LinkRow } from '@/components/ui';
 import { localeStorageKey } from '@/content/localePreference';
-import { contentFor, localePath, otherLocale, type Locale } from '@/content/locales';
+import { contentFor, crossingPath, localePath, otherLocale, type Locale } from '@/content/locales';
 import { CV, ROUTES, SOCIALS } from '@/content/navigation';
 import { SITE_NAME, SITE_URL } from '@/content/seo';
 
@@ -30,23 +30,24 @@ const ACTION = 16;
  * from one link and wants another one, not a tour of the site, so the page is
  * the list and the two things that say whose list it is.
  *
- * The order is the whole design. Portfolio and the blog lead, because those
- * are the two things I actually want shown, and the blog holds second even
- * though it does not exist yet: it is close enough to be worth promising.
+ * The order is the whole design. Portfolio and the shelf lead, because those
+ * are the two things I actually want shown. The shelf held second as a
+ * pending blog row before it existed, and is what that promise turned into.
  * Email and Instagram finish the top four, and everything up there works.
  *
  * LinkedIn, the CV and GitHub sit under Everything else, because leading with
  * them turns a personal page into a CV with some links bolted on. Music is
- * last of all. It is further off than the blog and I do not know when it
- * lands, so it keeps its row and loses its place.
+ * last of all. I do not know when it lands, so it keeps its row and loses its
+ * place.
  *
- * Music and writing do not exist yet. They are drawn anyway, as pending rows,
- * which is a deliberate choice over leaving them out: the shape of the page is
- * the shape I want it to have, and an empty row is honest about the gap.
+ * Music does not exist yet. It is drawn anyway, as a pending row, which is a
+ * deliberate choice over leaving it out: the shape of the page is the shape I
+ * want it to have, and an empty row is honest about the gap.
  */
 export function LinksPage({ locale }: { locale: Locale }) {
   const { links, common } = contentFor(locale);
   const other = otherLocale(locale);
+  const host = new URL(SITE_URL).host;
 
   return (
     /* 170px rather than a token: the scene is 170 tall at its tallest and 150
@@ -81,15 +82,19 @@ export function LinksPage({ locale }: { locale: Locale }) {
               primary
               href={localePath(locale, ROUTES.home)}
               label={links.rows.portfolio}
-              value={new URL(SITE_URL).host}
+              value={host}
               icon={<SiteMarkIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
+            {/* The door into the other half, so it opens the shelf in Spanish
+                whichever language this page is in. LinkRow draws a plain
+                anchor, which gives the crossing the full page load it needs. */}
             <LinkRow
-              label={links.rows.writing}
-              value={links.pending.writingValue}
-              tag={links.pending.writingTag}
+              href={crossingPath(ROUTES.shelf)}
+              label={links.rows.shelf}
+              value={`${host}${ROUTES.shelf.replace(/\/$/, '')}`}
               icon={<DocumentIcon size={MARK} />}
+              action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
               href={SOCIALS.email}

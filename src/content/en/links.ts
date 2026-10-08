@@ -5,7 +5,7 @@ export const links = {
   /* Its own sentence, not a lifted line. A description has to stand alone in a
      search result. */
   metaDescription:
-    'Everywhere I am, on one page. Portfolio, email, and the two things I keep meaning to start.',
+    'Everywhere I am, on one page. Portfolio, the shelf, email, and a playlist I keep meaning to start.',
 
   bio: 'Barcelona. I build things for the web, train most days, and read a lot of manga.',
 
@@ -15,9 +15,9 @@ export const links = {
 
   rows: {
     portfolio: 'Portfolio',
+    shelf: 'Shelf',
     email: 'Email',
     music: 'Music',
-    writing: 'Writing',
     instagram: 'Instagram',
     linkedin: 'LinkedIn',
     cv: 'CV',
@@ -27,10 +27,10 @@ export const links = {
   cvValue: 'Download PDF',
 
   /**
-   * Neither of these exists yet. They are drawn as rows anyway, dashed and
-   * tagged, so the page says where they will go instead of leaving a gap I
-   * would then have to explain. Square brackets because they are placeholders
-   * and should read as placeholders rather than as something I am hiding.
+   * The playlist does not exist yet. It is drawn as a row anyway, dashed and
+   * tagged, so the page says where it will go instead of leaving a gap I would
+   * then have to explain. Square brackets because it is a placeholder and
+   * should read as one rather than as something I am hiding.
    *
    * Music sits in the four-across group, where the value has 90px between the
    * mark and its tag. Ten characters fit on one line there and eleven do not,
@@ -39,7 +39,5 @@ export const links = {
   pending: {
     musicValue: '[PLAYLIST]',
     musicTag: 'Idea',
-    writingValue: '[A BLOG]',
-    writingTag: 'Soon',
   },
 };
