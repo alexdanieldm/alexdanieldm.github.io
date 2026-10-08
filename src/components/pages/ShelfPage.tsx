@@ -2,9 +2,12 @@ import { Ground, SHELF_WASHES } from '@/components/layout/Ground';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { ShelfClosing, ShelfHero, ShelfSection } from '@/components/sections';
+import { JsonLd } from '@/components/ui';
 import { contentFor, type Locale } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
-import { SHELF_SECTIONS } from '@/content/shelf';
+import { shelfSchema } from '@/content/seo';
+import { SHELF_SECTIONS, SHELF_UPDATED } from '@/content/shelf';
+import { shelfParts } from '@/content/write-ups';
 
 import styles from './ShelfPage.module.scss';
 
@@ -21,6 +24,15 @@ export function ShelfPage({ locale }: { locale: Locale }) {
 
   return (
     <Ground washes={SHELF_WASHES}>
+      <JsonLd
+        data={shelfSchema({
+          locale,
+          name: shelf.title,
+          description: shelf.metaDescription,
+          updated: SHELF_UPDATED,
+          parts: shelfParts(),
+        })}
+      />
       <SiteHeader locale={locale} path={ROUTES.shelf} variant="solid" nav="shelf" />
 
       <main id="main" className={styles.page}>

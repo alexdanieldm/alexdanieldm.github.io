@@ -11,7 +11,7 @@
 import type { Metadata } from 'next';
 
 import { contentFor, defaultLocaleFor, localePath, OG_LOCALE, type Locale } from './locales';
-import { SOCIALS } from './navigation';
+import { ROUTES, SOCIALS } from './navigation';
 
 /**
  * The address the site is served from: the custom domain set in the Pages
@@ -270,5 +270,58 @@ export function articleSchema({
     image: absolute(image.url),
     author: ME,
     about: { '@type': 'CreativeWork', name: about },
+  };
+}
+
+/** Where a write-up's structured data lives: at its address in its own language. */
+const articleId = (lang: Locale, path: string) => `${absolute(localePath(lang, path))}#article`;
+
+/** The shelf in one language, as the structured data names it. */
+const shelfId = (locale: Locale) => `${absolute(localePath(locale, ROUTES.shelf))}#shelf`;
+
+/** A write-up on the shelf, as the shelf's structured data lists it. */
+export type ShelfPart = {
+  title: string;
+  /** The route, without a language prefix. */
+  path: string;
+  /** The language the piece is written in, whose address is its canonical one. */
+  lang: Locale;
+};
+
+type ShelfSeo = {
+  locale: Locale;
+  name: string;
+  description: string;
+  /** The day the shelf last changed, the one the shelf itself shows. */
+  updated: string;
+  parts: ShelfPart[];
+};
+
+/**
+ * The shelf, for search engines: a collection of mine, part of the same site
+ * as the portfolio, holding the write-ups. It is what ties the personal half
+ * to the Person the home page describes, so a search for my name can lead to
+ * either half, and a piece found on its own is still known to be mine.
+ */
+export function shelfSchema({ locale, name, description, updated, parts }: ShelfSeo) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': shelfId(locale),
+    url: absolute(localePath(locale, ROUTES.shelf)),
+    name,
+    description,
+    inLanguage: locale,
+    dateModified: updated,
+    author: ME,
+    isPartOf: { '@id': SITE_ID },
+    /* Each piece at its one address, in its own language, whichever language
+       this shelf is in: the English shelf links to the Spanish piece too. */
+    hasPart: parts.map(({ title, path, lang }) => ({
+      '@type': 'BlogPosting',
+      '@id': articleId(lang, path),
+      headline: title,
+      url: absolute(localePath(lang, path)),
+    })),
   };
 }

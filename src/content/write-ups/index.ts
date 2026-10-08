@@ -14,7 +14,7 @@ import { CARD_SIZE, inPublic, shelfCard } from '../cards';
 import { localePath, type Locale } from '../locales';
 import { ROUTES, writeUpPath } from '../navigation';
 import { plainText } from '../rich';
-import type { PreviewImage } from '../seo';
+import type { PreviewImage, ShelfPart } from '../seo';
 import { shelfEntry } from '../shelf';
 
 import { gurrenLagann } from './gurren-lagann';
@@ -33,6 +33,16 @@ export function writeUpFor(slug: string): WriteUp | undefined {
 /** Every slug with a piece, which is every write-up page the build makes. */
 export function writtenUpSlugs(): string[] {
   return WRITE_UPS.map((piece) => piece.slug);
+}
+
+/** Every piece, as the shelf's structured data lists it. */
+export function shelfParts(): ShelfPart[] {
+  return WRITE_UPS.flatMap((piece) => {
+    const entry = shelfEntry(piece.slug);
+    return entry
+      ? [{ title: entry.item.title, path: writeUpPath(piece.slug), lang: piece.lang }]
+      : [];
+  });
 }
 
 /** Where an item's write-up is in the reader's language, or nothing while it has none. */
