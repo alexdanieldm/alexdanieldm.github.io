@@ -95,6 +95,8 @@ export const SOCIALS = {
   /* Only the link page uses this one, which is the page Instagram itself
      points at. The rest of the site has no reason to link out to it. */
   instagram: 'https://www.instagram.com/alexdanieldm/',
+  /* The link page's too, where it took email's place in the top four. */
+  substack: 'https://substack.com/@alexdanieldm',
 } as const;
 
 /**

@@ -2,12 +2,12 @@ import {
   ArrowUpRightIcon,
   CloudDownloadIcon,
   DocumentIcon,
-  EnvelopeIcon,
   GithubIcon,
   InstagramIcon,
   LinkedinIcon,
   MusicIcon,
   SiteMarkIcon,
+  SubstackIcon,
 } from '@/components/icons';
 import { Ground, COMPACT_WASHES } from '@/components/layout/Ground';
 import { LanguageSwitch } from '@/components/layout/LanguageSwitch';
@@ -33,7 +33,7 @@ const ACTION = 16;
  * The order is the whole design. Portfolio and the shelf lead, because those
  * are the two things I actually want shown. The shelf held second as a
  * pending blog row before it existed, and is what that promise turned into.
- * Email and Instagram finish the top four, and everything up there works.
+ * Substack and Instagram finish the top four, and everything up there works.
  *
  * LinkedIn, the CV and GitHub sit under Everything else, because leading with
  * them turns a personal page into a CV with some links bolted on. Music is
@@ -97,10 +97,10 @@ export function LinksPage({ locale }: { locale: Locale }) {
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
-              href={SOCIALS.email}
-              label={links.rows.email}
-              value="alexdanieldm@gmail.com"
-              icon={<EnvelopeIcon size={MARK} />}
+              href={SOCIALS.substack}
+              label={links.rows.substack}
+              value="@alexdanieldm"
+              icon={<SubstackIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow

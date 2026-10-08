@@ -87,6 +87,13 @@ export const InstagramIcon = (props: IconProps) => (
   </Icon>
 );
 
+/** Simple Icons (CC0). Only the link page draws this one. */
+export const SubstackIcon = (props: IconProps) => (
+  <Icon {...props} viewBox="0 0 24 24">
+    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+  </Icon>
+);
+
 /** Font Awesome solid mark, carried over from the previous site. */
 export const EnvelopeIcon = (props: IconProps) => (
   <Icon {...props} viewBox="0 0 512 512">

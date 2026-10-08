@@ -5,7 +5,7 @@ export const links = {
   /* Its own sentence, not a lifted line. A description has to stand alone in a
      search result. */
   metaDescription:
-    'Everywhere I am, on one page. Portfolio, the shelf, email, and a playlist I keep meaning to start.',
+    'Everywhere I am, on one page. Portfolio, the shelf, Substack, and a playlist I keep meaning to start.',
 
   bio: 'Barcelona. I build things for the web, train most days, and read a lot of manga.',
 
@@ -16,7 +16,7 @@ export const links = {
   rows: {
     portfolio: 'Portfolio',
     shelf: 'Shelf',
-    email: 'Email',
+    substack: 'Substack',
     music: 'Music',
     instagram: 'Instagram',
     linkedin: 'LinkedIn',

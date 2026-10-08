@@ -5,7 +5,7 @@ import type { LinksContent } from '../locales';
 export const links: LinksContent = {
   eyebrow: 'Enlaces',
   metaDescription:
-    'Todo donde estoy, en una página. Portfolio, la estantería, email, y una lista que llevo tiempo queriendo empezar.',
+    'Todo donde estoy, en una página. Portfolio, la estantería, Substack, y una lista que llevo tiempo queriendo empezar.',
 
   /* Held to the same line count as the English: one line on a desktop and two
      on a phone. A third line here pushed the Everything else heading off an
@@ -19,7 +19,7 @@ export const links: LinksContent = {
   rows: {
     portfolio: 'Portfolio',
     shelf: 'Estantería',
-    email: 'Email',
+    substack: 'Substack',
     music: 'Música',
     instagram: 'Instagram',
     linkedin: 'LinkedIn',
