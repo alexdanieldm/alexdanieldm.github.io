@@ -181,6 +181,11 @@ export function siteSchema(locale: Locale) {
         ...ME,
         alternateName: ALTERNATE_NAMES,
         jobTitle: home.banner.eyebrow,
+        description: SITE_DESCRIPTION[locale],
+        /* The stack the About section leads with, and the two languages it
+           says I work in. */
+        knowsAbout: ['TypeScript', 'React', 'Next.js', 'GraphQL'],
+        knowsLanguage: ['es', 'en'],
         address: {
           '@type': 'PostalAddress',
           addressLocality: common.footer.location,
