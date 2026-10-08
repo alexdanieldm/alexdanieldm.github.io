@@ -187,6 +187,21 @@ registry, so a page or a piece is in it the day it exists. `robots.txt` allows
 everything and points at it. The 404 is the one page kept out: it is marked
 `noindex`, and claims no canonical and no twin.
 
+Every deploy also tells IndexNow which pages it changed, which passes them to
+Bing and the protocol's other members the day they ship, instead of when a
+crawler next comes round. `scripts/indexnow.mjs` compares each page the build
+made with the same page live, before the deploy replaces it, on what a search
+engine reads: the title, the meta tags, the canonical and its twins, the
+structured data, the text, the image descriptions and the links. Not the
+bytes, since every build renames its scripts and styles. A page the live site
+lacks is new; one only the live sitemap has is gone. Only those are posted,
+because IndexNow ignores a site that posts everything every time. The key is
+served at `/739d24de76dbda9054b571186e1b21da.txt`, which is how IndexNow knows
+the pages are mine: it is meant to be public, and the deploy stops if the file
+and the key in the script disagree. `node scripts/indexnow.mjs all` lists
+every page in the built sitemap, for posting the lot by hand, as I did once
+when the site joined.
+
 ## The link page
 
 `/links/`, with `/es/links/` like every page of the portfolio. It is what an Instagram
