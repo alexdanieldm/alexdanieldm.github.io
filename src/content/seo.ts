@@ -156,6 +156,18 @@ const ME = {
 } as const;
 
 /**
+ * The other names I am searched by: the handle every profile of mine shares,
+ * and my name without the accent, the way most people type it and the way
+ * GitHub and LinkedIn spell it, then with my middle name and in full.
+ */
+const ALTERNATE_NAMES = [
+  'alexdanieldm',
+  'Alex Duran',
+  'Alex Daniel Duran',
+  'Alex Daniel Duran Martinez',
+];
+
+/**
  * The site and me, for search engines, from the home page: what I do, where,
  * and the profiles elsewhere that are also me, so a search for my name can
  * treat them as one person rather than several namesakes.
@@ -167,6 +179,7 @@ export function siteSchema(locale: Locale) {
     '@graph': [
       {
         ...ME,
+        alternateName: ALTERNATE_NAMES,
         jobTitle: home.banner.eyebrow,
         address: {
           '@type': 'PostalAddress',
