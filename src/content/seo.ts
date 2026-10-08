@@ -51,6 +51,15 @@ export const OG_IMAGE = {
   alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
 } as const;
 
+/**
+ * My photo, for search engines only: the Person below names it as me, so a
+ * search for my name can show my face rather than a namesake's. It is never a
+ * link preview. Those stay the artwork cards, so a shared link previews the
+ * site, not me. The file is named after me because an image's name is one of
+ * the few things an image search reads about it.
+ */
+const PORTRAIT_URL = '/alex-duran.jpg';
+
 /** The card a chat app or a feed shows for a link, and what it says it shows. */
 export type PreviewImage = { url: string; width: number; height: number; alt: string };
 
@@ -180,6 +189,7 @@ export function siteSchema(locale: Locale) {
       {
         ...ME,
         alternateName: ALTERNATE_NAMES,
+        image: absolute(PORTRAIT_URL),
         jobTitle: home.banner.eyebrow,
         description: SITE_DESCRIPTION[locale],
         /* The stack the About section leads with, and the two languages it
