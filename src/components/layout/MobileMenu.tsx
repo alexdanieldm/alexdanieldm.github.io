@@ -25,7 +25,15 @@
  */
 
 import Link from 'next/link';
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode,
+} from 'react';
 import { createPortal } from 'react-dom';
 
 import { CloseIcon, MenuIcon } from '@/components/icons';
@@ -51,6 +59,16 @@ export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
   const panelId = useId();
 
   const close = useCallback(() => setOpen(false), []);
+
+  /* Any link followed from the panel closes it, whatever it is: a nav item,
+     the wordmark, an icon, the language switch. Caught here as the click
+     bubbles up rather than handed to each link, because the wordmark and the
+     footer arrive already rendered and cannot be given a handler. It matters
+     most where a link goes nowhere new: the wordmark on the page it points at
+     used to leave the panel open over the page, which stayed locked. */
+  const closeOnLink = (event: MouseEvent) => {
+    if ((event.target as Element).closest('a[href]')) close();
+  };
 
   useEffect(() => {
     const panel = panelRef.current;
@@ -149,6 +167,7 @@ export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
             aria-label={labels.dialog}
+            onClick={closeOnLink}
           >
             {/* 嘱, to entrust. The same character as the contact page, oversized
                 and sitting behind the navigation rather than beside it. */}
@@ -174,7 +193,7 @@ export function MobileMenu({ items, labels, brand, footer }: MobileMenuProps) {
                   const Anchor = fullLoad ? 'a' : Link;
                   return (
                     <li key={href}>
-                      <Anchor className={styles.link} href={href} onClick={close}>
+                      <Anchor className={styles.link} href={href}>
                         <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
                         {label}
                       </Anchor>
