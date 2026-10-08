@@ -173,7 +173,7 @@ export function siteSchema(locale: Locale) {
           addressLocality: common.footer.location,
           addressCountry: 'ES',
         },
-        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram],
+        sameAs: [SOCIALS.github, SOCIALS.linkedin, SOCIALS.instagram, SOCIALS.x],
       },
       {
         '@type': 'WebSite',
