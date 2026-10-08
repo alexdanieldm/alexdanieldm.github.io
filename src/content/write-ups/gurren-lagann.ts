@@ -19,6 +19,8 @@ export const gurrenLagann: WriteUp = {
   slug: 'gurren-lagann',
   lang: 'es',
   published: '2026-10-01',
+  /* My words for what a search result and a shared link call it. */
+  searchTitle: 'Gurren Lagann: seguir excavando cuando parece imposible',
   standfirst:
     'Gurren Lagann te dice una y otra y otra vez a tu cara que no hay nada más poderoso que el indomable espíritu humano.',
   /* The shelf's credit for it, split into the rail's rows. */
