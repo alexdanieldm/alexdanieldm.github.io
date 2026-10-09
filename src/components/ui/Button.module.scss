@@ -1,5 +1,5 @@
 /**
- * Both treatments lift on hover. The primary also throws a coral glow, and the
+ * Both treatments lift on hover. The primary also throws a white glow, and the
  * ghost fills with coral and inverts its text rather than only moving, so the
  * two read as different weights of the same gesture instead of the same
  * gesture at two sizes.
@@ -34,10 +34,12 @@
        filter to sit on coral: it inherits. */
     color: var(--color-base);
 
+    /* White rather than coral, as on the filled link row: a coral ring and
+       glow around a coral button all but vanish into the fill. */
     &:hover {
       box-shadow:
-        0 0 0 1px rgb(247 81 85 / 50%),
-        0 12px 30px -6px rgb(247 81 85 / 55%);
+        0 0 0 1px var(--color-foreground),
+        0 12px 30px -6px rgb(234 242 246 / 42%);
     }
   }
 
