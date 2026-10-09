@@ -7,6 +7,12 @@ type LinkRowProps = {
   label: string;
   /** The destination spelled out, so the row says where it goes before it is tapped. */
   value: string;
+  /**
+   * The same thing said shorter, for a phone, where a row has about 220px for
+   * it. Shown in place of `value` at the mobile stop rather than letting the
+   * long one wrap.
+   */
+  valueShort?: string;
   icon: ReactNode;
   /**
    * Live rows go somewhere. A row for something that does not exist yet has no
@@ -39,6 +45,7 @@ type LinkRowProps = {
 export function LinkRow({
   label,
   value,
+  valueShort,
   icon,
   href,
   action,
@@ -53,7 +60,16 @@ export function LinkRow({
       {icon}
       <span className={styles.text}>
         <span className={styles.label}>{label}</span>
-        <span className={styles.value}>{value}</span>
+        <span className={styles.value}>
+          {valueShort ? (
+            <>
+              <span className={styles.valueLong}>{value}</span>
+              <span className={styles.valueShort}>{valueShort}</span>
+            </>
+          ) : (
+            value
+          )}
+        </span>
       </span>
       {action && <span className={styles.action}>{action}</span>}
       {tag && <span className={styles.tag}>{tag}</span>}

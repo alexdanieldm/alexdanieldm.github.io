@@ -72,6 +72,22 @@
     color: var(--color-faint);
   }
 }
+/**
+ * A row that carries a phone-length value shows one or the other, never both.
+ * The hidden one is display: none rather than visually hidden, so a screen
+ * reader meets only the words on screen.
+ */
+.valueShort {
+  display: none;
+}
+@include mobile-down {
+  .valueLong {
+    display: none;
+  }
+  .valueShort {
+    display: inline;
+  }
+}
 .action {
   flex-shrink: 0;
   color: var(--color-muted);

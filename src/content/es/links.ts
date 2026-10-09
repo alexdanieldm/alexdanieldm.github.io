@@ -29,6 +29,15 @@ export const links: LinksContent = {
 
   cvValue: 'Descargar PDF',
 
+  /* "Que más quiero" is how the shelf describes itself in Spanish. The short
+     ones are held to the English's phone width; see the English file. */
+  descriptions: {
+    shelf: 'Manga, anime, juegos, cine y series que más quiero',
+    shelfShort: 'Manga, anime, juegos, cine, TV',
+    portfolio: 'Mi trabajo como ingeniero full stack',
+    portfolioShort: 'Mi trabajo como ingeniero',
+  },
+
   pending: {
     /* Short enough for the four-across row, same as the English. */
     musicValue: '[UNA LISTA]',

@@ -16,7 +16,7 @@ import { LinkRow } from '@/components/ui';
 import { localeStorageKey } from '@/content/localePreference';
 import { contentFor, crossingPath, localePath, otherLocale, type Locale } from '@/content/locales';
 import { CV, ROUTES, SOCIALS } from '@/content/navigation';
-import { SITE_NAME, SITE_URL } from '@/content/seo';
+import { SITE_NAME } from '@/content/seo';
 
 import styles from './LinksPage.module.scss';
 
@@ -48,7 +48,6 @@ const ACTION = 16;
 export function LinksPage({ locale }: { locale: Locale }) {
   const { links, common } = contentFor(locale);
   const other = otherLocale(locale);
-  const host = new URL(SITE_URL).host;
 
   return (
     /* 170px rather than a token: the scene is 170 tall at its tallest and 150
@@ -86,14 +85,16 @@ export function LinksPage({ locale }: { locale: Locale }) {
               primary
               href={crossingPath(ROUTES.shelf)}
               label={links.rows.shelf}
-              value={`${host}${ROUTES.shelf.replace(/\/$/, '')}`}
+              value={links.descriptions.shelf}
+              valueShort={links.descriptions.shelfShort}
               icon={<ShelfIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
               href={localePath(locale, ROUTES.home)}
               label={links.rows.portfolio}
-              value={host}
+              value={links.descriptions.portfolio}
+              valueShort={links.descriptions.portfolioShort}
               icon={<SiteMarkIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
