@@ -30,10 +30,11 @@ const ACTION = 16;
  * from one link and wants another one, not a tour of the site, so the page is
  * the list and the two things that say whose list it is.
  *
- * The order is the whole design. Portfolio and the shelf lead, because those
- * are the two things I actually want shown. The shelf held second as a
- * pending blog row before it existed, and is what that promise turned into.
- * Substack and Instagram finish the top four, and everything up there works.
+ * The order is the whole design. The shelf leads, and it is the highlighted
+ * row: this page is what my Instagram points at, so the shelf comes before the
+ * developer side. It held a place up here as a pending blog row before it
+ * existed. The portfolio follows it, and Substack and Instagram finish the top
+ * four, so everything up there works.
  *
  * LinkedIn, the CV and GitHub sit under Everything else, because leading with
  * them turns a personal page into a CV with some links bolted on. Music is
@@ -78,22 +79,22 @@ export function LinksPage({ locale }: { locale: Locale }) {
           </header>
 
           <ul className={styles.picked} aria-label={links.listLabel}>
-            <LinkRow
-              primary
-              href={localePath(locale, ROUTES.home)}
-              label={links.rows.portfolio}
-              value={host}
-              icon={<SiteMarkIcon size={MARK} />}
-              action={<ArrowUpRightIcon size={ACTION} />}
-            />
             {/* The door into the other half, so it opens the shelf in Spanish
                 whichever language this page is in. LinkRow draws a plain
                 anchor, which gives the crossing the full page load it needs. */}
             <LinkRow
+              primary
               href={crossingPath(ROUTES.shelf)}
               label={links.rows.shelf}
               value={`${host}${ROUTES.shelf.replace(/\/$/, '')}`}
               icon={<ShelfIcon size={MARK} />}
+              action={<ArrowUpRightIcon size={ACTION} />}
+            />
+            <LinkRow
+              href={localePath(locale, ROUTES.home)}
+              label={links.rows.portfolio}
+              value={host}
+              icon={<SiteMarkIcon size={MARK} />}
               action={<ArrowUpRightIcon size={ACTION} />}
             />
             <LinkRow
