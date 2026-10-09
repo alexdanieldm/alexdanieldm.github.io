@@ -26,6 +26,17 @@
     background-color: var(--color-accent);
     border-color: var(--color-accent);
     color: var(--color-base);
+
+    /* Lit white rather than coral. The shared .glow throws a coral ring and
+       bloom, which all but vanish against a coral fill, the same reason the
+       tech badges on the coral band light white. Same ring, same bloom, the
+       page's foreground colour. */
+    &:hover {
+      border-color: var(--color-foreground);
+      box-shadow:
+        0 0 0 1px var(--color-foreground),
+        0 0 38px -6px rgb(234 242 246 / 42%);
+    }
   }
 
   /* Nothing to point at yet: dashed and quieter. It deliberately has no hover
