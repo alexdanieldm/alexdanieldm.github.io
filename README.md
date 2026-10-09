@@ -210,13 +210,19 @@ own: somebody arriving came from one link and wants another one, not a tour.
 That leaves nowhere for the language switch, so it sits in the page's own
 footer, and it is the only way across on a route nothing else links to.
 
-The order is the design. Portfolio and the shelf first, because those are the
-two things worth showing; the shelf held second as a pending blog row before it
-existed. It opens the shelf in Spanish from either language, like every door
-into that half. Substack and Instagram finish the top four, so everything up
-there works. LinkedIn, the CV and GitHub sit under "Everything else", with
-music last of all: there is no date on it, so it keeps its row and loses its
-place.
+The order is the design. The shelf leads, and it is the one coral row: this is
+the page my Instagram points at, so the shelf comes before the developer side.
+It opens the shelf in Spanish from either language, like every door into that
+half. The portfolio follows it, and Substack and Instagram finish the top four,
+so everything up there works. LinkedIn, the CV and GitHub sit under "Everything
+else", with music last of all: there is no date on it, so it keeps its row and
+loses its place.
+
+The shelf and the portfolio say what they are rather than their address, since
+neither word explains itself; the social rows keep their handles. Each has a
+shorter line for a phone (`valueShort` on `LinkRow`, swapped at the mobile
+stop), because the long ones wrap there. The coral row lights white on hover,
+since a coral glow around a coral row barely shows.
 
 Music does not exist yet. It is drawn anyway, dashed and tagged "Idea",
 because a row that says where a playlist will go is more honest than a gap,
