@@ -173,20 +173,26 @@ declaring its own `openGraph` replaces the parent's wholesale instead of
 filling gaps, so without it every inner page advertised the home page's title
 and URL.
 
-The shelf previews as itself rather than as the portfolio. The shelf and its
-contact page show `public/shelf/card.jpg`: five spines, one poster a section in
-the shelf's order, the posters `SPINES` in the script names, the same spines as
-the shelf's square search thumbnail, so the shelf looks the same in a chat and
-in a search. It was a collage of the first two of each section until the
-spines read bolder at a chat's size. A
-write-up shows a still from its own work, the one it names as its
-`linkPreview`, cut to the card's shape with its top kept and described by the
-still's own alt text; one that names none shows the shelf's card. Gurren
-Lagann's is the landscape from the show, since its poster is portrait and
-would be cropped to a strip. `npm run shelf:cards` cuts both with sharp. They
-carry no type, so unlike `og.png` they need no browser, and the script reads
-the shelf's order from `shelf.ts` itself, through the TypeScript compiler, so
-the spines follow the shelf rather than a list of its own. The build stops
+The shelf previews as itself rather than as the portfolio. The shelf shows
+`public/shelf/card.jpg`: five spines, one poster a section in the shelf's
+order, the posters `SPINES` in the script names, the same spines as the
+shelf's square search thumbnail, so the shelf looks the same in a chat and in
+a search. It was a collage of the first two of each section until the spines
+read bolder at a chat's size. Its contact page shows
+`public/shelf/contact-card-es.jpg` and `-en.jpg`, the sibling of the
+portfolio's contact card: the same spines under the page's label, its
+heading, "Te toca" or "Your turn", its lede and 嘱, with the scene card's fade
+under the words. A write-up shows a still from its own work, the one it names
+as its `linkPreview`, cut to the card's shape with its top kept and described
+by the still's own alt text; one that names none shows the shelf's card.
+Gurren Lagann's is the landscape from the show, since its poster is portrait
+and would be cropped to a strip. `npm run shelf:cards` cuts them all with
+sharp. sharp cannot set type in woff2 faces, so the contact card's words, and
+the fade under them, are a transparent layer a language in `scripts/layers/`,
+drawn once in a browser like `og.png`; the script lays it over freshly cut
+spines, and a new heading or lede on that page needs a new layer. The script
+reads the shelf's order from `shelf.ts` itself, through the TypeScript
+compiler, so the spines follow the shelf rather than a list of its own. The build stops
 when a card a page names is not on disk; it cannot tell a stale one, which is
 why the deploy cuts them again before every build. Chat apps keep a link's preview once they
 have fetched it, so a link already shared shows its old card until the app

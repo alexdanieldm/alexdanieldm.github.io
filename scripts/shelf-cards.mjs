@@ -2,10 +2,12 @@
  * Cuts the shelf's link preview cards, the image a chat app or a feed shows
  * when someone pastes a link, into `public/shelf/`:
  *
- * - `card.jpg`, for the shelf and its contact page: one spine a section, in
- *   the shelf's order, the posters named in `SPINES`.
+ * - `card.jpg`, for the shelf: one spine a section, in the shelf's order, the
+ *   posters named in `SPINES`.
  * - `thumbnail.jpg`, the same spines in a square, for the shelf's search
  *   result, so the shelf looks the same in a chat and in a search.
+ * - `contact-card-<locale>.jpg`, for the shelf's contact page: the same
+ *   spines under the page's own words and 嘱, one card a language.
  * - `<slug>/<still>-card.jpg`, for a write-up that names one of its stills as
  *   its `linkPreview`: that still, cut to the card's shape.
  *
@@ -62,6 +64,17 @@ const SPINES = {
   television: 'ted-lasso',
 };
 
+/* The shelf contact card's words, a layer a language: the label, the page's
+   heading and lede, 嘱, and the fade that lets them read. sharp cannot set
+   type in the site's faces, which are woff2 only, so these were drawn once in
+   a browser onto a transparent ground and are laid here over freshly cut
+   spines, so the card follows `SPINES` like the others. A new heading or
+   lede on the page needs a new layer. */
+const CONTACT_LAYERS = {
+  es: 'scripts/layers/shelf-contact-es.png',
+  en: 'scripts/layers/shelf-contact-en.png',
+};
+
 const PUBLIC = 'public';
 const SHELF_DIR = `${PUBLIC}/shelf`;
 const WRITE_UPS_DIR = 'src/content/write-ups';
@@ -91,7 +104,7 @@ async function spineSlugs() {
 }
 
 /** The spines, side by side, cut to a width and a height. */
-async function spines(slugs, width, height, out) {
+async function spines(slugs, width, height) {
   const spineWidth = Math.floor((width - SPINE_GAP * (slugs.length + 1)) / slugs.length);
   const spineHeight = height - SPINE_GAP * 2;
   const layers = [];
@@ -117,12 +130,32 @@ async function spines(slugs, width, height, out) {
 
   /* A touch of sharpening: a chat and a search both shrink it, and a soft
      source shrinks to a blur. */
-  await sharp({ create: { width, height, channels: 3, background: GROUND } })
+  return sharp({ create: { width, height, channels: 3, background: GROUND } })
     .composite(layers)
     .sharpen({ sigma: 0.6 })
-    .jpeg({ quality: SPINES_QUALITY, mozjpeg: true })
-    .toFile(out);
-  return `${out}: ${slugs.join(', ')}`;
+    .png()
+    .toBuffer();
+}
+
+/** An image made of the spines, saved as the JPEG a chat or a search fetches. */
+async function save(image, out, about) {
+  await sharp(image).jpeg({ quality: SPINES_QUALITY, mozjpeg: true }).toFile(out);
+  return `${out}: ${about}`;
+}
+
+/** The shelf contact page's cards: the card's spines under each language's words. */
+async function contactCards(card) {
+  const written = [];
+  for (const [locale, layer] of Object.entries(CONTACT_LAYERS)) {
+    const image = await sharp(card)
+      .composite([{ input: layer }])
+      .png()
+      .toBuffer();
+    written.push(
+      await save(image, `${SHELF_DIR}/contact-card-${locale}.jpg`, `the spines under ${layer}`),
+    );
+  }
+  return written;
 }
 
 /** The widest cut of a still on disk, which is the most there is to work from. */
@@ -166,9 +199,15 @@ async function stillCards() {
 }
 
 const slugs = await spineSlugs();
+const card = await spines(slugs, WIDTH, HEIGHT);
 const written = [
-  await spines(slugs, WIDTH, HEIGHT, `${SHELF_DIR}/card.jpg`),
-  await spines(slugs, THUMBNAIL, THUMBNAIL, `${SHELF_DIR}/thumbnail.jpg`),
+  await save(card, `${SHELF_DIR}/card.jpg`, slugs.join(', ')),
+  await save(
+    await spines(slugs, THUMBNAIL, THUMBNAIL),
+    `${SHELF_DIR}/thumbnail.jpg`,
+    slugs.join(', '),
+  ),
+  ...(await contactCards(card)),
   ...(await stillCards()),
 ];
 console.log(written.join('\n'));

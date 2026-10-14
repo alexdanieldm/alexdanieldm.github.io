@@ -173,6 +173,9 @@ export const shelf: ShelfContent = {
     metaDescription:
       'Escríbeme sobre la estantería: algo que debería probar, lo que te hizo pensar un ' +
       'artículo o aquello a lo que siempre vuelves.',
+    cardAlt:
+      'Te toca, junto a 嘱, encomendar. Cinco pósteres de la estantería, uno junto a otro ' +
+      'como lomos, uno de cada sección.',
     lede: 'Me gusta saber qué le encanta a la gente, y por qué.',
     promptsIntro: 'Algunos de los emails que más disfruto:',
     prompts: [

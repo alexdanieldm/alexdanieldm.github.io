@@ -144,8 +144,6 @@ export const shelf = {
      was written rather than translated. */
   readWriteUpOther: 'Read the write up, in Spanish',
   art: { poster: 'Poster for {title}', cover: 'Cover art for {title}' },
-  /* What the shelf's link preview shows, for a feed or chat app that reads it
-     out: the collage on the contact page. */
   /* The shelf's image in a chat and in a search, the same spines in both. */
   cardAlt: 'Five posters from the shelf side by side like spines, one from each section.',
 
@@ -218,6 +216,11 @@ export const shelf = {
     metaDescription:
       'Write to me about the shelf: something I should try next, what a write up made you ' +
       'think of, or what you keep going back to.',
+    /* The page's link preview: the shelf's spines under its heading and 嘱,
+       the kanji the portfolio's contact page carries too. */
+    cardAlt:
+      'Your turn, beside 嘱, to entrust. Five posters from the shelf side by side like ' +
+      'spines, one from each section.',
     /* Self-contained on purpose. "These things" assumed the reader already
        knew everything on the shelf; this only assumes they love something. */
     lede: 'I like hearing what other people love, and why.',

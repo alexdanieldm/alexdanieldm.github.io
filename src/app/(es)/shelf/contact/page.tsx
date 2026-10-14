@@ -1,5 +1,5 @@
 import { ShelfContactPage } from '@/components/pages/ShelfContactPage';
-import { shelfCard } from '@/content/cards';
+import { shelfContactCard } from '@/content/cards';
 import { contentFor } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
 import { pageMetadata } from '@/content/seo';
@@ -12,7 +12,7 @@ export const metadata = pageMetadata({
   title: contact.metaTitle,
   description: contact.metaDescription,
   path: ROUTES.shelfContact,
-  image: shelfCard(LOCALE),
+  image: shelfContactCard(LOCALE),
 });
 
 export default function Page() {
