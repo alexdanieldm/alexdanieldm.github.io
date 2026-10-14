@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION[LOCALE],
+  /* Lets Google show a larger preview of a page's image in its results. Left
+     out, it may only show a default size, and the thumbnail beside a result
+     read blurry. A page kept out of search sets its own robots and drops it. */
+  robots: { 'max-image-preview': 'large' },
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   keywords: [
