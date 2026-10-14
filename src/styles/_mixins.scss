@@ -27,3 +27,24 @@
   white-space: nowrap;
   border: 0;
 }
+
+/// A link among running words: underlined all the time, not only on hover like
+/// the site's .text-link. Among words, colour alone would have to carry it, and
+/// coral against the body's white measures 2.96:1, under the 3:1 a link needs
+/// to stand apart from the text around it. A write-up's links and the About
+/// section's one share it, so the two never drift apart.
+@mixin prose-link {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
