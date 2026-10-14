@@ -143,33 +143,27 @@
     margin-bottom: 22px;
   }
 
-  /* With an angle, the name and the angle are one headline, "Gurren Lagann:
-     seguir excavando cuando parece imposible", set two steps down the scale
-     from a bare name so that on a laptop the whole of it fits the column on
-     one line. The name keeps a step over the angle. On a phone there is no
-     line long enough, so the name keeps its usual size and line. */
+  /* With an angle, the name is a step under a bare name's size, so the name
+     and the angle under it read as one title, "Gurren Lagann: seguir
+     excavando cuando parece imposible", rather than as a headline and a
+     second one. Two short lines read better than one long one. */
   &[data-angled] {
-    font-size: var(--typography-size-4);
-
-    @include mobile-down {
-      font-size: var(--typography-size-2);
-    }
+    font-size: var(--typography-size-3);
   }
 }
 
-/* The angle: a step below the name, in the same ink, on the same line. On a
-   phone it goes under the name, smaller and quieter, the way a subtitle sits
-   under a headline. Lowercase either way: it follows the colon. */
+/* The angle, on its own line under the name and in the same ink: the second
+   half of the title, not a caption to it. Lowercase, since it follows the
+   colon. The same on a phone, where it is sized to stay one line at 390. */
 .subtitle {
+  display: block;
+  margin-top: 6px;
   font-size: var(--typography-size-5);
+  line-height: var(--typography-height-display);
   letter-spacing: normal;
 
   @include mobile-down {
-    display: block;
-    margin-top: 6px;
     font-size: 21px; /* one line at 390 wide, between the scale's body and heading sizes */
-    line-height: var(--typography-height-display);
-    color: var(--color-muted);
   }
 }
 
