@@ -95,10 +95,13 @@
 
 .eyebrow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--spacer-sm);
+  gap: 6px var(--spacer-sm);
   margin-bottom: 16px;
-  font-size: var(--typography-size-label);
+  /* A step under the site's label size: it carries the day as well as the
+     section now, and it is there to be glanced at, not read. */
+  font-size: var(--typography-size-label-small);
   font-weight: var(--typography-weight-bold);
   line-height: 1.2;
   letter-spacing: var(--typography-tracking-eyebrow);
@@ -106,10 +109,14 @@
   color: var(--color-accent);
 
   @include mobile-down {
-    gap: 10px;
+    gap: 6px 10px;
     margin-bottom: 14px;
-    font-size: var(--typography-size-label-small);
   }
+}
+
+/* The day, quieter than the section it follows. */
+.when {
+  color: var(--color-muted);
 }
 
 .bar {

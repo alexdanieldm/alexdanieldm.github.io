@@ -148,6 +148,10 @@ export const shelf = {
   writeUp: {
     /* Above the rail's list of sections. */
     contents: 'Contents',
+    /* Before the day in the label above the title: the day it went up, or the
+       day I last revised it once I have. */
+    published: 'Published',
+    updated: 'Updated',
     /* The rail's rows. Only the label is translated: a value is a name or a
        year, the same in both languages. */
     facts: {

@@ -10,7 +10,7 @@ import { contentFor, HTML_LANG, localePath, type Locale } from '@/content/locale
 import { ROUTES, writeUpPath } from '@/content/navigation';
 import { plainText, renderProse } from '@/content/rich';
 import { articleSchema, pageMetadata } from '@/content/seo';
-import { POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
+import { displayDate, POSTER_BIG_MONITOR, posterAlt, shelfEntry } from '@/content/shelf';
 import {
   headings,
   isPlaceholder,
@@ -89,6 +89,9 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
   const route = writeUpPath(slug);
   const lang = piece.lang === locale ? undefined : HTML_LANG[piece.lang];
   const contents = headings(piece);
+  const dated = piece.updated
+    ? ({ label: 'updated', day: piece.updated } as const)
+    : ({ label: 'published', day: piece.published } as const);
   const { coda } = shelf.writeUp;
 
   return (
@@ -120,9 +123,16 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
 
           <article className={styles.piece}>
             <header className={styles.head}>
+              {/* The section, then the day: Google asks for a visible date that
+                  matches the structured data, labelled for what it is. The
+                  revision's once there is one, the day it went up until then. */}
               <p className={styles.eyebrow}>
                 <span className={styles.bar} aria-hidden="true" />
-                {shelf.sections[section].name}
+                {shelf.sections[section].name}{' '}
+                <span className={styles.when}>
+                  <span aria-hidden="true">·</span> {shelf.writeUp[dated.label]}{' '}
+                  <time dateTime={dated.day}>{displayDate(dated.day)}</time>
+                </span>
               </p>
               {/* The name, a colon and the angle, so the heading reads exactly
                   as the title does: "Gurren Lagann: seguir…". */}

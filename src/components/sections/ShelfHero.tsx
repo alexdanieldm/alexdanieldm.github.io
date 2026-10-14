@@ -8,7 +8,7 @@
 
 import { contentFor, type Locale, type ShelfContent } from '@/content/locales';
 import { Copy } from '@/content/rich';
-import { SHELF, SHELF_SECTIONS, SHELF_UPDATED } from '@/content/shelf';
+import { displayDate, SHELF, SHELF_SECTIONS, SHELF_UPDATED } from '@/content/shelf';
 
 import styles from './ShelfHero.module.scss';
 
@@ -25,12 +25,6 @@ function contentsSentence(shelf: ShelfContent): string {
     ', ',
   );
   return sentence.charAt(0).toUpperCase() + sentence.slice(1);
-}
-
-/** 2026-09-29 to 29.09.2026, the way both languages write it in Spain. */
-function displayDate(iso: string): string {
-  const [year, month, day] = iso.split('-');
-  return `${day}.${month}.${year}`;
 }
 
 export function ShelfHero({ locale }: { locale: Locale }) {

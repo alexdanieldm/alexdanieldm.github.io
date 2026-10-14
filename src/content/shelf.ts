@@ -140,6 +140,12 @@ export const SHELF: Record<ShelfSectionKey, ShelfItem[]> = {
  */
 export const SHELF_UPDATED = '2026-09-29';
 
+/** 2026-09-29 to 29.09.2026, the way both languages write it in Spain. */
+export function displayDate(iso: string): string {
+  const [year, month, day] = iso.split('-');
+  return `${day}.${month}.${year}`;
+}
+
 /**
  * The poster widths on disk. 480 is the one a retina laptop actually wants: a
  * wall card is 204px, so 408 device pixels, which used to round up to the 720

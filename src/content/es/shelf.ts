@@ -128,6 +128,8 @@ export const shelf: ShelfContent = {
 
   writeUp: {
     contents: 'Índice',
+    published: 'Publicado',
+    updated: 'Actualizado',
     facts: {
       studio: 'Estudio',
       director: 'Director',
