@@ -55,22 +55,28 @@ export function LinkRow({
 }: LinkRowProps) {
   const external = href?.startsWith('http');
 
+  /* The spaces between the pieces are for crawlers, which read the row as
+     one run of text: without them a result's snippet said "PortfolioMy work
+     as…" and "GitHub@alexdanieldm". On screen they do nothing. The row and
+     the text are flex containers, which drop a space between items, and the
+     space between the two wordings falls at the start or the end of a line,
+     where it collapses. */
   const inner = (
     <>
       {icon}
       <span className={styles.text}>
-        <span className={styles.label}>{label}</span>
+        <span className={styles.label}>{label}</span>{' '}
         <span className={styles.value}>
           {valueShort ? (
             <>
-              <span className={styles.valueLong}>{value}</span>
+              <span className={styles.valueLong}>{value}</span>{' '}
               <span className={styles.valueShort}>{valueShort}</span>
             </>
           ) : (
             value
           )}
         </span>
-      </span>
+      </span>{' '}
       {action && <span className={styles.action}>{action}</span>}
       {tag && <span className={styles.tag}>{tag}</span>}
     </>

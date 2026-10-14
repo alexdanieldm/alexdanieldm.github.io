@@ -29,8 +29,10 @@ export function IntegrationDiagram({ content }: { content: DataDiagram }) {
         <ul className={styles.sources}>
           {content.sources.map(({ protocol, system }) => (
             <li className={styles.source} key={protocol}>
-              <span className={styles.protocol}>{protocol}</span>
-              <span className={styles.wire} aria-hidden="true" />
+              {/* Spaced for a crawler, which otherwise reads "GraphQLCommerce";
+                  the row is flex, which drops the spaces on screen. */}
+              <span className={styles.protocol}>{protocol}</span>{' '}
+              <span className={styles.wire} aria-hidden="true" />{' '}
               <span className={styles.system}>{system}</span>
             </li>
           ))}

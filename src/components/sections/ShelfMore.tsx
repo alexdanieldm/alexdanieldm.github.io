@@ -51,7 +51,9 @@ export function ShelfMore({ locale, section, slug }: ShelfMoreProps) {
             laptop has room to say where, the phone does not. */}
         <h2 className={styles.title} id="shelf-more-title">
           <span className={styles.dot} aria-hidden="true" />
-          <span className={styles.long}>{more.titles[section].long}</span>
+          {/* A space between the two, for a crawler reading them as one run
+              of text. The heading is a flex row, which drops it on screen. */}
+          <span className={styles.long}>{more.titles[section].long}</span>{' '}
           <span className={styles.short}>{more.titles[section].short}</span>
         </h2>
         <ArrowLink href={sectionHref} className={styles.all}>
