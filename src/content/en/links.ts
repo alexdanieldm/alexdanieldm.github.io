@@ -37,8 +37,8 @@ export const links = {
    * height: a 64px row holds two lines.
    */
   descriptions: {
-    shelf: 'Manga, anime, games, films and shows I love',
-    shelfShort: 'Manga, anime, games, film, TV',
+    shelf: 'Anime, manga, games, films and shows I love',
+    shelfShort: 'Anime, manga, games, film, TV',
     portfolio: 'My work as a full stack engineer',
     portfolioShort: 'My work as an engineer',
   },

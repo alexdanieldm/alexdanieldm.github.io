@@ -29,11 +29,12 @@ export const links: LinksContent = {
 
   cvValue: 'Descargar PDF',
 
-  /* "Que más quiero" is how the shelf describes itself in Spanish. The short
-     ones are held to the English's phone width; see the English file. */
+  /* "Que más amo" is how the shelf describes itself in Spanish, and the list
+     goes in the shelf's order. The short ones are held to the English's phone
+     width; see the English file. */
   descriptions: {
-    shelf: 'Manga, anime, juegos, cine y series que más quiero',
-    shelfShort: 'Manga, anime, juegos, cine, TV',
+    shelf: 'Anime, manga, juegos, cine y series que más amo',
+    shelfShort: 'Anime, manga, juegos, cine, TV',
     portfolio: 'Mi trabajo como ingeniero full stack',
     portfolioShort: 'Mi trabajo como ingeniero',
   },
