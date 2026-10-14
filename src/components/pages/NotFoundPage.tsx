@@ -24,8 +24,10 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
 
         <p className={styles.lede}>{notFound.lede}</p>
 
+        {/* A space between the two, for a crawler reading them as one run of
+            text ("homeGet"). The row is flex, which drops it on screen. */}
         <div className={styles.actions}>
-          <Button href={localePath(locale, ROUTES.home)}>{notFound.backHome}</Button>
+          <Button href={localePath(locale, ROUTES.home)}>{notFound.backHome}</Button>{' '}
           <Button variant="ghost" href={localePath(locale, ROUTES.contact)}>
             {notFound.getInTouch}
           </Button>
