@@ -37,7 +37,7 @@ export const home: HomeContent = {
         'equipo entregando de forma consistente. Ese es el trabajo que más me importa.',
       'Fuera del trabajo entreno casi todos los días y me gusta meterme en situaciones en las ' +
         'que todavía no estoy cómodo, algo que al final me sirve para todo lo demás. Tengo ' +
-        '[una estantería con las historias que más quiero y lo que me enseñó cada una](/shelf/): ' +
+        '[una estantería con las historias que más amo y lo que me enseñó cada una](/shelf/): ' +
         'anime, manga, videojuegos, películas y televisión. Steal Like an Artist sigue siendo el ' +
         'libro que marcó cómo trabajo: aprender a la vista de todos, y devolver lo que tomaste ' +
         'prestado.',
