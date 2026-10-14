@@ -137,6 +137,31 @@
   }
 }
 
+.titleJoin {
+  @include visually-hidden;
+}
+
+/* The piece's angle, a step of the scale below the name it follows, and
+   quieter, so the work's name stays the headline. Written lowercase to read
+   on after the colon in the title, and capitalised here, where it starts a
+   line of its own. */
+.subtitle {
+  display: block;
+  margin-top: 12px;
+  font-size: var(--typography-size-6);
+  line-height: var(--typography-height-display);
+  letter-spacing: normal;
+  color: var(--color-muted);
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  @include mobile-down {
+    margin-top: 10px;
+  }
+}
+
 /* ── The rail ────────────────────────────────────────────────────────────── */
 
 /**

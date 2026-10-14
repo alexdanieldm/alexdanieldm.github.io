@@ -64,15 +64,19 @@ export type WriteUp = {
    */
   updated?: string;
   /**
-   * What a search result and a shared link call the piece, in its language,
-   * when the work's name alone would be lost among every other page about the
-   * work: the name, and the angle only this piece takes. The page's heading
-   * stays the work's name. It must name the work, so the result still says
-   * what it is about and still matches the heading. " · Alex Durán" follows
-   * it in a result, so under 50 characters keeps the whole of it in view.
-   * Left out, both use the work's name.
+   * The angle only this piece takes on the work, in its language, written to
+   * follow the work's name: "seguir excavando cuando parece imposible". The
+   * heading sets it on a line under the name, and the tab, a search result, a
+   * shared link and the structured data read "Gurren Lagann: seguir…".
+   *
+   * One field for both on purpose. Google takes a page's heading over its
+   * title when the two disagree, and it did: with the angle only in the title,
+   * the result read just "Gurren Lagann", one more page about the show among
+   * the encyclopaedias. With the name, " · Alex Durán" follows it in a result,
+   * so under 35 characters keeps the whole of it in view. Left out, both are
+   * the work's name.
    */
-  searchTitle?: string;
+  subtitle?: string;
   standfirst?: Prose | Placeholder;
   facts: Fact[];
   /**

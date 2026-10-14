@@ -124,7 +124,20 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
                 <span className={styles.bar} aria-hidden="true" />
                 {shelf.sections[section].name}
               </p>
-              <h1 className={styles.title}>{item.title}</h1>
+              {/* The angle under the name, and a colon between them that only
+                  a crawler and a screen reader meet, so the heading reads
+                  exactly as the title does: "Gurren Lagann: seguir…". */}
+              <h1 className={styles.title}>
+                {item.title}
+                {piece.subtitle && (
+                  <>
+                    <span className={styles.titleJoin}>: </span>
+                    <span className={styles.subtitle} lang={lang}>
+                      {piece.subtitle}
+                    </span>
+                  </>
+                )}
+              </h1>
             </header>
 
             <div className={styles.rail}>

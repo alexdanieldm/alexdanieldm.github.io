@@ -36,11 +36,13 @@ export function writtenUpSlugs(): string[] {
 }
 
 /**
- * What a search result, a shared link and the structured data call a piece:
- * its own search title, or the work's name while it has none.
+ * What the tab, a search result, a shared link and the structured data call a
+ * piece: the work's name and its angle, the same words its heading shows, or
+ * the name alone while it has none.
  */
 export function writeUpTitle(piece: WriteUp): string {
-  return piece.searchTitle ?? shelfEntry(piece.slug)?.item.title ?? piece.slug;
+  const name = shelfEntry(piece.slug)?.item.title ?? piece.slug;
+  return piece.subtitle ? `${name}: ${piece.subtitle}` : name;
 }
 
 /** Every piece, as the shelf's structured data lists it. */
@@ -168,14 +170,15 @@ function check(piece: WriteUp) {
       fail(`it was updated on ${piece.updated}, which is not after it went up`);
     }
   }
-  /* A title that does not name the work reads as some other page's, and
-     leaves the result disagreeing with the heading on the page it leads to. */
-  if (
-    entry &&
-    piece.searchTitle !== undefined &&
-    !piece.searchTitle.toLowerCase().includes(entry.item.title.toLowerCase())
-  ) {
-    fail(`its search title, "${piece.searchTitle}", does not name ${entry.item.title}`);
+  /* The subtitle follows the name, in the heading and after a colon in the
+     title, so it neither repeats the name nor brings punctuation of its own. */
+  if (piece.subtitle !== undefined) {
+    const subtitle = piece.subtitle.trim();
+    if (!subtitle) fail('its subtitle is empty');
+    if (entry && subtitle.toLowerCase().startsWith(entry.item.title.toLowerCase())) {
+      fail(`its subtitle, "${subtitle}", repeats the name it already follows`);
+    }
+    if (/^[:\-–—·,.]/.test(subtitle)) fail(`its subtitle, "${subtitle}", starts with punctuation`);
   }
   if (TAKEN.includes(piece.slug)) fail(`/shelf/${piece.slug}/ is already another page`);
 
