@@ -3,6 +3,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { ShelfClosing, ShelfHero, ShelfSection } from '@/components/sections';
 import { JsonLd } from '@/components/ui';
+import { shelfCard } from '@/content/cards';
 import { contentFor, type Locale } from '@/content/locales';
 import { ROUTES } from '@/content/navigation';
 import { shelfSchema } from '@/content/seo';
@@ -30,6 +31,7 @@ export function ShelfPage({ locale }: { locale: Locale }) {
           name: shelf.title,
           description: shelf.metaDescription,
           updated: SHELF_UPDATED,
+          image: shelfCard(locale),
           parts: shelfParts(),
         })}
       />

@@ -314,6 +314,8 @@ type ShelfSeo = {
   description: string;
   /** The day the shelf last changed, the one the shelf itself shows. */
   updated: string;
+  /** Its link preview, which is also the image it asks a result to show. */
+  image: PreviewImage;
   parts: ShelfPart[];
 };
 
@@ -323,7 +325,7 @@ type ShelfSeo = {
  * to the Person the home page describes, so a search for my name can lead to
  * either half, and a piece found on its own is still known to be mine.
  */
-export function shelfSchema({ locale, name, description, updated, parts }: ShelfSeo) {
+export function shelfSchema({ locale, name, description, updated, image, parts }: ShelfSeo) {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -333,6 +335,16 @@ export function shelfSchema({ locale, name, description, updated, parts }: Shelf
     description,
     inLanguage: locale,
     dateModified: updated,
+    /* The image a search result shows beside the shelf is Google's choice;
+       this is the documented way to say which one I would pick. Without it
+       the portfolio had a thumbnail and the shelf had none. */
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: absolute(image.url),
+      width: image.width,
+      height: image.height,
+      caption: image.alt,
+    },
     author: ME,
     isPartOf: { '@id': SITE_ID },
     /* Each piece at its one address, in its own language, whichever language
