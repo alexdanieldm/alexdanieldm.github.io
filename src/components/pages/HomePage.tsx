@@ -40,7 +40,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           }
         />
 
-        <About content={home.about} />
+        <About content={home.about} locale={locale} />
         <SelectedWork content={home.work} locale={locale} />
         <TechBand content={home.tech} />
         <Approach content={home.approach} />

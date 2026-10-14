@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 
 import { RailHeading } from '@/components/ui';
-import type { HomeContent } from '@/content/locales';
-import { Copy } from '@/content/rich';
+import type { HomeContent, Locale } from '@/content/locales';
+import { renderProse } from '@/content/rich';
 
 import styles from './About.module.scss';
 
-export function About({ content }: { content: HomeContent['about'] }) {
+export function About({ content, locale }: { content: HomeContent['about']; locale: Locale }) {
   return (
     <section
       className={styles.about}
@@ -28,8 +28,12 @@ export function About({ content }: { content: HomeContent['about'] }) {
       </RailHeading>
 
       <div className={styles.body}>
+        {/* Prose rather than plain copy for the one link the paragraphs carry,
+            into the shelf. */}
         {content.paragraphs.map((text, i) => (
-          <Copy key={i} text={text} className={i === 0 ? styles.lede : undefined} />
+          <p key={i} className={i === 0 ? styles.lede : undefined}>
+            {renderProse(text, locale, 'portfolio')}
+          </p>
         ))}
       </div>
     </section>

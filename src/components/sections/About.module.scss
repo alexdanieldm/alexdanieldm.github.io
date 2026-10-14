@@ -23,3 +23,8 @@
   font-size: var(--typography-size-body-large);
   line-height: var(--typography-height-body-loose);
 }
+
+/* The one link among the paragraphs, into the shelf, looks like a write-up's. */
+.body a {
+  @include prose-link;
+}

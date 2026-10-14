@@ -34,8 +34,8 @@ export const home = {
         'along with [[the workflows, documentation and internal tooling]] that keep a team ' +
         'shipping consistently. That is the work I care most about.',
       'Outside work I train most days and I like putting myself in situations I’m not ' +
-        'comfortable in yet, which turns out to be good practice for everything else. I read a ' +
-        'lot of manga. [[Steal Like an Artist]] is still the book that shaped how I work: learn ' +
+        'comfortable in yet, which turns out to be good practice for everything else. [I read a ' +
+        'lot of manga](/shelf/). [[Steal Like an Artist]] is still the book that shaped how I work: learn ' +
         'in the open, and give back what you borrowed.',
     ],
   },
