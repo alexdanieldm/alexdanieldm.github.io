@@ -35,7 +35,7 @@ export const home = {
         'shipping consistently. That is the work I care most about.',
       'Outside work I train most days and I like putting myself in situations I’m not ' +
         'comfortable in yet, which turns out to be good practice for everything else. [I read a ' +
-        'lot of manga](/shelf/). [[Steal Like an Artist]] is still the book that shaped how I work: learn ' +
+        'lot of manga](/shelf/). Steal Like an Artist is still the book that shaped how I work: learn ' +
         'in the open, and give back what you borrowed.',
     ],
   },
