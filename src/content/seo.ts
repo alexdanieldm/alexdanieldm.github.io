@@ -59,6 +59,7 @@ export const OG_IMAGE = {
  * the few things an image search reads about it.
  */
 const PORTRAIT_URL = '/alex-duran.jpg';
+const PORTRAIT_SIZE = { width: 1200, height: 1200 } as const;
 
 /** The card a chat app or a feed shows for a link, and what it says it shows. */
 export type PreviewImage = { url: string; width: number; height: number; alt: string };
@@ -208,6 +209,14 @@ export function siteSchema(locale: Locale) {
         inLanguage: locale,
         mainEntity: { '@id': ME['@id'] },
         isPartOf: { '@id': SITE_ID },
+        /* The image a search result should show beside the home page: my
+           portrait, square, as a result's thumbnail is. Without it Google
+           cropped the link preview card, and my name on it shrank to a blur. */
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: absolute(PORTRAIT_URL),
+          ...PORTRAIT_SIZE,
+        },
       },
       {
         ...ME,
