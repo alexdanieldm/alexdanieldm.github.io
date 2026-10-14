@@ -8,8 +8,8 @@ export const shelf: ShelfContent = {
      first poster 37px of the first screen. This is shorter and more natural. */
   title: 'A lo que siempre vuelvo',
   metaDescription:
-    'El manga, el anime, los juegos, las películas y las series que más quiero, y lo que me ' +
-    'enseñó cada uno.',
+    'El anime, el manga, los videojuegos, las películas y las series que más amo, y lo que ' +
+    'me enseñó cada uno.',
 
   back: 'Volver a lo aburrido',
   backToShelf: 'Volver a la estantería',

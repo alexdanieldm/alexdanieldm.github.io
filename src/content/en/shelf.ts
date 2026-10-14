@@ -3,7 +3,7 @@
 export const shelf = {
   title: 'Things I keep going back to',
   metaDescription:
-    'The manga, anime, games, films and shows I love most, and what each of them taught me.',
+    'The anime, manga, video games, movies and shows I love most, and what each of them taught me.',
 
   /* The way out to the portfolio, in the footer. It does not say home,
      because the shelf is one, and it is worded so that leaving sounds like
