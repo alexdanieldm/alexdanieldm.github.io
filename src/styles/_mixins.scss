@@ -28,26 +28,73 @@
   border: 0;
 }
 
-/// A link among running words: coral words on a thin coral line, white on
-/// hover. The words are coral because the marker highlight is already a coral
-/// line under white words, and a link drawn the same way read as one more
-/// highlight beside it. The line stays because coral against the body's white
-/// measures 2.96:1, under the 3:1 a link needs to stand apart by colour alone.
-/// Coral on the ground measures 5.35:1, so the words read as body text. A
-/// write-up's links and the About section's one share it.
+/// A link among running words: coral words on a thin coral line. On hover the
+/// line runs off to the right and draws itself again from the left, a step
+/// thicker, while the words turn white in a coral glow. Those are the site's
+/// other links' moves, the nav's underline growing from the left and the link
+/// rows' glow, so a link here behaves like a link, and never like the marker,
+/// whose band rises to fill its words.
+///
+/// The words are coral because the marker is a coral line under white words,
+/// and a link drawn the same way read as one more highlight. The line stays
+/// because coral against the body's white measures 2.96:1, under the 3:1 a
+/// link needs to stand apart by colour alone; coral on the ground measures
+/// 5.35:1, so the words read as body text.
+///
+/// The line is a background rather than a text decoration, since only a
+/// background can be sized and moved; on a link that wraps, it runs across the
+/// lines in reading order. The keyframes come with the mixin, through
+/// @at-root, because CSS modules rename keyframes per file: each file that
+/// uses it carries its own copy under the name it looks for.
 @mixin prose-link {
-  text-decoration-line: underline;
-  text-decoration-color: var(--color-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
   color: var(--color-accent);
-  transition: color var(--duration-fast) ease;
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  transition:
+    color var(--duration-fast) ease,
+    text-shadow var(--duration-medium) ease;
 
   &:hover {
     color: var(--color-foreground);
+    text-shadow:
+      0 0 14px rgb(247 81 85 / 85%),
+      0 0 2px rgb(247 81 85 / 50%);
+    animation: prose-link-redraw var(--duration-slow) var(--ease-out) forwards;
   }
 
   @include reduced-motion {
     transition: none;
+
+    &:hover {
+      background-size: 100% 2px;
+      animation: none;
+    }
+  }
+
+  @at-root {
+    @keyframes prose-link-redraw {
+      0% {
+        background-position: 100% 100%;
+        background-size: 100% 1px;
+      }
+
+      40% {
+        background-position: 100% 100%;
+        background-size: 0% 1px;
+      }
+
+      40.1% {
+        background-position: 0 100%;
+        background-size: 0% 2px;
+      }
+
+      100% {
+        background-position: 0 100%;
+        background-size: 100% 2px;
+      }
+    }
   }
 }
