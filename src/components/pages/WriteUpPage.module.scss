@@ -143,12 +143,22 @@
     margin-bottom: 22px;
   }
 
-  /* With an angle, the name is a step under a bare name's size, so the name
-     and the angle under it read as one title, "Gurren Lagann: seguir
+  /* With an angle, the name sits a quarter over the angle under it, close
+     enough that the two lines read as one title, "Gurren Lagann: seguir
      excavando cuando parece imposible", rather than as a headline and a
-     second one. Two short lines read better than one long one. */
+     second one. Two short lines read better than one long one. The same
+     proportion holds at every width: 50 over 40 on a laptop, the scale's 38
+     over 30 on a tablet, and 28 over the angle's 21 on a phone. */
   &[data-angled] {
-    font-size: var(--typography-size-3);
+    font-size: 50px;
+
+    @include desktop-down {
+      font-size: var(--typography-size-3);
+    }
+
+    @include mobile-down {
+      font-size: 28px;
+    }
   }
 }
 
