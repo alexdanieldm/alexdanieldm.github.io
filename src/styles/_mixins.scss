@@ -28,20 +28,23 @@
   border: 0;
 }
 
-/// A link among running words: underlined all the time, not only on hover like
-/// the site's .text-link. Among words, colour alone would have to carry it, and
-/// coral against the body's white measures 2.96:1, under the 3:1 a link needs
-/// to stand apart from the text around it. A write-up's links and the About
-/// section's one share it, so the two never drift apart.
+/// A link among running words: coral words on a thin coral line, white on
+/// hover. The words are coral because the marker highlight is already a coral
+/// line under white words, and a link drawn the same way read as one more
+/// highlight beside it. The line stays because coral against the body's white
+/// measures 2.96:1, under the 3:1 a link needs to stand apart by colour alone.
+/// Coral on the ground measures 5.35:1, so the words read as body text. A
+/// write-up's links and the About section's one share it.
 @mixin prose-link {
   text-decoration-line: underline;
   text-decoration-color: var(--color-accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
+  color: var(--color-accent);
   transition: color var(--duration-fast) ease;
 
   &:hover {
-    color: var(--color-accent);
+    color: var(--color-foreground);
   }
 
   @include reduced-motion {
