@@ -17,7 +17,7 @@ import type { ReactNode } from 'react';
 
 import { Mark } from '@/components/ui';
 
-import { localePath, type Locale } from './locales';
+import { crossingPath, halfOf, localePath, type Half, type Locale } from './locales';
 
 /** A string that may contain `[[highlighted]]` spans. */
 export type Rich = string;
@@ -58,8 +58,16 @@ export function Copy({ text, className, lang }: { text: Rich; className?: string
  * it.
  *
  * Emphasis is a real `<em>`, unlike the marker, because here it is meant. A
- * link to a route on this site goes through `localePath`, so it leads to the
- * reader's language whichever language the piece is written in.
+ * link to a route in the same half of the site goes through `localePath`, so
+ * it leads to the reader's language whichever language the piece is written
+ * in. A link into the other half is a crossing, like the nav's door between
+ * them: it opens that half in its own language, as a full page load, so the
+ * reader's choice on that half's switch is applied when they arrive (see
+ * `crossingPath`).
+ *
+ * The About section's paragraphs read through it too, for the one link they
+ * carry, to the shelf. A write-up sits on the shelf and About on the
+ * portfolio, which is what `from` says.
  */
 export type Prose = string;
 
@@ -69,8 +77,15 @@ const PROSE = /\[\[(.+?)\]\]|\*(.+?)\*|\[([^\]]+)\]\(([^)\s]+)\)/g;
    and it fails the build rather than shipping as literal brackets. */
 const STRAY = /\[\[|\]\]|\*|\]\(/;
 
-function linkTo(href: string, children: ReactNode, locale: Locale, key: number) {
+function linkTo(href: string, children: ReactNode, locale: Locale, from: Half, key: number) {
   const route = href.startsWith('/') && !href.startsWith('//');
+  if (route && halfOf(href) !== from) {
+    return (
+      <a key={key} href={crossingPath(href)}>
+        {children}
+      </a>
+    );
+  }
   return route ? (
     <Link key={key} href={localePath(locale, href)}>
       {children}
@@ -82,7 +97,7 @@ function linkTo(href: string, children: ReactNode, locale: Locale, key: number) 
   );
 }
 
-export function renderProse(text: Prose, locale: Locale): ReactNode[] {
+export function renderProse(text: Prose, locale: Locale, from: Half = 'shelf'): ReactNode[] {
   const parts: ReactNode[] = [];
   let cursor = 0;
 
@@ -96,10 +111,11 @@ export function renderProse(text: Prose, locale: Locale): ReactNode[] {
     const [whole, marked, emphasis, label, href] = match;
     const at = match.index;
     plain(at);
-    if (marked !== undefined) parts.push(<Mark key={at}>{renderProse(marked, locale)}</Mark>);
-    else if (emphasis !== undefined) parts.push(<em key={at}>{renderProse(emphasis, locale)}</em>);
+    if (marked !== undefined) parts.push(<Mark key={at}>{renderProse(marked, locale, from)}</Mark>);
+    else if (emphasis !== undefined)
+      parts.push(<em key={at}>{renderProse(emphasis, locale, from)}</em>);
     else if (label !== undefined && href !== undefined)
-      parts.push(linkTo(href, renderProse(label, locale), locale, at));
+      parts.push(linkTo(href, renderProse(label, locale, from), locale, from, at));
     cursor = at + whole.length;
   }
 
