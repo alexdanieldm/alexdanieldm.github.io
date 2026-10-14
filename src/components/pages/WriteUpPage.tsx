@@ -124,14 +124,13 @@ export function WriteUpPage({ locale, slug }: { locale: Locale; slug: string }) 
                 <span className={styles.bar} aria-hidden="true" />
                 {shelf.sections[section].name}
               </p>
-              {/* The angle under the name, and a colon between them that only
-                  a crawler and a screen reader meet, so the heading reads
-                  exactly as the title does: "Gurren Lagann: seguir…". */}
-              <h1 className={styles.title}>
+              {/* The name, a colon and the angle, so the heading reads exactly
+                  as the title does: "Gurren Lagann: seguir…". */}
+              <h1 className={styles.title} data-angled={piece.subtitle ? '' : undefined}>
                 {item.title}
                 {piece.subtitle && (
                   <>
-                    <span className={styles.titleJoin}>: </span>
+                    <span>: </span>
                     <span className={styles.subtitle} lang={lang}>
                       {piece.subtitle}
                     </span>

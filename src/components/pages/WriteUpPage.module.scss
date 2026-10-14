@@ -135,30 +135,34 @@
   @include mobile-down {
     margin-bottom: 22px;
   }
-}
 
-.titleJoin {
-  @include visually-hidden;
-}
+  /* With an angle, the name and the angle are one headline, "Gurren Lagann:
+     seguir excavando cuando parece imposible", set two steps down the scale
+     from a bare name so that on a laptop the whole of it fits the column on
+     one line. The name keeps a step over the angle. On a phone there is no
+     line long enough, so the name keeps its usual size and line. */
+  &[data-angled] {
+    font-size: var(--typography-size-4);
 
-/* The piece's angle, a step of the scale below the name it follows, and
-   quieter, so the work's name stays the headline. Written lowercase to read
-   on after the colon in the title, and capitalised here, where it starts a
-   line of its own. */
-.subtitle {
-  display: block;
-  margin-top: 12px;
-  font-size: var(--typography-size-6);
-  line-height: var(--typography-height-display);
-  letter-spacing: normal;
-  color: var(--color-muted);
-
-  &::first-letter {
-    text-transform: uppercase;
+    @include mobile-down {
+      font-size: var(--typography-size-2);
+    }
   }
+}
+
+/* The angle: a step below the name, in the same ink, on the same line. On a
+   phone it goes under the name, smaller and quieter, the way a subtitle sits
+   under a headline. Lowercase either way: it follows the colon. */
+.subtitle {
+  font-size: var(--typography-size-5);
+  letter-spacing: normal;
 
   @include mobile-down {
-    margin-top: 10px;
+    display: block;
+    margin-top: 6px;
+    font-size: 21px; /* one line at 390 wide, between the scale's body and heading sizes */
+    line-height: var(--typography-height-display);
+    color: var(--color-muted);
   }
 }
 
