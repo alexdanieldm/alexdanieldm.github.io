@@ -151,6 +151,14 @@ the type reads: the ground at 5% at the top, 20% at 17%, 43% at 40%, 70% at
 1200 by 630, cover, with that fade, the English card redraws to within the
 anti-aliasing of its letters, which is how the Spanish one was checked.
 
+`public/og-links.jpg` and `public/og-links-es.jpg` are the links page's
+cards, and the one place a link preview shows me rather than the site: it is
+the page my Instagram bio points to. My photo in a coral ring, then my name,
+my handle and where else I am, on the site's ground with a coral wash low on
+the left; drawn in a browser like `og.png`, the photo a 330px circle, the
+name at 124px, the handle at 42px so it still reads at a chat's size. They
+are JPEGs: the PNG encoding above cuts to 256 colours, which speckles a photo.
+
 Every page builds its own card metadata through `pageMetadata()` in
 `src/content/seo.ts`. Every absolute address in it, and in the sitemap and the
 structured data, is built on `SITE_URL`: `https://alexdanieldm.com`, the custom
@@ -182,8 +190,8 @@ fetches it again.
 For search engines, the home page is a schema.org ProfilePage about me, a
 Person: what I do and where, taken from its own copy, the other names I am
 searched by, my handle among them, my photo, and the profiles that are also
-me. The photo, `public/alex-duran.jpg`, is for search engines only and is never
-a link preview: the profile page names it as the image its search result should
+me. The photo, `public/alex-duran.jpg`, is for search engines, and in no link
+preview but the links page's: the profile page names it as the image its search result should
 show, square as a result's thumbnail is, where Google had cropped the link
 preview card and blurred my name on it. The site is a WebSite with my handle as
 its alternate name. The shelf is a CollectionPage by that same Person, part of

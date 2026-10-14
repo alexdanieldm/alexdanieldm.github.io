@@ -63,11 +63,33 @@ export const OG_IMAGE: Record<Locale, PreviewImage> = {
 };
 
 /**
- * My photo, for search engines only: the Person below names it as me, so a
- * search for my name can show my face rather than a namesake's. It is never a
- * link preview. Those stay the artwork cards, so a shared link previews the
- * site, not me. The file is named after me because an image's name is one of
- * the few things an image search reads about it.
+ * The links page's card: my photo beside my name, my handle, and where else I
+ * am. It is the page my Instagram bio points to, about where to find me rather
+ * than about my work, so it is the one card that previews me and not the
+ * site. A JPEG, unlike the others: a photo cut to 256 colours, as their PNGs
+ * are, speckles.
+ */
+export const LINKS_CARD: Record<Locale, PreviewImage> = {
+  en: {
+    url: '/og-links.jpg',
+    width: 1200,
+    height: 630,
+    alt: 'Alex Durán, @alexdanieldm: portfolio, shelf, Substack and Instagram. A photo of me, smiling, in a coral ring.',
+  },
+  es: {
+    url: '/og-links-es.jpg',
+    width: 1200,
+    height: 630,
+    alt: 'Alex Durán, @alexdanieldm: portfolio, estantería, Substack e Instagram. Una foto mía, sonriendo, en un aro coral.',
+  },
+};
+
+/**
+ * My photo, for search engines: the Person below names it as me, so a search
+ * for my name can show my face rather than a namesake's. The only link preview
+ * it is in is the links page's, drawn into `LINKS_CARD`; every other card
+ * previews the site. The file is named after me because an image's name is
+ * one of the few things an image search reads about it.
  */
 const PORTRAIT_URL = '/alex-duran.jpg';
 const PORTRAIT_SIZE = { width: 1200, height: 1200 } as const;
