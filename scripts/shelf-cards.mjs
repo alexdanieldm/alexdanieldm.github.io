@@ -5,6 +5,8 @@
  * - `card.jpg`, for the shelf and its contact page: the first two of each
  *   section, a column each, on the shelf's ground. It is the collage the
  *   contact page shows, so the link previews what it leads to.
+ * - `thumbnail.jpg`, square, for the shelf's search result: one spine a
+ *   section, the posters named in `SPINES`.
  * - `<slug>/<still>-card.jpg`, for a write-up that names one of its stills as
  *   its `linkPreview`: that still, cut to the card's shape.
  *
@@ -54,6 +56,25 @@ const WASHES = [
   { x: 0.08, y: 0.41, radiusX: 620, radiusY: 260, color: 'rgb(247, 81, 85)', opacity: 0.16 },
   { x: 0.93, y: 0.82, radiusX: 660, radiusY: 280, color: 'rgb(14, 58, 82)', opacity: 0.55 },
 ];
+
+/* The shelf's square thumbnail, the image a search result shows beside it:
+   one spine a section, in the shelf's order, the way books stand on a shelf.
+   The same 1200 square as the portrait the home page names, so the two
+   results sit side by side at one sharpness. Each spine is a poster's middle,
+   full height, where the art is. */
+const THUMBNAIL = 1200;
+const SPINE_GAP = 8;
+const THUMBNAIL_QUALITY = 88;
+/* My pick of poster for each section's spine. Each has to be on the shelf, in
+   that section, or the script stops: a thumbnail of something no longer there
+   would be wrong in every search result. */
+const SPINES = {
+  anime: 'gurren-lagann',
+  manga: 'frieren',
+  games: 'what-remains-of-edith-finch',
+  movies: 'about-time',
+  television: 'ted-lasso',
+};
 
 const PUBLIC = 'public';
 const SHELF_DIR = `${PUBLIC}/shelf`;
@@ -131,6 +152,46 @@ async function shelfCard() {
   return `${out}: ${slugs.join(', ')}`;
 }
 
+async function shelfThumbnail() {
+  const { SHELF, SHELF_SECTIONS } = await load('src/content/shelf.ts');
+  const slugs = SHELF_SECTIONS.map((section) => {
+    const slug = SPINES[section];
+    if (!SHELF[section].some((item) => item.slug === slug)) {
+      throw new Error(`The thumbnail's ${section} spine, "${slug}", is not in that section.`);
+    }
+    return slug;
+  });
+
+  const width = Math.floor((THUMBNAIL - SPINE_GAP * (slugs.length + 1)) / slugs.length);
+  const height = THUMBNAIL - SPINE_GAP * 2;
+  const layers = [];
+  for (const [index, slug] of slugs.entries()) {
+    const source = `${SHELF_DIR}/${slug}-720.webp`;
+    const { width: posterWidth, height: posterHeight } = await sharp(source).metadata();
+    const sliceWidth = Math.round(posterHeight * (width / height));
+    const spine = await sharp(source)
+      .extract({
+        left: Math.round((posterWidth - sliceWidth) / 2),
+        top: 0,
+        width: sliceWidth,
+        height: posterHeight,
+      })
+      .resize(width, height)
+      .toBuffer();
+    layers.push({ input: spine, left: SPINE_GAP + index * (width + SPINE_GAP), top: SPINE_GAP });
+  }
+
+  const out = `${SHELF_DIR}/thumbnail.jpg`;
+  /* A touch of sharpening: Google shrinks it to a thumbnail, and a soft source
+     shrinks to a blur. */
+  await sharp({ create: { width: THUMBNAIL, height: THUMBNAIL, channels: 3, background: GROUND } })
+    .composite(layers)
+    .sharpen({ sigma: 0.6 })
+    .jpeg({ quality: THUMBNAIL_QUALITY, mozjpeg: true })
+    .toFile(out);
+  return `${out}: ${slugs.join(', ')}`;
+}
+
 /** The widest cut of a still on disk, which is the most there is to work from. */
 function widestCut(slug, still) {
   const pattern = new RegExp(`^${still}-(\\d+)\\.webp$`);
@@ -171,5 +232,5 @@ async function stillCards() {
   return written;
 }
 
-const written = [await shelfCard(), ...(await stillCards())];
+const written = [await shelfCard(), await shelfThumbnail(), ...(await stillCards())];
 console.log(written.join('\n'));

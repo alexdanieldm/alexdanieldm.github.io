@@ -140,6 +140,8 @@ export const shelf = {
   /* What the shelf's link preview shows, for a feed or chat app that reads it
      out: the collage on the contact page. */
   cardAlt: 'Posters and cover art from the shelf, two from each section.',
+  /* The square image a search result shows beside the shelf. */
+  thumbnailAlt: 'Five posters from the shelf side by side like spines, one from each section.',
 
   /**
    * The page around a write-up. The piece itself keeps the language it was

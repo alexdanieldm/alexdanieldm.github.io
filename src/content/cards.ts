@@ -33,3 +33,19 @@ if (!inPublic(SHELF_CARD)) throw new Error(`${SHELF_CARD} is missing: run npm ru
 export function shelfCard(locale: Locale): PreviewImage {
   return { url: SHELF_CARD, ...CARD_SIZE, alt: contentFor(locale).shelf.cardAlt };
 }
+
+/* The image a search result shows beside the shelf, cut by the same script.
+   Square, like the portrait the home page names, because a result's thumbnail
+   is square: a wide card is cropped to its middle there, and a page with no
+   image of its own named lent the result whichever poster Google picked. */
+const SHELF_THUMBNAIL = '/shelf/thumbnail.jpg';
+const THUMBNAIL_SIZE = { width: 1200, height: 1200 } as const;
+
+if (!inPublic(SHELF_THUMBNAIL)) {
+  throw new Error(`${SHELF_THUMBNAIL} is missing: run npm run shelf:cards.`);
+}
+
+/** The shelf's square thumbnail, for its structured data. */
+export function shelfThumbnail(locale: Locale): PreviewImage {
+  return { url: SHELF_THUMBNAIL, ...THUMBNAIL_SIZE, alt: contentFor(locale).shelf.thumbnailAlt };
+}
