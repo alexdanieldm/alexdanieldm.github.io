@@ -418,16 +418,23 @@ there is no flag to set, so a card can never lead to a page that is not there.
 A piece's heading is the work's name, and with only that, so is its search
 result, which puts it beside every encyclopaedia, database and streaming page
 about the work, where it cannot win. `subtitle` is the angle only this piece
-takes, in its own language, written to follow the name: the heading sets it on
-a line under the name, and the tab, a result, a shared link and the structured
-data read "Gurren Lagann: seguir excavando cuando parece imposible". One field
-for both, because Google takes a page's heading over its title when the two
-disagree: with the angle in the title alone, the result still read "Gurren
-Lagann". The heading carries the colon too, hidden on screen, so its words are
-exactly the title's. Under 35 characters keeps the whole of it in a result,
-with the name and " · Alex Durán" around it.
-`updated` is the day I last revised it, for a change a reader would notice
-rather than a typo: search engines read it as how fresh the piece is.
+takes, in its own language, written to follow the name: the heading sets
+"Gurren Lagann:" and the angle on the line under it, in the same ink, as one
+title, and the tab, a result, a shared link and the structured data read
+"Gurren Lagann: seguir excavando cuando parece imposible". One field for both,
+because Google takes a page's heading over its title when the two disagree:
+with the angle in the title alone, the result still read "Gurren Lagann". The
+name sits a quarter over the angle at every width, 50 over 40 on a laptop, so
+the two lines read as one title rather than a headline and a second one. Under
+35 characters keeps the whole of it in a result, with the name and " · Alex
+Durán" around it. `updated` is the day I last revised it, for a change a reader
+would notice rather than a typo: search engines read it as how fresh the piece
+is.
+
+The label above the title gives the section and the day, "Publicado
+01.10.2026", or "Actualizado" and the revision's day once there is one. Google
+asks for a visible date, labelled, that matches the structured data, and a
+reader of a piece about a show wants to know when it was written.
 
 The registry checks every piece whenever it loads, so the build fails on a slug
 that is not on the shelf or that collides with a page under it, a date that is
