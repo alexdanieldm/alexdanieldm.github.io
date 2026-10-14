@@ -16,13 +16,13 @@ export const shelf: ShelfContent = {
   back: 'Volver a lo aburrido',
   backToShelf: 'Volver a la estantería',
   lede:
-    'Nada en esta página es trabajo. Son el manga, el anime, los juegos, las películas y las ' +
-    'series que más quiero, los que he leído, jugado o visto tantas veces que me los sé de ' +
-    'memoria, y [[lo que me enseñó cada uno]]. Prefiero contarte por qué quiero algo antes ' +
+    'Nada en esta página es trabajo. Son el anime, el manga, los juegos, las películas y las ' +
+    'series que más amo, los que he leído, jugado o visto tantas veces que me los sé de ' +
+    'memoria, y [[lo que me enseñó cada uno]]. Prefiero contarte por qué amo algo antes ' +
     'que darte una lista sin más.',
   ledeShort:
-    'Nada en esta página es trabajo. Son el manga, el anime, los juegos, las películas y las ' +
-    'series que más quiero, y [[lo que me enseñó cada uno]].',
+    'Nada en esta página es trabajo. Son el anime, el manga, los juegos, las películas y las ' +
+    'series que más amo, y [[lo que me enseñó cada uno]].',
 
   summary: {
     contentsLabel: 'Qué hay',

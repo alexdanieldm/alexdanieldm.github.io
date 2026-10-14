@@ -20,7 +20,7 @@ export const shelf = {
      leads out to the portfolio; from anywhere under it, back is the shelf. */
   backToShelf: 'Back to the shelf',
   lede:
-    'Nothing on this page is work. These are the manga, anime, games, films and shows I love ' +
+    'Nothing on this page is work. These are the anime, manga, games, films and shows I love ' +
     'most, the ones I have read, played or watched enough times to know by heart, and ' +
     '[[what each of them taught me]]. I would rather tell you why I love something than just ' +
     'hand you a list.',
@@ -28,7 +28,7 @@ export const shelf = {
      again, and on a 390px screen it costs the first poster its place above the
      fold. */
   ledeShort:
-    'Nothing on this page is work. These are the manga, anime, games, films and shows I love ' +
+    'Nothing on this page is work. These are the anime, manga, games, films and shows I love ' +
     'most, and [[what each of them taught me]].',
 
   summary: {
