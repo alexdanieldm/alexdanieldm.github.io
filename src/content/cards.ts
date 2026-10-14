@@ -4,7 +4,7 @@
  *
  * The portfolio's cards are the banner scene with my name over it (`OG_IMAGE`
  * in `seo.ts`). The shelf is its own half of the site and previews as itself:
- * the shelf and its contact page as the collage the contact page shows, and a
+ * the shelf and its contact page as its spines, one poster a section, and a
  * write-up as a still from the work it is about. `npm run shelf:cards` cuts
  * them into `public/shelf/`.
  */
@@ -47,5 +47,5 @@ if (!inPublic(SHELF_THUMBNAIL)) {
 
 /** The shelf's square thumbnail, for its structured data. */
 export function shelfThumbnail(locale: Locale): PreviewImage {
-  return { url: SHELF_THUMBNAIL, ...THUMBNAIL_SIZE, alt: contentFor(locale).shelf.thumbnailAlt };
+  return { url: SHELF_THUMBNAIL, ...THUMBNAIL_SIZE, alt: contentFor(locale).shelf.cardAlt };
 }

@@ -126,9 +126,7 @@ export const shelf: ShelfContent = {
   readWriteUp: 'Leer el artículo',
   readWriteUpOther: 'Leer el artículo, en inglés',
   art: { poster: 'Póster de {title}', cover: 'Portada de {title}' },
-  cardAlt: 'Pósteres y portadas de la estantería, dos de cada sección.',
-  thumbnailAlt:
-    'Cinco pósteres de la estantería, uno junto a otro como lomos, uno de cada sección.',
+  cardAlt: 'Cinco pósteres de la estantería, uno junto a otro como lomos, uno de cada sección.',
 
   writeUp: {
     contents: 'Índice',
