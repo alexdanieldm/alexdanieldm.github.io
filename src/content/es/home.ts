@@ -36,10 +36,11 @@ export const home: HomeContent = {
         '[[los flujos de trabajo, la documentación y el tooling interno]] que mantienen a un ' +
         'equipo entregando de forma consistente. Ese es el trabajo que más me importa.',
       'Fuera del trabajo entreno casi todos los días y me gusta meterme en situaciones en las ' +
-        'que todavía no estoy cómodo, que resulta ser buen entrenamiento para todo lo demás. Leo ' +
-        'bastante manga, y [a lo que siempre vuelvo está en mi estantería](/shelf/): manga, ' +
-        'anime, juegos, películas y series. Steal Like an Artist sigue siendo el libro que marcó cómo trabajo: ' +
-        'aprender a la vista de todos, y devolver lo que tomaste prestado.',
+        'que todavía no estoy cómodo, algo que al final me sirve para todo lo demás. Tengo ' +
+        '[una estantería con las historias que más quiero y lo que me enseñó cada una](/shelf/): ' +
+        'anime, manga, videojuegos, películas y televisión. Steal Like an Artist sigue siendo el ' +
+        'libro que marcó cómo trabajo: aprender a la vista de todos, y devolver lo que tomaste ' +
+        'prestado.',
     ],
   },
 
