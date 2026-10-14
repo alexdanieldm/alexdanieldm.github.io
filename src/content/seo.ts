@@ -63,6 +63,26 @@ export const OG_IMAGE: Record<Locale, PreviewImage> = {
 };
 
 /**
+ * The contact page's card: the same scene and fade as the portfolio's, with
+ * the page's heading where my name is and the page's own kanji, 嘱, where 作
+ * is. The heading is drawn into the card, so a new heading needs a new card.
+ */
+export const CONTACT_CARD: Record<Locale, PreviewImage> = {
+  en: {
+    url: '/og-contact.png',
+    width: 1200,
+    height: 630,
+    alt: 'Let’s talk about what you’re building, beside 嘱, to entrust. A road at dusk under a coral sun.',
+  },
+  es: {
+    url: '/og-contact-es.png',
+    width: 1200,
+    height: 630,
+    alt: 'Hablemos de lo que estás construyendo, junto a 嘱, encomendar. Una carretera al anochecer bajo un sol coral.',
+  },
+};
+
+/**
  * The links page's card: my photo beside my name, my handle, and where else I
  * am. It is the page my Instagram bio points to, about where to find me rather
  * than about my work, so it is the one card that previews me and not the

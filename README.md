@@ -151,6 +151,11 @@ the type reads: the ground at 5% at the top, 20% at 17%, 43% at 40%, 70% at
 1200 by 630, cover, with that fade, the English card redraws to within the
 anti-aliasing of its letters, which is how the Spanish one was checked.
 
+`public/og-contact.png` and `public/og-contact-es.png` are the contact page's:
+the same scene and fade, "Contact" over the page's own heading, "Let's talk
+about what you're building.", at 76px, and the page's kanji, 嘱, where 作
+sits on the others. The heading is drawn in, so a new heading needs a new card.
+
 `public/og-links.jpg` and `public/og-links-es.jpg` are the links page's
 cards, and the one place a link preview shows me rather than the site: it is
 the page my Instagram bio points to. My photo in a coral ring, then my name,
