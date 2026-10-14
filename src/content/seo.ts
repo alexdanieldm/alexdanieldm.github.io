@@ -73,6 +73,13 @@ type PageSeo = {
   path: string;
   /** Skip the tab-title template, for the one page that is already the full title. */
   isHome?: boolean;
+  /**
+   * The whole title, my name in it already, for a page that names itself
+   * rather than going through " · Alex Durán": the shelf, which is its own
+   * half of the site and reads in a result as a peer of the portfolio's
+   * "Alex Durán, Full Stack Engineer…", not as a page under it.
+   */
+  titleInFull?: string;
   noIndex?: boolean;
   /**
    * The one language the page's text exists in, when it is not both. A
@@ -99,13 +106,14 @@ export function pageMetadata({
   description,
   path,
   isHome,
+  titleInFull,
   noIndex,
   original,
   type = 'website',
   image = OG_IMAGE,
   article,
 }: PageSeo): Metadata {
-  const fullTitle = isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`;
+  const fullTitle = titleInFull ?? (isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`);
   const canonical = localePath(original ?? locale, path);
   const alternates = original
     ? { canonical }
@@ -126,7 +134,7 @@ export function pageMetadata({
     /* Omitted rather than set to undefined on the home page. An explicit
        undefined overrides the layout's `title.default` with nothing, and the
        page ships with no <title> at all; leaving the key out lets it inherit. */
-    ...(isHome ? {} : { title }),
+    ...(isHome ? {} : { title: titleInFull ? { absolute: titleInFull } : title }),
     description,
     /* A page kept out of search claims no address and names no twin. The 404
        is that page, and its Spanish twin would be a page that does not exist. */

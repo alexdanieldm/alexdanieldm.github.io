@@ -2,8 +2,12 @@
 
 export const shelf = {
   title: 'Things I keep going back to',
+  /* Its title in a search result, my name first, the way the portfolio's
+     starts. The page's own heading is `title`. */
+  searchTitle: 'Alex Durán: the shelf of the media I love most',
   metaDescription:
-    'The anime, manga, video games, movies and shows I love most, and what each of them taught me.',
+    'Things I keep going back to: the anime, manga, video games, movies and shows I love ' +
+    'most, and what each of them taught me.',
 
   /* The way out to the portfolio, in the footer. It does not say home,
      because the shelf is one, and it is worded so that leaving sounds like

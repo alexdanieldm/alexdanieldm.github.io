@@ -10,6 +10,7 @@ const { shelf } = contentFor(LOCALE);
 export const metadata = pageMetadata({
   locale: LOCALE,
   title: shelf.title,
+  titleInFull: shelf.searchTitle,
   description: shelf.metaDescription,
   path: ROUTES.shelf,
   image: shelfCard(LOCALE),

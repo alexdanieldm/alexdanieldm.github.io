@@ -7,9 +7,10 @@ export const shelf: ShelfContent = {
      second line on a 390px phone, where the English holds one, and cost the
      first poster 37px of the first screen. This is shorter and more natural. */
   title: 'A lo que siempre vuelvo',
+  searchTitle: 'Alex Durán: la estantería de las obras que más amo',
   metaDescription:
-    'El anime, el manga, los videojuegos, las películas y las series que más amo, y lo que ' +
-    'me enseñó cada uno.',
+    'A lo que siempre vuelvo: el anime, el manga, los videojuegos, las películas y las ' +
+    'series que más amo, y lo que me enseñó cada uno.',
 
   back: 'Volver a lo aburrido',
   backToShelf: 'Volver a la estantería',
