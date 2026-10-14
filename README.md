@@ -171,10 +171,22 @@ For search engines, the home page is a schema.org ProfilePage about me, a
 Person: what I do and where, taken from its own copy, the other names I am
 searched by, my handle among them, my photo, and the profiles that are also
 me. The photo, `public/alex-duran.jpg`, is for search engines only and is never
-a link preview. The site is a WebSite with my handle as its alternate name.
-The shelf is a CollectionPage by that same Person, part of the same site,
-listing each write-up, so a search for my name can lead to either half, and
-naming its card as the image a result should show beside it. Each
+a link preview: the profile page names it as the image its search result should
+show, square as a result's thumbnail is, where Google had cropped the link
+preview card and blurred my name on it. The site is a WebSite with my handle as
+its alternate name. The shelf is a CollectionPage by that same Person, part of
+the same site, listing each write-up, so a search for my name can lead to
+either half, and naming `public/shelf/thumbnail.jpg` as its result's image:
+five spines, one a section in the shelf's order, cut by `npm run shelf:cards`
+from the posters `SPINES` names, a 1200 square like the portrait. Every page
+allows `max-image-preview: large`, so Google may show those images at more
+than its default size.
+
+The shelf's result names it the way the portfolio's does, my name first: "Alex
+Durán: la estantería de las obras que más amo". A page can give its title in
+full, past the " · Alex Durán" the rest get, and the shelf's label and heading,
+"La estantería" over "Las obras que más amo", read as that title, so the page
+and its result agree. "A lo que siempre vuelvo" opens its description. Each
 write-up is a BlogPosting by me, part of the shelf in its own language, with
 the day it went up, the day I last revised it, its language and the work it is
 about, and its link preview carries the same as article tags. The JSON-LD goes
