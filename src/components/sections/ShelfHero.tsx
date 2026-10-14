@@ -35,6 +35,10 @@ export function ShelfHero({ locale }: { locale: Locale }) {
     <section className={styles.hero} aria-labelledby="shelf-title">
       <div className={styles.row}>
         <div className={styles.text}>
+          <p className={styles.kicker}>
+            <span className={styles.bar} aria-hidden="true" />
+            {shelf.kicker}
+          </p>
           <h1 className={styles.title} id="shelf-title">
             {shelf.title}
           </h1>

@@ -28,7 +28,7 @@ export function ShelfPage({ locale }: { locale: Locale }) {
       <JsonLd
         data={shelfSchema({
           locale,
-          name: shelf.title,
+          name: shelf.searchTitle,
           description: shelf.metaDescription,
           updated: SHELF_UPDATED,
           image: shelfThumbnail(locale),

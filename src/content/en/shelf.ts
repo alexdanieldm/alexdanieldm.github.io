@@ -1,10 +1,13 @@
 /** @fileoverview The shelf's copy, English. The items themselves are in `../shelf.ts`. */
 
 export const shelf = {
-  title: 'Things I keep going back to',
+  /* The label above the heading, and the heading: together they read the way
+     the search result's title does, so the page and its result agree. */
+  kicker: 'The shelf',
+  title: 'The media I love the most',
   /* Its title in a search result, my name first, the way the portfolio's
-     starts. The page's own heading is `title`. */
-  searchTitle: 'Alex Durán: the shelf of the media I love most',
+     starts. */
+  searchTitle: 'Alex Durán: the shelf of the media I love the most',
   metaDescription:
     'Things I keep going back to: the anime, manga, video games, movies and shows I love ' +
     'most, and what each of them taught me.',

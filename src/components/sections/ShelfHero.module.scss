@@ -36,6 +36,37 @@
   }
 }
 
+/* What the page is, above what it holds: "La estantería" over "Las obras que
+   más amo", the way a search result's title reads them. Set the way a
+   write-up's label is, the coral bar and all. */
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-sm);
+  margin-bottom: 14px;
+  font-size: var(--typography-size-label-small);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.2;
+  letter-spacing: var(--typography-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent);
+
+  @include mobile-down {
+    gap: 10px;
+  }
+}
+
+.bar {
+  flex-shrink: 0;
+  width: 28px; /* a drawn mark, not a space */
+  height: 3px;
+  background-color: var(--color-accent);
+
+  @include mobile-down {
+    width: 24px;
+  }
+}
+
 .title {
   margin-bottom: var(--spacer-2);
   font-family: var(--font-display);
