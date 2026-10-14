@@ -9,7 +9,7 @@ import type { HomeContent } from '../locales';
 
 export const home: HomeContent = {
   banner: {
-    eyebrow: 'Full Stack Engineer',
+    eyebrow: 'Ingeniero Full Stack',
     title: 'Construyo aplicaciones web, desde la primera conversación hasta la última release.',
     lede:
       'Afincado en Barcelona, trabajo en todo el proceso: definir y planificar, la interfaz, ' +

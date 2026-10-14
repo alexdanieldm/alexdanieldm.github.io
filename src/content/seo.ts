@@ -24,7 +24,7 @@ export const SITE_NAME = 'Alex Durán';
 
 export const DEFAULT_TITLE: Record<Locale, string> = {
   en: 'Alex Durán, Full Stack Engineer in Barcelona',
-  es: 'Alex Durán, Full Stack Engineer en Barcelona',
+  es: 'Alex Durán, Ingeniero Full Stack en Barcelona',
 };
 
 export const SITE_DESCRIPTION: Record<Locale, string> = {
@@ -32,7 +32,7 @@ export const SITE_DESCRIPTION: Record<Locale, string> = {
     'Full stack engineer in Barcelona. I build web applications end to end: the interface, ' +
     'the code, the integrations, and the release.',
   es:
-    'Full stack engineer en Barcelona. Construyo aplicaciones web de principio a fin: la ' +
+    'Ingeniero full stack en Barcelona. Construyo aplicaciones web de principio a fin: la ' +
     'interfaz, el código, las integraciones, y la entrega.',
 };
 
