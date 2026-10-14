@@ -2,7 +2,7 @@
  * @fileoverview The shelf's link preview cards: what a chat app or a feed
  * shows when someone pastes a link to the shelf.
  *
- * The portfolio's card is the banner scene with my name over it (`OG_IMAGE`
+ * The portfolio's cards are the banner scene with my name over it (`OG_IMAGE`
  * in `seo.ts`). The shelf is its own half of the site and previews as itself:
  * the shelf and its contact page as the collage the contact page shows, and a
  * write-up as a still from the work it is about. `npm run shelf:cards` cuts

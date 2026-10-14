@@ -41,15 +41,26 @@ export const SITE_DESCRIPTION: Record<Locale, string> = {
  * all crop from. Generated from the live banner scene rather than drawn
  * separately, so it cannot drift away from the site it is advertising.
  *
- * One card for both languages: it is the artwork, my name and 作, none of
- * which change.
+ * One card a language. The artwork, my name and 作 are the same in both, but
+ * the line over the name and the sentence under it are the page's own words,
+ * and a Spanish page that previewed as "Full Stack Engineer" and "I build web
+ * applications…" read as the English page. The Spanish card is drawn the same
+ * way from the same scene, the type set where the English card's is.
  */
-export const OG_IMAGE = {
-  url: '/og.png',
-  width: 1200,
-  height: 630,
-  alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
-} as const;
+export const OG_IMAGE: Record<Locale, PreviewImage> = {
+  en: {
+    url: '/og.png',
+    width: 1200,
+    height: 630,
+    alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
+  },
+  es: {
+    url: '/og-es.png',
+    width: 1200,
+    height: 630,
+    alt: 'Alex Durán, ingeniero full stack. Una carretera al anochecer bajo un sol coral.',
+  },
+};
 
 /**
  * My photo, for search engines only: the Person below names it as me, so a
@@ -110,7 +121,7 @@ export function pageMetadata({
   noIndex,
   original,
   type = 'website',
-  image = OG_IMAGE,
+  image = OG_IMAGE[locale],
   article,
 }: PageSeo): Metadata {
   const fullTitle = titleInFull ?? (isHome ? DEFAULT_TITLE[locale] : `${title} · ${SITE_NAME}`);

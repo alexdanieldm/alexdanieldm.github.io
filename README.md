@@ -142,6 +142,15 @@ draw the scene plus type into a 1200x630 canvas, and re-encode the result with
 `sharp().png({ effort: 10 })`: that took the canvas's 220KB default output
 down to 33KB with no loss.
 
+`public/og-es.png` is the same card for the Spanish pages: the same scene, my
+name and 作 in the same places, with "Ingeniero Full Stack" and the Spanish
+banner's sentence where the English ones are, so a Spanish page does not
+preview in English. The card's fade is its own, stronger than the banner's, so
+the type reads: the ground at 5% at the top, 20% at 17%, 43% at 40%, 70% at
+56%, 87% at 65%, 94% at 81%, and solid at the foot. Over the scene drawn at
+1200 by 630, cover, with that fade, the English card redraws to within the
+anti-aliasing of its letters, which is how the Spanish one was checked.
+
 Every page builds its own card metadata through `pageMetadata()` in
 `src/content/seo.ts`. Every absolute address in it, and in the sitemap and the
 structured data, is built on `SITE_URL`: `https://alexdanieldm.com`, the custom
