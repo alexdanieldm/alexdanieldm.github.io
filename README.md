@@ -173,12 +173,25 @@ searched by, my handle among them, my photo, and the profiles that are also
 me. The photo, `public/alex-duran.jpg`, is for search engines only and is never
 a link preview. The site is a WebSite with my handle as its alternate name.
 The shelf is a CollectionPage by that same Person, part of the same site,
-listing each write-up, so a search for my name can lead to either half. Each
+listing each write-up, so a search for my name can lead to either half, and
+naming its card as the image a result should show beside it. Each
 write-up is a BlogPosting by me, part of the shelf in its own language, with
 the day it went up, the day I last revised it, its language and the work it is
 about, and its link preview carries the same as article tags. The JSON-LD goes
 in through one component that escapes every `<`, so no title can end the
 script early.
+
+The portfolio points at the shelf from inside its text as well as from the
+nav: About's "I read a lot of manga" links there, crossing into it the way the
+nav's door does. A search engine reads how much a site points at a page as how
+much it matters, and a link among words counts for more than one in a menu.
+
+Crawlers read a page as runs of text, and two inline elements side by side
+with nothing between them become one word: a link row's label and value read
+"PortfolioMy work as…" in a search snippet. Wherever pieces of text sit next
+to each other as separate elements, the link rows, the "more on the shelf"
+heading and the home page's diagram, a plain space goes between them. Their
+parents are flex containers, which drop it on screen.
 
 `sitemap.xml` lists every page at both its addresses, the language it lives in
 first ahead of its translation, each naming the other, and each write-up once,
@@ -384,7 +397,7 @@ English shelf says so before anyone follows it: "Read the write up, in
 Spanish".
 
 Each piece is a typed module in `src/content/write-ups/`, named by its slug: its
-language, the day it went up and the day I last revised it, its search title,
+language, the day it went up and the day I last revised it, its subtitle,
 its standfirst, the rail's facts, the still a link to it previews as, and the
 manuscript as a list of blocks in the manuscript's order: paragraphs, headings, stills, and the large type. The large type comes in
 three kinds that look alike and are not. A standout is one of my own sentences
@@ -394,24 +407,33 @@ quotation is somebody else's words, a real `<blockquote>` with a grey rule where
 mine are coral. A closing paragraph is set a step larger, and a sign-off ends
 the piece. Its title, credit and poster are the shelf item's. The prose is plain
 strings, with the marker's `[[double brackets]]` plus `*emphasis*` and
-`[links](/like/this/)`. That parser sits beside the site's one-treatment one
-rather than inside it, so nothing already written for that one reads any
-differently. A piece being in that folder is what makes its item written up:
+`[links](/like/this/)`. A link within the shelf stays in the reader's
+language; one into the portfolio crosses, like the nav's door. Links are coral
+words on a thin line, so they never read as the marker, which is a coral band
+under white words. That parser sits beside the site's one-treatment one rather
+than inside it, so nothing already written for that one reads any differently.
+About's paragraphs read through it too, for their one link. A piece being in that folder is what makes its item written up:
 there is no flag to set, so a card can never lead to a page that is not there.
 
-A piece's heading is the work's name, and without a search title so is its
-search result, which puts it beside every encyclopaedia, database and streaming
-page about the work, where it cannot win. `searchTitle` is what the tab, a
-search result, a shared link and the structured data call it instead: the
-work's name and the angle only this piece takes, in its own language, under 50
-characters so " · Alex Durán" fits after it. The heading stays the work's name.
+A piece's heading is the work's name, and with only that, so is its search
+result, which puts it beside every encyclopaedia, database and streaming page
+about the work, where it cannot win. `subtitle` is the angle only this piece
+takes, in its own language, written to follow the name: the heading sets it on
+a line under the name, and the tab, a result, a shared link and the structured
+data read "Gurren Lagann: seguir excavando cuando parece imposible". One field
+for both, because Google takes a page's heading over its title when the two
+disagree: with the angle in the title alone, the result still read "Gurren
+Lagann". The heading carries the colon too, hidden on screen, so its words are
+exactly the title's. Under 35 characters keeps the whole of it in a result,
+with the name and " · Alex Durán" around it.
 `updated` is the day I last revised it, for a change a reader would notice
 rather than a typo: search engines read it as how fresh the piece is.
 
 The registry checks every piece whenever it loads, so the build fails on a slug
 that is not on the shelf or that collides with a page under it, a date that is
-not a real day, a revision that is not after the day it went up, a search
-title that does not name the work, two headings with one id, a still without alt text or its files,
+not a real day, a revision that is not after the day it went up, a subtitle
+that repeats the work's name or starts with punctuation, two headings with one
+id, a still without alt text or its files,
 a link preview that is not one of its stills or has no card, and a pull quote
 that is not a sentence of the piece. That last one matters because a pull quote
 is hidden from screen readers, which is only fair when they have just read it.
