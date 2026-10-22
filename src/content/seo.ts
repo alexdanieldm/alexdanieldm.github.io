@@ -23,17 +23,17 @@ export const SITE_URL = 'https://alexdanieldm.com';
 export const SITE_NAME = 'Alex Durán';
 
 export const DEFAULT_TITLE: Record<Locale, string> = {
-  en: 'Alex Durán, Full Stack Engineer in Barcelona',
-  es: 'Alex Durán, Ingeniero Full Stack en Barcelona',
+  en: 'Alex Durán, Senior Full Stack Engineer in Barcelona',
+  es: 'Alex Durán, Ingeniero Full Stack Senior en Barcelona',
 };
 
 export const SITE_DESCRIPTION: Record<Locale, string> = {
   en:
-    'Full stack engineer in Barcelona. I build web applications end to end: the interface, ' +
-    'the code, the integrations, and the release.',
+    'Senior full stack engineer in Barcelona. I build web applications end to end: the ' +
+    'interface, the code, the integrations, and the release.',
   es:
-    'Ingeniero full stack en Barcelona. Construyo aplicaciones web de principio a fin: la ' +
-    'interfaz, el código, las integraciones, y la entrega.',
+    'Ingeniero full stack senior en Barcelona. Construyo aplicaciones web de principio a ' +
+    'fin: la interfaz, el código, las integraciones, y la entrega.',
 };
 
 /**
@@ -43,22 +43,22 @@ export const SITE_DESCRIPTION: Record<Locale, string> = {
  *
  * One card a language. The artwork, my name and 作 are the same in both, but
  * the line over the name and the sentence under it are the page's own words,
- * and a Spanish page that previewed as "Full Stack Engineer" and "I build web
- * applications…" read as the English page. The Spanish card is drawn the same
- * way from the same scene, the type set where the English card's is.
+ * and a Spanish page that previewed as "Senior Full Stack Engineer" and "I
+ * build web applications…" read as the English page. The Spanish card is drawn
+ * the same way from the same scene, the type set where the English card's is.
  */
 export const OG_IMAGE: Record<Locale, PreviewImage> = {
   en: {
     url: '/og.png',
     width: 1200,
     height: 630,
-    alt: 'Alex Durán, full stack engineer. A road at dusk under a coral sun.',
+    alt: 'Alex Durán, senior full stack engineer. A road at dusk under a coral sun.',
   },
   es: {
     url: '/og-es.png',
     width: 1200,
     height: 630,
-    alt: 'Alex Durán, ingeniero full stack. Una carretera al anochecer bajo un sol coral.',
+    alt: 'Alex Durán, ingeniero full stack senior. Una carretera al anochecer bajo un sol coral.',
   },
 };
 
@@ -130,7 +130,7 @@ type PageSeo = {
    * The whole title, my name in it already, for a page that names itself
    * rather than going through " · Alex Durán": the shelf, which is its own
    * half of the site and reads in a result as a peer of the portfolio's
-   * "Alex Durán, Full Stack Engineer…", not as a page under it.
+   * "Alex Durán, Senior Full Stack Engineer…", not as a page under it.
    */
   titleInFull?: string;
   noIndex?: boolean;

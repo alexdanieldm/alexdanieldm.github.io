@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   keywords: [
     'Alex Durán',
-    'full stack engineer',
+    'senior full stack engineer',
     'TypeScript',
     'React',
     'Next.js',
