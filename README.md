@@ -143,7 +143,7 @@ draw the scene plus type into a 1200x630 canvas, and re-encode the result with
 down to 33KB with no loss.
 
 `public/og-es.png` is the same card for the Spanish pages: the same scene, my
-name and 作 in the same places, with "Ingeniero Full Stack" and the Spanish
+name and 作 in the same places, with "Ingeniero Full Stack Senior" and the Spanish
 banner's sentence where the English ones are, so a Spanish page does not
 preview in English. The card's fade is its own, stronger than the banner's, so
 the type reads: the ground at 5% at the top, 20% at 17%, 43% at 40%, 70% at
@@ -533,7 +533,7 @@ page. It carries my email and LinkedIn and nothing else personal, which is the
 bar for anything in `public/`. Replacing it is a file swap; no code references
 its contents.
 
-It downloads as `Alex Duran - Full Stack Engineer - CV.pdf` rather than
+It downloads as `Alex Duran - Senior Full Stack Engineer - CV.pdf` rather than
 `cv.pdf`, because that is what someone has to find again in a folder of twenty.
 The name lives on `CV.filename` in `src/content/navigation.ts`.
 

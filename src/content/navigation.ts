@@ -111,5 +111,5 @@ export const SOCIALS = {
  */
 export const CV = {
   href: '/cv.pdf',
-  filename: 'Alex Duran - Full Stack Engineer - CV.pdf',
+  filename: 'Alex Duran - Senior Full Stack Engineer - CV.pdf',
 } as const;
