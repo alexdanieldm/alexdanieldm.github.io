@@ -35,7 +35,7 @@ export const links: LinksContent = {
   descriptions: {
     shelf: 'Anime, manga, juegos, cine y series que más amo',
     shelfShort: 'Anime, manga, juegos, cine, TV',
-    portfolio: 'Mi trabajo como ingeniero full stack',
+    portfolio: 'Mi trabajo como ingeniero full stack senior',
     portfolioShort: 'Mi trabajo como ingeniero',
   },
 

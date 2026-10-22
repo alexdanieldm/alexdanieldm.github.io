@@ -39,7 +39,7 @@ export const links = {
   descriptions: {
     shelf: 'Anime, manga, games, films and shows I love',
     shelfShort: 'Anime, manga, games, film, TV',
-    portfolio: 'My work as a full stack engineer',
+    portfolio: 'My work as a senior full stack engineer',
     portfolioShort: 'My work as an engineer',
   },
 
