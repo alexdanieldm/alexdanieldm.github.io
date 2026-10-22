@@ -164,6 +164,13 @@
     display: grid;
     grid-template-columns: auto 1fr;
     row-gap: 8px;
+
+    /* Stacked, the title has the row to itself, and "Senior Full Stack
+       Engineer" is wider than a 320px phone at this tracking. It wraps
+       rather than running past the margin. */
+    .role {
+      white-space: normal;
+    }
   }
 
   .divider {

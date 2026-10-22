@@ -7,7 +7,7 @@
 
 export const home = {
   banner: {
-    eyebrow: 'Full Stack Engineer',
+    eyebrow: 'Senior Full Stack Engineer',
     title: 'I build web applications, from the first conversation to the last release.',
     lede:
       'Based in Barcelona, working across the whole process: scoping and planning, the ' +
