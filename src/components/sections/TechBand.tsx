@@ -4,12 +4,12 @@ import {
   GitIcon,
   GraphQLIcon,
   JavaScriptIcon,
-  LiquidIcon,
   NextJsIcon,
   NodeIcon,
   ReactIcon,
   SassIcon,
   ShopifyIcon,
+  StorybookIcon,
   TypeScriptIcon,
 } from '@/components/icons';
 import { SectionHeading, TechBadge } from '@/components/ui';
@@ -40,7 +40,7 @@ const STACK = [
   { label: 'Node.js', Icon: NodeIcon, size: 47 },
   { label: 'GraphQL', Icon: GraphQLIcon, size: 50 },
   { label: 'Shopify', Icon: ShopifyIcon, size: 46 },
-  { label: 'Liquid', Icon: LiquidIcon, size: 48 },
+  { label: 'Storybook', Icon: StorybookIcon, size: 46 },
   { label: 'SCSS', Icon: SassIcon, size: 46 },
   { label: 'AWS', Icon: AwsIcon, size: 48 },
   { label: 'Figma', Icon: FigmaIcon, size: 46 },
